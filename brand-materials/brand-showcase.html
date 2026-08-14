@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OMNyra Group — Brand Identity System | Concept B: Precision Weave</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --carbon: #0D1117;
+      --hex-blue: #00A8E8;
+      --chrome: #8B949E;
+      --deep-carbon: #161B22;
+      --junction: #0077B6;
+      --steel: #C9D1D9;
+      --white: #FFFFFF;
+      --signal-red: #F85149;
+      --bg: #F8F9FA;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--carbon);
+      line-height: 1.6;
+    }
+
+    /* Cover Section */
+    .cover {
+      background: var(--carbon);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(0,168,232,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(0,119,182,0.06) 0%, transparent 50%);
+    }
+
+    .cover-logo { position: relative; z-index: 1; margin-bottom: 3rem; }
+    .cover-logo svg { width: 320px; height: auto; }
+
+    .cover h1 {
+      position: relative; z-index: 1;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .cover h1 span { color: var(--hex-blue); font-weight: 300; }
+
+    .cover .subtitle {
+      position: relative; z-index: 1;
+      font-size: 1.125rem;
+      font-weight: 300;
+      color: var(--chrome);
+      letter-spacing: 0.04em;
+      margin-bottom: 2rem;
+    }
+
+    .cover .meta {
+      position: relative; z-index: 1;
+      font-size: 0.8125rem;
+      font-weight: 400;
+      color: var(--steel);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .cover .accent-line {
+      position: relative; z-index: 1;
+      width: 80px; height: 2px;
+      background: linear-gradient(90deg, var(--junction), var(--hex-blue));
+      margin: 2rem auto;
+    }
+
+    /* Section */
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--hex-blue);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 800;
+      color: var(--carbon);
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--chrome);
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+
+    /* Color Palette */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .color-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .color-swatch {
+      height: 100px;
+      width: 100%;
+    }
+
+    .color-info {
+      padding: 1rem;
+    }
+
+    .color-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--carbon);
+      margin-bottom: 0.25rem;
+    }
+
+    .color-hex {
+      font-size: 0.8125rem;
+      font-weight: 400;
+      color: var(--chrome);
+      font-family: 'Space Grotesk', monospace;
+    }
+
+    /* Logo Grid */
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .logo-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      min-height: 200px;
+    }
+
+    .logo-card.dark {
+      background: var(--carbon);
+    }
+
+    .logo-card svg {
+      width: 100%;
+      max-width: 360px;
+      height: auto;
+    }
+
+    .logo-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--chrome);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+
+    /* Materials Showcase */
+    .material-section {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 3rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .material-section h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--carbon);
+      margin-bottom: 0.5rem;
+    }
+
+    .material-section .material-desc {
+      font-size: 0.875rem;
+      color: var(--chrome);
+      margin-bottom: 2rem;
+    }
+
+    .material-preview {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      background: var(--bg);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .material-preview svg,
+    .material-preview img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .material-specs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #E8ECF0;
+    }
+
+    .spec-item {
+      text-align: center;
+    }
+
+    .spec-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--chrome);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .spec-value {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--carbon);
+      margin-top: 0.25rem;
+    }
+
+    /* Business Cards */
+    .cards-preview {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .card-wrapper {
+      text-align: center;
+    }
+
+    .card-wrapper svg {
+      width: 340px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .card-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--chrome);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 1rem;
+    }
+
+    /* Typography Specimen */
+    .type-specimen {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 3rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .type-row {
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid #F0F2F5;
+    }
+
+    .type-row:last-child { border-bottom: none; }
+
+    .type-meta {
+      min-width: 140px;
+      flex-shrink: 0;
+    }
+
+    .type-weight {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--hex-blue);
+      letter-spacing: 0.05em;
+    }
+
+    .type-size {
+      font-size: 0.6875rem;
+      color: var(--chrome);
+    }
+
+    .type-sample {
+      flex: 1;
+    }
+
+    /* Footer */
+    .showcase-footer {
+      background: var(--carbon);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .showcase-footer .footer-logo svg { width: 180px; height: auto; }
+
+    .showcase-footer .footer-text {
+      font-size: 0.8125rem;
+      color: var(--chrome);
+      margin-top: 1.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .showcase-footer .footer-tagline {
+      font-size: 0.75rem;
+      color: var(--steel);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 0.75rem;
+    }
+
+    /* Print Styles */
+    @media print {
+      .cover { min-height: auto; padding: 3rem 2rem; page-break-after: always; }
+      .section { page-break-inside: avoid; }
+      .material-section { page-break-inside: avoid; }
+      body { background: white; }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .logo-grid { grid-template-columns: 1fr; }
+      .cards-preview { flex-direction: column; align-items: center; }
+      .type-row { flex-direction: column; gap: 0.5rem; }
+      .type-meta { min-width: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- COVER -->
+  <section class="cover">
+    <div class="cover-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
+        <defs>
+          <linearGradient id="hbg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0077B6"/>
+            <stop offset="50%" stop-color="#00A8E8"/>
+            <stop offset="100%" stop-color="#00D4FF"/>
+          </linearGradient>
+          <linearGradient id="clg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#6B7280"/>
+            <stop offset="50%" stop-color="#8B949E"/>
+            <stop offset="100%" stop-color="#C9D1D9"/>
+          </linearGradient>
+          <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <g transform="translate(100,100)">
+          <polygon points="0,-72 62,-36 62,36 0,72 -62,36 -62,-36" fill="none" stroke="url(#clg)" stroke-width="4" stroke-linejoin="round"/>
+          <polygon points="0,-56 48,-28 48,28 0,56 -48,28 -48,-28" fill="none" stroke="url(#clg)" stroke-width="2" opacity="0.5"/>
+          <polygon points="0,-48 41,-24 41,24 0,48 -41,24 -41,-24" fill="url(#hbg)" opacity="0.9"/>
+          <polygon points="0,-36 31,-18 31,18 0,36 -31,18 -31,-18" fill="#0D1117" opacity="0.6"/>
+          <g filter="url(#glow)"><path d="M-18,18 L0,0 L18,-18 L24,-24" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polygon points="24,-24 16,-24 24,-16" fill="white"/></g>
+          <circle cx="0" cy="-56" r="4" fill="#C9D1D9"/><circle cx="48" cy="-28" r="4" fill="#C9D1D9"/><circle cx="48" cy="28" r="4" fill="#C9D1D9"/><circle cx="0" cy="56" r="4" fill="#C9D1D9"/><circle cx="-48" cy="28" r="4" fill="#C9D1D9"/><circle cx="-48" cy="-28" r="4" fill="#C9D1D9"/>
+        </g>
+        <g transform="translate(200,72)">
+          <text x="0" y="52" font-family="Inter,sans-serif" font-size="68" font-weight="800" fill="#FFFFFF" letter-spacing="3">OMN</text>
+          <text x="188" y="52" font-family="Inter,sans-serif" font-size="68" font-weight="300" fill="#00A8E8" letter-spacing="1">yra</text>
+          <text x="328" y="30" font-family="Inter,sans-serif" font-size="14" fill="#8B949E">™</text>
+          <text x="195" y="90" font-family="Inter,sans-serif" font-size="22" font-weight="500" fill="#8B949E" letter-spacing="14">GROUP</text>
+          <line x1="0" y1="80" x2="170" y2="80" stroke="#8B949E" stroke-width="1" opacity="0.4"/>
+          <line x1="340" y1="80" x2="520" y2="80" stroke="#8B949E" stroke-width="1" opacity="0.4"/>
+        </g>
+      </svg>
+    </div>
+    <div class="accent-line"></div>
+    <h1>Brand Identity <span>System</span></h1>
+    <p class="subtitle">Concept B — Precision Weave</p>
+    <p class="meta">Production-Grade Materials &nbsp;·&nbsp; Version 1.0 &nbsp;·&nbsp; August 2026</p>
+  </section>
+
+  <!-- COLOR PALETTE -->
+  <section class="section">
+    <p class="section-label">01 — Foundation</p>
+    <h2 class="section-title">Color Palette</h2>
+    <p class="section-desc">The Precision Weave palette translates structural engineering and compliance architecture into chromatic form.</p>
+
+    <div class="palette-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background:#0D1117"></div>
+        <div class="color-info"><p class="color-name">Carbon Foundation</p><p class="color-hex">#0D1117 · RGB 13, 17, 23</p></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#00A8E8"></div>
+        <div class="color-info"><p class="color-name">Hex Blue</p><p class="color-hex">#00A8E8 · RGB 0, 168, 232</p></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#8B949E"></div>
+        <div class="color-info"><p class="color-name">Chrome Lattice</p><p class="color-hex">#8B949E · RGB 139, 148, 158</p></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#0077B6"></div>
+        <div class="color-info"><p class="color-name">Junction Blue</p><p class="color-hex">#0077B6 · RGB 0, 119, 182</p></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#C9D1D9"></div>
+        <div class="color-info"><p class="color-name">Steel</p><p class="color-hex">#C9D1D9 · RGB 201, 209, 217</p></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#161B22"></div>
+        <div class="color-info"><p class="color-name">Deep Carbon</p><p class="color-hex">#161B22 · RGB 22, 27, 34</p></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FFFFFF; border: 1px solid #E8ECF0"></div>
+        <div class="color-info"><p class="color-name">Pure White</p><p class="color-hex">#FFFFFF · RGB 255, 255, 255</p></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: linear-gradient(135deg, #0077B6, #00A8E8, #00D4FF)"></div>
+        <div class="color-info"><p class="color-name">Lattice Glow Gradient</p><p class="color-hex">#0077B6 → #00A8E8 → #00D4FF</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGO SYSTEM -->
+  <section class="section">
+    <p class="section-label">02 — Identity</p>
+    <h2 class="section-title">Logo System</h2>
+    <p class="section-desc">The Sentinel Mark — segmented chrome ring, blue gradient core, ascending white arrow. Five variations for every use case.</p>
+
+    <div class="logo-grid">
+      <div class="logo-card dark">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
+          <defs><linearGradient id="h1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0077B6"/><stop offset="50%" stop-color="#00A8E8"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient><linearGradient id="c1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6B7280"/><stop offset="50%" stop-color="#8B949E"/><stop offset="100%" stop-color="#C9D1D9"/></linearGradient><filter id="g1"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+          <g transform="translate(100,100)"><polygon points="0,-72 62,-36 62,36 0,72 -62,36 -62,-36" fill="none" stroke="url(#c1)" stroke-width="4" stroke-linejoin="round"/><polygon points="0,-56 48,-28 48,28 0,56 -48,28 -48,-28" fill="none" stroke="url(#c1)" stroke-width="2" opacity="0.5"/><polygon points="0,-48 41,-24 41,24 0,48 -41,24 -41,-24" fill="url(#h1)" opacity="0.9"/><polygon points="0,-36 31,-18 31,18 0,36 -31,18 -31,-18" fill="#0D1117" opacity="0.6"/><g filter="url(#g1)"><path d="M-18,18 L0,0 L18,-18 L24,-24" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polygon points="24,-24 16,-24 24,-16" fill="white"/></g><circle cx="0" cy="-56" r="4" fill="#C9D1D9"/><circle cx="48" cy="-28" r="4" fill="#C9D1D9"/><circle cx="48" cy="28" r="4" fill="#C9D1D9"/><circle cx="0" cy="56" r="4" fill="#C9D1D9"/><circle cx="-48" cy="28" r="4" fill="#C9D1D9"/><circle cx="-48" cy="-28" r="4" fill="#C9D1D9"/></g>
+          <g transform="translate(200,72)"><text x="0" y="52" font-family="Inter,sans-serif" font-size="68" font-weight="800" fill="#FFFFFF" letter-spacing="3">OMN</text><text x="188" y="52" font-family="Inter,sans-serif" font-size="68" font-weight="300" fill="#00A8E8" letter-spacing="1">yra</text><text x="328" y="30" font-family="Inter,sans-serif" font-size="14" fill="#8B949E">™</text><text x="195" y="90" font-family="Inter,sans-serif" font-size="22" font-weight="500" fill="#8B949E" letter-spacing="14">GROUP</text><line x1="0" y1="80" x2="170" y2="80" stroke="#8B949E" stroke-width="1" opacity="0.4"/><line x1="340" y1="80" x2="520" y2="80" stroke="#8B949E" stroke-width="1" opacity="0.4"/></g>
+        </svg>
+        <p class="logo-label">Primary Logo — Dark Background</p>
+      </div>
+
+      <div class="logo-card">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
+          <g transform="translate(100,100)"><polygon points="0,-72 62,-36 62,36 0,72 -62,36 -62,-36" fill="none" stroke="#0D1117" stroke-width="4" stroke-linejoin="round" opacity="0.6"/><polygon points="0,-56 48,-28 48,28 0,56 -48,28 -48,-28" fill="none" stroke="#0D1117" stroke-width="2" opacity="0.3"/><polygon points="0,-48 41,-24 41,24 0,48 -41,24 -41,-24" fill="#0D1117" opacity="0.12"/><polygon points="0,-36 31,-18 31,18 0,36 -31,18 -31,-18" fill="#FFFFFF" opacity="0.3"/><path d="M-18,18 L0,0 L18,-18 L24,-24" stroke="#0D1117" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polygon points="24,-24 16,-24 24,-16" fill="#0D1117"/><circle cx="0" cy="-56" r="4" fill="#0D1117" opacity="0.5"/><circle cx="48" cy="-28" r="4" fill="#0D1117" opacity="0.5"/><circle cx="48" cy="28" r="4" fill="#0D1117" opacity="0.5"/><circle cx="0" cy="56" r="4" fill="#0D1117" opacity="0.5"/><circle cx="-48" cy="28" r="4" fill="#0D1117" opacity="0.5"/><circle cx="-48" cy="-28" r="4" fill="#0D1117" opacity="0.5"/></g>
+          <g transform="translate(200,72)"><text x="0" y="52" font-family="Inter,sans-serif" font-size="68" font-weight="800" fill="#0D1117" letter-spacing="3">OMN</text><text x="188" y="52" font-family="Inter,sans-serif" font-size="68" font-weight="300" fill="#0D1117" letter-spacing="1">yra</text><text x="328" y="30" font-family="Inter,sans-serif" font-size="14" fill="#0D1117" opacity="0.6">™</text><text x="195" y="90" font-family="Inter,sans-serif" font-size="22" font-weight="500" fill="#0D1117" letter-spacing="14" opacity="0.7">GROUP</text><line x1="0" y1="80" x2="170" y2="80" stroke="#0D1117" stroke-width="1" opacity="0.3"/><line x1="340" y1="80" x2="520" y2="80" stroke="#0D1117" stroke-width="1" opacity="0.3"/></g>
+        </svg>
+        <p class="logo-label">Monochrome Dark — Light Background</p>
+      </div>
+
+      <div class="logo-card dark">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 350">
+          <defs><linearGradient id="h2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0077B6"/><stop offset="50%" stop-color="#00A8E8"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient><linearGradient id="c2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6B7280"/><stop offset="50%" stop-color="#8B949E"/><stop offset="100%" stop-color="#C9D1D9"/></linearGradient><filter id="g2"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+          <g transform="translate(200,130)"><polygon points="0,-72 62,-36 62,36 0,72 -62,36 -62,-36" fill="none" stroke="url(#c2)" stroke-width="4" stroke-linejoin="round"/><polygon points="0,-56 48,-28 48,28 0,56 -48,28 -48,-28" fill="none" stroke="url(#c2)" stroke-width="2" opacity="0.5"/><polygon points="0,-48 41,-24 41,24 0,48 -41,24 -41,-24" fill="url(#h2)" opacity="0.9"/><polygon points="0,-36 31,-18 31,18 0,36 -31,18 -31,-18" fill="#0D1117" opacity="0.6"/><g filter="url(#g2)"><path d="M-18,18 L0,0 L18,-18 L24,-24" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polygon points="24,-24 16,-24 24,-16" fill="white"/></g><circle cx="0" cy="-56" r="4" fill="#C9D1D9"/><circle cx="48" cy="-28" r="4" fill="#C9D1D9"/><circle cx="48" cy="28" r="4" fill="#C9D1D9"/><circle cx="0" cy="56" r="4" fill="#C9D1D9"/><circle cx="-48" cy="28" r="4" fill="#C9D1D9"/><circle cx="-48" cy="-28" r="4" fill="#C9D1D9"/></g>
+          <g transform="translate(200,260)"><text x="0" y="0" text-anchor="middle" font-family="Inter,sans-serif" font-size="52" font-weight="800" fill="#FFFFFF" letter-spacing="2"><tspan>OMN</tspan><tspan font-weight="300" fill="#00A8E8">yra</tspan></text><text x="0" y="35" text-anchor="middle" font-family="Inter,sans-serif" font-size="18" font-weight="500" fill="#8B949E" letter-spacing="12">GROUP</text><line x1="-140" y1="50" x2="-20" y2="50" stroke="#8B949E" stroke-width="1" opacity="0.4"/><line x1="20" y1="50" x2="140" y2="50" stroke="#8B949E" stroke-width="1" opacity="0.4"/></g>
+        </svg>
+        <p class="logo-label">Stacked Logo — Social &amp; Square</p>
+      </div>
+
+      <div class="logo-card dark">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+          <defs><linearGradient id="h3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0077B6"/><stop offset="50%" stop-color="#00A8E8"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient><linearGradient id="c3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6B7280"/><stop offset="50%" stop-color="#8B949E"/><stop offset="100%" stop-color="#C9D1D9"/></linearGradient><filter id="g3"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+          <g transform="translate(100,100)"><polygon points="0,-82 71,-41 71,41 0,82 -71,41 -71,-41" fill="none" stroke="url(#c3)" stroke-width="5" stroke-linejoin="round"/><polygon points="0,-64 55,-32 55,32 0,64 -55,32 -55,-32" fill="none" stroke="url(#c3)" stroke-width="2.5" opacity="0.5"/><polygon points="0,-56 49,-28 49,28 0,56 -49,28 -49,-28" fill="url(#h3)" opacity="0.9"/><polygon points="0,-42 36,-21 36,21 0,42 -36,21 -36,-21" fill="#0D1117" opacity="0.6"/><g filter="url(#g3)"><path d="M-20,20 L0,0 L20,-20 L26,-26" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polygon points="26,-26 17,-26 26,-17" fill="white"/></g><circle cx="0" cy="-64" r="5" fill="#C9D1D9"/><circle cx="55" cy="-32" r="5" fill="#C9D1D9"/><circle cx="55" cy="32" r="5" fill="#C9D1D9"/><circle cx="0" cy="64" r="5" fill="#C9D1D9"/><circle cx="-55" cy="32" r="5" fill="#C9D1D9"/><circle cx="-55" cy="-32" r="5" fill="#C9D1D9"/></g>
+        </svg>
+        <p class="logo-label">Icon Only — Favicon &amp; Watermark</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUSINESS CARDS -->
+  <section class="section">
+    <p class="section-label">03 — Print</p>
+    <h2 class="section-title">Business Cards</h2>
+    <p class="section-desc">85mm × 55mm · 400gsm soft-touch matte · Hex Blue edge paint</p>
+
+    <div class="material-section">
+      <div class="cards-preview">
+        <div class="card-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 196">
+            <defs><linearGradient id="hb4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0077B6"/><stop offset="50%" stop-color="#00A8E8"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient><linearGradient id="cl4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6B7280"/><stop offset="50%" stop-color="#8B949E"/><stop offset="100%" stop-color="#C9D1D9"/></linearGradient><clipPath id="cc4"><rect width="340" height="196" rx="8"/></clipPath></defs>
+            <g clip-path="url(#cc4)"><rect width="340" height="196" fill="#0D1117"/><g opacity="0.04" stroke="#00A8E8" stroke-width="0.3" fill="none"><polygon points="280,10 310,30 310,60 280,80 250,60 250,30"/><polygon points="280,50 310,70 310,100 280,120 250,100 250,70"/><polygon points="310,30 340,50 340,80 310,100 280,80 280,50"/></g><rect x="0" y="0" width="340" height="2" fill="url(#hb4)"/><g transform="translate(24,28) scale(0.28)"><g transform="translate(40,40)"><polygon points="0,-32 28,-16 28,16 0,32 -28,16 -28,-16" fill="none" stroke="url(#cl4)" stroke-width="3" stroke-linejoin="round"/><polygon points="0,-24 21,-12 21,12 0,24 -21,12 -21,-12" fill="url(#hb4)" opacity="0.9"/><polygon points="0,-18 16,-9 16,9 0,18 -16,9 -16,-9" fill="#0D1117" opacity="0.55"/><path d="M-8,8 L0,0 L8,-8 L10,-10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polygon points="10,-10 6,-10 10,-6" fill="white"/></g><text x="82" y="38" font-family="Inter,Arial,sans-serif" font-size="24" font-weight="800" fill="#FFFFFF" letter-spacing="1">OMN</text><text x="138" y="38" font-family="Inter,Arial,sans-serif" font-size="24" font-weight="300" fill="#00A8E8">yra</text><text x="82" y="56" font-family="Inter,Arial,sans-serif" font-size="8" font-weight="500" fill="#8B949E" letter-spacing="4">GROUP</text></g><text x="24" y="110" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" letter-spacing="0.5">[Full Name]</text><text x="24" y="126" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="400" fill="#00A8E8" letter-spacing="0.5">[Title] — GRC Advisory</text><rect x="24" y="138" width="28" height="14" rx="3" fill="#00A8E8" opacity="0.15"/><text x="38" y="148" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="7" font-weight="600" fill="#00A8E8" letter-spacing="0.5">GRC</text><text x="24" y="172" font-family="Inter,Arial,sans-serif" font-size="7.5" font-weight="300" fill="#8B949E" letter-spacing="0.3">omnyra.training@gmail.com</text><text x="24" y="184" font-family="Inter,Arial,sans-serif" font-size="7.5" font-weight="300" fill="#8B949E" letter-spacing="0.3">+91 9063370816 | WhatsApp</text><text x="316" y="188" text-anchor="end" font-family="Inter,Arial,sans-serif" font-size="6" font-weight="300" fill="#8B949E" letter-spacing="1.5" opacity="0.6">STRUCTURE IN MOTION</text></g>
+          </svg>
+          <p class="card-label">Front</p>
+        </div>
+        <div class="card-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 196">
+            <defs><linearGradient id="hb5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0077B6"/><stop offset="50%" stop-color="#00A8E8"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient><linearGradient id="cl5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6B7280"/><stop offset="50%" stop-color="#8B949E"/><stop offset="100%" stop-color="#C9D1D9"/></linearGradient><clipPath id="cc5"><rect width="340" height="196" rx="8"/></clipPath></defs>
+            <g clip-path="url(#cc5)"><rect width="340" height="196" fill="#0D1117"/><g opacity="0.04" stroke="#00A8E8" stroke-width="0.5" fill="none"><polygon points="60,30 80,18 100,30 100,54 80,66 60,54"/><polygon points="120,30 140,18 160,30 160,54 140,66 120,54"/><polygon points="180,30 200,18 220,30 220,54 200,66 180,54"/><polygon points="240,30 260,18 280,30 280,54 260,66 240,54"/><polygon points="60,90 80,78 100,90 100,114 80,126 60,114"/><polygon points="120,90 140,78 160,90 160,114 140,126 120,114"/><polygon points="180,90 200,78 220,90 220,114 200,126 180,114"/><polygon points="240,90 260,78 280,90 280,114 260,126 240,114"/></g><g transform="translate(170,88) scale(0.7)"><polygon points="0,-52 45,-26 45,26 0,52 -45,26 -45,-26" fill="none" stroke="url(#cl5)" stroke-width="4" stroke-linejoin="round"/><polygon points="0,-40 35,-20 35,20 0,40 -35,20 -35,-20" fill="url(#hb5)" opacity="0.15"/><polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15" fill="#0D1117" opacity="0.5"/><path d="M-14,14 L0,0 L14,-14 L18,-18" stroke="#00A8E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polygon points="18,-18 12,-18 18,-12" fill="#00A8E8"/><circle cx="0" cy="-40" r="3.5" fill="#C9D1D9"/><circle cx="35" cy="-20" r="3.5" fill="#C9D1D9"/><circle cx="35" cy="20" r="3.5" fill="#C9D1D9"/><circle cx="0" cy="40" r="3.5" fill="#C9D1D9"/><circle cx="-35" cy="20" r="3.5" fill="#C9D1D9"/><circle cx="-35" cy="-20" r="3.5" fill="#C9D1D9"/></g><text x="170" y="158" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="8" font-weight="500" fill="#8B949E" letter-spacing="4" opacity="0.7">STRUCTURE IN MOTION</text><text x="170" y="176" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="7" font-weight="300" fill="#8B949E" letter-spacing="1" opacity="0.5">www.omnyragroup.online</text><rect x="0" y="194" width="340" height="2" fill="url(#hb5)"/></g>
+          </svg>
+          <p class="card-label">Back</p>
+        </div>
+      </div>
+      <div class="material-specs">
+        <div class="spec-item"><p class="spec-label">Size</p><p class="spec-value">85mm × 55mm</p></div>
+        <div class="spec-item"><p class="spec-label">Stock</p><p class="spec-value">400gsm Matte</p></div>
+        <div class="spec-item"><p class="spec-label">Finish</p><p class="spec-value">Soft-touch</p></div>
+        <div class="spec-item"><p class="spec-label">Edge</p><p class="spec-value">Hex Blue Paint</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LETTERHEAD -->
+  <section class="section">
+    <p class="section-label">04 — Stationery</p>
+    <h2 class="section-title">Letterhead</h2>
+    <p class="section-desc">A4 format · Hexagonal watermark at 3% opacity · Blue accent lines top and bottom</p>
+
+    <div class="material-section">
+      <div class="material-preview" style="padding: 1rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595 842" style="max-height: 600px; width: auto;">
+          <defs><linearGradient id="hb6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0077B6"/><stop offset="50%" stop-color="#00A8E8"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient><linearGradient id="cl6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6B7280"/><stop offset="50%" stop-color="#8B949E"/><stop offset="100%" stop-color="#C9D1D9"/></linearGradient></defs>
+          <rect width="595" height="842" fill="#FFFFFF"/><rect x="0" y="0" width="595" height="4" fill="url(#hb6)"/>
+          <g transform="translate(50,40)"><g transform="scale(0.35)"><g transform="translate(60,60)"><polygon points="0,-42 36,-21 36,21 0,42 -36,21 -36,-21" fill="none" stroke="url(#cl6)" stroke-width="4" stroke-linejoin="round"/><polygon points="0,-32 28,-16 28,16 0,32 -28,16 -28,-16" fill="url(#hb6)" opacity="0.9"/><polygon points="0,-24 21,-12 21,12 0,24 -21,12 -21,-12" fill="#0D1117" opacity="0.55"/><path d="M-10,10 L0,0 L10,-10 L13,-13" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polygon points="13,-13 7,-13 13,-7" fill="white"/></g><text x="85" y="58" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="800" fill="#0D1117" letter-spacing="1">OMN</text><text x="150" y="58" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="300" fill="#00A8E8" letter-spacing="0.5">yra</text><text x="85" y="78" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="500" fill="#8B949E" letter-spacing="6">GROUP</text></g></g>
+          <text x="545" y="48" text-anchor="end" font-family="Inter,Arial,sans-serif" font-size="8" font-weight="400" fill="#8B949E" letter-spacing="0.5">OmnyraGroup™</text><text x="545" y="60" text-anchor="end" font-family="Inter,Arial,sans-serif" font-size="7" font-weight="300" fill="#8B949E">Information Security Training &amp; Risk Advisory</text><text x="545" y="72" text-anchor="end" font-family="Inter,Arial,sans-serif" font-size="7" font-weight="300" fill="#C9D1D9">www.omnyragroup.online</text>
+          <line x1="50" y1="95" x2="545" y2="95" stroke="#E8ECF0" stroke-width="0.5"/>
+          <g transform="translate(297.5,460)" opacity="0.03"><polygon points="0,-140 121,-70 121,70 0,140 -121,70 -121,-70" fill="none" stroke="#00A8E8" stroke-width="6" stroke-linejoin="round"/><polygon points="0,-104 90,-52 90,52 0,104 -90,52 -90,-52" fill="#00A8E8" opacity="0.3"/><polygon points="0,-78 68,-39 68,39 0,78 -68,39 -68,-39" fill="#0D1117" opacity="0.4"/></g>
+          <text x="50" y="130" font-family="Inter,Arial,sans-serif" font-size="10" fill="#0D1117">[Date]</text><text x="50" y="165" font-family="Inter,Arial,sans-serif" font-size="10" fill="#0D1117">[Recipient Name]</text><text x="50" y="180" font-family="Inter,Arial,sans-serif" font-size="10" fill="#0D1117">[Title]</text><text x="50" y="195" font-family="Inter,Arial,sans-serif" font-size="10" fill="#0D1117">[Company]</text>
+          <text x="50" y="265" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="600" fill="#0D1117">Re: [Subject]</text>
+          <line x1="50" y1="335" x2="545" y2="335" stroke="#F0F2F5" stroke-width="0.5"/><line x1="50" y1="355" x2="545" y2="355" stroke="#F0F2F5" stroke-width="0.5"/><line x1="50" y1="375" x2="545" y2="375" stroke="#F0F2F5" stroke-width="0.5"/><line x1="50" y1="395" x2="545" y2="395" stroke="#F0F2F5" stroke-width="0.5"/><line x1="50" y1="415" x2="545" y2="415" stroke="#F0F2F5" stroke-width="0.5"/>
+          <line x1="50" y1="780" x2="545" y2="780" stroke="#E8ECF0" stroke-width="0.5"/>
+          <text x="75" y="800" font-family="Inter,Arial,sans-serif" font-size="7" fill="#8B949E">OmnyraGroup™ | Information Security Training &amp; Risk Advisory</text><text x="75" y="812" font-family="Inter,Arial,sans-serif" font-size="6" fill="#C9D1D9">[Office Address] | +91 9063370816 | omnyra.training@gmail.com | www.omnyragroup.online</text>
+          <rect x="0" y="838" width="595" height="4" fill="url(#hb6)"/>
+        </svg>
+      </div>
+      <div class="material-specs">
+        <div class="spec-item"><p class="spec-label">Format</p><p class="spec-value">A4 (210×297mm)</p></div>
+        <div class="spec-item"><p class="spec-label">Watermark</p><p class="spec-value">3% Opacity</p></div>
+        <div class="spec-item"><p class="spec-label">Accents</p><p class="spec-value">Top + Bottom Blue</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATE -->
+  <section class="section">
+    <p class="section-label">05 — Certification</p>
+    <h2 class="section-title">Training Certificate</h2>
+    <p class="section-desc">Landscape A4 · Hexagonal certification seal · Dual signature lines</p>
+
+    <div class="material-section">
+      <div class="material-preview" style="padding: 1rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 842 595" style="max-height: 500px; width: auto;">
+          <defs><linearGradient id="hb7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0077B6"/><stop offset="50%" stop-color="#00A8E8"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient><linearGradient id="cl7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6B7280"/><stop offset="50%" stop-color="#8B949E"/><stop offset="100%" stop-color="#C9D1D9"/></linearGradient><path id="ctt" d="M421,421 m-100,0 a100,100 0 1,1 200,0 a100,100 0 1,1 -200,0" fill="none"/><path id="ctb" d="M421,421 m-78,0 a78,78 0 1,0 156,0 a78,78 0 1,0 -156,0" fill="none"/></defs>
+          <rect width="842" height="595" fill="#FFFFFF"/><rect x="20" y="20" width="802" height="555" fill="none" stroke="#0D1117" stroke-width="1.5"/><rect x="24" y="24" width="794" height="547" fill="none" stroke="#8B949E" stroke-width="0.5"/>
+          <line x1="20" y1="40" x2="40" y2="20" stroke="#00A8E8" stroke-width="2"/><line x1="802" y1="20" x2="822" y2="40" stroke="#00A8E8" stroke-width="2"/><line x1="20" y1="555" x2="40" y2="575" stroke="#00A8E8" stroke-width="2"/><line x1="802" y1="575" x2="822" y2="555" stroke="#00A8E8" stroke-width="2"/>
+          <g transform="translate(371,38) scale(0.35)"><g transform="translate(40,40)"><polygon points="0,-32 28,-16 28,16 0,32 -28,16 -28,-16" fill="none" stroke="url(#cl7)" stroke-width="3" stroke-linejoin="round"/><polygon points="0,-24 21,-12 21,12 0,24 -21,12 -21,-12" fill="url(#hb7)" opacity="0.9"/><polygon points="0,-18 16,-9 16,9 0,18 -16,9 -16,-9" fill="#0D1117" opacity="0.55"/><path d="M-8,8 L0,0 L8,-8 L10,-10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polygon points="10,-10 6,-10 10,-6" fill="white"/></g><text x="82" y="38" font-family="Inter,Arial,sans-serif" font-size="24" font-weight="800" fill="#0D1117" letter-spacing="1">OMN</text><text x="138" y="38" font-family="Inter,Arial,sans-serif" font-size="24" font-weight="300" fill="#00A8E8">yra</text><text x="82" y="56" font-family="Inter,Arial,sans-serif" font-size="8" font-weight="500" fill="#8B949E" letter-spacing="4">GROUP</text></g>
+          <text x="421" y="115" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="10" font-weight="500" fill="#8B949E" letter-spacing="8">CERTIFICATE OF COMPLETION</text><line x1="321" y1="130" x2="521" y2="130" stroke="#00A8E8" stroke-width="1" opacity="0.4"/>
+          <text x="421" y="170" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="300" fill="#8B949E" letter-spacing="3">THIS CERTIFICATE IS AWARDED TO</text><text x="421" y="225" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="42" font-weight="800" fill="#0D1117" letter-spacing="1">[Recipient Name]</text><line x1="180" y1="240" x2="662" y2="240" stroke="#00A8E8" stroke-width="1.5" opacity="0.3"/>
+          <text x="421" y="275" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="300" fill="#8B949E" letter-spacing="2">FOR SUCCESSFUL COMPLETION OF</text><text x="421" y="315" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="22" font-weight="700" fill="#0D1117" letter-spacing="1">[Course Title]</text><text x="421" y="340" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="12" fill="#00A8E8" letter-spacing="2">[Specialization — GRC / ISO 27001 / Third-Party Risk / Compliance]</text>
+          <text x="421" y="380" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="10" fill="#8B949E" letter-spacing="1">Completed on [Date] | Credential ID: [ID]</text>
+          <g transform="translate(421,421)"><polygon points="0,-52 45,-26 45,26 0,52 -45,26 -45,-26" fill="none" stroke="url(#cl7)" stroke-width="4" stroke-linejoin="round"/><polygon points="0,-40 35,-20 35,20 0,40 -35,20 -35,-20" fill="url(#hb7)" opacity="0.12"/><polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15" fill="#0D1117" opacity="0.08"/><path d="M-8,8 L0,0 L8,-8 L10,-10" stroke="#00A8E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polygon points="10,-10 6,-10 10,-6" fill="#00A8E8"/><text font-family="Inter,Arial,sans-serif" font-size="5.5" font-weight="600" fill="#0D1117" letter-spacing="2.5"><textPath href="#ctt" startOffset="14%">CERTIFIED BY OMNYRAGROUP</textPath></text><text font-family="Inter,Arial,sans-serif" font-size="5" fill="#8B949E" letter-spacing="2"><textPath href="#ctb" startOffset="16%">GRC · ISO · COMPLIANCE</textPath></text><circle cx="-40" cy="0" r="1.5" fill="#00A8E8"/><circle cx="40" cy="0" r="1.5" fill="#00A8E8"/></g>
+          <g transform="translate(0,490)"><line x1="120" y1="0" x2="300" y2="0" stroke="#C9D1D9" stroke-width="0.5"/><text x="210" y="15" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="8" fill="#0D1117">[Instructor Name]</text><text x="210" y="27" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="7" font-weight="300" fill="#8B949E">Lead Practitioner</text><line x1="542" y1="0" x2="722" y2="0" stroke="#C9D1D9" stroke-width="0.5"/><text x="632" y="15" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="8" fill="#0D1117">[Director Name]</text><text x="632" y="27" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="7" font-weight="300" fill="#8B949E">Director, OMNyra Group</text></g>
+          <text x="421" y="555" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="7" font-weight="300" fill="#C9D1D9" letter-spacing="1">OMNyraGroup™ | Structure in Motion | www.omnyragroup.online</text>
+        </svg>
+      </div>
+      <div class="material-specs">
+        <div class="spec-item"><p class="spec-label">Format</p><p class="spec-value">Landscape A4</p></div>
+        <div class="spec-item"><p class="spec-label">Seal</p><p class="spec-value">Hexagonal Certification</p></div>
+        <div class="spec-item"><p class="spec-label">Signatures</p><p class="spec-value">Dual Line</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL MEDIA -->
+  <section class="section">
+    <p class="section-label">06 — Digital Presence</p>
+    <h2 class="section-title">Social Media Kit</h2>
+    <p class="section-desc">LinkedIn cover, Twitter/X banner, profile photo, and feed post template</p>
+
+    <div class="material-section">
+      <h3>LinkedIn Cover</h3>
+      <p class="material-desc">1584 × 396px — "From Theory to GRC Mastery"</p>
+      <div class="material-preview" style="padding: 1rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1584 396" style="width: 100%; max-width: 800px;">
+          <defs><linearGradient id="bg8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0D1117"/><stop offset="50%" stop-color="#161B22"/><stop offset="100%" stop-color="#0D1117"/></linearGradient><linearGradient id="hb8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0077B6"/><stop offset="50%" stop-color="#00A8E8"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient><linearGradient id="cl8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6B7280"/><stop offset="50%" stop-color="#8B949E"/><stop offset="100%" stop-color="#C9D1D9"/></linearGradient></defs>
+          <rect width="1584" height="396" fill="url(#bg8)"/><g opacity="0.04" stroke="#00A8E8" stroke-width="0.4" fill="none"><polygon points="100,50 130,30 160,50 160,90 130,110 100,90"/><polygon points="160,50 190,30 220,50 220,90 190,110 160,90"/><polygon points="220,50 250,30 280,50 280,90 250,110 220,90"/><polygon points="100,110 130,90 160,110 160,150 130,170 100,150"/><polygon points="160,110 190,90 220,110 220,150 190,170 160,150"/><polygon points="220,110 250,90 280,110 280,150 250,170 220,150"/></g>
+          <rect x="0" y="0" width="1584" height="3" fill="url(#hb8)"/>
+          <g transform="translate(80,140) scale(0.55)"><g transform="translate(40,40)"><polygon points="0,-36 31,-18 31,18 0,36 -31,18 -31,-18" fill="none" stroke="url(#cl8)" stroke-width="4" stroke-linejoin="round"/><polygon points="0,-28 24,-14 24,14 0,28 -24,14 -24,-14" fill="url(#hb8)" opacity="0.9"/><polygon points="0,-20 17,-10 17,10 0,20 -17,10 -17,-10" fill="#0D1117" opacity="0.55"/><path d="M-8,8 L0,0 L8,-8 L11,-11" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polygon points="11,-11 6,-11 11,-6" fill="white"/></g><text x="88" y="38" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="800" fill="#FFFFFF" letter-spacing="1.5">OMN</text><text x="152" y="38" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="300" fill="#00A8E8">yra</text><text x="88" y="58" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="500" fill="#8B949E" letter-spacing="5">GROUP</text></g>
+          <text x="560" y="180" font-family="Inter,Arial,sans-serif" font-size="44" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">STRUCTURE</text><text x="560" y="230" font-family="Inter,Arial,sans-serif" font-size="44" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">IN MOTION</text><text x="560" y="280" font-family="Inter,Arial,sans-serif" font-size="14" fill="#8B949E" letter-spacing="3">GRC TRAINING · RISK ADVISORY · CAREER STRATEGY</text><line x1="560" y1="250" x2="760" y2="250" stroke="#00A8E8" stroke-width="1.5" opacity="0.4"/><text x="560" y="330" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="500" fill="#00A8E8" letter-spacing="2">STRUCTURE IN MOTION — OMNYRAGROUP.ONLINE</text>
+          <rect x="0" y="393" width="1584" height="3" fill="url(#hb8)"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="material-section">
+      <h3>Feed Post Template</h3>
+      <p class="material-desc">1080 × 1080px — Training highlights with stats</p>
+      <div class="material-preview" style="padding: 1rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" style="max-width: 500px; width: 100%;">
+          <defs><linearGradient id="bg9" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0D1117"/><stop offset="100%" stop-color="#161B22"/></linearGradient><linearGradient id="hb9" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0077B6"/><stop offset="50%" stop-color="#00A8E8"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient><linearGradient id="cl9" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6B7280"/><stop offset="50%" stop-color="#8B949E"/><stop offset="100%" stop-color="#C9D1D9"/></linearGradient><clipPath id="sq9"><rect width="1080" height="1080"/></clipPath></defs>
+          <g clip-path="url(#sq9)"><rect width="1080" height="1080" fill="url(#bg9)"/><g opacity="0.04" stroke="#00A8E8" stroke-width="0.5" fill="none"><polygon points="850,50 880,30 910,50 910,90 880,110 850,90"/><polygon points="910,50 940,30 970,50 970,90 940,110 910,90"/><polygon points="970,50 1000,30 1030,50 1030,90 1000,110 970,90"/></g><rect x="0" y="0" width="1080" height="4" fill="url(#hb9)"/>
+          <g transform="translate(60,50) scale(0.5)"><g transform="translate(40,40)"><polygon points="0,-34 30,-17 30,17 0,34 -30,17 -30,-17" fill="none" stroke="url(#cl9)" stroke-width="3.5" stroke-linejoin="round"/><polygon points="0,-26 22,-13 22,13 0,26 -22,13 -22,-13" fill="url(#hb9)" opacity="0.9"/><polygon points="0,-20 17,-10 17,10 0,20 -17,10 -17,-10" fill="#0D1117" opacity="0.55"/><path d="M-8,8 L0,0 L8,-8 L10,-10" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polygon points="10,-10 6,-10 10,-6" fill="white"/></g><text x="86" y="38" font-family="Inter,Arial,sans-serif" font-size="26" font-weight="800" fill="#FFFFFF" letter-spacing="1">OMN</text><text x="146" y="38" font-family="Inter,Arial,sans-serif" font-size="26" font-weight="300" fill="#00A8E8">yra</text><text x="86" y="56" font-family="Inter,Arial,sans-serif" font-size="8.5" font-weight="500" fill="#8B949E" letter-spacing="4.5">GROUP</text></g>
+          <rect x="60" y="140" width="50" height="24" rx="4" fill="#00A8E8" opacity="0.15"/><text x="85" y="156" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="600" fill="#00A8E8" letter-spacing="1">GRC</text>
+          <text x="60" y="360" font-family="Inter,Arial,sans-serif" font-size="72" font-weight="800" fill="#FFFFFF" letter-spacing="-1">FROM THEORY</text><text x="60" y="440" font-family="Inter,Arial,sans-serif" font-size="72" font-weight="800" fill="#FFFFFF" letter-spacing="-1">TO GRC</text><text x="60" y="520" font-family="Inter,Arial,sans-serif" font-size="72" font-weight="300" fill="#00A8E8" letter-spacing="-1">MASTERY</text>
+          <line x1="60" y1="560" x2="300" y2="560" stroke="#00A8E8" stroke-width="2" opacity="0.5"/>
+          <text x="60" y="610" font-family="Inter,Arial,sans-serif" font-size="22" fill="#8B949E">Practitioner-led GRC training.</text><text x="60" y="645" font-family="Inter,Arial,sans-serif" font-size="22" fill="#8B949E">Career strategy coaching.</text><text x="60" y="680" font-family="Inter,Arial,sans-serif" font-size="22" fill="#8B949E">Real-world readiness.</text>
+          <g transform="translate(60,760)"><text x="0" y="0" font-family="Space Grotesk,Inter,Arial,sans-serif" font-size="48" font-weight="700" fill="#00A8E8">95%</text><text x="0" y="24" font-family="Inter,Arial,sans-serif" font-size="12" fill="#8B949E" letter-spacing="1">PLACEMENT RATE</text><text x="240" y="0" font-family="Space Grotesk,Inter,Arial,sans-serif" font-size="48" font-weight="700" fill="#00A8E8">4+</text><text x="240" y="24" font-family="Inter,Arial,sans-serif" font-size="12" fill="#8B949E" letter-spacing="1">GRC DOMAINS</text><text x="480" y="0" font-family="Space Grotesk,Inter,Arial,sans-serif" font-size="48" font-weight="700" fill="#00A8E8">1:1</text><text x="480" y="24" font-family="Inter,Arial,sans-serif" font-size="12" fill="#8B949E" letter-spacing="1">CAREER COACHING</text></g>
+          <rect x="60" y="880" width="260" height="52" rx="4" fill="url(#hb9)"/><text x="190" y="912" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" fill="#FFFFFF" letter-spacing="2">ENROLL NOW</text>
+          <text x="60" y="1000" font-family="Inter,Arial,sans-serif" font-size="11" fill="#8B949E" letter-spacing="4" opacity="0.5">STRUCTURE IN MOTION</text><text x="60" y="1020" font-family="Inter,Arial,sans-serif" font-size="10" font-weight="300" fill="#8B949E" letter-spacing="1" opacity="0.4">www.omnyragroup.online</text>
+          <rect x="0" y="1076" width="1080" height="4" fill="url(#hb9)"/></g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="material-section">
+      <h3>Certification Seal</h3>
+      <p class="material-desc">Standalone hexagonal seal for certificates and documents</p>
+      <div class="material-preview">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" style="max-width: 250px;">
+          <defs><linearGradient id="hb10" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0077B6"/><stop offset="50%" stop-color="#00A8E8"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient><linearGradient id="cl10" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6B7280"/><stop offset="50%" stop-color="#8B949E"/><stop offset="100%" stop-color="#C9D1D9"/></linearGradient><filter id="g10"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><path id="tc10" d="M150,150 m-105,0 a105,105 0 1,1 210,0 a105,105 0 1,1 -210,0" fill="none"/><path id="tcb10" d="M150,150 m-80,0 a80,80 0 1,0 160,0 a80,80 0 1,0 -160,0" fill="none"/></defs>
+          <circle cx="150" cy="150" r="145" fill="none" stroke="#0D1117" stroke-width="2"/><circle cx="150" cy="150" r="140" fill="none" stroke="url(#cl10)" stroke-width="4"/><circle cx="150" cy="150" r="132" fill="none" stroke="#8B949E" stroke-width="1" opacity="0.3"/>
+          <polygon points="150,30 230,70 230,190 150,230 70,190 70,70" fill="none" stroke="url(#cl10)" stroke-width="6" stroke-linejoin="round"/><polygon points="150,55 210,85 210,175 150,205 90,175 90,85" fill="none" stroke="url(#cl10)" stroke-width="3" opacity="0.5"/><polygon points="150,70 198,95 198,165 150,190 102,165 102,95" fill="url(#hb10)"/><polygon points="150,90 180,108 180,152 150,170 120,152 120,108" fill="#0D1117" opacity="0.55"/>
+          <g filter="url(#g10)"><path d="M130,155 L150,135 L170,115 L178,107" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polygon points="178,107 170,107 178,115" fill="white"/></g>
+          <circle cx="150" cy="30" r="5" fill="#C9D1D9"/><circle cx="230" cy="70" r="5" fill="#C9D1D9"/><circle cx="230" cy="190" r="5" fill="#C9D1D9"/><circle cx="150" cy="230" r="5" fill="#C9D1D9"/><circle cx="70" cy="190" r="5" fill="#C9D1D9"/><circle cx="70" cy="70" r="5" fill="#C9D1D9"/>
+          <text font-family="Inter,Arial,sans-serif" font-size="11" font-weight="600" fill="#0D1117" letter-spacing="5"><textPath href="#tc10" startOffset="12%">CERTIFIED BY OMNYRAGROUP</textPath></text><circle cx="75" cy="152" r="2.5" fill="#00A8E8"/><circle cx="225" cy="152" r="2.5" fill="#00A8E8"/><text font-family="Inter,Arial,sans-serif" font-size="9" fill="#8B949E" letter-spacing="3"><textPath href="#tcb10" startOffset="18%">SECURITY · PRECISION · TRUST</textPath></text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIGITAL -->
+  <section class="section">
+    <p class="section-label">07 — Digital</p>
+    <h2 class="section-title">Email Signature &amp; Favicon</h2>
+    <p class="section-desc">Production-ready digital assets for email and web</p>
+
+    <div class="material-section">
+      <h3>Email Signature</h3>
+      <p class="material-desc">Copy-paste HTML email signature for Outlook, Gmail, and Apple Mail</p>
+      <div class="material-preview" style="background: white; justify-content: flex-start; padding: 2rem;">
+        <table cellpadding="0" cellspacing="0" border="0" style="font-family: 'Inter', 'Segoe UI', Arial, sans-serif; color: #0D1117; max-width: 600px;">
+          <tr><td style="padding: 0 0 16px 0;"><table cellpadding="0" cellspacing="0" border="0"><tr>
+            <td style="padding-right: 14px; vertical-align: top;"><svg width="48" height="48" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="12" fill="#0D1117"/><polygon points="32,6 54,18 54,46 32,58 10,46 10,18" fill="none" stroke="#8B949E" stroke-width="3" stroke-linejoin="round"/><polygon points="32,14 47,22 47,42 32,50 17,42 17,22" fill="#00A8E8"/><polygon points="32,20 41,26 41,38 32,44 23,38 23,26" fill="#0D1117" opacity="0.5"/><path d="M24,40 L32,32 L40,24 L44,20" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polygon points="44,20 38,20 44,26" fill="white"/></svg></td>
+            <td style="vertical-align: top; border-left: 2px solid #00A8E8; padding-left: 14px;">
+              <p style="margin: 0; font-size: 15px; font-weight: 700; color: #0D1117;">[Full Name]</p>
+              <p style="margin: 2px 0 0 0; font-size: 12px; color: #00A8E8;">[Title] — GRC Advisory</p>
+              <p style="margin: 8px 0 0 0; font-size: 11px; color: #8B949E;">omnyra.training@gmail.com | +91 9063370816</p>
+              <p style="margin: 4px 0 0 0; font-size: 11px;"><a href="https://www.omnyragroup.online" style="color: #00A8E8; text-decoration: none;">www.omnyragroup.online</a></p>
+            </td>
+          </tr></table></td></tr>
+          <tr><td style="padding: 12px 0 0 0;"><span style="background: linear-gradient(135deg, #0077B6, #00A8E8, #00D4FF); padding: 6px 14px; border-radius: 3px; font-size: 9px; font-weight: 600; color: #FFFFFF; letter-spacing: 2px;">STRUCTURE IN MOTION</span></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="material-section">
+      <h3>Favicon</h3>
+      <p class="material-desc">64 × 64px SVG favicon with Carbon Foundation background</p>
+      <div class="material-preview">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="128" height="128">
+          <defs><linearGradient id="hb11" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0077B6"/><stop offset="50%" stop-color="#00A8E8"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient><linearGradient id="cl11" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6B7280"/><stop offset="50%" stop-color="#8B949E"/><stop offset="100%" stop-color="#C9D1D9"/></linearGradient></defs>
+          <rect width="64" height="64" rx="12" fill="#0D1117"/><polygon points="32,6 54,18 54,46 32,58 10,46 10,18" fill="none" stroke="url(#cl11)" stroke-width="3" stroke-linejoin="round"/><polygon points="32,14 47,22 47,42 32,50 17,42 17,22" fill="url(#hb11)"/><polygon points="32,20 41,26 41,38 32,44 23,38 23,26" fill="#0D1117" opacity="0.5"/><path d="M24,40 L32,32 L40,24 L44,20" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polygon points="44,20 38,20 44,26" fill="white"/><circle cx="32" cy="6" r="2.5" fill="#C9D1D9"/><circle cx="54" cy="18" r="2.5" fill="#C9D1D9"/><circle cx="54" cy="46" r="2.5" fill="#C9D1D9"/><circle cx="32" cy="58" r="2.5" fill="#C9D1D9"/><circle cx="10" cy="46" r="2.5" fill="#C9D1D9"/><circle cx="10" cy="18" r="2.5" fill="#C9D1D9"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section class="section">
+    <p class="section-label">08 — Typography</p>
+    <h2 class="section-title">Type System</h2>
+    <p class="section-desc">Primary: Inter · Secondary: Space Grotesk</p>
+
+    <div class="type-specimen">
+      <div class="type-row">
+        <div class="type-meta"><p class="type-weight">ExtraBold</p><p class="type-size">72px / Display</p></div>
+        <div class="type-sample" style="font-size: 48px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1;">Precision Weave</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><p class="type-weight">Bold</p><p class="type-size">48px / H1</p></div>
+        <div class="type-sample" style="font-size: 36px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.2;">GRC Training &amp; Risk Advisory</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><p class="type-weight">SemiBold</p><p class="type-size">36px / H2</p></div>
+        <div class="type-sample" style="font-size: 28px; font-weight: 600; line-height: 1.3;">From Theory to GRC Mastery</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><p class="type-weight">Regular</p><p class="type-size">16px / Body</p></div>
+        <div class="type-sample" style="font-size: 16px; font-weight: 400; line-height: 1.6; color: #8B949E;">We don't teach cybersecurity. We forge GRC specialists. Through practitioner-led lectures, career coaching, and interactive sandboxes.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><p class="type-weight">Light</p><p class="type-size">12px / Caption</p></div>
+        <div class="type-sample" style="font-size: 12px; font-weight: 300; letter-spacing: 0.04em; color: #8B949E; text-transform: uppercase;">Structure in Motion · Governance · Risk · Compliance</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><p class="type-weight" style="color: #8B949E;">Space Grotesk</p><p class="type-size">Data / Metrics</p></div>
+        <div class="type-sample" style="font-family: 'Space Grotesk', monospace; font-size: 36px; font-weight: 700; color: #00A8E8;">95% · 4+ · 1:1</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="showcase-footer">
+    <div class="footer-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+        <defs><linearGradient id="hb12" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0077B6"/><stop offset="50%" stop-color="#00A8E8"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient><linearGradient id="cl12" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6B7280"/><stop offset="50%" stop-color="#8B949E"/><stop offset="100%" stop-color="#C9D1D9"/></linearGradient></defs>
+        <g transform="translate(100,100)"><polygon points="0,-60 52,-30 52,30 0,60 -52,30 -52,-30" fill="none" stroke="url(#cl12)" stroke-width="4" stroke-linejoin="round"/><polygon points="0,-46 40,-23 40,23 0,46 -40,23 -40,-23" fill="url(#hb12)" opacity="0.9"/><polygon points="0,-34 29,-17 29,17 0,34 -29,17 -29,-17" fill="#0D1117" opacity="0.6"/><path d="M-14,14 L0,0 L14,-14 L18,-18" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polygon points="18,-18 12,-18 18,-12" fill="white"/><circle cx="0" cy="-46" r="4" fill="#C9D1D9"/><circle cx="40" cy="-23" r="4" fill="#C9D1D9"/><circle cx="40" cy="23" r="4" fill="#C9D1D9"/><circle cx="0" cy="46" r="4" fill="#C9D1D9"/><circle cx="-40" cy="23" r="4" fill="#C9D1D9"/><circle cx="-40" cy="-23" r="4" fill="#C9D1D9"/></g>
+      </svg>
+    </div>
+    <p class="footer-text">OMNyra Group™ — GRC Training &amp; Risk Advisory</p>
+    <p class="footer-tagline">Structure in Motion</p>
+    <p class="footer-text" style="margin-top: 2rem; font-size: 0.75rem; color: #C9D1D9;">www.omnyragroup.online &nbsp;·&nbsp; omnyra.training@gmail.com &nbsp;·&nbsp; +91 9063370816</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="hexBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0077B6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00A8E8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00D4FF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="chromeLatticeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6B7280;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8B949E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C9D1D9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="64" height="64" rx="12" fill="#0D1117"/>
+
+  <!-- Hexagonal frame -->
+  <polygon points="32,6 54,18 54,46 32,58 10,46 10,18" fill="none" stroke="url(#chromeLatticeGrad)" stroke-width="3" stroke-linejoin="round"/>
+
+  <!-- Hexagonal blue fill -->
+  <polygon points="32,14 47,22 47,42 32,50 17,42 17,22" fill="url(#hexBlueGrad)"/>
+
+  <!-- Inner dark hexagon -->
+  <polygon points="32,20 41,26 41,38 32,44 23,38 23,26" fill="#0D1117" opacity="0.5"/>
+
+  <!-- Arrow -->
+  <path d="M 24,40 L 32,32 L 40,24 L 44,20" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <polygon points="44,20 38,20 44,26" fill="white"/>
+
+  <!-- Junction nodes -->
+  <circle cx="32" cy="6" r="2.5" fill="#C9D1D9"/>
+  <circle cx="54" cy="18" r="2.5" fill="#C9D1D9"/>
+  <circle cx="54" cy="46" r="2.5" fill="#C9D1D9"/>
+  <circle cx="32" cy="58" r="2.5" fill="#C9D1D9"/>
+  <circle cx="10" cy="46" r="2.5" fill="#C9D1D9"/>
+  <circle cx="10" cy="18" r="2.5" fill="#C9D1D9"/>
+</svg>
