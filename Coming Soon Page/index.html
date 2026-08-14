@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OMNyra Group — Coming Soon</title>
+  <meta name="description" content="OMNyra Group — Premium GRC Training & Risk Advisory. Structure in Motion. Launching Soon.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --carbon-foundation: #0D1117;
+      --hex-blue: #00A8E8;
+      --chrome-lattice: #8B949E;
+      --deep-carbon: #161B22;
+      --junction-blue: #0077B6;
+      --steel: #C9D1D9;
+      --white: #FFFFFF;
+      --signal-red: #F85149;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--white);
+      color: var(--carbon-foundation);
+      overflow-x: hidden;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Hexagonal lattice background */
+    .hex-lattice {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .hex-lattice svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120vmax;
+      height: 120vmax;
+    }
+
+    .hex-cell {
+      fill: none;
+      stroke: var(--steel);
+      stroke-width: 1;
+      opacity: 0.08;
+      transition: opacity 0.3s ease;
+    }
+
+    .hex-cell.center {
+      opacity: 0.15;
+      stroke: var(--hex-blue);
+      stroke-width: 1.2;
+    }
+
+    .hex-junction {
+      fill: var(--hex-blue);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .hex-junction.visible {
+      opacity: 0.35;
+    }
+
+    .hex-path {
+      fill: none;
+      stroke: url(#pathGradient);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .hex-path.visible {
+      opacity: 0.4;
+    }
+
+    /* Main content */
+    .content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      max-width: 680px;
+      width: 100%;
+    }
+
+    /* Logo */
+    .logo {
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease forwards;
+      animation-delay: 0.2s;
+    }
+
+    .logo svg {
+      width: 280px;
+      height: auto;
+    }
+
+    /* Headline */
+    .headline {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--carbon-foundation);
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease forwards;
+      animation-delay: 0.4s;
+    }
+
+    /* Tagline */
+    .tagline {
+      font-size: 1.125rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--chrome-lattice);
+      margin-bottom: 0.75rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease forwards;
+      animation-delay: 0.6s;
+    }
+
+    /* Subtext */
+    .subtext {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--steel);
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease forwards;
+      animation-delay: 0.7s;
+    }
+
+    /* Contact info */
+    .contact {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease forwards;
+      animation-delay: 0.9s;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9375rem;
+      font-weight: 400;
+      color: var(--chrome-lattice);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .contact-item:hover {
+      color: var(--hex-blue);
+    }
+
+    .contact-item:focus-visible {
+      outline: 2px solid var(--hex-blue);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    .contact-item svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* Footer */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1;
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards;
+      animation-delay: 1.2s;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--steel);
+      letter-spacing: 0.02em;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .logo svg {
+        width: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hexagonal Lattice Background -->
+  <div class="hex-lattice" aria-hidden="true">
+    <svg viewBox="-400 -400 800 800" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="pathGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="var(--steel)" stop-opacity="0.2"/>
+          <stop offset="100%" stop-color="var(--hex-blue)" stop-opacity="0.6"/>
+        </linearGradient>
+      </defs>
+      <g id="hexGrid"></g>
+    </svg>
+  </div>
+
+  <!-- Main Content -->
+  <main class="content">
+    <!-- Logo -->
+    <div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" role="img" aria-label="OMNyra Group">
+        <g transform="translate(100, 100)">
+          <polygon points="0,-72 62,-36 62,36 0,72 -62,36 -62,-36" fill="none" stroke="#0D1117" stroke-width="4" stroke-linejoin="round" opacity="0.6"/>
+          <polygon points="0,-56 48,-28 48,28 0,56 -48,28 -48,-28" fill="none" stroke="#0D1117" stroke-width="2" opacity="0.3"/>
+          <polygon points="0,-48 41,-24 41,24 0,48 -41,24 -41,-24" fill="#0D1117" opacity="0.12"/>
+          <polygon points="0,-36 31,-18 31,18 0,36 -31,18 -31,-18" fill="#FFFFFF" opacity="0.3"/>
+          <path d="M -18,18 L 0,0 L 18,-18 L 24,-24" stroke="#0D1117" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <polygon points="24,-24 16,-24 24,-16" fill="#0D1117"/>
+          <circle cx="0" cy="-56" r="4" fill="#0D1117" opacity="0.5"/>
+          <circle cx="48" cy="-28" r="4" fill="#0D1117" opacity="0.5"/>
+          <circle cx="48" cy="28" r="4" fill="#0D1117" opacity="0.5"/>
+          <circle cx="0" cy="56" r="4" fill="#0D1117" opacity="0.5"/>
+          <circle cx="-48" cy="28" r="4" fill="#0D1117" opacity="0.5"/>
+          <circle cx="-48" cy="-28" r="4" fill="#0D1117" opacity="0.5"/>
+        </g>
+        <g transform="translate(200, 72)">
+          <text x="0" y="52" font-family="'Inter', sans-serif" font-size="68" font-weight="800" fill="#0D1117" letter-spacing="3">OMN</text>
+          <text x="188" y="52" font-family="'Inter', sans-serif" font-size="68" font-weight="300" fill="#00A8E8" letter-spacing="1">yra</text>
+          <text x="328" y="30" font-family="'Inter', sans-serif" font-size="14" font-weight="400" fill="#0D1117" opacity="0.6">™</text>
+          <text x="195" y="90" font-family="'Inter', sans-serif" font-size="22" font-weight="500" fill="#0D1117" letter-spacing="14" opacity="0.7">GROUP</text>
+          <line x1="0" y1="80" x2="170" y2="80" stroke="#0D1117" stroke-width="1" opacity="0.3"/>
+          <line x1="340" y1="80" x2="520" y2="80" stroke="#0D1117" stroke-width="1" opacity="0.3"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="headline">Coming Soon</h1>
+
+    <!-- Tagline -->
+    <p class="tagline">Structure in Motion</p>
+
+    <!-- Subtext -->
+    <p class="subtext">GRC Training &amp; Risk Advisory — Launching Soon</p>
+
+    <!-- Contact -->
+    <div class="contact">
+      <a href="mailto:omnyra.training@gmail.com" class="contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+        omnyra.training@gmail.com
+      </a>
+      <a href="https://wa.me/919063370816" target="_blank" rel="noopener noreferrer" class="contact-item">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        +91 9063370816
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="footer-copy">&copy; 2026 OMNyra Group — All Rights Reserved</p>
+  </footer>
+
+  <script>
+    // Generate hexagonal lattice
+    (function() {
+      const grid = document.getElementById('hexGrid');
+      const hexSize = 40;
+      const rows = 12;
+      const cols = 16;
+      const centerX = 0;
+      const centerY = 0;
+
+      function hexPoints(cx, cy, size) {
+        const points = [];
+        for (let i = 0; i < 6; i++) {
+          const angle = (Math.PI / 180) * (60 * i - 30);
+          points.push([
+            cx + size * Math.cos(angle),
+            cy + size * Math.sin(angle)
+          ]);
+        }
+        return points.map(p => p.join(',')).join(' ');
+      }
+
+      function distance(x1, y1, x2, y2) {
+        return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+      }
+
+      const hexagons = [];
+
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          const x = (col - cols / 2) * hexSize * 1.75 + (row % 2 ? hexSize * 0.875 : 0);
+          const y = (row - rows / 2) * hexSize * 1.5;
+
+          const dist = distance(x, y, centerX, centerY);
+          const maxDist = 350;
+
+          if (dist < maxDist) {
+            const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+            polygon.setAttribute('points', hexPoints(x, y, hexSize));
+            polygon.setAttribute('class', 'hex-cell' + (dist < 120 ? ' center' : ''));
+            grid.appendChild(polygon);
+            hexagons.push({ el: polygon, x, y, dist });
+
+            // Add junction dots at vertices
+            if (dist < 250 && Math.random() > 0.6) {
+              const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+              dot.setAttribute('cx', x);
+              dot.setAttribute('cy', y);
+              dot.setAttribute('r', '2.5');
+              dot.setAttribute('class', 'hex-junction');
+              grid.appendChild(dot);
+
+              setTimeout(() => {
+                dot.classList.add('visible');
+              }, 800 + dist * 1.5);
+            }
+          }
+        }
+      }
+
+      // Add accent paths
+      const paths = [
+        { d: 'M -160,80 L -80,40 L 0,0 L 80,-40 L 160,-80', delay: 1200 },
+        { d: 'M -120,-120 L -60,-60 L 0,0 L 60,60 L 120,120', delay: 1400 },
+      ];
+
+      paths.forEach(({ d, delay }) => {
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', d);
+        path.setAttribute('class', 'hex-path');
+        grid.appendChild(path);
+
+        setTimeout(() => {
+          path.classList.add('visible');
+        }, delay);
+      });
+    })();
+  </script>
+</body>
+</html>
