@@ -8,6 +8,13 @@
   <link rel="canonical" href="https://omnyragroup.online/" />
   <meta name="theme-color" content="#0D1117" media="(prefers-color-scheme: dark)" />
   <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+  <meta name="color-scheme" content="dark light" />
+  <script>
+    (function () {
+      var t = localStorage.getItem('omnyra-theme');
+      if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    })();
+  </script>
   <meta name="robots" content="index, follow" />
   <link rel="icon" type="image/png" sizes="32x32" href="img/icon-only-transparent.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="img/icon-only-transparent.png" />
@@ -228,6 +235,132 @@
 .progress-node:hover, .progress-node.active { border-color: var(--hex-blue); background: var(--hex-blue); transform: rotate(45deg) scale(1.3); }
 @media (max-width: 880px) { .progress-hex { display: none; } }
 @media (prefers-reduced-motion: reduce) { .mouse-glow { display: none; } }
+
+  /* Task 6: Programs */
+  .section-title { font-size: clamp(2rem, 4vw, 3rem); margin: 8px 0 6px; max-width: 720px; }
+  .section-lead { color: var(--text-muted); font-weight: 300; max-width: 560px; margin-bottom: clamp(32px, 5vh, 60px); }
+  .program-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; perspective: 1200px; }
+  .program-card {
+    position: relative; padding: 28px; border-radius: var(--radius-lg);
+    background: var(--surface); border: 1px solid var(--border);
+    transition: transform 0.25s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s ease, border-color 0.25s ease;
+    transform-style: preserve-3d; will-change: transform;
+  }
+  .program-card:hover { border-color: var(--hex-blue); box-shadow: 0 20px 50px rgba(0,168,232,0.15); }
+  .program-glyph { color: var(--hex-blue); margin-bottom: 18px; transform: translateZ(40px); }
+  .program-card h3 { font-size: 1.2rem; margin-bottom: 8px; transform: translateZ(24px); }
+  .program-card p { color: var(--text-muted); font-size: 14px; transform: translateZ(12px); }
+  @media (max-width: 880px) { .program-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 1100px) and (min-width: 881px) { .program-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Task 7: Why OMNyra */
+  .why { padding: 0; }
+  .why-pin-wrap { height: 100vh; overflow: hidden; position: relative; display: flex; align-items: center; }
+  .why-track { display: flex; gap: 0; will-change: transform; }
+  .why-panel { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .why-inner { max-width: 640px; padding: 0 40px; text-align: center; }
+  .why-num {
+    font-size: clamp(5rem, 14vw, 11rem); font-weight: 800; line-height: 1;
+    background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
+    display: block; margin-bottom: 12px;
+  }
+  .why-inner h3 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 14px; }
+  .why-inner p { color: var(--text-muted); font-weight: 300; font-size: clamp(1rem, 1.4vw, 1.2rem); }
+
+  /* Task 8: Pricing */
+  .pricing { text-align: center; }
+  .quote-card {
+    position: relative; max-width: 560px; margin: 48px auto 0;
+    border-radius: var(--radius-xl); padding: 44px;
+    background: var(--surface); border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg); overflow: hidden; will-change: transform;
+  }
+  .quote-watermark {
+    position: absolute; right: -40px; bottom: -40px; width: 240px; height: 240px;
+    opacity: 0.06; pointer-events: none; will-change: transform;
+  }
+  .quote-body { position: relative; z-index: 1; }
+  .quote-card h3 { font-size: 1.3rem; color: var(--text-muted); font-weight: 500; margin-bottom: 18px; }
+  .price-row { display: flex; align-items: baseline; justify-content: center; gap: 14px; margin-bottom: 12px; flex-wrap: wrap; }
+  .price-strike { color: var(--chrome-lattice); text-decoration: line-through; font-size: 1.4rem; }
+  .price-now {
+    font-size: clamp(2.6rem, 6vw, 3.6rem); font-weight: 800;
+    background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .price-badge {
+    display: inline-block; padding: 8px 16px; border-radius: 100px;
+    background: rgba(0,168,232,0.12); color: var(--hex-blue);
+    font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 28px;
+  }
+  .included { list-style: none; text-align: left; max-width: 320px; margin: 0 auto 28px; display: flex; flex-direction: column; gap: 12px; }
+  .included li { display: flex; align-items: center; gap: 12px; color: var(--text); font-weight: 400; font-size: 15px; }
+  .included svg { color: var(--hex-blue); flex-shrink: 0; }
+  .group-chip { opacity: 0; transform: translateY(8px); transition: opacity 0.3s ease, transform 0.3s ease; margin-bottom: 24px; font-size: 13px; color: var(--hex-blue); font-weight: 600; }
+  .quote-card:hover .group-chip { opacity: 1; transform: translateY(0); }
+
+  /* Task 9: Who Can Join */
+  .who { text-align: center; }
+  .who-tabs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 32px 0; }
+  .who-tab {
+    padding: 10px 18px; border-radius: 100px; background: var(--surface);
+    border: 1px solid var(--border); color: var(--text-muted); cursor: pointer;
+    font-size: 14px; font-weight: 500; transition: all 0.25s ease;
+  }
+  .who-tab:hover { color: var(--hex-blue); border-color: var(--hex-blue); }
+  .who-tab.active { background: var(--hex-blue); color: var(--white); border-color: var(--hex-blue); }
+  .who-stage { position: relative; max-width: 640px; margin: 0 auto; min-height: 220px; }
+  .who-silhouette { position: absolute; inset: 0; opacity: 0.06; will-change: transform; background: radial-gradient(circle at 50% 60%, var(--hex-blue), transparent 60%); }
+  .who-panel { position: relative; z-index: 1; padding: 32px; opacity: 0; transform: translateY(12px); transition: opacity 0.4s ease, transform 0.4s ease; }
+  .who-panel[data-active="true"] { opacity: 1; transform: translateY(0); }
+  .who-panel[hidden] { display: none; }
+  .who-panel h3 { font-size: 1.4rem; margin-bottom: 10px; }
+  .who-panel p { color: var(--text-muted); }
+  .who-outcome { color: var(--hex-blue) !important; font-weight: 600; margin-top: 14px; font-size: 14px; }
+
+  /* Task 10: Outcomes */
+  .counter-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 40px 0 64px; }
+  .counter { text-align: center; padding: 24px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); }
+  .counter-num { display: block; font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 800; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .counter-label { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); }
+  .outcome-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; perspective: 1200px; }
+  .outcome-card {
+    padding: 28px; border-radius: var(--radius-lg); text-align: center;
+    background: linear-gradient(135deg, rgba(0,168,232,0.04), rgba(0,119,182,0.02));
+    border: 1px solid var(--border); backdrop-filter: blur(8px); position: relative;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s cubic-bezier(.2,.8,.2,1);
+    will-change: transform; transform-style: preserve-3d;
+  }
+  .outcome-card::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius-lg); pointer-events: none; opacity: 0; transition: opacity 0.3s ease; box-shadow: inset 0 0 0 1px var(--hex-blue); }
+  .outcome-card:hover { box-shadow: 0 16px 40px rgba(0,168,232,0.18); }
+  .outcome-card:hover::after { opacity: 1; }
+  .outcome-card h3 { font-size: 1.1rem; transform: translateZ(30px); }
+  @media (max-width: 880px) { .counter-grid, .outcome-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Task 11: FAQ + Final CTA + Footer */
+  .accordion { max-width: 760px; margin: 32px auto 0; }
+  .acc-item { border: 1px solid var(--border); border-radius: var(--radius-md); margin-bottom: 12px; overflow: hidden; background: var(--surface); }
+  .acc-head { width: 100%; padding: 20px 24px; background: transparent; border: none; color: var(--text); font-size: 16px; font-weight: 500; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit; }
+  .acc-icon { width: 18px; height: 18px; position: relative; flex-shrink: 0; }
+  .acc-icon::before, .acc-icon::after { content: ''; position: absolute; background: var(--hex-blue); border-radius: 2px; transition: transform 0.3s ease; }
+  .acc-icon::before { top: 8px; left: 0; width: 18px; height: 2px; }
+  .acc-icon::after { top: 0; left: 8px; width: 2px; height: 18px; }
+  .acc-item.open .acc-icon::after { transform: rotate(90deg); opacity: 0; }
+  .acc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .acc-body p { padding: 0 24px 22px; color: var(--text-muted); }
+  .acc-item.open .acc-body { max-height: 200px; }
+  .final-cta { text-align: center; }
+  .final-title { font-size: clamp(2.4rem, 7vw, 5rem); font-weight: 800; margin-bottom: 16px; }
+  .final-title .grad { background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .final-sub { color: var(--text-muted); margin-bottom: 28px; }
+  .final-cta-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+  .contact-card { max-width: 420px; margin: 0 auto; padding: 24px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 14px; }
+  .contact-row { display: flex; align-items: center; gap: 12px; color: var(--text); font-size: 15px; padding: 10px; border-radius: var(--radius-sm); transition: background 0.25s ease; }
+  .contact-row:hover { background: rgba(0,168,232,0.08); }
+  .contact-row svg { color: var(--hex-blue); flex-shrink: 0; }
+  .footer { position: relative; z-index: 2; padding: 32px clamp(20px,5vw,80px); border-top: 1px solid var(--border); text-align: center; }
+  .footer-values { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); font-weight: 600; margin-bottom: 12px; }
+  .footer-values .dot { width: 4px; height: 4px; background: var(--hex-blue); border-radius: 50%; align-self: center; }
+  .footer-copy { font-size: 12px; color: var(--chrome-lattice); }
   </style>
 </head>
 <body>
@@ -294,7 +427,182 @@
         <div class="scroll-line"></div>
       </div>
     </section>
+    <section class="programs" id="programs">
+      <div class="container">
+        <p class="eyebrow reveal">What we teach</p>
+        <h2 class="section-title reveal">Six focus areas. One GRC ladder.</h2>
+        <p class="section-lead reveal">Practitioner-led training across the disciplines that matter most in 2026.</p>
+        <div class="program-grid" id="program-grid">
+          <article class="program-card reveal-tilt" data-tilt>
+            <div class="program-glyph"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2"><polygon points="24,4 42,14 42,34 24,44 6,34 6,14"/><circle cx="24" cy="24" r="6"/></svg></div>
+            <h3>GRC</h3>
+            <p>Governance · Risk · Compliance foundations</p>
+          </article>
+          <article class="program-card reveal-tilt" data-tilt>
+            <div class="program-glyph"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2"><path d="M24 4l16 8v14c0 10-7 16-16 18-9-2-16-8-16-18V12z"/><path d="M18 24l4 4 8-8"/></svg></div>
+            <h3>ISO 27001 Readiness</h3>
+            <p>ISMS implementation & audit</p>
+          </article>
+          <article class="program-card reveal-tilt" data-tilt>
+            <div class="program-glyph"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="14" cy="14" r="6"/><circle cx="34" cy="34" r="6"/><path d="M20 14h8M14 20v8M34 28v-8"/></svg></div>
+            <h3>TPRM</h3>
+            <p>Vendor risk lifecycles</p>
+          </article>
+          <article class="program-card reveal-tilt" data-tilt>
+            <div class="program-glyph"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 36h36M10 36V20M18 36V12M26 36V24M34 36V8M42 36V28"/></svg></div>
+            <h3>Risk Management</h3>
+            <p>Enterprise risk frameworks & quantification</p>
+          </article>
+          <article class="program-card reveal-tilt" data-tilt>
+            <div class="program-glyph"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="10" width="32" height="28" rx="4"/><path d="M16 20h16M16 28h10"/></svg></div>
+            <h3>Data Privacy</h3>
+            <p>GDPR · CCPA · DPDP essentials</p>
+          </article>
+          <article class="program-card reveal-tilt" data-tilt>
+            <div class="program-glyph"><svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="24" cy="24" r="16"/><path d="M24 12v12l8 4"/></svg></div>
+            <h3>AI Cybersecurity</h3>
+            <p>AI threat modeling & governance</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="why" id="why">
+      <div class="why-pin-wrap">
+        <div class="why-track" id="why-track">
+          <div class="why-panel"><div class="why-inner"><span class="why-num" data-count="35">0</span><h3>Practical</h3><p>35 hours of live, practitioner-led training — not theory, real work.</p></div></div>
+          <div class="why-panel"><div class="why-inner"><span class="why-num" data-count="100">0</span><h3>Relevant</h3><p>Real-world case studies drawn from active GRC engagements.</p></div></div>
+          <div class="why-panel"><div class="why-inner"><span class="why-num" data-count="2">0</span><h3>Career-focused</h3><p>Mock interviews, resume & LinkedIn guidance — built for hiring.</p></div></div>
+          <div class="why-panel"><div class="why-inner"><span class="why-num" data-count="2">0</span><h3>Global opportunities</h3><p>US & UK market readiness — training tuned to where the jobs are.</p></div></div>
+          <div class="why-panel"><div class="why-inner"><span class="why-num" data-count="1">0</span><h3>Mentorship</h3><p>1:1 career mentorship from working GRC professionals.</p></div></div>
+        </div>
+      </div>
+    </section>
+    <section class="pricing" id="pricing">
+      <div class="container">
+        <p class="eyebrow reveal">Investment</p>
+        <h2 class="section-title reveal">One price. Lifetime career lift.</h2>
+        <div class="quote-card reveal" id="quote-card">
+          <img class="quote-watermark" src="img/icon-only-transparent.png" alt="" aria-hidden="true" />
+          <div class="quote-body">
+            <h3>GRC Training Program</h3>
+            <div class="price-row">
+              <span class="price-strike">$1000 USD</span>
+              <span class="price-now" data-count="850" data-prefix="$" data-suffix=" USD">$0 USD</span>
+            </div>
+            <div class="price-badge">Special Discount · Save $150</div>
+            <ul class="included">
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg> 35 hours live training</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg> Mock interviews & sessions</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg> Resume & LinkedIn guidance</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg> Real-world case studies</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg> Career mentorship</li>
+            </ul>
+            <div class="group-chip" id="group-chip">Group of 3+ → $650 each</div>
+            <a class="btn btn-primary magnetic" href="https://wa.me/919063370816" target="_blank" rel="noopener noreferrer">Enroll via WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="who" id="who">
+      <div class="container">
+        <p class="eyebrow reveal">Audience</p>
+        <h2 class="section-title reveal">Who can join</h2>
+        <div class="who-tabs reveal" role="tablist" aria-label="Audience">
+          <button role="tab" aria-selected="true" aria-controls="who-panel-0" id="who-tab-0" class="who-tab active">Students</button>
+          <button role="tab" aria-selected="false" aria-controls="who-panel-1" id="who-tab-1" class="who-tab">Fresh Graduates</button>
+          <button role="tab" aria-selected="false" aria-controls="who-panel-2" id="who-tab-2" class="who-tab">Career Switchers</button>
+          <button role="tab" aria-selected="false" aria-controls="who-panel-3" id="who-tab-3" class="who-tab">Working Professionals</button>
+          <button role="tab" aria-selected="false" aria-controls="who-panel-4" id="who-tab-4" class="who-tab">International Students</button>
+        </div>
+        <div class="who-stage">
+          <div class="who-silhouette" aria-hidden="true"></div>
+          <div class="who-panel" role="tabpanel" id="who-panel-0" aria-labelledby="who-tab-0" data-active="true">
+            <h3>Students</h3>
+            <p>Undergraduates building a standout skill stack before graduation.</p>
+            <p class="who-outcome">→ Career outcome: GRC / TPRM Analyst entry track.</p>
+          </div>
+          <div class="who-panel" role="tabpanel" id="who-panel-1" aria-labelledby="who-tab-1" hidden>
+            <h3>Fresh Graduates</h3>
+            <p>New grads who need a job-ready specialization, not just a degree.</p>
+            <p class="who-outcome">→ Career outcome: Risk Analyst, Compliance Analyst roles.</p>
+          </div>
+          <div class="who-panel" role="tabpanel" id="who-panel-2" aria-labelledby="who-tab-2" hidden>
+            <h3>Career Switchers</h3>
+            <p>Professionals moving into cybersecurity/GRC from adjacent fields.</p>
+            <p class="who-outcome">→ Career outcome: ISO 27001 Consultant, Privacy Advocate.</p>
+          </div>
+          <div class="who-panel" role="tabpanel" id="who-panel-3" aria-labelledby="who-tab-3" hidden>
+            <h3>Working Professionals</h3>
+            <p>Up-skilling for senior GRC, audit, or advisory responsibility.</p>
+            <p class="who-outcome">→ Career outcome: Senior GRC Analyst, Lead Consultant.</p>
+          </div>
+          <div class="who-panel" role="tabpanel" id="who-panel-4" aria-labelledby="who-tab-4" hidden>
+            <h3>International Students</h3>
+            <p>Global learners targeting the US & UK GRC job markets.</p>
+            <p class="who-outcome">→ Career outcome: US/UK GRC Analyst, TPRM Analyst.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="outcomes" id="outcomes">
+      <div class="container">
+        <p class="eyebrow reveal">The summit</p>
+        <h2 class="section-title reveal">Where this takes you</h2>
+        <div class="counter-grid reveal">
+          <div class="counter"><span class="counter-num" data-count="6">0</span><span class="counter-label">Programs</span></div>
+          <div class="counter"><span class="counter-num" data-count="35">0</span><span class="counter-label">Hours live</span></div>
+          <div class="counter"><span class="counter-num" data-count="850" data-prefix="$" data-suffix="">0</span><span class="counter-label">Current price</span></div>
+          <div class="counter"><span class="counter-num" data-count="2">0</span><span class="counter-label">Primary markets</span></div>
+        </div>
+        <div class="outcome-grid">
+          <article class="outcome-card reveal-tilt" data-tilt><h3>GRC Analyst</h3></article>
+          <article class="outcome-card reveal-tilt" data-tilt><h3>Risk Analyst</h3></article>
+          <article class="outcome-card reveal-tilt" data-tilt><h3>TPRM Analyst</h3></article>
+          <article class="outcome-card reveal-tilt" data-tilt><h3>Compliance Analyst</h3></article>
+          <article class="outcome-card reveal-tilt" data-tilt><h3>ISO 27001 Consultant</h3></article>
+          <article class="outcome-card reveal-tilt" data-tilt><h3>Privacy Advocate</h3></article>
+        </div>
+      </div>
+    </section>
+    <section class="faq" id="faq">
+      <div class="container">
+        <p class="eyebrow reveal">Answers</p>
+        <h2 class="section-title reveal">Frequently asked</h2>
+        <div class="accordion">
+          <div class="acc-item reveal"><button class="acc-head" aria-expanded="false"><span>Who can join the programs?</span><span class="acc-icon"></span></button><div class="acc-body"><p>Students, fresh graduates, career switchers, working professionals, and international students — anyone targeting a GRC career, globally.</p></div></div>
+          <div class="acc-item reveal"><button class="acc-head" aria-expanded="false"><span>What's included in the program?</span><span class="acc-icon"></span></button><div class="acc-body"><p>35 hours of live training, mock interviews, resume & LinkedIn guidance, real-world case studies, and 1:1 career mentorship.</p></div></div>
+          <div class="acc-item reveal"><button class="acc-head" aria-expanded="false"><span>Is there a group discount?</span><span class="acc-icon"></span></button><div class="acc-body"><p>Yes — groups of 3 or more enroll at $650 each (instead of the $850 individual price).</p></div></div>
+          <div class="acc-item reveal"><button class="acc-head" aria-expanded="false"><span>Do I get a certificate?</span><span class="acc-icon"></span></button><div class="acc-body"><p>Yes — a certificate of completion is issued on finishing the program.</p></div></div>
+          <div class="acc-item reveal"><button class="acc-head" aria-expanded="false"><span>What career outcomes should I expect?</span><span class="acc-icon"></span></button><div class="acc-body"><p>GRC Analyst, Risk Analyst, TPRM Analyst, Compliance Analyst, ISO 27001 Consultant, Privacy Advocate — across US, UK, and global markets.</p></div></div>
+          <div class="acc-item reveal"><button class="acc-head" aria-expanded="false"><span>How do I enroll?</span><span class="acc-icon"></span></button><div class="acc-body"><p>Message us on WhatsApp at +91 9063370816 or email omnyra.training@gmail.com — we'll get you started.</p></div></div>
+        </div>
+      </div>
+    </section>
+    <section class="final-cta" id="contact">
+      <div class="container final-inner">
+        <h2 class="final-title">Start your GRC <span class="grad">ascent.</span></h2>
+        <p class="final-sub">Message us to enroll or to ask anything.</p>
+        <div class="final-cta-group">
+          <a class="btn btn-primary magnetic" href="https://wa.me/919063370816" target="_blank" rel="noopener noreferrer">Enroll via WhatsApp</a>
+          <a class="btn btn-ghost magnetic" href="mailto:omnyra.training@gmail.com">Email Us</a>
+        </div>
+        <div class="contact-card reveal">
+          <a class="contact-row" href="mailto:omnyra.training@gmail.com">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            omnyra.training@gmail.com
+          </a>
+          <a class="contact-row" href="https://wa.me/919063370816" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.46 3.087z"/></svg>
+            +91 9063370816 (WhatsApp)
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
+  <footer class="footer">
+    <div class="footer-values"><span>Practical</span><span class="dot"></span><span>Relevant</span><span class="dot"></span><span>Career-Focused</span><span class="dot"></span><span>Global Opportunities</span></div>
+    <p class="footer-copy">&copy; 2026 OMNyra Group. All rights reserved.</p>
+  </footer>
   <!-- Scripts appended in later tasks -->
 <script>
   (function () {
@@ -437,6 +745,144 @@
   nodes.forEach(n => n.addEventListener('click', () => {
     document.getElementById(n.dataset.target).scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
   }));
+
+  // Programs: pinned stagger reveal + hover tilt
+  gsap.matchMedia().add({
+    full: '(min-width: 1px) and (prefers-reduced-motion: no-preference)',
+    reduce: '(prefers-reduced-motion: reduce)'
+  }, (ctx) => {
+    const { reduce } = ctx.conditions;
+    if (reduce) {
+      gsap.set('.reveal-tilt', { opacity: 1, y: 0, rotationX: 0 });
+      return;
+    }
+    ScrollTrigger.create({
+      trigger: '#program-grid', start: 'top 75%', once: true,
+      onEnter: () => gsap.from('.reveal-tilt', { opacity: 0, y: 50, rotationX: -8, duration: 0.7, stagger: 0.12, ease: 'back.out(1.4)' })
+    });
+  });
+
+  // Hover 3D tilt (pointer-fine only)
+  gsap.matchMedia().add('(hover: hover) and (pointer: fine)', () => {
+    document.querySelectorAll('[data-tilt]').forEach(card => {
+      const rx = gsap.quickTo(card, 'rotationX', { duration: 0.3, ease: 'power3.out' });
+      const ry = gsap.quickTo(card, 'rotationY', { duration: 0.3, ease: 'power3.out' });
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        rx(-py * 10); ry(px * 10);
+      });
+      card.addEventListener('mouseleave', () => { rx(0); ry(0); });
+    });
+  });
+
+  // Why OMNyra: vertical scroll -> horizontal travel
+  const whyTrack = document.getElementById('why-track');
+  const reduceWhy = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobileWhy = window.matchMedia('(max-width: 880px)').matches;
+  if (!reduceWhy && !isMobileWhy) {
+    const panels = whyTrack.querySelectorAll('.why-panel');
+    const getToX = () => -(whyTrack.scrollWidth - window.innerWidth);
+    const hTween = gsap.to(whyTrack, {
+      x: getToX, ease: 'none',
+      scrollTrigger: { trigger: '.why-pin-wrap', pin: true, scrub: 1, start: 'top top', end: () => '+=' + (whyTrack.scrollWidth - window.innerWidth), invalidateOnRefresh: true }
+    });
+    panels.forEach((p) => {
+      const num = p.querySelector('.why-num');
+      const target = parseInt(num.dataset.count, 10);
+      ScrollTrigger.create({
+        trigger: p, containerAnimation: hTween, start: 'left center', once: true,
+        onEnter: () => gsap.fromTo(num, { textContent: 0 }, { textContent: target, duration: 1.2, ease: 'power2.out', snap: { textContent: 1 } })
+      });
+    });
+  } else {
+    whyTrack.style.flexDirection = 'column';
+    whyTrack.querySelectorAll('.why-panel').forEach(p => { p.style.height = 'auto'; p.style.minHeight = '60vh'; p.style.width = '100%'; });
+    whyTrack.querySelectorAll('.why-num').forEach(n => { n.textContent = n.dataset.count; });
+  }
+
+  // Pricing: watermark parallax + price counter
+  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+    gsap.to('.quote-watermark', {
+      y: -40, ease: 'none',
+      scrollTrigger: { trigger: '.quote-card', start: 'top bottom', end: 'bottom top', scrub: 1 }
+    });
+    ScrollTrigger.create({
+      trigger: '.price-now', start: 'top 85%', once: true,
+      onEnter: () => {
+        const el = document.querySelector('.price-now');
+        const target = parseInt(el.dataset.count, 10);
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        gsap.fromTo(el, { textContent: 0 }, { textContent: target, duration: 1.4, ease: 'power2.out', snap: { textContent: 1 },
+          onUpdate: function () { el.textContent = prefix + Math.floor(this.targets()[0].textContent) + suffix; }
+        });
+      }
+    });
+  });
+  gsap.matchMedia().add('(prefers-reduced-motion: reduce)', () => {
+    const el = document.querySelector('.price-now');
+    el.textContent = (el.dataset.prefix || '') + el.dataset.count + (el.dataset.suffix || '');
+  });
+
+  // Who Can Join: accessible tabs + parallax silhouette
+  const tabs = document.querySelectorAll('.who-tab');
+  const panels = document.querySelectorAll('.who-panel');
+  const silhouette = document.querySelector('.who-silhouette');
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => activateWho(i));
+    tab.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); activateWho((i + 1) % tabs.length); tabs[(i + 1) % tabs.length].focus(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); activateWho((i - 1 + tabs.length) % tabs.length); tabs[(i - 1 + tabs.length) % tabs.length].focus(); }
+    });
+  });
+  function activateWho(i) {
+    tabs.forEach((t, j) => { t.setAttribute('aria-selected', String(j === i)); t.classList.toggle('active', j === i); });
+    panels.forEach((p, j) => { p.hidden = j !== i; p.setAttribute('data-active', String(j === i)); });
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) gsap.fromTo(silhouette, { x: 40 }, { x: ((i - 2) * -30), duration: 0.6, ease: 'power3.out' });
+  }
+  activateWho(0);
+
+  // Outcomes: counters tween when in view (flip cards reuse [data-tilt] from Task 6)
+  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+    document.querySelectorAll('.counter-num').forEach(num => {
+      const target = parseInt(num.dataset.count, 10);
+      const prefix = num.dataset.prefix || '';
+      const suffix = num.dataset.suffix || '';
+      ScrollTrigger.create({
+        trigger: num, start: 'top 85%', once: true,
+        onEnter: () => gsap.fromTo(num, { textContent: 0 }, { textContent: target, duration: 1.4, ease: 'power2.out', snap: { textContent: 1 },
+          onUpdate: function () { num.textContent = prefix + Math.floor(this.targets()[0].textContent) + suffix; } })
+      });
+    });
+    ScrollTrigger.create({ trigger: '.outcome-grid', start: 'top 80%', once: true, onEnter: () => gsap.from('.outcome-card', { opacity: 0, y: 40, stagger: 0.08, duration: 0.6, ease: 'back.out(1.4)' }) });
+  });
+  gsap.matchMedia().add('(prefers-reduced-motion: reduce)', () => {
+    document.querySelectorAll('.counter-num').forEach(n => { n.textContent = (n.dataset.prefix || '') + n.dataset.count + (n.dataset.suffix || ''); });
+  });
+
+  // FAQ accordion: single-open
+  const accItems = document.querySelectorAll('.acc-item');
+  accItems.forEach(item => {
+    const head = item.querySelector('.acc-head');
+    head.addEventListener('click', () => {
+      const open = item.classList.contains('open');
+      accItems.forEach(o => { o.classList.remove('open'); o.querySelector('.acc-head').setAttribute('aria-expanded', 'false'); });
+      if (!open) { item.classList.add('open'); head.setAttribute('aria-expanded', 'true'); }
+    });
+  });
+  // Generic reveal: fade up on enter
+  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+    gsap.utils.toArray('.reveal').forEach(el => {
+      gsap.from(el, { opacity: 0, y: 30, duration: 0.6, ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+    });
+  });
+
+  // Recalculate ScrollTrigger positions after fonts/layout settle
+  window.addEventListener('load', () => setTimeout(() => ScrollTrigger.refresh(), 300));
+  window.addEventListener('resize', () => ScrollTrigger.refresh());
 </script>
 <script type="module">
   import * as THREE from 'three';
