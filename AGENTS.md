@@ -14,12 +14,21 @@ system (logo, stationery, social, certificates) and tooling to render/export tho
 - **Website:** [omnyragroup.online](https://omnyragroup.online)
 - **Founded:** 2026 · **Area served:** Global — primary markets US & UK
 
+## Programs & Pricing
+- **Programs:** GRC, TPRM, ISO 27001, Risk Management, Data Privacy, AI Cybersecurity
+- **Pricing:** $1000 USD → NOW AT $850 USD (Special Discount)
+- **Group Discount:** Min 3 Ppl → $650 each
+- **What's Included:** 35 Hours Live Training, Mock Interviews & Sessions, Resume & LinkedIn Guidance, Real-World Case Studies, Career Mentorship
+- **Who Can Join:** Students, Fresh Graduates, Career Switchers, Working Professionals, International Students
+- **Career Outcomes:** GRC Analyst, Risk Analyst, TPRM Analyst, Compliance Analyst, ISO 27001 Consultant, Privacy Advocate
+
 ## Tech Stack
 - **Site:** Single static `index.html` (no build step) — vanilla HTML/CSS/SVG + a small inline JS script that draws the animated hexagonal lattice background.
 - **Fonts:** Inter (Google Fonts) — weights 300, 400, 500, 600, 700, 800.
 - **Dev dependencies:** `shadcn` (^4.18.0) — design-system reference only, not wired into a build.
 - **Runtime dependencies:** `docx` (^9.7.1) for editable Office documents, `playwright` (^1.62.1) for rendering SVG assets to PNG/JPEG.
 - **No framework / bundler.** Everything is committed source.
+- **Interactive Website:** Three.js for hexagonal lattice background, GSAP for scroll animations.
 
 ## Repository Layout
 - `index.html` — the live landing page (launching-soon hero, logo, contact, Schema.org Organization JSON-LD).
@@ -27,6 +36,10 @@ system (logo, stationery, social, certificates) and tooling to render/export tho
 - `llms.txt` — LLM-facing site summary (services, facts, tagline).
 - `robots.txt` / `sitemap.xml` — SEO; sitemap points to `https://omnyragroup.online/`.
 - `CNAME` — `www.omnyragroup.online` (GitHub Pages custom domain). Canonical URL is `https://omnyragroup.online/`.
+- `Final Logo.jpeg` — High-res logo export.
+- `Website/` — Interactive landing pages (dark + light themes):
+  - `index.html` — Dark theme (Three.js hexagonal lattice bg, GSAP scroll animations, 8 nav sections, responsive hamburger mobile nav).
+  - `light.html` — Light theme (same structure, light color scheme).
 - `brand identity/Final Brand Material/omnyragroup-brandkit/` — canonical brand kit location:
   - **Logo files (all transparent PNGs):**
     - `primary-logo-transparent.png` — Full logo with icon + wordmark (light backgrounds)
@@ -34,6 +47,12 @@ system (logo, stationery, social, certificates) and tooling to render/export tho
     - `icon-only-transparent.png` — Icon only (circular blue design, watermarks, favicons)
     - `Monochrome_dark-transparent.png` — Dark monochrome (for light backgrounds)
     - `Monochrome_white-transparent.png` — White monochrome (for dark backgrounds)
+  - **Social media assets (PNGs):**
+    - `profile-dark.png` — Social profile picture (dark theme, 400×400)
+    - `profile-light.png` — Social profile picture (light theme, 400×400)
+    - `profile-accent.png` — Social profile picture (accent blue, 400×400)
+    - `linkedin-cover-dark.png` — LinkedIn cover banner (dark theme, 1584×396)
+    - `linkedin-cover-light.png` — LinkedIn cover banner (light theme, 1584×396)
   - **HTML templates:**
     - `business-card.html` — Business card front & back
     - `letterhead.html` — US Letter letterhead template
@@ -41,6 +60,10 @@ system (logo, stationery, social, certificates) and tooling to render/export tho
     - `social-post-template.html` — Social media post templates (dark + light)
     - `email-signature.html` — Email signature (HTML + plain text)
     - `brand-guidelines.html` — Interactive brand guidelines page
+    - `social-profile.html` — Social profile picture variants (HTML template)
+  - **Certificate:**
+    - `certificate.html` — Certificate of completion template
+    - `seal.svg` — Certified seal with embedded logo (base64)
   - **Documentation:**
     - `brand-guidelines.md` — Full brand guidelines document
     - `design.md` — Technical design system reference (CSS variables, component specs)
