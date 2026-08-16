@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMNyra Group - Certificate of Completion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #e8e8e8;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .certificate {
+            width: 11in;
+            height: 8.5in;
+            background: #FFFFFF;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        /* Background hex pattern */
+        .cert-bg {
+            position: absolute;
+            inset: 0;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%2300A8E8' stroke-width='1'/%3E%3C/svg%3E");
+            background-size: 56px 100px;
+        }
+
+        /* Top accent bar */
+        .top-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #00A8E8, #0077B6);
+        }
+
+        /* Bottom accent bar */
+        .bottom-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0077B6, #00A8E8);
+        }
+
+        /* Side accent removed */
+
+        /* Corner decorations */
+        .corner {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+        }
+        .corner-tl { top: 20px; left: 20px; border-top: 2px solid #00A8E8; border-left: 2px solid #00A8E8; }
+        .corner-tr { top: 20px; right: 20px; border-top: 2px solid #00A8E8; border-right: 2px solid #00A8E8; }
+        .corner-bl { bottom: 20px; left: 20px; border-bottom: 2px solid #00A8E8; border-left: 2px solid #00A8E8; }
+        .corner-br { bottom: 20px; right: 20px; border-bottom: 2px solid #00A8E8; border-right: 2px solid #00A8E8; }
+
+        /* Content */
+        .cert-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            padding: 50px 80px 40px;
+            text-align: center;
+        }
+
+        /* Header */
+        .cert-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .tagline {
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            color: #8B949E;
+            margin-bottom: 20px;
+        }
+
+        /* Decorative divider */
+        .divider-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .divider-line { width: 40px; height: 1px; background: #C9D1D9; }
+        .divider-diamond { width: 6px; height: 6px; background: #00A8E8; transform: rotate(45deg); }
+        .divider-line.long { width: 80px; }
+
+        /* Title */
+        .cert-title {
+            font-size: 38px;
+            font-weight: 300;
+            color: #0D1117;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .cert-of {
+            font-size: 14px;
+            font-weight: 400;
+            color: #8B949E;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        /* Presented to */
+        .presented-to {
+            font-size: 11px;
+            font-weight: 500;
+            color: #8B949E;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .recipient-name {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0D1117;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #00A8E8;
+            display: inline-block;
+            min-width: 280px;
+            margin-bottom: 16px;
+        }
+
+        /* Course */
+        .course-label {
+            font-size: 12px;
+            color: #8B949E;
+            margin-bottom: 4px;
+        }
+
+        .course-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0077B6;
+            margin-bottom: 16px;
+        }
+
+        /* Description */
+        .cert-desc {
+            font-size: 12px;
+            color: #8B949E;
+            line-height: 1.7;
+            max-width: 480px;
+            margin-bottom: 20px;
+        }
+
+        /* Meta row */
+        .meta-row {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 20px;
+        }
+
+        .meta-item { text-align: center; }
+
+        .meta-label {
+            font-size: 9px;
+            font-weight: 600;
+            color: #8B949E;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+
+        .meta-value {
+            font-size: 13px;
+            font-weight: 500;
+            color: #0D1117;
+        }
+
+        /* Signatures */
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 520px;
+            margin-top: auto;
+            padding-top: 16px;
+        }
+
+        .signature { text-align: center; min-width: 160px; }
+
+        .sig-line {
+            width: 160px;
+            height: 1px;
+            background: #C9D1D9;
+            margin: 0 auto 6px;
+        }
+
+        .sig-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #0D1117;
+            margin-bottom: 2px;
+        }
+
+        .sig-title {
+            font-size: 10px;
+            color: #8B949E;
+        }
+
+        /* Seal */
+        .seal {
+            position: absolute;
+            bottom: 30px;
+            right: 45px;
+            width: 90px;
+            height: 90px;
+            opacity: 0.7;
+        }
+
+        .seal img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Print */
+        @media print {
+            body { background: none; padding: 0; }
+            .certificate { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate">
+        <div class="cert-bg"></div>
+        <div class="top-bar"></div>
+        <div class="bottom-bar"></div>
+
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+
+        <div class="cert-content">
+            <div class="cert-header">
+                <img src="primary-logo-transparent.png" alt="OMNyra Group" class="logo">
+            </div>
+            <div class="tagline">Empowering Careers. Securing the Future.</div>
+
+            <div class="divider-wrap">
+                <div class="divider-line"></div>
+                <div class="divider-diamond"></div>
+                <div class="divider-line long"></div>
+                <div class="divider-diamond"></div>
+                <div class="divider-line"></div>
+            </div>
+
+            <div class="cert-title">Certificate</div>
+            <div class="cert-of">of Completion</div>
+
+            <div class="presented-to">This is proudly presented to</div>
+            <div class="recipient-name">[Recipient Name]</div>
+
+            <div class="course-label">for successful completion of the program</div>
+            <div class="course-name">[Program Name]</div>
+
+            <div class="cert-desc">
+                This certificate confirms that the above-named individual has successfully completed
+                the designated GRC training program, demonstrating proficiency in governance,
+                risk management, and compliance frameworks.
+            </div>
+
+            <div class="meta-row">
+                <div class="meta-item">
+                    <div class="meta-label">Date of Issue</div>
+                    <div class="meta-value">[DD/MM/YYYY]</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Certificate ID</div>
+                    <div class="meta-value">[CERT-XXXX-XXXX]</div>
+                </div>
+            </div>
+
+            <div class="signatures">
+                <div class="signature">
+                    <div class="sig-line"></div>
+                    <div class="sig-name">[Instructor Name]</div>
+                    <div class="sig-title">Lead Instructor</div>
+                </div>
+                <div class="signature">
+                    <div class="sig-line"></div>
+                    <div class="sig-name">[Director Name]</div>
+                    <div class="sig-title">Program Director</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="seal">
+            <img src="seal.svg" alt="OMNyra Group Certified Seal">
+        </div>
+    </div>
+</body>
+</html>
