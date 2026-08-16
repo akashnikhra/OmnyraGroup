@@ -106,12 +106,123 @@
     a { color: inherit; text-decoration: none; }
     a:focus-visible { outline: 2px solid var(--hex-blue); outline-offset: 4px; border-radius: 4px; }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+.nav {
+  position: fixed; top: 0; left: 0; width: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px clamp(20px, 5vw, 60px);
+  z-index: 10; background: transparent;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+}
+.nav.scrolled {
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.nav-logo img { height: 36px; width: auto; object-fit: contain; display: block; }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+.nav-links a {
+  font-size: 14px; font-weight: 500; color: var(--text-muted);
+  position: relative; transition: color 0.2s ease;
+}
+.nav-links a::after {
+  content: ''; position: absolute; left: 0; bottom: -6px; height: 2px; width: 0;
+  background: var(--accent-gradient); transition: width 0.3s ease;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+.nav-links a.active::after, .nav-links a:hover::after { width: 100%; }
+.nav-right { display: flex; align-items: center; gap: 14px; }
+.theme-toggle {
+  width: 40px; height: 40px; border-radius: var(--radius-full, 50%);
+  border: 1px solid var(--border); background: var(--surface);
+  color: var(--text); cursor: pointer; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+.theme-toggle:hover { color: var(--hex-blue); border-color: var(--hex-blue); }
+.theme-toggle .icon-sun { display: none; }
+[data-theme="light"] .theme-toggle .icon-moon { display: none; }
+[data-theme="light"] .theme-toggle .icon-sun { display: block; }
+.hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+.hamburger span {
+  display: block; width: 24px; height: 2px; background: var(--text);
+  margin: 5px 0; transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+@media (max-width: 880px) {
+  .nav-links {
+    position: fixed; inset: 0; flex-direction: column;
+    background: var(--bg); justify-content: center; gap: 32px;
+    transform: translateX(100%); transition: transform 0.4s ease; pointer-events: none;
+  }
+  .nav-links.open { transform: translateX(0); pointer-events: auto; }
+  .nav-links a { font-size: 22px; }
+  .hamburger { display: block; }
+}
   </style>
 </head>
 <body>
   <canvas id="bg-canvas" aria-hidden="true"></canvas>
+<nav class="nav" id="nav" aria-label="Primary">
+  <a class="nav-logo" href="#home" aria-label="OMNyra Group home">
+    <img id="nav-logo-img" src="img/Monochrome_white-transparent.png" alt="OMNyra Group" height="36" />
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#why">Why</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#who">Who</a></li>
+    <li><a href="#outcomes">Outcomes</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme" aria-pressed="false">
+      <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
   <!-- Sections appended in later tasks -->
   <main class="layer" id="content"></main>
   <!-- Scripts appended in later tasks -->
+<script>
+  (function () {
+    const root = document.documentElement;
+    const toggle = document.getElementById('theme-toggle');
+    const navLogo = document.getElementById('nav-logo-img');
+    const stored = localStorage.getItem('omnyra-theme');
+    if (stored === 'light') { root.setAttribute('data-theme', 'light'); toggle.setAttribute('aria-pressed', 'true'); navLogo.src = 'img/primary-logo-transparent.png'; }
+
+    toggle.addEventListener('click', () => {
+      const isLight = root.getAttribute('data-theme') === 'light';
+      root.setAttribute('data-theme', isLight ? 'dark' : 'light');
+      toggle.setAttribute('aria-pressed', String(!isLight));
+      navLogo.src = isLight ? 'img/Monochrome_white-transparent.png' : 'img/primary-logo-transparent.png';
+      localStorage.setItem('omnyra-theme', isLight ? 'dark' : 'light');
+      window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: isLight ? 'dark' : 'light' } }));
+    });
+
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+    onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+
+    const hamburger = document.getElementById('hamburger');
+    const links = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', String(open));
+    });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      links.classList.remove('open'); hamburger.classList.remove('open'); hamburger.setAttribute('aria-expanded', 'false');
+    }));
+  })();
+</script>
 </body>
 </html>
