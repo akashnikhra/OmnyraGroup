@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMNyra Group - Letterhead</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #e8e8e8;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .letterhead {
+            width: 8.5in;
+            height: 11in;
+            background: #FFFFFF;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #00A8E8;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .company-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .company-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: #0D1117;
+            letter-spacing: 0.5px;
+        }
+
+        .company-name span {
+            color: #00A8E8;
+        }
+
+        .company-tagline {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #8B949E;
+            margin-top: 2px;
+        }
+
+        .header-contact {
+            text-align: right;
+            font-size: 9px;
+            color: #161B22;
+            line-height: 1.8;
+        }
+
+        .header-contact a {
+            color: #00A8E8;
+            text-decoration: none;
+        }
+
+        /* Content Area */
+        .content {
+            flex: 1;
+            padding: 40px 0;
+        }
+
+        .date {
+            font-size: 11px;
+            color: #8B949E;
+            margin-bottom: 30px;
+        }
+
+        .recipient {
+            font-size: 11px;
+            color: #161B22;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .subject {
+            font-size: 13px;
+            font-weight: 600;
+            color: #0D1117;
+            margin-bottom: 20px;
+        }
+
+        .body-text {
+            font-size: 11px;
+            color: #161B22;
+            line-height: 1.8;
+        }
+
+        .body-text p {
+            margin-bottom: 15px;
+        }
+
+        .signature {
+            margin-top: 40px;
+        }
+
+        .signature-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #0D1117;
+        }
+
+        .signature-title {
+            font-size: 10px;
+            color: #00A8E8;
+            margin-top: 2px;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid #C9D1D9;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-contact {
+            display: flex;
+            gap: 30px;
+            font-size: 8px;
+            color: #8B949E;
+        }
+
+        .footer-contact span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .footer-contact svg {
+            width: 10px;
+            height: 10px;
+            fill: #00A8E8;
+        }
+
+        .footer-tagline {
+            font-size: 7px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #C9D1D9;
+        }
+
+        /* Watermark */
+        .watermark {
+            position: absolute;
+            bottom: 100px;
+            right: 60px;
+            width: 200px;
+            height: 200px;
+            opacity: 0.04;
+        }
+
+        /* Side Accent */
+        .side-accent {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #00A8E8 0%, #0077B6 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="letterhead">
+        <div class="side-accent"></div>
+        
+        <img src="icon-only-transparent.png" alt="OMNyra Watermark" class="watermark">
+
+        <header class="header">
+            <div class="logo-section">
+                <img src="primary-logo-transparent.png" alt="OMNyra Group" class="logo-img">
+            </div>
+            <div class="header-contact">
+                <div>omnyra.training@gmail.com</div>
+                <div>+91 9063370816</div>
+                <div><a href="https://omnyragroup.online">omnyragroup.online</a></div>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="date">August 16, 2026</div>
+            
+            <div class="recipient">
+                [Recipient Name]<br>
+                [Company/Organization]<br>
+                [Address Line 1]<br>
+                [City, State, ZIP]
+            </div>
+
+            <div class="subject">RE: [Subject Line]</div>
+
+            <div class="body-text">
+                <p>Dear [Recipient Name],</p>
+                
+                <p>I am writing to you regarding [purpose of the letter]. At OMNyra Group, we are committed to empowering professionals with the knowledge and skills needed to excel in Governance, Risk, and Compliance (GRC).</p>
+                
+                <p>Our comprehensive training programs cover ISO 27001, Third-Party Risk Management (TPRM), Data Privacy, and AI Cybersecurity — designed to transform careers and build a secure future.</p>
+                
+                <p>[Additional content as needed]</p>
+                
+                <p>Please feel free to reach out if you have any questions or require further information.</p>
+            </div>
+
+            <div class="signature">
+                <div class="signature-name">[Your Name]</div>
+                <div class="signature-title">[Your Title] | OMNyra Group</div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-contact">
+                <span>
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    omnyra.training@gmail.com
+                </span>
+                <span>
+                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    +91 9063370816
+                </span>
+                <span>
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    omnyragroup.online
+                </span>
+            </div>
+            <div class="footer-tagline">Empowering Careers. Securing the Future.</div>
+        </footer>
+    </div>
+</body>
+</html>

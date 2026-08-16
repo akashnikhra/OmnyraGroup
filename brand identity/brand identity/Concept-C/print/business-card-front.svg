@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 196" width="340" height="196">
+  <defs>
+    <linearGradient id="cyanGlowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00B4D8;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00D4FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#48E0FF;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="cardClip"><rect width="340" height="196" rx="8"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#cardClip)">
+    <!-- Background -->
+    <rect width="340" height="196" fill="#0B0F1A"/>
+
+    <!-- Subtle glowing framework lines -->
+    <g opacity="0.06" stroke="#00D4FF" stroke-width="0.3">
+      <line x1="260" y1="0" x2="260" y2="196"/>
+      <line x1="290" y1="0" x2="290" y2="196"/>
+      <line x1="320" y1="0" x2="320" y2="196"/>
+      <line x1="260" y1="40" x2="340" y2="40"/>
+      <line x1="260" y1="80" x2="340" y2="80"/>
+      <line x1="260" y1="120" x2="340" y2="120"/>
+      <line x1="260" y1="160" x2="340" y2="160"/>
+    </g>
+
+    <!-- Top accent line -->
+    <rect x="0" y="0" width="340" height="2" fill="url(#cyanGlowGrad)"/>
+
+    <!-- Logo -->
+    <g transform="translate(24, 28) scale(0.28)">
+      <g transform="translate(40, 40)">
+        <circle cx="0" cy="0" r="32" fill="none" stroke="url(#cyanGlowGrad)" stroke-width="2" filter="url(#glow)" opacity="0.8"/>
+        <g opacity="0.5">
+          <line x1="0" y1="-32" x2="0" y2="-18" stroke="#00D4FF" stroke-width="1.5"/>
+          <line x1="28" y1="-16" x2="16" y2="-9" stroke="#00D4FF" stroke-width="1.5"/>
+          <line x1="28" y1="16" x2="16" y2="9" stroke="#00D4FF" stroke-width="1.5"/>
+          <line x1="0" y1="32" x2="0" y2="18" stroke="#00D4FF" stroke-width="1.5"/>
+          <line x1="-28" y1="16" x2="-16" y2="9" stroke="#00D4FF" stroke-width="1.5"/>
+          <line x1="-28" y1="-16" x2="-16" y2="-9" stroke="#00D4FF" stroke-width="1.5"/>
+        </g>
+        <circle cx="0" cy="0" r="24" fill="#00D4FF" opacity="0.15"/>
+        <circle cx="0" cy="0" r="18" fill="#0B0F1A" opacity="0.55"/>
+        <path d="M -8,8 L 10,-10" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <polygon points="10,-10 5,-10 10,-5" fill="white"/>
+      </g>
+      <text x="82" y="38" font-family="'Inter', Arial, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF" letter-spacing="1">OMN</text>
+      <text x="138" y="38" font-family="'Inter', Arial, sans-serif" font-size="24" font-weight="300" fill="#00D4FF">yra</text>
+      <text x="82" y="56" font-family="'Inter', Arial, sans-serif" font-size="8" font-weight="500" fill="#6B7280" letter-spacing="4">GROUP</text>
+    </g>
+
+    <!-- Name -->
+    <text x="24" y="110" font-family="'Inter', Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" letter-spacing="0.5">[Full Name]</text>
+
+    <!-- Title -->
+    <text x="24" y="126" font-family="'Inter', Arial, sans-serif" font-size="9" font-weight="400" fill="#00D4FF" letter-spacing="0.5">[Title] — GRC Advisory</text>
+
+    <!-- Domain badge -->
+    <rect x="24" y="138" width="28" height="14" rx="3" fill="#00D4FF" opacity="0.15"/>
+    <text x="38" y="148" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="7" font-weight="600" fill="#00D4FF" letter-spacing="0.5">GRC</text>
+
+    <!-- Contact details -->
+    <text x="24" y="172" font-family="'Inter', Arial, sans-serif" font-size="7.5" font-weight="300" fill="#6B7280" letter-spacing="0.3">omnyra.training@gmail.com</text>
+    <text x="24" y="184" font-family="'Inter', Arial, sans-serif" font-size="7.5" font-weight="300" fill="#6B7280" letter-spacing="0.3">+91 9063370816 | WhatsApp</text>
+
+    <!-- Tagline bottom right -->
+    <text x="316" y="188" text-anchor="end" font-family="'Inter', Arial, sans-serif" font-size="6" font-weight="300" fill="#6B7280" letter-spacing="1.5" opacity="0.6">CLARITY IN MOTION</text>
+  </g>
+</svg>

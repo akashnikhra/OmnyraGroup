@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595 842" width="595" height="842">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0077CC;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0099FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00BBFF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="chromeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7A8A9A;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#D0D8E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A8B4C2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Page background -->
+  <rect width="595" height="842" fill="#FFFFFF"/>
+
+  <!-- Top accent line -->
+  <rect x="0" y="0" width="595" height="4" fill="url(#blueGrad)"/>
+
+  <!-- Header section -->
+  <!-- Logo -->
+  <g transform="translate(50, 40)">
+    <g transform="scale(0.35)">
+      <g transform="translate(60, 60)">
+        <circle cx="0" cy="0" r="42" fill="none" stroke="url(#chromeGrad)" stroke-width="5" stroke-dasharray="30 7 30 7 30 7 30 7" stroke-linecap="round"/>
+        <circle cx="40" cy="-13" r="3.5" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="0.5"/>
+        <circle cx="13" cy="-40" r="3" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="0.5"/>
+        <circle cx="-34" cy="-24" r="3" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="0.5"/>
+        <circle cx="-34" cy="24" r="3" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="0.5"/>
+        <circle cx="0" cy="0" r="33" fill="url(#blueGrad)" opacity="0.95"/>
+        <circle cx="0" cy="0" r="24" fill="#0A1628" opacity="0.6"/>
+        <g filter="url(#glow)">
+          <path d="M -10,10 L 13,-13" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <polygon points="13,-13 7,-13 13,-7" fill="white"/>
+        </g>
+      </g>
+      <text x="85" y="58" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="28" font-weight="800" fill="#0A1628" letter-spacing="1">OMN</text>
+      <text x="150" y="58" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="28" font-weight="300" fill="#0099FF" letter-spacing="0.5">yra</text>
+      <text x="85" y="78" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="9" font-weight="500" fill="#A8B4C2" letter-spacing="6">GROUP</text>
+    </g>
+  </g>
+
+  <!-- Company details - right aligned -->
+  <text x="545" y="48" text-anchor="end" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="8" font-weight="400" fill="#A8B4C2" letter-spacing="0.5">OmnyraGroup™</text>
+  <text x="545" y="60" text-anchor="end" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="7" font-weight="300" fill="#A8B4C2" letter-spacing="0.5">Information Security Training &amp; Risk Advisory</text>
+  <text x="545" y="72" text-anchor="end" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="7" font-weight="300" fill="#C8D0DA" letter-spacing="0.3">www.omnyragroup.online</text>
+
+  <!-- Divider line -->
+  <line x1="50" y1="95" x2="545" y2="95" stroke="#E8ECF0" stroke-width="0.5"/>
+
+  <!-- Watermark - orbital emblem at very low opacity -->
+  <g transform="translate(297.5, 460)" opacity="0.03">
+    <circle cx="0" cy="0" r="140" fill="none" stroke="#0099FF" stroke-width="6" stroke-dasharray="90 20 90 20 90 20 90 20" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="104" fill="#0099FF" opacity="0.3"/>
+    <circle cx="0" cy="0" r="78" fill="#0A1628" opacity="0.4"/>
+    <path d="M -34,34 L 42,-42" stroke="#0099FF" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.5"/>
+    <polygon points="42,-42 22,-42 42,-22" fill="#0099FF" opacity="0.5"/>
+  </g>
+
+  <!-- Date placeholder -->
+  <text x="50" y="130" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="10" font-weight="400" fill="#0A1628">[Date]</text>
+
+  <!-- Recipient placeholder -->
+  <text x="50" y="165" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="10" font-weight="400" fill="#0A1628">[Recipient Name]</text>
+  <text x="50" y="180" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="10" font-weight="400" fill="#0A1628">[Title]</text>
+  <text x="50" y="195" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="10" font-weight="400" fill="#0A1628">[Company]</text>
+  <text x="50" y="210" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="10" font-weight="400" fill="#0A1628">[Address Line 1]</text>
+  <text x="50" y="225" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="10" font-weight="400" fill="#0A1628">[City, State, Postal Code]</text>
+
+  <!-- Subject line -->
+  <text x="50" y="265" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#0A1628">Re: [Subject]</text>
+
+  <!-- Body content area -->
+  <text x="50" y="305" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="10" font-weight="400" fill="#0A1628">Dear [Recipient],</text>
+
+  <!-- Body placeholder lines -->
+  <line x1="50" y1="335" x2="545" y2="335" stroke="#F0F2F5" stroke-width="0.5"/>
+  <line x1="50" y1="355" x2="545" y2="355" stroke="#F0F2F5" stroke-width="0.5"/>
+  <line x1="50" y1="375" x2="545" y2="375" stroke="#F0F2F5" stroke-width="0.5"/>
+  <line x1="50" y1="395" x2="545" y2="395" stroke="#F0F2F5" stroke-width="0.5"/>
+  <line x1="50" y1="415" x2="545" y2="415" stroke="#F0F2F5" stroke-width="0.5"/>
+  <line x1="50" y1="435" x2="545" y2="435" stroke="#F0F2F5" stroke-width="0.5"/>
+  <line x1="50" y1="455" x2="545" y2="455" stroke="#F0F2F5" stroke-width="0.5"/>
+  <line x1="50" y1="475" x2="545" y2="475" stroke="#F0F2F5" stroke-width="0.5"/>
+  <line x1="50" y1="495" x2="545" y2="495" stroke="#F0F2F5" stroke-width="0.5"/>
+  <line x1="50" y1="515" x2="545" y2="515" stroke="#F0F2F5" stroke-width="0.5"/>
+  <line x1="50" y1="535" x2="545" y2="535" stroke="#F0F2F5" stroke-width="0.5"/>
+  <line x1="50" y1="555" x2="545" y2="555" stroke="#F0F2F5" stroke-width="0.5"/>
+  <line x1="50" y1="575" x2="545" y2="575" stroke="#F0F2F5" stroke-width="0.5"/>
+  <line x1="50" y1="595" x2="545" y2="595" stroke="#F0F2F5" stroke-width="0.5"/>
+  <line x1="50" y1="615" x2="545" y2="615" stroke="#F0F2F5" stroke-width="0.5"/>
+
+  <!-- Signature area -->
+  <text x="50" y="680" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="10" font-weight="400" fill="#0A1628">Sincerely,</text>
+  <text x="50" y="720" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="10" font-weight="400" fill="#0A1628">[Signatory Name]</text>
+  <text x="50" y="735" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="9" font-weight="300" fill="#A8B4C2">[Title] | OmnyraGroup™</text>
+
+  <!-- Footer -->
+  <line x1="50" y1="780" x2="545" y2="780" stroke="#E8ECF0" stroke-width="0.5"/>
+
+  <!-- Footer icon emblem -->
+  <g transform="translate(57, 798)">
+    <g transform="scale(0.12)">
+      <circle cx="0" cy="0" r="28" fill="none" stroke="url(#chromeGrad)" stroke-width="4" stroke-dasharray="20 5 20 5 20 5 20 5" stroke-linecap="round"/>
+      <circle cx="0" cy="0" r="20" fill="url(#blueGrad)" opacity="0.5"/>
+      <path d="M -7,7 L 9,-9" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <polygon points="9,-9 4,-9 9,-4" fill="white"/>
+    </g>
+  </g>
+
+  <text x="75" y="800" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="7" font-weight="400" fill="#A8B4C2">OmnyraGroup™ | Information Security Training &amp; Risk Advisory</text>
+  <text x="75" y="812" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="6" font-weight="300" fill="#C8D0DA">[Office Address] | +91 9063370816 | omnyra.training@gmail.com | www.omnyragroup.online</text>
+  <text x="75" y="824" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="5.5" font-weight="300" fill="#C8D0DA">Registered in [Jurisdiction] | Company No. [Number] | VAT No. [Number]</text>
+
+  <!-- Bottom accent line -->
+  <rect x="0" y="838" width="595" height="4" fill="url(#blueGrad)"/>
+</svg>

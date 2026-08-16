@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMNyra Group - Brand Guidelines</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f5f5;
+            color: #161B22;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+            padding: 80px 40px;
+            background: linear-gradient(135deg, #0D1117 0%, #161B22 100%);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-hex {
+            position: absolute;
+            top: 50%;
+            right: 100px;
+            transform: translateY(-50%);
+            width: 200px;
+            height: 200px;
+            opacity: 0.1;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 span {
+            color: #00A8E8;
+        }
+
+        .header p {
+            font-size: 18px;
+            color: #8B949E;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 60px;
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #0D1117;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #00A8E8;
+        }
+
+        /* Brand Overview */
+        .brand-overview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .brand-item h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #8B949E;
+            margin-bottom: 8px;
+        }
+
+        .brand-item p {
+            font-size: 16px;
+            color: #161B22;
+        }
+
+        .brand-item .tagline {
+            font-size: 20px;
+            font-weight: 600;
+            color: #00A8E8;
+        }
+
+        /* Color Palette */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .color-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-swatch {
+            height: 100px;
+        }
+
+        .color-info {
+            padding: 16px;
+            background: #FFFFFF;
+        }
+
+        .color-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0D1117;
+            margin-bottom: 4px;
+        }
+
+        .color-hex {
+            font-size: 12px;
+            color: #8B949E;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Logo Variations */
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .logo-variant {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-variant.dark {
+            background: #0D1117;
+        }
+
+        .logo-variant svg {
+            width: 80px;
+            height: 80px;
+        }
+
+        .logo-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8B949E;
+        }
+
+        .logo-variant.dark .logo-label {
+            color: #C9D1D9;
+        }
+
+        /* Typography */
+        .type-specimen {
+            margin-bottom: 30px;
+        }
+
+        .type-sample {
+            font-size: 48px;
+            font-weight: 700;
+            color: #0D1117;
+            margin-bottom: 8px;
+        }
+
+        .type-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 12px;
+            color: #8B949E;
+        }
+
+        .type-weights {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .type-weight {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .type-weight-label {
+            width: 100px;
+            font-size: 12px;
+            color: #8B949E;
+            text-transform: uppercase;
+        }
+
+        .type-weight-sample {
+            font-size: 24px;
+            color: #161B22;
+        }
+
+        /* Logo Usage */
+        .usage-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .usage-item {
+            padding: 24px;
+            border-radius: 8px;
+            border: 1px solid #C9D1D9;
+        }
+
+        .usage-item.do {
+            border-color: #28a745;
+            background: rgba(40, 167, 69, 0.05);
+        }
+
+        .usage-item.dont {
+            border-color: #dc3545;
+            background: rgba(220, 53, 69, 0.05);
+        }
+
+        .usage-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .usage-item.do .usage-label {
+            color: #28a745;
+        }
+
+        .usage-item.dont .usage-label {
+            color: #dc3545;
+        }
+
+        .usage-item p {
+            font-size: 14px;
+            color: #161B22;
+        }
+
+        /* Applications */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .application-card {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .application-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 16px;
+            background: #00A8E8;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .application-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: #FFFFFF;
+        }
+
+        .application-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0D1117;
+            margin-bottom: 4px;
+        }
+
+        .application-desc {
+            font-size: 12px;
+            color: #8B949E;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: #8B949E;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <svg class="header-hex" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100 10L180 55V145L100 190L20 145V55L100 10Z" stroke="#00A8E8" stroke-width="2" fill="none"/>
+                <path d="M60 120L100 40L140 120" stroke="#00A8E8" stroke-width="2" fill="none"/>
+                <circle cx="100" cy="40" r="8" fill="#00A8E8"/>
+            </svg>
+            <h1>OMN<span>y</span>ra GROUP</h1>
+            <p>Brand Guidelines</p>
+        </header>
+
+        <!-- Brand Overview -->
+        <section class="section">
+            <h2 class="section-title">Brand Overview</h2>
+            <div class="brand-overview">
+                <div class="brand-item">
+                    <h3>Company Name</h3>
+                    <p>OMNyra GROUP</p>
+                </div>
+                <div class="brand-item">
+                    <h3>Tagline</h3>
+                    <p class="tagline">Empowering Careers. Securing the Future.</p>
+                </div>
+                <div class="brand-item">
+                    <h3>Industry</h3>
+                    <p>GRC Training & Advisory | Cybersecurity | Risk Management</p>
+                </div>
+                <div class="brand-item">
+                    <h3>Target Audience</h3>
+                    <p>Students, Fresh Graduates, Career Switchers, Working Professionals in US & UK</p>
+                </div>
+                <div class="brand-item">
+                    <h3>Mission</h3>
+                    <p>Transform trainees into highly sought-after GRC specialists through practitioner-led training</p>
+                </div>
+                <div class="brand-item">
+                    <h3>Core Values</h3>
+                    <p>PRACTICAL • RELEVANT • CAREER-FOCUSED • GLOBAL OPPORTUNITIES</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Color Palette -->
+        <section class="section">
+            <h2 class="section-title">Color Palette</h2>
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #0D1117;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Carbon Foundation</div>
+                        <div class="color-hex">#0D1117</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #161B22;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Deep Carbon</div>
+                        <div class="color-hex">#161B22</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #00A8E8;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Hex Blue</div>
+                        <div class="color-hex">#00A8E8</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #0077B6;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Junction Blue</div>
+                        <div class="color-hex">#0077B6</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #8B949E;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Chrome Lattice</div>
+                        <div class="color-hex">#8B949E</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #C9D1D9;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Steel</div>
+                        <div class="color-hex">#C9D1D9</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #FFFFFF; border: 1px solid #e0e0e0;"></div>
+                    <div class="color-info">
+                        <div class="color-name">White</div>
+                        <div class="color-hex">#FFFFFF</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #F85149;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Signal Red</div>
+                        <div class="color-hex">#F85149</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Logo Variations -->
+        <section class="section">
+            <h2 class="section-title">Logo Variations</h2>
+            <div class="logo-grid">
+                <div class="logo-variant">
+                    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M30 5L50 17.5V42.5L30 55L10 42.5V17.5L30 5Z" stroke="#00A8E8" stroke-width="2" fill="none"/>
+                        <path d="M20 35L30 15L40 35" stroke="#00A8E8" stroke-width="2" fill="none"/>
+                        <circle cx="30" cy="15" r="3" fill="#00A8E8"/>
+                    </svg>
+                    <span class="logo-label">Primary (Light BG)</span>
+                </div>
+                <div class="logo-variant dark">
+                    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M30 5L50 17.5V42.5L30 55L10 42.5V17.5L30 5Z" stroke="#00A8E8" stroke-width="2" fill="none"/>
+                        <path d="M20 35L30 15L40 35" stroke="#00A8E8" stroke-width="2" fill="none"/>
+                        <circle cx="30" cy="15" r="3" fill="#00A8E8"/>
+                    </svg>
+                    <span class="logo-label">Primary (Dark BG)</span>
+                </div>
+                <div class="logo-variant">
+                    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M30 5L50 17.5V42.5L30 55L10 42.5V17.5L30 5Z" stroke="#0D1117" stroke-width="2" fill="none"/>
+                        <path d="M20 35L30 15L40 35" stroke="#0D1117" stroke-width="2" fill="none"/>
+                        <circle cx="30" cy="15" r="3" fill="#0D1117"/>
+                    </svg>
+                    <span class="logo-label">Monochrome Dark</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography -->
+        <section class="section">
+            <h2 class="section-title">Typography</h2>
+            <div class="type-specimen">
+                <div class="type-sample">Inter</div>
+                <div class="type-meta">
+                    <span>Primary Font Family</span>
+                    <span>Google Fonts</span>
+                    <span>Weights: 300, 400, 500, 600, 700</span>
+                </div>
+            </div>
+            <div class="type-weights">
+                <div class="type-weight">
+                    <span class="type-weight-label">Light (300)</span>
+                    <span class="type-weight-sample" style="font-weight: 300;">Empowering Careers</span>
+                </div>
+                <div class="type-weight">
+                    <span class="type-weight-label">Regular (400)</span>
+                    <span class="type-weight-sample" style="font-weight: 400;">Empowering Careers</span>
+                </div>
+                <div class="type-weight">
+                    <span class="type-weight-label">Medium (500)</span>
+                    <span class="type-weight-sample" style="font-weight: 500;">Empowering Careers</span>
+                </div>
+                <div class="type-weight">
+                    <span class="type-weight-label">Semibold (600)</span>
+                    <span class="type-weight-sample" style="font-weight: 600;">Empowering Careers</span>
+                </div>
+                <div class="type-weight">
+                    <span class="type-weight-label">Bold (700)</span>
+                    <span class="type-weight-sample" style="font-weight: 700;">Empowering Careers</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Logo Usage -->
+        <section class="section">
+            <h2 class="section-title">Logo Usage</h2>
+            <div class="usage-grid">
+                <div class="usage-item do">
+                    <div class="usage-label">✓ Do</div>
+                    <p>Use the logo on clean, uncluttered backgrounds. Maintain adequate white space around the logo.</p>
+                </div>
+                <div class="usage-item do">
+                    <div class="usage-label">✓ Do</div>
+                    <p>Use the primary color palette (Hex Blue #00A8E8 on dark backgrounds, Dark #0D1117 on light backgrounds).</p>
+                </div>
+                <div class="usage-item dont">
+                    <div class="usage-label">✗ Don't</div>
+                    <p>Don't stretch, rotate, or distort the logo. Always maintain original proportions.</p>
+                </div>
+                <div class="usage-item dont">
+                    <div class="usage-label">✗ Don't</div>
+                    <p>Don't place the logo on busy backgrounds or low-contrast environments that reduce visibility.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Applications -->
+        <section class="section">
+            <h2 class="section-title">Brand Applications</h2>
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="application-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg>
+                    </div>
+                    <div class="application-name">Business Cards</div>
+                    <div class="application-desc">Front & back design with contact details</div>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                    </div>
+                    <div class="application-name">Letterhead</div>
+                    <div class="application-desc">Professional correspondence template</div>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                    </div>
+                    <div class="application-name">Social Media</div>
+                    <div class="application-desc">LinkedIn cover, profile, post templates</div>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </div>
+                    <div class="application-name">Email Signature</div>
+                    <div class="application-desc">Professional email footer template</div>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <div class="application-name">Certificates</div>
+                    <div class="application-desc">Training completion certificates</div>
+                </div>
+                <div class="application-card">
+                    <div class="application-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                    </div>
+                    <div class="application-name">Presentations</div>
+                    <div class="application-desc">Training & pitch decks</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="section">
+            <h2 class="section-title">Contact Information</h2>
+            <div class="brand-overview">
+                <div class="brand-item">
+                    <h3>Email</h3>
+                    <p>omnyra.training@gmail.com</p>
+                </div>
+                <div class="brand-item">
+                    <h3>Phone</h3>
+                    <p>+91 9063370816 (WhatsApp)</p>
+                </div>
+                <div class="brand-item">
+                    <h3>Website</h3>
+                    <p>omnyragroup.online</p>
+                </div>
+                <div class="brand-item">
+                    <h3>Area Served</h3>
+                    <p>Global | US & UK</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 OMNyra Group. All rights reserved. | Empowering Careers. Securing the Future.</p>
+        </footer>
+    </div>
+</body>
+</html>

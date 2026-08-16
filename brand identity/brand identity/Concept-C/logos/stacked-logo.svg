@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 350" width="400" height="350">
+  <defs>
+    <linearGradient id="cyanGlowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00B4D8;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00D4FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#48E0FF;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- EMBLEM centered -->
+  <g transform="translate(200, 130)">
+    <circle cx="0" cy="0" r="72" fill="none" stroke="url(#cyanGlowGrad)" stroke-width="2.5" filter="url(#glow)" opacity="0.8"/>
+    <g filter="url(#softGlow)" opacity="0.6">
+      <line x1="0" y1="-72" x2="0" y2="-42" stroke="#00D4FF" stroke-width="1.5"/>
+      <line x1="62" y1="-36" x2="36" y2="-21" stroke="#00D4FF" stroke-width="1.5"/>
+      <line x1="62" y1="36" x2="36" y2="21" stroke="#00D4FF" stroke-width="1.5"/>
+      <line x1="0" y1="72" x2="0" y2="42" stroke="#00D4FF" stroke-width="1.5"/>
+      <line x1="-62" y1="36" x2="-36" y2="21" stroke="#00D4FF" stroke-width="1.5"/>
+      <line x1="-62" y1="-36" x2="-36" y2="-21" stroke="#00D4FF" stroke-width="1.5"/>
+    </g>
+    <circle cx="0" cy="0" r="56" fill="url(#cyanGlowGrad)" opacity="0.15"/>
+    <circle cx="0" cy="0" r="42" fill="#0B0F1A" opacity="0.8"/>
+    <g filter="url(#softGlow)" opacity="0.3">
+      <line x1="-30" y1="-15" x2="30" y2="-15" stroke="#00D4FF" stroke-width="0.8"/>
+      <line x1="-30" y1="0" x2="30" y2="0" stroke="#00D4FF" stroke-width="0.8"/>
+      <line x1="-30" y1="15" x2="30" y2="15" stroke="#00D4FF" stroke-width="0.8"/>
+      <line x1="-15" y1="-30" x2="-15" y2="30" stroke="#00D4FF" stroke-width="0.8"/>
+      <line x1="0" y1="-30" x2="0" y2="30" stroke="#00D4FF" stroke-width="0.8"/>
+      <line x1="15" y1="-30" x2="15" y2="30" stroke="#00D4FF" stroke-width="0.8"/>
+    </g>
+    <g filter="url(#glow)">
+      <path d="M -18,18 L 22,-22" stroke="white" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <polygon points="22,-22 10,-22 22,-10" fill="white"/>
+    </g>
+    <circle cx="0" cy="-72" r="4" fill="#FF9F43" filter="url(#softGlow)"/>
+    <circle cx="62" cy="-36" r="3.5" fill="#FF9F43" filter="url(#softGlow)"/>
+    <circle cx="62" cy="36" r="3.5" fill="#FF9F43" filter="url(#softGlow)"/>
+    <circle cx="0" cy="72" r="4" fill="#FF9F43" filter="url(#softGlow)"/>
+    <circle cx="-62" cy="36" r="3.5" fill="#FF9F43" filter="url(#softGlow)"/>
+    <circle cx="-62" cy="-36" r="3.5" fill="#FF9F43" filter="url(#softGlow)"/>
+  </g>
+
+  <!-- WORDMARK centered below -->
+  <g transform="translate(200, 260)">
+    <text x="0" y="0" text-anchor="middle" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="52" font-weight="800" fill="#FFFFFF" letter-spacing="2">
+      <tspan>OMN</tspan><tspan font-weight="300" fill="#00D4FF">yra</tspan>
+    </text>
+    <text x="0" y="35" text-anchor="middle" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="500" fill="#6B7280" letter-spacing="12">GROUP</text>
+    <line x1="-140" y1="50" x2="-20" y2="50" stroke="#6B7280" stroke-width="1" opacity="0.4"/>
+    <line x1="20" y1="50" x2="140" y2="50" stroke="#6B7280" stroke-width="1" opacity="0.4"/>
+  </g>
+</svg>

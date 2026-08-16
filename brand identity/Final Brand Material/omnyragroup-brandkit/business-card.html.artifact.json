@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "kind": "html",
+  "title": "business-card.html",
+  "entry": "business-card.html",
+  "renderer": "html",
+  "status": "complete",
+  "exports": [
+    "html",
+    "pdf",
+    "zip"
+  ],
+  "createdAt": "2026-08-16T04:49:43.496Z",
+  "updatedAt": "2026-08-16T04:49:43.603Z",
+  "metadata": {
+    "inferred": true
+  }
+}

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0077CC;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0099FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00BBFF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="chromeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7A8A9A;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#D0D8E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A8B4C2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#0D1F3C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0A1628;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bgGrad)"/>
+
+  <!-- EMBLEM centered and scaled -->
+  <g transform="translate(200, 200)">
+    <circle cx="0" cy="0" r="110" fill="none" stroke="url(#chromeGrad)" stroke-width="10" stroke-dasharray="70 16 70 16 70 16 70 16" stroke-linecap="round"/>
+    <circle cx="104" cy="-34" r="9" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="1.5"/>
+    <circle cx="34" cy="-104" r="8" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="1.5"/>
+    <circle cx="-88" cy="-64" r="8" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="1.5"/>
+    <circle cx="-88" cy="64" r="8" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="84" fill="url(#blueGrad)" opacity="0.95"/>
+    <circle cx="0" cy="0" r="62" fill="#0A1628" opacity="0.6"/>
+    <g filter="url(#glow)">
+      <path d="M -26,26 L 32,-32" stroke="white" stroke-width="6" stroke-linecap="round" fill="none"/>
+      <polygon points="32,-32 14,-32 32,-14" fill="white"/>
+    </g>
+    <circle cx="0" cy="0" r="76" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-dasharray="10 5"/>
+  </g>
+</svg>

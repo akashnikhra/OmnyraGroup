@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" width="1500" height="500">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0B0F1A;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#111827;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0B0F1A;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cyanGlowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00B4D8;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00D4FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#48E0FF;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1500" height="500" fill="url(#bgGradient)"/>
+
+  <!-- Glowing framework grid pattern -->
+  <g opacity="0.05" stroke="#00D4FF" stroke-width="0.5">
+    <line x1="50" y1="0" x2="50" y2="500"/><line x1="100" y1="0" x2="100" y2="500"/>
+    <line x1="150" y1="0" x2="150" y2="500"/><line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="250" y1="0" x2="250" y2="500"/><line x1="300" y1="0" x2="300" y2="500"/>
+    <line x1="350" y1="0" x2="350" y2="500"/><line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="0" y1="100" x2="1500" y2="100"/><line x1="0" y1="200" x2="1500" y2="200"/>
+    <line x1="0" y1="300" x2="1500" y2="300"/><line x1="0" y1="400" x2="1500" y2="400"/>
+  </g>
+
+  <!-- Logo - emblem -->
+  <g transform="translate(200, 250)">
+    <circle cx="0" cy="0" r="80" fill="none" stroke="url(#cyanGlowGrad)" stroke-width="3" filter="url(#glow)" opacity="0.8"/>
+    <g filter="url(#softGlow)" opacity="0.6">
+      <line x1="0" y1="-80" x2="0" y2="-46" stroke="#00D4FF" stroke-width="2"/>
+      <line x1="69" y1="-40" x2="40" y2="-23" stroke="#00D4FF" stroke-width="2"/>
+      <line x1="69" y1="40" x2="40" y2="23" stroke="#00D4FF" stroke-width="2"/>
+      <line x1="0" y1="80" x2="0" y2="46" stroke="#00D4FF" stroke-width="2"/>
+      <line x1="-69" y1="40" x2="-40" y2="23" stroke="#00D4FF" stroke-width="2"/>
+      <line x1="-69" y1="-40" x2="-40" y2="-23" stroke="#00D4FF" stroke-width="2"/>
+    </g>
+    <circle cx="0" cy="0" r="62" fill="#00D4FF" opacity="0.15"/>
+    <circle cx="0" cy="0" r="46" fill="#0B0F1A" opacity="0.8"/>
+    <g filter="url(#softGlow)" opacity="0.3">
+      <line x1="-34" y1="-17" x2="34" y2="-17" stroke="#00D4FF" stroke-width="1"/>
+      <line x1="-34" y1="0" x2="34" y2="0" stroke="#00D4FF" stroke-width="1"/>
+      <line x1="-34" y1="17" x2="34" y2="17" stroke="#00D4FF" stroke-width="1"/>
+      <line x1="-17" y1="-34" x2="-17" y2="34" stroke="#00D4FF" stroke-width="1"/>
+      <line x1="0" y1="-34" x2="0" y2="34" stroke="#00D4FF" stroke-width="1"/>
+      <line x1="17" y1="-34" x2="17" y2="34" stroke="#00D4FF" stroke-width="1"/>
+    </g>
+    <g filter="url(#glow)">
+      <path d="M -22,22 L 26,-26" stroke="white" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <polygon points="26,-26 12,-26 26,-12" fill="white"/>
+    </g>
+    <circle cx="0" cy="-80" r="5" fill="#FF9F43" filter="url(#softGlow)"/>
+    <circle cx="69" cy="-40" r="4.5" fill="#FF9F43" filter="url(#softGlow)"/>
+    <circle cx="69" cy="40" r="4.5" fill="#FF9F43" filter="url(#softGlow)"/>
+    <circle cx="0" cy="80" r="5" fill="#FF9F43" filter="url(#softGlow)"/>
+    <circle cx="-69" cy="40" r="4.5" fill="#FF9F43" filter="url(#softGlow)"/>
+    <circle cx="-69" cy="-40" r="4.5" fill="#FF9F43" filter="url(#softGlow)"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(320, 210)">
+    <text x="0" y="50" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="72" font-weight="800" fill="#FFFFFF" letter-spacing="3">OMN</text>
+    <text x="200" y="50" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="72" font-weight="300" fill="#00D4FF" letter-spacing="1">yra</text>
+    <text x="355" y="28" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="400" fill="#6B7280">™</text>
+    <text x="210" y="90" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="24" font-weight="500" fill="#6B7280" letter-spacing="16">GROUP</text>
+    <line x1="0" y1="102" x2="180" y2="102" stroke="#6B7280" stroke-width="1" opacity="0.3"/>
+    <line x1="370" y1="102" x2="560" y2="102" stroke="#6B7280" stroke-width="1" opacity="0.3"/>
+  </g>
+
+  <!-- Subtle tagline -->
+  <text x="320" y="360" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="300" fill="#6B7280" letter-spacing="6" opacity="0.5">CLARITY IN MOTION</text>
+</svg>

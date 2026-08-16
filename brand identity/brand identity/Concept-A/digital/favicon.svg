@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0077CC;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0099FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00BBFF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="chromeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7A8A9A;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#D0D8E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A8B4C2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="64" height="64" rx="12" fill="#0A1628"/>
+
+  <!-- Sentinel ring -->
+  <circle cx="32" cy="32" r="26" fill="none" stroke="url(#chromeGrad)" stroke-width="3" stroke-dasharray="18 4 18 4 18 4 18 4" stroke-linecap="round"/>
+
+  <!-- Chrome nodes -->
+  <circle cx="56" cy="22" r="2" fill="#A8B4C2"/>
+  <circle cx="42" cy="8" r="1.8" fill="#A8B4C2"/>
+  <circle cx="10" cy="18" r="1.8" fill="#A8B4C2"/>
+  <circle cx="10" cy="46" r="1.8" fill="#A8B4C2"/>
+
+  <!-- Inner blue circle -->
+  <circle cx="32" cy="32" r="20" fill="url(#blueGrad)"/>
+
+  <!-- Inner dark -->
+  <circle cx="32" cy="32" r="14" fill="#0A1628" opacity="0.5"/>
+
+  <!-- Arrow -->
+  <path d="M 25,39 L 38,26" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <polygon points="38,26 33,26 38,31" fill="white"/>
+</svg>

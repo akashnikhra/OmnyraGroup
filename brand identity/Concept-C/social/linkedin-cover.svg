@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1584 396" width="1584" height="396">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0B0F1A;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#111827;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0B0F1A;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cyanGlowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00B4D8;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00D4FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#48E0FF;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1584" height="396" fill="url(#bgGrad)"/>
+
+  <!-- Glowing framework grid pattern -->
+  <g opacity="0.06" stroke="#00D4FF" stroke-width="0.4">
+    <line x1="100" y1="0" x2="100" y2="396"/><line x1="200" y1="0" x2="200" y2="396"/>
+    <line x1="300" y1="0" x2="300" y2="396"/><line x1="400" y1="0" x2="400" y2="396"/>
+    <line x1="0" y1="100" x2="1584" y2="100"/><line x1="0" y1="200" x2="1584" y2="200"/>
+    <line x1="0" y1="300" x2="1584" y2="300"/>
+  </g>
+
+  <!-- Top accent -->
+  <rect x="0" y="0" width="1584" height="3" fill="url(#cyanGlowGrad)"/>
+
+  <!-- Logo -->
+  <g transform="translate(80, 140) scale(0.55)">
+    <g transform="translate(40, 40)">
+      <circle cx="0" cy="0" r="36" fill="none" stroke="url(#cyanGlowGrad)" stroke-width="2" filter="url(#glow)" opacity="0.8"/>
+      <g opacity="0.5">
+        <line x1="0" y1="-36" x2="0" y2="-21" stroke="#00D4FF" stroke-width="1.5"/>
+        <line x1="31" y1="-18" x2="18" y2="-10" stroke="#00D4FF" stroke-width="1.5"/>
+        <line x1="31" y1="18" x2="18" y2="10" stroke="#00D4FF" stroke-width="1.5"/>
+        <line x1="0" y1="36" x2="0" y2="21" stroke="#00D4FF" stroke-width="1.5"/>
+        <line x1="-31" y1="18" x2="-18" y2="10" stroke="#00D4FF" stroke-width="1.5"/>
+        <line x1="-31" y1="-18" x2="-18" y2="-10" stroke="#00D4FF" stroke-width="1.5"/>
+      </g>
+      <circle cx="0" cy="0" r="28" fill="#00D4FF" opacity="0.15"/>
+      <circle cx="0" cy="0" r="20" fill="#0B0F1A" opacity="0.55"/>
+      <path d="M -9,9 L 12,-12" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <polygon points="12,-12 6,-12 12,-6" fill="white"/>
+    </g>
+    <text x="88" y="38" font-family="'Inter', Arial, sans-serif" font-size="28" font-weight="800" fill="#FFFFFF" letter-spacing="1.5">OMN</text>
+    <text x="152" y="38" font-family="'Inter', Arial, sans-serif" font-size="28" font-weight="300" fill="#00D4FF">yra</text>
+    <text x="88" y="58" font-family="'Inter', Arial, sans-serif" font-size="9" font-weight="500" fill="#6B7280" letter-spacing="5">GROUP</text>
+  </g>
+
+  <!-- Main text -->
+  <text x="560" y="180" font-family="'Inter', Arial, sans-serif" font-size="44" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">CLARITY</text>
+  <text x="560" y="230" font-family="'Inter', Arial, sans-serif" font-size="44" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">IN MOTION</text>
+
+  <!-- Tagline -->
+  <text x="560" y="280" font-family="'Inter', Arial, sans-serif" font-size="14" font-weight="400" fill="#6B7280" letter-spacing="3">GRC TRAINING · RISK ADVISORY · CAREER STRATEGY</text>
+
+  <!-- Divider -->
+  <line x1="560" y1="250" x2="760" y2="250" stroke="#00D4FF" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- CTA -->
+  <text x="560" y="330" font-family="'Inter', Arial, sans-serif" font-size="11" font-weight="500" fill="#00D4FF" letter-spacing="2">CLARITY IN MOTION — OMNYRAGROUP.ONLINE</text>
+
+  <!-- Bottom accent -->
+  <rect x="0" y="393" width="1584" height="3" fill="url(#cyanGlowGrad)"/>
+</svg>

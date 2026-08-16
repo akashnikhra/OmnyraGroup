@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 196" width="340" height="196">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0077CC;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0099FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00BBFF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="chromeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7A8A9A;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#D0D8E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A8B4C2;stop-opacity:1" />
+    </linearGradient>
+    <clipPath id="cardClip"><rect width="340" height="196" rx="8"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#cardClip)">
+    <!-- Background -->
+    <rect width="340" height="196" fill="#0A1628"/>
+
+    <!-- Subtle orbital pattern -->
+    <circle cx="280" cy="30" r="120" fill="none" stroke="#0099FF" stroke-width="0.3" opacity="0.06" stroke-dasharray="4 8"/>
+    <circle cx="280" cy="30" r="160" fill="none" stroke="#0099FF" stroke-width="0.2" opacity="0.04" stroke-dasharray="2 12"/>
+
+    <!-- Top accent line -->
+    <rect x="0" y="0" width="340" height="2" fill="url(#blueGrad)"/>
+
+    <!-- Logo -->
+    <g transform="translate(24, 28) scale(0.28)">
+      <g transform="translate(40, 40)">
+        <circle cx="0" cy="0" r="32" fill="none" stroke="url(#chromeGrad)" stroke-width="4" stroke-dasharray="22 5 22 5 22 5 22 5" stroke-linecap="round"/>
+        <circle cx="30" cy="-10" r="2.8" fill="#A8B4C2"/>
+        <circle cx="10" cy="-30" r="2.5" fill="#A8B4C2"/>
+        <circle cx="-26" cy="-18" r="2.5" fill="#A8B4C2"/>
+        <circle cx="-26" cy="18" r="2.5" fill="#A8B4C2"/>
+        <circle cx="0" cy="0" r="24" fill="url(#blueGrad)"/>
+        <circle cx="0" cy="0" r="18" fill="#0A1628" opacity="0.55"/>
+        <path d="M -8,8 L 10,-10" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <polygon points="10,-10 5,-10 10,-5" fill="white"/>
+      </g>
+      <text x="82" y="38" font-family="'Inter', Arial, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF" letter-spacing="1">OMN</text>
+      <text x="138" y="38" font-family="'Inter', Arial, sans-serif" font-size="24" font-weight="300" fill="#0099FF">yra</text>
+      <text x="82" y="56" font-family="'Inter', Arial, sans-serif" font-size="8" font-weight="500" fill="#A8B4C2" letter-spacing="4">GROUP</text>
+    </g>
+
+    <!-- Name -->
+    <text x="24" y="110" font-family="'Inter', Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" letter-spacing="0.5">[Full Name]</text>
+
+    <!-- Title -->
+    <text x="24" y="126" font-family="'Inter', Arial, sans-serif" font-size="9" font-weight="400" fill="#0099FF" letter-spacing="0.5">[Title] — GRC Advisory</text>
+
+    <!-- Domain badge -->
+    <rect x="24" y="138" width="28" height="14" rx="3" fill="#0099FF" opacity="0.15"/>
+    <text x="38" y="148" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="7" font-weight="600" fill="#0099FF" letter-spacing="0.5">GRC</text>
+
+    <!-- Contact details -->
+    <text x="24" y="172" font-family="'Inter', Arial, sans-serif" font-size="7.5" font-weight="300" fill="#A8B4C2" letter-spacing="0.3">omnyra.training@gmail.com</text>
+    <text x="24" y="184" font-family="'Inter', Arial, sans-serif" font-size="7.5" font-weight="300" fill="#A8B4C2" letter-spacing="0.3">+91 9063370816 | WhatsApp</text>
+
+    <!-- Tagline bottom right -->
+    <text x="316" y="188" text-anchor="end" font-family="'Inter', Arial, sans-serif" font-size="6" font-weight="300" fill="#A8B4C2" letter-spacing="1.5" opacity="0.6">PRECISION IN MOTION</text>
+  </g>
+</svg>

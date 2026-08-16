@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 350" width="400" height="350">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0077CC;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0099FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00BBFF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="chromeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7A8A9A;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#D0D8E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A8B4C2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- EMBLEM centered -->
+  <g transform="translate(200, 130)">
+    <circle cx="0" cy="0" r="72" fill="none" stroke="url(#chromeGrad)" stroke-width="8" stroke-dasharray="50 12 50 12 50 12 50 12" stroke-linecap="round"/>
+    <circle cx="68" cy="-22" r="6" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="1"/>
+    <circle cx="22" cy="-68" r="5" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="1"/>
+    <circle cx="-58" cy="-42" r="5" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="1"/>
+    <circle cx="-58" cy="42" r="5" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="1"/>
+    <circle cx="0" cy="0" r="56" fill="url(#blueGrad)" opacity="0.95"/>
+    <circle cx="0" cy="0" r="42" fill="#0A1628" opacity="0.6"/>
+    <g filter="url(#glow)">
+      <path d="M -18,18 L 22,-22" stroke="white" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <polygon points="22,-22 10,-22 22,-10" fill="white"/>
+    </g>
+    <circle cx="0" cy="0" r="50" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="8 4"/>
+  </g>
+
+  <!-- WORDMARK centered below -->
+  <g transform="translate(200, 260)">
+    <text x="0" y="0" text-anchor="middle" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="52" font-weight="800" fill="#FFFFFF" letter-spacing="2">
+      <tspan>OMN</tspan><tspan font-weight="300" fill="#0099FF">yra</tspan>
+    </text>
+    <text x="0" y="35" text-anchor="middle" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="500" fill="#A8B4C2" letter-spacing="12">GROUP</text>
+    <line x1="-140" y1="50" x2="-20" y2="50" stroke="#A8B4C2" stroke-width="1" opacity="0.4"/>
+    <line x1="20" y1="50" x2="140" y2="50" stroke="#A8B4C2" stroke-width="1" opacity="0.4"/>
+  </g>
+</svg>

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 196" width="340" height="196">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0077CC;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0099FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00BBFF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="chromeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7A8A9A;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#D0D8E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A8B4C2;stop-opacity:1" />
+    </linearGradient>
+    <clipPath id="cardClip"><rect width="340" height="196" rx="8"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#cardClip)">
+    <rect width="340" height="196" fill="#0A1628"/>
+
+    <!-- Repeating orbital emblem pattern -->
+    <g opacity="0.04">
+      <g transform="translate(60, 50) scale(0.6)">
+        <circle cx="0" cy="0" r="32" fill="none" stroke="#0099FF" stroke-width="3"/>
+        <circle cx="0" cy="0" r="24" fill="#0099FF" opacity="0.3"/>
+      </g>
+      <g transform="translate(170, 50) scale(0.6)">
+        <circle cx="0" cy="0" r="32" fill="none" stroke="#0099FF" stroke-width="3"/>
+        <circle cx="0" cy="0" r="24" fill="#0099FF" opacity="0.3"/>
+      </g>
+      <g transform="translate(280, 50) scale(0.6)">
+        <circle cx="0" cy="0" r="32" fill="none" stroke="#0099FF" stroke-width="3"/>
+        <circle cx="0" cy="0" r="24" fill="#0099FF" opacity="0.3"/>
+      </g>
+      <g transform="translate(60, 140) scale(0.6)">
+        <circle cx="0" cy="0" r="32" fill="none" stroke="#0099FF" stroke-width="3"/>
+        <circle cx="0" cy="0" r="24" fill="#0099FF" opacity="0.3"/>
+      </g>
+      <g transform="translate(170, 140) scale(0.6)">
+        <circle cx="0" cy="0" r="32" fill="none" stroke="#0099FF" stroke-width="3"/>
+        <circle cx="0" cy="0" r="24" fill="#0099FF" opacity="0.3"/>
+      </g>
+      <g transform="translate(280, 140) scale(0.6)">
+        <circle cx="0" cy="0" r="32" fill="none" stroke="#0099FF" stroke-width="3"/>
+        <circle cx="0" cy="0" r="24" fill="#0099FF" opacity="0.3"/>
+      </g>
+    </g>
+
+    <!-- Centered large emblem -->
+    <g transform="translate(170, 88) scale(0.7)">
+      <circle cx="0" cy="0" r="52" fill="none" stroke="url(#chromeGrad)" stroke-width="6" stroke-dasharray="36 9 36 9 36 9 36 9" stroke-linecap="round"/>
+      <circle cx="48" cy="-16" r="4" fill="#A8B4C2"/>
+      <circle cx="16" cy="-48" r="3.5" fill="#A8B4C2"/>
+      <circle cx="-42" cy="-30" r="3.5" fill="#A8B4C2"/>
+      <circle cx="-42" cy="30" r="3.5" fill="#A8B4C2"/>
+      <circle cx="0" cy="0" r="38" fill="url(#blueGrad)" opacity="0.15"/>
+      <circle cx="0" cy="0" r="28" fill="#0A1628" opacity="0.5"/>
+      <path d="M -14,14 L 18,-18" stroke="#0099FF" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <polygon points="18,-18 10,-18 18,-10" fill="#0099FF"/>
+    </g>
+
+    <!-- Tagline -->
+    <text x="170" y="158" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="8" font-weight="500" fill="#A8B4C2" letter-spacing="4" opacity="0.7">PRECISION IN MOTION</text>
+
+    <!-- Website -->
+    <text x="170" y="176" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="7" font-weight="300" fill="#A8B4C2" letter-spacing="1" opacity="0.5">www.omnyragroup.online</text>
+
+    <!-- Bottom accent -->
+    <rect x="0" y="194" width="340" height="2" fill="url(#blueGrad)"/>
+  </g>
+</svg>

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 196" width="340" height="196">
+  <defs>
+    <linearGradient id="hexBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0077B6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00A8E8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00D4FF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="chromeLatticeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6B7280;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8B949E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C9D1D9;stop-opacity:1" />
+    </linearGradient>
+    <clipPath id="cardClip"><rect width="340" height="196" rx="8"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#cardClip)">
+    <rect width="340" height="196" fill="#0D1117"/>
+
+    <!-- Repeating hexagonal pattern -->
+    <g opacity="0.04" stroke="#00A8E8" stroke-width="0.5" fill="none">
+      <polygon points="60,30 80,18 100,30 100,54 80,66 60,54"/>
+      <polygon points="120,30 140,18 160,30 160,54 140,66 120,54"/>
+      <polygon points="180,30 200,18 220,30 220,54 200,66 180,54"/>
+      <polygon points="240,30 260,18 280,30 280,54 260,66 240,54"/>
+      <polygon points="60,90 80,78 100,90 100,114 80,126 60,114"/>
+      <polygon points="120,90 140,78 160,90 160,114 140,126 120,114"/>
+      <polygon points="180,90 200,78 220,90 220,114 200,126 180,114"/>
+      <polygon points="240,90 260,78 280,90 280,114 260,126 240,114"/>
+      <polygon points="60,150 80,138 100,150 100,174 80,186 60,174"/>
+      <polygon points="120,150 140,138 160,150 160,174 140,186 120,174"/>
+      <polygon points="180,150 200,138 220,150 220,174 200,186 180,174"/>
+      <polygon points="240,150 260,138 280,150 280,174 260,186 240,174"/>
+    </g>
+
+    <!-- Centered large emblem -->
+    <g transform="translate(170, 88) scale(0.7)">
+      <polygon points="0,-52 45,-26 45,26 0,52 -45,26 -45,-26" fill="none" stroke="url(#chromeLatticeGrad)" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="0,-40 35,-20 35,20 0,40 -35,20 -35,-20" fill="url(#hexBlueGrad)" opacity="0.15"/>
+      <polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15" fill="#0D1117" opacity="0.5"/>
+      <path d="M -14,14 L 0,0 L 14,-14 L 18,-18" stroke="#00A8E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <polygon points="18,-18 12,-18 18,-12" fill="#00A8E8"/>
+      <!-- Junction nodes -->
+      <circle cx="0" cy="-40" r="3.5" fill="#C9D1D9"/>
+      <circle cx="35" cy="-20" r="3.5" fill="#C9D1D9"/>
+      <circle cx="35" cy="20" r="3.5" fill="#C9D1D9"/>
+      <circle cx="0" cy="40" r="3.5" fill="#C9D1D9"/>
+      <circle cx="-35" cy="20" r="3.5" fill="#C9D1D9"/>
+      <circle cx="-35" cy="-20" r="3.5" fill="#C9D1D9"/>
+    </g>
+
+    <!-- Tagline -->
+    <text x="170" y="158" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="8" font-weight="500" fill="#8B949E" letter-spacing="4" opacity="0.7">STRUCTURE IN MOTION</text>
+
+    <!-- Website -->
+    <text x="170" y="176" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="7" font-weight="300" fill="#8B949E" letter-spacing="1" opacity="0.5">www.omnyragroup.online</text>
+
+    <!-- Bottom accent -->
+    <rect x="0" y="194" width="340" height="2" fill="url(#hexBlueGrad)"/>
+  </g>
+</svg>

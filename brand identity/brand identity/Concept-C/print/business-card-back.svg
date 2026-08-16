@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 196" width="340" height="196">
+  <defs>
+    <linearGradient id="cyanGlowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00B4D8;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00D4FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#48E0FF;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="cardClip"><rect width="340" height="196" rx="8"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#cardClip)">
+    <rect width="340" height="196" fill="#0B0F1A"/>
+
+    <!-- Repeating framework grid pattern -->
+    <g opacity="0.04" stroke="#00D4FF" stroke-width="0.3">
+      <line x1="40" y1="0" x2="40" y2="196"/><line x1="80" y1="0" x2="80" y2="196"/>
+      <line x1="120" y1="0" x2="120" y2="196"/><line x1="160" y1="0" x2="160" y2="196"/>
+      <line x1="200" y1="0" x2="200" y2="196"/><line x1="240" y1="0" x2="240" y2="196"/>
+      <line x1="280" y1="0" x2="280" y2="196"/><line x1="320" y1="0" x2="320" y2="196"/>
+      <line x1="0" y1="30" x2="340" y2="30"/><line x1="0" y1="60" x2="340" y2="60"/>
+      <line x1="0" y1="90" x2="340" y2="90"/><line x1="0" y1="120" x2="340" y2="120"/>
+      <line x1="0" y1="150" x2="340" y2="150"/><line x1="0" y1="180" x2="340" y2="180"/>
+    </g>
+
+    <!-- Centered large emblem -->
+    <g transform="translate(170, 88) scale(0.7)">
+      <circle cx="0" cy="0" r="52" fill="none" stroke="url(#cyanGlowGrad)" stroke-width="2" filter="url(#glow)" opacity="0.15"/>
+      <g opacity="0.1">
+        <line x1="0" y1="-52" x2="0" y2="-30" stroke="#00D4FF" stroke-width="1.5"/>
+        <line x1="45" y1="-26" x2="26" y2="-15" stroke="#00D4FF" stroke-width="1.5"/>
+        <line x1="45" y1="26" x2="26" y2="15" stroke="#00D4FF" stroke-width="1.5"/>
+        <line x1="0" y1="52" x2="0" y2="30" stroke="#00D4FF" stroke-width="1.5"/>
+        <line x1="-45" y1="26" x2="-26" y2="15" stroke="#00D4FF" stroke-width="1.5"/>
+        <line x1="-45" y1="-26" x2="-26" y2="-15" stroke="#00D4FF" stroke-width="1.5"/>
+      </g>
+      <circle cx="0" cy="0" r="38" fill="#00D4FF" opacity="0.08"/>
+      <circle cx="0" cy="0" r="28" fill="#0B0F1A" opacity="0.5"/>
+      <path d="M -14,14 L 18,-18" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <polygon points="18,-18 10,-18 18,-10" fill="#00D4FF"/>
+    </g>
+
+    <!-- Tagline -->
+    <text x="170" y="158" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="8" font-weight="500" fill="#6B7280" letter-spacing="4" opacity="0.7">CLARITY IN MOTION</text>
+
+    <!-- Website -->
+    <text x="170" y="176" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="7" font-weight="300" fill="#6B7280" letter-spacing="1" opacity="0.5">www.omnyragroup.online</text>
+
+    <!-- Bottom accent -->
+    <rect x="0" y="194" width="340" height="2" fill="url(#cyanGlowGrad)"/>
+  </g>
+</svg>

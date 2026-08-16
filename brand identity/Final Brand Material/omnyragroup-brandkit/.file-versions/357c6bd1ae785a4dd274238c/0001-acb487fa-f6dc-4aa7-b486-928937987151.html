@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMNyra Group - Social Post Template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #e8e8e8;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .template-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #8B949E;
+        }
+
+        .social-post {
+            width: 1080px;
+            height: 1080px;
+            background: linear-gradient(135deg, #0D1117 0%, #161B22 100%);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            padding: 60px;
+        }
+
+        /* Hexagonal Background */
+        .hex-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.05;
+        }
+
+        .hex-bg svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Top Section */
+        .top-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+        }
+
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .company-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+
+        .company-name span {
+            color: #00A8E8;
+        }
+
+        .date-badge {
+            background: rgba(0, 168, 232, 0.15);
+            border: 1px solid rgba(0, 168, 232, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            color: #00A8E8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Quote Content */
+        .quote-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .quote-mark {
+            font-size: 120px;
+            color: #00A8E8;
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: -40px;
+        }
+
+        .quote-text {
+            font-size: 42px;
+            font-weight: 600;
+            color: #FFFFFF;
+            line-height: 1.4;
+            max-width: 800px;
+        }
+
+        .quote-text span {
+            color: #00A8E8;
+        }
+
+        .quote-author {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00A8E8 0%, #0077B6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+
+        .author-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .author-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+
+        .author-title {
+            font-size: 13px;
+            color: #8B949E;
+        }
+
+        /* Bottom Section */
+        .bottom-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hashtags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            max-width: 600px;
+        }
+
+        .hashtag {
+            background: rgba(0, 168, 232, 0.1);
+            border: 1px solid rgba(0, 168, 232, 0.2);
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-size: 12px;
+            color: #00A8E8;
+        }
+
+        .cta-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .cta-button {
+            background: #00A8E8;
+            color: #FFFFFF;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-url {
+            font-size: 12px;
+            color: #8B949E;
+        }
+
+        /* Accent Elements */
+        .accent-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00A8E8 0%, #0077B6 100%);
+        }
+
+        .corner-hex {
+            position: absolute;
+            bottom: 80px;
+            right: 80px;
+            width: 150px;
+            height: 150px;
+            opacity: 0.1;
+        }
+
+        .corner-hex svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Scale for preview */
+        .preview-container {
+            width: 100%;
+            max-width: 540px;
+            overflow: hidden;
+        }
+
+        .preview-container .social-post {
+            transform: scale(0.5);
+            transform-origin: top left;
+            width: 200%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <p class="template-label">Social Post Template (1080 x 1080)</p>
+    
+    <div class="preview-container">
+        <div class="social-post">
+            <!-- Hexagonal Background -->
+            <div class="hex-bg">
+                <svg viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="hexPattern" width="40" height="35" patternUnits="userSpaceOnUse">
+                            <polygon points="20,0 40,10 40,25 20,35 0,25 0,10" fill="none" stroke="#00A8E8" stroke-width="0.5"/>
+                        </pattern>
+                    </defs>
+                    <rect width="1080" height="1080" fill="url(#hexPattern)"/>
+                </svg>
+            </div>
+
+            <!-- Corner Hexagon -->
+            <div class="corner-hex">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 5L90 27.5V72.5L50 95L10 72.5V27.5L50 5Z" stroke="#00A8E8" stroke-width="1" fill="none"/>
+                    <path d="M30 60L50 20L70 60" stroke="#00A8E8" stroke-width="1" fill="none"/>
+                </svg>
+            </div>
+
+            <!-- Top Section -->
+            <div class="top-section">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M30 5L50 17.5V42.5L30 55L10 42.5V17.5L30 5Z" stroke="#00A8E8" stroke-width="2" fill="none"/>
+                            <path d="M20 35L30 15L40 35" stroke="#00A8E8" stroke-width="2" fill="none"/>
+                            <circle cx="30" cy="15" r="3" fill="#00A8E8"/>
+                        </svg>
+                    </div>
+                    <div class="company-name">OMN<span>y</span>ra GROUP</div>
+                </div>
+                <div class="date-badge">GRC Insights</div>
+            </div>
+
+            <!-- Quote Content -->
+            <div class="quote-content">
+                <div class="quote-mark">"</div>
+                <div class="quote-text">
+                    In GRC, <span>compliance</span> is the floor. <span>Risk intelligence</span> is the ceiling.
+                </div>
+                <div class="quote-author">
+                    <div class="author-avatar">OM</div>
+                    <div class="author-info">
+                        <div class="author-name">OMNyra Group</div>
+                        <div class="author-title">GRC Training & Advisory</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Section -->
+            <div class="bottom-section">
+                <div class="hashtags">
+                    <span class="hashtag">#GRC</span>
+                    <span class="hashtag">#RiskManagement</span>
+                    <span class="hashtag">#Compliance</span>
+                    <span class="hashtag">#ISO27001</span>
+                    <span class="hashtag">#CyberSecurity</span>
+                </div>
+                <div class="cta-section">
+                    <div class="cta-button">Learn More</div>
+                    <div class="cta-url">omnyragroup.online</div>
+                </div>
+            </div>
+
+            <div class="accent-bar"></div>
+        </div>
+    </div>
+</body>
+</html>

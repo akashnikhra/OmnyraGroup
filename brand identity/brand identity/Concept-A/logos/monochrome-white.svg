@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="800" height="200">
+  <g transform="translate(100, 100)">
+    <!-- Outer ring -->
+    <circle cx="0" cy="0" r="72" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-dasharray="50 12 50 12 50 12 50 12" stroke-linecap="round" opacity="0.6"/>
+    <!-- Nodes -->
+    <circle cx="68" cy="-22" r="6" fill="#FFFFFF" opacity="0.5"/>
+    <circle cx="22" cy="-68" r="5" fill="#FFFFFF" opacity="0.5"/>
+    <circle cx="-58" cy="-42" r="5" fill="#FFFFFF" opacity="0.5"/>
+    <circle cx="-58" cy="42" r="5" fill="#FFFFFF" opacity="0.5"/>
+    <!-- Inner circle -->
+    <circle cx="0" cy="0" r="56" fill="#FFFFFF" opacity="0.15"/>
+    <circle cx="0" cy="0" r="42" fill="#0A1628" opacity="0.4"/>
+    <!-- Arrow -->
+    <path d="M -18,18 L 22,-22" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <polygon points="22,-22 10,-22 22,-10" fill="#FFFFFF"/>
+    <!-- Orbital ring -->
+    <circle cx="0" cy="0" r="50" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="8 4"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(200, 72)">
+    <text x="0" y="52" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="68" font-weight="800" fill="#FFFFFF" letter-spacing="3">OMN</text>
+    <text x="188" y="52" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="68" font-weight="300" fill="#FFFFFF" letter-spacing="1">yra</text>
+    <text x="328" y="30" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#FFFFFF" opacity="0.6">™</text>
+    <text x="195" y="90" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="500" fill="#FFFFFF" letter-spacing="14" opacity="0.7">GROUP</text>
+    <line x1="0" y1="80" x2="170" y2="80" stroke="#FFFFFF" stroke-width="1" opacity="0.3"/>
+    <line x1="340" y1="80" x2="520" y2="80" stroke="#FFFFFF" stroke-width="1" opacity="0.3"/>
+  </g>
+</svg>

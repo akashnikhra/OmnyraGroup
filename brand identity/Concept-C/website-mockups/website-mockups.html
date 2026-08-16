@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OMNyraGroup — Concept C: Luminous Framework — Multi-Device Mockup</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+:root {
+--void: #0B0F1A;
+--deep-void: #111827;
+--cyan: #00D4FF;
+--cyan-glow: #00B4D8;
+--tungsten: #FF9F43;
+--steel: #6B7280;
+--white: #FFFFFF;
+--red: #EF4444;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+background: var(--void);
+color: #D1D5DB;
+line-height: 1.6;
+overflow-x: hidden;
+}
+
+.luminous-pattern {
+position: fixed;
+top: 0; left: 0;
+width: 100%; height: 100%;
+z-index: -1;
+opacity: 0.04;
+background-image: 
+linear-gradient(var(--cyan) 1px, transparent 1px),
+linear-gradient(90deg, var(--cyan) 1px, transparent 1px);
+background-size: 60px 60px;
+}
+
+.nav {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 1000;
+background: rgba(11, 15, 26, 0.95);
+backdrop-filter: blur(20px);
+border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+padding: 0 2rem;
+display: flex;
+align-items: center;
+justify-content: space-between;
+height: 72px;
+}
+
+.nav-logo { display: flex; align-items: center; gap: 0.5rem; }
+.nav-logo svg { height: 40px; width: auto; }
+
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+color: var(--steel);
+text-decoration: none;
+font-size: 0.875rem;
+font-weight: 500;
+transition: color 0.3s ease;
+}
+.nav-links a:hover { color: var(--cyan); }
+
+.nav-cta {
+background: var(--cyan);
+color: var(--void);
+padding: 0.625rem 1.25rem;
+border-radius: 6px;
+font-weight: 600;
+font-size: 0.875rem;
+text-decoration: none;
+transition: all 0.3s ease;
+}
+.nav-cta:hover { background: var(--cyan-glow); box-shadow: 0 0 20px rgba(0, 212, 255, 0.4); }
+
+.hero {
+min-height: 100vh;
+display: flex;
+align-items: center;
+padding: 6rem 2rem 4rem;
+position: relative;
+}
+
+.hero::before {
+content: '';
+position: absolute;
+top: -30%; right: -20%;
+width: 70%; height: 130%;
+background: radial-gradient(ellipse, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+}
+
+.hero::after {
+content: '';
+position: absolute;
+bottom: -20%; left: -10%;
+width: 50%; height: 80%;
+background: radial-gradient(ellipse, rgba(255, 159, 67, 0.03) 0%, transparent 70%);
+}
+
+.hero-content {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 4rem;
+align-items: center;
+}
+
+.hero-text { max-width: 600px; }
+
+.hero-badge {
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+background: rgba(0, 212, 255, 0.1);
+border: 1px solid rgba(0, 212, 255, 0.25);
+padding: 0.5rem 1rem;
+border-radius: 100px;
+font-size: 0.75rem;
+font-weight: 600;
+color: var(--cyan);
+text-transform: uppercase;
+letter-spacing: 0.1em;
+margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+font-size: 3.5rem;
+font-weight: 800;
+color: var(--white);
+line-height: 1.1;
+margin-bottom: 1.5rem;
+}
+
+.hero h1 span {
+background: linear-gradient(135deg, var(--cyan), var(--tungsten));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+
+.hero-subtitle {
+font-size: 1.25rem;
+color: #9CA3AF;
+margin-bottom: 2rem;
+max-width: 480px;
+}
+
+.hero-cta { display: flex; gap: 1rem; margin-bottom: 3rem; }
+
+.btn-primary {
+background: var(--cyan);
+color: var(--void);
+padding: 1rem 2rem;
+border-radius: 8px;
+font-weight: 600;
+font-size: 1rem;
+text-decoration: none;
+transition: all 0.3s ease;
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+border: none;
+cursor: pointer;
+}
+.btn-primary:hover {
+background: var(--cyan-glow);
+transform: translateY(-2px);
+box-shadow: 0 8px 32px rgba(0, 212, 255, 0.35);
+}
+
+.btn-secondary {
+background: transparent;
+color: #D1D5DB;
+padding: 1rem 2rem;
+border-radius: 8px;
+font-weight: 600;
+font-size: 1rem;
+text-decoration: none;
+border: 1px solid rgba(107, 114, 128, 0.3);
+}
+.btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
+
+.hero-features { display: flex; gap: 2rem; flex-wrap: wrap; }
+
+.hero-feature { display: flex; align-items: center; gap: 0.75rem; }
+
+.hero-feature-icon {
+width: 40px; height: 40px;
+background: rgba(0, 212, 255, 0.1);
+border-radius: 8px;
+display: flex; align-items: center; justify-content: center;
+}
+.hero-feature-icon svg { width: 20px; height: 20px; stroke: var(--cyan); }
+
+.hero-feature-text { font-size: 0.875rem; font-weight: 500; color: var(--white); }
+.hero-feature-text small { display: block; color: var(--steel); font-weight: 400; font-size: 0.75rem; }
+
+.hero-visual { display: flex; justify-content: center; align-items: center; }
+.hero-graphic { width: 100%; max-width: 500px; aspect-ratio: 1; }
+
+.stats {
+padding: 4rem 2rem;
+background: var(--deep-void);
+border-top: 1px solid rgba(0, 212, 255, 0.15);
+border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+}
+
+.stats-grid {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 2rem;
+}
+
+.stat-card {
+text-align: center;
+padding: 2rem;
+background: rgba(0, 212, 255, 0.03);
+border: 1px solid rgba(0, 212, 255, 0.12);
+border-radius: 12px;
+transition: all 0.3s ease;
+}
+.stat-card:hover { border-color: rgba(0, 212, 255, 0.35); transform: translateY(-4px); box-shadow: 0 0 24px rgba(0, 212, 255, 0.1); }
+
+.stat-number {
+font-size: 2.5rem;
+font-weight: 800;
+color: var(--white);
+font-family: 'Space Grotesk', monospace;
+}
+.stat-label { font-size: 0.875rem; color: var(--steel); margin-top: 0.5rem; }
+
+.programs { padding: 6rem 2rem; }
+
+.section-header { max-width: 1200px; margin: 0 auto 4rem; text-align: center; }
+
+.section-badge {
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+background: rgba(0, 212, 255, 0.1);
+border: 1px solid rgba(0, 212, 255, 0.25);
+padding: 0.5rem 1rem;
+border-radius: 100px;
+font-size: 0.75rem;
+font-weight: 600;
+color: var(--cyan);
+text-transform: uppercase;
+letter-spacing: 0.1em;
+margin-bottom: 1rem;
+}
+
+.section-title { font-size: 2.5rem; font-weight: 800; color: var(--white); margin-bottom: 1rem; }
+.section-subtitle { font-size: 1.125rem; color: #9CA3AF; max-width: 600px; margin: 0 auto; }
+
+.programs-grid {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2rem;
+}
+
+.program-card {
+background: var(--deep-void);
+border: 1px solid rgba(0, 212, 255, 0.1);
+border-radius: 16px;
+padding: 2rem;
+transition: all 0.3s ease;
+position: relative;
+overflow: hidden;
+}
+
+.program-card::before {
+content: '';
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 3px;
+background: linear-gradient(90deg, var(--cyan), var(--tungsten));
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+
+.program-card:hover { border-color: rgba(0, 212, 255, 0.35); transform: translateY(-4px); }
+.program-card:hover::before { opacity: 1; }
+
+.program-badge {
+display: inline-block;
+background: rgba(0, 212, 255, 0.1);
+color: var(--cyan);
+padding: 0.25rem 0.75rem;
+border-radius: 100px;
+font-size: 0.75rem;
+font-weight: 600;
+margin-bottom: 1rem;
+}
+
+.program-badge.warm {
+background: rgba(255, 159, 67, 0.15);
+color: var(--tungsten);
+}
+
+.program-title { font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 0.75rem; }
+.program-description { color: #9CA3AF; font-size: 0.9375rem; margin-bottom: 1.5rem; }
+
+.program-salary {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+color: var(--cyan);
+font-weight: 600;
+font-size: 1rem;
+}
+.program-salary svg { width: 18px; height: 18px; }
+
+.pricing { padding: 6rem 2rem; background: var(--deep-void); }
+
+.pricing-grid {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 2rem;
+}
+
+.pricing-card {
+background: var(--void);
+border: 1px solid rgba(0, 212, 255, 0.1);
+border-radius: 16px;
+padding: 2.5rem;
+position: relative;
+}
+.pricing-card.featured { border-color: var(--cyan); box-shadow: 0 0 32px rgba(0, 212, 255, 0.1); }
+
+.pricing-card.featured::before {
+content: 'MOST POPULAR';
+position: absolute;
+top: -12px; left: 50%;
+transform: translateX(-50%);
+background: var(--cyan);
+color: var(--void);
+padding: 0.375rem 1rem;
+border-radius: 100px;
+font-size: 0.75rem;
+font-weight: 700;
+}
+
+.pricing-name { font-size: 1.25rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+.pricing-price { font-size: 2.5rem; font-weight: 800; color: var(--white); margin-bottom: 0.5rem; }
+.pricing-price span { font-size: 1rem; font-weight: 400; color: var(--steel); }
+
+.pricing-features { list-style: none; margin: 1.5rem 0 2rem; }
+.pricing-features li {
+display: flex; align-items: center; gap: 0.75rem;
+padding: 0.75rem 0;
+border-bottom: 1px solid rgba(107, 114, 128, 0.15);
+color: #D1D5DB; font-size: 0.9375rem;
+}
+
+.reviews { padding: 6rem 2rem; }
+
+.reviews-grid {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2rem;
+}
+
+.review-card {
+background: var(--deep-void);
+border: 1px solid rgba(0, 212, 255, 0.1);
+border-radius: 16px;
+padding: 2rem;
+}
+
+.review-stars { display: flex; gap: 0.25rem; margin-bottom: 1rem; }
+.review-stars svg { width: 20px; height: 20px; fill: var(--tungsten); }
+
+.review-text {
+color: #D1D5DB;
+font-size: 0.9375rem;
+line-height: 1.6;
+margin-bottom: 1.5rem;
+font-style: italic;
+}
+
+.review-author { display: flex; align-items: center; gap: 1rem; }
+
+.review-avatar {
+width: 48px; height: 48px;
+border-radius: 50%;
+background: linear-gradient(135deg, var(--cyan), var(--tungsten));
+display: flex; align-items: center; justify-content: center;
+font-weight: 700; color: var(--void);
+}
+
+.review-name { font-weight: 600; color: var(--white); font-size: 0.9375rem; }
+.review-role { color: var(--steel); font-size: 0.8125rem; }
+
+.cta { padding: 6rem 2rem; text-align: center; position: relative; }
+
+.cta::before {
+content: '';
+position: absolute; inset: 0;
+background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+}
+
+.cta-content { max-width: 600px; margin: 0 auto; position: relative; z-index: 1; }
+.cta h2 { font-size: 2.5rem; font-weight: 800; color: var(--white); margin-bottom: 1rem; }
+.cta p { font-size: 1.125rem; color: #9CA3AF; margin-bottom: 2rem; }
+
+.cta-buttons { display: flex; gap: 1rem; justify-content: center; }
+
+.btn-whatsapp {
+background: #25D366;
+color: var(--white);
+padding: 1rem 2rem;
+border-radius: 8px;
+font-weight: 600;
+font-size: 1rem;
+text-decoration: none;
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+}
+.btn-whatsapp:hover { background: #128C7E; }
+
+.footer {
+padding: 4rem 2rem 2rem;
+border-top: 1px solid rgba(0, 212, 255, 0.15);
+}
+
+.footer-content {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: 2fr repeat(3, 1fr);
+gap: 4rem;
+}
+
+.footer-brand p { color: #9CA3AF; font-size: 0.9375rem; margin-top: 1rem; max-width: 300px; }
+
+.footer-column h4 {
+color: var(--white);
+font-size: 0.875rem;
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+margin-bottom: 1.5rem;
+}
+
+.footer-column ul { list-style: none; }
+.footer-column li { margin-bottom: 0.75rem; }
+.footer-column a { color: #9CA3AF; text-decoration: none; font-size: 0.9375rem; }
+.footer-column a:hover { color: var(--cyan); }
+
+.footer-bottom {
+max-width: 1200px;
+margin: 3rem auto 0;
+padding-top: 2rem;
+border-top: 1px solid rgba(0, 212, 255, 0.15);
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.footer-bottom p { color: var(--steel); font-size: 0.8125rem; }
+
+.footer-frameworks { display: flex; gap: 1rem; }
+.framework-badge {
+background: rgba(0, 212, 255, 0.1);
+color: var(--cyan);
+padding: 0.375rem 0.75rem;
+border-radius: 6px;
+font-size: 0.75rem;
+font-weight: 600;
+}
+
+.framework-badge.warm {
+background: rgba(255, 159, 67, 0.15);
+color: var(--tungsten);
+}
+
+.device-frame {
+margin: 2rem auto;
+padding: 1rem;
+background: var(--deep-void);
+border-radius: 24px;
+border: 2px solid rgba(0, 212, 255, 0.2);
+box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 212, 255, 0.05);
+}
+
+.device-label {
+text-align: center;
+font-size: 0.75rem;
+font-weight: 600;
+color: var(--steel);
+text-transform: uppercase;
+letter-spacing: 0.1em;
+margin-bottom: 1rem;
+}
+
+.device-desktop .device-screen { border-radius: 12px; overflow: hidden; background: var(--void); }
+.device-tablet { max-width: 768px; }
+.device-tablet .device-screen { border-radius: 8px; overflow: hidden; background: var(--void); }
+.device-mobile { max-width: 375px; }
+.device-mobile .device-screen { border-radius: 8px; overflow: hidden; background: var(--void); }
+
+@media (max-width: 1024px) {
+.hero-content { grid-template-columns: 1fr; text-align: center; }
+.hero-text { max-width: 100%; }
+.hero-subtitle { margin: 0 auto 2rem; }
+.hero-cta { justify-content: center; }
+.hero-features { justify-content: center; }
+.hero-visual { display: none; }
+.programs-grid { grid-template-columns: repeat(2, 1fr); }
+.reviews-grid { grid-template-columns: repeat(2, 1fr); }
+.footer-content { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+}
+
+@media (max-width: 768px) {
+.nav-links { display: none; }
+.hero h1 { font-size: 2.5rem; }
+.stats-grid { grid-template-columns: repeat(2, 1fr); }
+.programs-grid, .pricing-grid, .reviews-grid { grid-template-columns: 1fr; }
+.footer-content { grid-template-columns: 1fr; }
+.footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+.hero-features { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+<div class="luminous-pattern"></div>
+<nav class="nav">
+<div class="nav-logo">
+<svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="20" cy="20" r="18" stroke="#6B7280" stroke-width="2" stroke-dasharray="4 2"/>
+<circle cx="20" cy="20" r="12" fill="#00D4FF"/>
+<path d="M14 20L20 8L26 20" stroke="#FFFFFF" stroke-width="2" fill="none"/>
+<text x="45" y="18" fill="#FFFFFF" font-family="Inter" font-weight="800" font-size="14">OMN</text>
+<text x="85" y="18" fill="#00D4FF" font-family="Inter" font-weight="300" font-size="14">yra</text>
+<text x="45" y="32" fill="#6B7280" font-family="Inter" font-weight="500" font-size="8" letter-spacing="2">GROUP</text>
+</svg>
+</div>
+<ul class="nav-links">
+<li><a href="#">Home</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Programs</a></li>
+<li><a href="#">Why Us</a></li>
+<li><a href="#">Outcomes</a></li>
+<li><a href="#">Reviews</a></li>
+<li><a href="#">Pricing</a></li>
+<li><a href="#">FAQ</a></li>
+</ul>
+<a href="#" class="nav-cta">Book 1-on-1 Call</a>
+</nav>
+
+<div class="device-frame device-desktop">
+<div class="device-label">Desktop — 1440px</div>
+<div class="device-screen">
+<section class="hero">
+<div class="hero-content">
+<div class="hero-text">
+<div class="hero-badge">GRC Training & Risk Advisory</div>
+<h1>Become Job-Ready in <span>Cybersecurity Governance & Risk</span></h1>
+<p class="hero-subtitle">Bridge the gap between academic theory and real-world GRC operations. Practitioner-led training with 1-on-1 coaching, ATS-optimized CVs, and career placement support.</p>
+<div class="hero-cta">
+<a href="#" class="btn-primary">Enroll Now</a>
+<a href="#" class="btn-secondary">Book Free Coaching Call</a>
+</div>
+<div class="hero-features">
+<div class="hero-feature">
+<div class="hero-feature-icon">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+</div>
+<div class="hero-feature-text"><strong>96% Placement Success</strong><small>Careers launched globally</small></div>
+</div>
+<div class="hero-feature">
+<div class="hero-feature-icon">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+</div>
+<div class="hero-feature-text"><strong>250+ Trained Globally</strong><small>And counting</small></div>
+</div>
+<div class="hero-feature">
+<div class="hero-feature-icon">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+</div>
+<div class="hero-feature-text"><strong>35h Live GRC Coaching</strong><small>Interactive sessions</small></div>
+</div>
+<div class="hero-feature">
+<div class="hero-feature-icon">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+</div>
+<div class="hero-feature-text"><strong>1:1 Personal Coaching</strong><small>Weekly career strategy</small></div>
+</div>
+</div>
+</div>
+<div class="hero-visual">
+<div class="hero-graphic">
+<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#00D4FF" stop-opacity="0.3"/>
+<stop offset="100%" stop-color="#00B4D8" stop-opacity="0.05"/>
+</linearGradient>
+<linearGradient id="pathGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+<stop offset="0%" stop-color="#00D4FF" stop-opacity="0.1"/>
+<stop offset="50%" stop-color="#00D4FF" stop-opacity="0.8"/>
+<stop offset="100%" stop-color="#FF9F43" stop-opacity="1"/>
+</linearGradient>
+<filter id="glowC" x="-50%" y="-50%" width="200%" height="200%">
+<feGaussianBlur stdDeviation="3" result="blur"/>
+<feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<!-- Grid lines -->
+<g opacity="0.15" stroke="#00D4FF" stroke-width="1">
+<line x1="60" y1="0" x2="60" y2="400"/>
+<line x1="120" y1="0" x2="120" y2="400"/>
+<line x1="180" y1="0" x2="180" y2="400"/>
+<line x1="240" y1="0" x2="240" y2="400"/>
+<line x1="300" y1="0" x2="300" y2="400"/>
+<line x1="340" y1="0" x2="340" y2="400"/>
+<line x1="0" y1="60" x2="400" y2="60"/>
+<line x1="0" y1="120" x2="400" y2="120"/>
+<line x1="0" y1="180" x2="400" y2="180"/>
+<line x1="0" y1="240" x2="400" y2="240"/>
+<line x1="0" y1="300" x2="400" y2="300"/>
+<line x1="0" y1="340" x2="400" y2="340"/>
+</g>
+<!-- Intersection dots -->
+<g filter="url(#glowC)">
+<circle cx="120" cy="120" r="4" fill="#00D4FF"/>
+<circle cx="180" cy="120" r="4" fill="#00D4FF"/>
+<circle cx="240" cy="120" r="4" fill="#00D4FF"/>
+<circle cx="120" cy="180" r="4" fill="#00D4FF"/>
+<circle cx="180" cy="180" r="5" fill="#00D4FF"/>
+<circle cx="240" cy="180" r="4" fill="#00D4FF"/>
+<circle cx="120" cy="240" r="4" fill="#00D4FF"/>
+<circle cx="180" cy="240" r="4" fill="#00D4FF"/>
+<circle cx="240" cy="240" r="4" fill="#00D4FF"/>
+<circle cx="180" cy="80" r="3" fill="#00D4FF"/>
+<circle cx="180" cy="300" r="3" fill="#FF9F43"/>
+</g>
+<!-- Career path -->
+<path d="M180 300 L180 240 L180 180 L180 120 L180 80" stroke="url(#pathGrad)" stroke-width="3" fill="none"/>
+<circle cx="180" cy="80" r="10" fill="#FF9F43" opacity="0.3"/>
+<circle cx="180" cy="80" r="6" fill="#FF9F43"/>
+<path d="M176 76 L180 68 L184 76" stroke="#FFFFFF" stroke-width="2" fill="none"/>
+<!-- Central framework -->
+<rect x="140" y="140" width="80" height="80" rx="4" stroke="#00D4FF" stroke-width="2" fill="url(#cyanGrad)"/>
+<rect x="155" y="155" width="50" height="50" rx="2" stroke="#00D4FF" stroke-width="1" fill="none" opacity="0.5"/>
+<circle cx="180" cy="180" r="8" fill="#00D4FF" opacity="0.5"/>
+<circle cx="180" cy="180" r="4" fill="#00D4FF"/>
+</svg>
+</div>
+</div>
+</div>
+</section>
+<section class="stats">
+<div class="stats-grid">
+<div class="stat-card"><div class="stat-number">96%</div><div class="stat-label">Placement Success</div></div>
+<div class="stat-card"><div class="stat-number">250+</div><div class="stat-label">Trained Globally</div></div>
+<div class="stat-card"><div class="stat-number">1:1</div><div class="stat-label">Personal Coaching</div></div>
+<div class="stat-card"><div class="stat-number">35h</div><div class="stat-label">Live GRC Coaching</div></div>
+</div>
+</section>
+<section class="programs">
+<div class="section-header">
+<div class="section-badge">Our Programs</div>
+<h2 class="section-title">GRC Career Programs</h2>
+<p class="section-subtitle">Specialized training tracks designed to launch your career in governance, risk, and compliance.</p>
+</div>
+<div class="programs-grid">
+<div class="program-card">
+<div class="program-badge">FLAGSHIP</div>
+<h3 class="program-title">GRC Professional</h3>
+<p class="program-description">Master governance, risk, and compliance frameworks. Learn ISO 27001, NIST CSF, and regulatory compliance through hands-on practitioner-led training.</p>
+<div class="program-salary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Salary Range: $85K — $110K</div>
+</div>
+<div class="program-card">
+<div class="program-badge">HIGH DEMAND</div>
+<h3 class="program-title">Third-Party Risk Management</h3>
+<p class="program-description">Specialize in vendor risk assessment, supply chain security, and third-party compliance frameworks.</p>
+<div class="program-salary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Salary Range: $90K — $125K</div>
+</div>
+<div class="program-card">
+<div class="program-badge warm">CERTIFIED</div>
+<h3 class="program-title">ISO 27001 Lead Implementer</h3>
+<p class="program-description">Become a certified ISO 27001 implementation specialist. Lead ISMS deployments and achieve certification.</p>
+<div class="program-salary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Salary Range: $95K — $130K</div>
+</div>
+<div class="program-card">
+<div class="program-badge">ESSENTIAL</div>
+<h3 class="program-title">Risk Management</h3>
+<p class="program-description">Build expertise in enterprise risk identification, assessment, and mitigation.</p>
+<div class="program-salary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Salary Range: $88K — $120K</div>
+</div>
+<div class="program-card">
+<div class="program-badge warm">GROWING</div>
+<h3 class="program-title">Data Privacy & GDPR</h3>
+<p class="program-description">Navigate global privacy regulations. Master GDPR, CCPA, and data protection frameworks.</p>
+<div class="program-salary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Salary Range: $92K — $125K</div>
+</div>
+<div class="program-card">
+<div class="program-badge">ADVANCED</div>
+<h3 class="program-title">Security Audit & Compliance</h3>
+<p class="program-description">Master internal and external security audits. Lead compliance assessments.</p>
+<div class="program-salary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Salary Range: $90K — $125K</div>
+</div>
+</div>
+</section>
+<section class="pricing">
+<div class="section-header">
+<div class="section-badge">Pricing</div>
+<h2 class="section-title">Invest in Your Future</h2>
+<p class="section-subtitle">Transparent pricing with no hidden fees.</p>
+</div>
+<div class="pricing-grid">
+<div class="pricing-card">
+<div class="pricing-name">Personal Track</div>
+<div class="pricing-price">$850 <span>one-time</span></div>
+<ul class="pricing-features">
+<li>35 hours of live GRC lectures</li>
+<li>ATS-optimized CV audit</li>
+<li>Weekly 1-on-1 Q&A sessions</li>
+<li>Interactive software sandbox</li>
+<li>Career placement support</li>
+<li>Industry-recognized certification</li>
+</ul>
+<a href="#" class="btn-primary" style="width: 100%; justify-content: center;">Enroll Now</a>
+</div>
+<div class="pricing-card featured">
+<div class="pricing-name">Group Track</div>
+<div class="pricing-price">$650 <span>per person (min. 3)</span></div>
+<ul class="pricing-features">
+<li>35 hours of live GRC lectures</li>
+<li>ATS-optimized CV audit</li>
+<li>Weekly 1-on-1 Q&A sessions</li>
+<li>Interactive software sandbox</li>
+<li>Career placement support</li>
+<li>Industry-recognized certification</li>
+<li>Group collaboration exercises</li>
+</ul>
+<a href="#" class="btn-primary" style="width: 100%; justify-content: center;">Enroll Now</a>
+</div>
+</div>
+</section>
+<section class="reviews">
+<div class="section-header">
+<div class="section-badge">Student Reviews</div>
+<h2 class="section-title">What Our Graduates Say</h2>
+</div>
+<div class="reviews-grid">
+<div class="review-card">
+<div class="review-stars">
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+</div>
+<p class="review-text">"The GRC program completely transformed my career. The practitioner-led approach and 1-on-1 coaching gave me the confidence to land my dream role."</p>
+<div class="review-author">
+<div class="review-avatar">SK</div>
+<div><div class="review-name">Sarah K.</div><div class="review-role">GRC Analyst, Fortune 500</div></div>
+</div>
+</div>
+<div class="review-card">
+<div class="review-stars">
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+</div>
+<p class="review-text">"From zero GRC experience to a $100K+ role in 6 months. The ISO 27001 program was intensive, practical, and exactly what the industry demands."</p>
+<div class="review-author">
+<div class="review-avatar">MR</div>
+<div><div class="review-name">Michael R.</div><div class="review-role">ISO 27001 Consultant</div></div>
+</div>
+</div>
+<div class="review-card">
+<div class="review-stars">
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+</div>
+<p class="review-text">"The mock interviews and CV optimization were game-changers. I had multiple offers within weeks of completing the program."</p>
+<div class="review-author">
+<div class="review-avatar">AP</div>
+<div><div class="review-name">Amara P.</div><div class="review-role">TPRM Specialist</div></div>
+</div>
+</div>
+</div>
+</section>
+<section class="cta">
+<div class="cta-content">
+<h2>Ready to Launch Your GRC Career?</h2>
+<p>Join 250+ professionals who have transformed their careers through OMNyra Group's practitioner-led training programs.</p>
+<div class="cta-buttons">
+<a href="#" class="btn-primary">Enroll Now</a>
+<a href="#" class="btn-whatsapp">Chat via WhatsApp</a>
+</div>
+</div>
+</section>
+<footer class="footer">
+<div class="footer-content">
+<div class="footer-brand">
+<svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="120">
+<circle cx="20" cy="20" r="12" fill="#00D4FF"/>
+<path d="M14 20L20 8L26 20" stroke="#FFFFFF" stroke-width="2" fill="none"/>
+<text x="45" y="18" fill="#FFFFFF" font-family="Inter" font-weight="800" font-size="14">OMN</text>
+<text x="85" y="18" fill="#00D4FF" font-family="Inter" font-weight="300" font-size="14">yra</text>
+<text x="45" y="32" fill="#6B7280" font-family="Inter" font-weight="500" font-size="8" letter-spacing="2">GROUP</text>
+</svg>
+<p>Premium GRC training and risk advisory. From theory to mastery.</p>
+</div>
+<div class="footer-column">
+<h4>Programs</h4>
+<ul>
+<li><a href="#">GRC Professional</a></li>
+<li><a href="#">Third-Party Risk</a></li>
+<li><a href="#">ISO 27001</a></li>
+<li><a href="#">Risk Management</a></li>
+<li><a href="#">Data Privacy</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<h4>Company</h4>
+<ul>
+<li><a href="#">About Us</a></li>
+<li><a href="#">Careers</a></li>
+<li><a href="#">Blog</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<h4>Resources</h4>
+<ul>
+<li><a href="#">Free Coaching Call</a></li>
+<li><a href="#">FAQ</a></li>
+<li><a href="#">Student Reviews</a></li>
+<li><a href="#">Partners</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>&copy; 2026 OMNyra Group. All rights reserved.</p>
+<div class="footer-frameworks">
+<span class="framework-badge">NIST CSF</span>
+<span class="framework-badge">ISO 27001</span>
+<span class="framework-badge warm">GDPR</span>
+<span class="framework-badge">SOC 2</span>
+</div>
+</div>
+</footer>
+</div>
+</div>
+
+<div class="device-frame device-tablet">
+<div class="device-label">Tablet — 768px</div>
+<div class="device-screen">
+<div style="padding: 1rem; background: var(--void); min-height: 100vh;">
+<nav style="display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: var(--deep-void); border: 1px solid rgba(0,212,255,0.15); border-radius: 8px; margin-bottom: 1rem;">
+<svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="80">
+<circle cx="20" cy="20" r="12" fill="#00D4FF"/>
+<path d="M14 20L20 8L26 20" stroke="#FFFFFF" stroke-width="2" fill="none"/>
+<text x="45" y="18" fill="#FFFFFF" font-family="Inter" font-weight="800" font-size="14">OMN</text>
+<text x="85" y="18" fill="#00D4FF" font-family="Inter" font-weight="300" font-size="14">yra</text>
+</svg>
+<span style="color: var(--cyan); font-size: 1.5rem;">&#9776;</span>
+</nav>
+<div style="text-align: center; padding: 3rem 1.5rem;">
+<div class="hero-badge" style="margin: 0 auto 1rem;">GRC Training</div>
+<h1 style="font-size: 2rem; color: var(--white); margin-bottom: 1rem;">Become Job-Ready in <span style="color: var(--cyan);">Cybersecurity Governance & Risk</span></h1>
+<p style="color: #9CA3AF; margin-bottom: 1.5rem;">Practitioner-led training with career support.</p>
+<div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+<a href="#" class="btn-primary">Enroll Now</a>
+<a href="#" class="btn-secondary">Book Call</a>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 1rem;">
+<div class="stat-card"><div class="stat-number" style="font-size: 1.75rem;">96%</div><div class="stat-label">Placement</div></div>
+<div class="stat-card"><div class="stat-number" style="font-size: 1.75rem;">250+</div><div class="stat-label">Trained</div></div>
+<div class="stat-card"><div class="stat-number" style="font-size: 1.75rem;">1:1</div><div class="stat-label">Coaching</div></div>
+<div class="stat-card"><div class="stat-number" style="font-size: 1.75rem;">35h</div><div class="stat-label">Live Training</div></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="device-frame device-mobile">
+<div class="device-label">Mobile — 375px</div>
+<div class="device-screen">
+<div style="padding: 0.75rem; background: var(--void); min-height: 100vh;">
+<nav style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; background: var(--deep-void); border: 1px solid rgba(0,212,255,0.15); border-radius: 8px; margin-bottom: 0.75rem;">
+<svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="60">
+<circle cx="20" cy="20" r="12" fill="#00D4FF"/>
+<path d="M14 20L20 8L26 20" stroke="#FFFFFF" stroke-width="2" fill="none"/>
+<text x="45" y="18" fill="#FFFFFF" font-family="Inter" font-weight="800" font-size="14">OMN</text>
+<text x="85" y="18" fill="#00D4FF" font-family="Inter" font-weight="300" font-size="14">yra</text>
+</svg>
+<span style="color: var(--cyan); font-size: 1.25rem;">&#9776;</span>
+</nav>
+<div style="text-align: center; padding: 2rem 1rem;">
+<div class="hero-badge" style="margin: 0 auto 0.75rem; font-size: 0.625rem;">GRC Training</div>
+<h1 style="font-size: 1.5rem; color: var(--white); margin-bottom: 0.75rem;">Become Job-Ready in <span style="color: var(--cyan);">Cybersecurity Governance & Risk</span></h1>
+<p style="color: #9CA3AF; font-size: 0.875rem; margin-bottom: 1rem;">Practitioner-led training with career support.</p>
+<div style="display: flex; flex-direction: column; gap: 0.5rem;">
+<a href="#" class="btn-primary" style="justify-content: center;">Enroll Now</a>
+<a href="#" class="btn-secondary" style="justify-content: center;">Book Call</a>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; padding: 0.5rem;">
+<div class="stat-card" style="padding: 1rem;"><div class="stat-number" style="font-size: 1.25rem;">96%</div><div class="stat-label" style="font-size: 0.6875rem;">Placement</div></div>
+<div class="stat-card" style="padding: 1rem;"><div class="stat-number" style="font-size: 1.25rem;">250+</div><div class="stat-label" style="font-size: 0.6875rem;">Trained</div></div>
+<div class="stat-card" style="padding: 1rem;"><div class="stat-number" style="font-size: 1.25rem;">1:1</div><div class="stat-label" style="font-size: 0.6875rem;">Coaching</div></div>
+<div class="stat-card" style="padding: 1rem;"><div class="stat-number" style="font-size: 1.25rem;">35h</div><div class="stat-label" style="font-size: 0.6875rem;">Live Training</div></div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

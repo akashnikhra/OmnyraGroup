@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "kind": "html",
+  "title": "letterhead.html",
+  "entry": "letterhead.html",
+  "renderer": "html",
+  "status": "complete",
+  "exports": [
+    "html",
+    "pdf",
+    "zip"
+  ],
+  "createdAt": "2026-08-16T04:50:16.031Z",
+  "updatedAt": "2026-08-16T04:50:16.041Z",
+  "metadata": {
+    "inferred": true
+  }
+}

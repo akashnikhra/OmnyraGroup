@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "fileName": "brand-guidelines.html",
+  "currentVersionId": "45f17546-6609-46cb-8d9c-b324250c55ad",
+  "entries": [
+    {
+      "id": "45f17546-6609-46cb-8d9c-b324250c55ad",
+      "fileName": "brand-guidelines.html",
+      "version": 1,
+      "label": "Version 1",
+      "createdAt": 1786855936057,
+      "source": "manual",
+      "prompt": null,
+      "size": 21565,
+      "mime": "text/html; charset=utf-8",
+      "kind": "html",
+      "contentPath": "0001-45f17546-6609-46cb-8d9c-b324250c55ad.html",
+      "contentDigest": "789786ef1c7d3bb81849aefd6d8dfcfe91b7d01b454c4e3d866f93a02ce8b09f",
+      "promptSource": "manual"
+    }
+  ]
+}

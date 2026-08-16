@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="800" height="200">
+  <defs>
+    <linearGradient id="hexBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0077B6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00A8E8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00D4FF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="chromeLatticeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6B7280;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8B949E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C9D1D9;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Hexagonal lattice background pattern -->
+  <g opacity="0.04" stroke="#00A8E8" stroke-width="0.5" fill="none">
+    <path d="M 0,30 L 15,0 L 45,0 L 60,30 L 45,60 L 15,60 Z"/>
+    <path d="M 60,30 L 75,0 L 105,0 L 120,30 L 105,60 L 75,60 Z"/>
+    <path d="M 120,30 L 135,0 L 165,0 L 180,30 L 165,60 L 135,60 Z"/>
+  </g>
+
+  <!-- EMBLEM - Hexagonal Shield -->
+  <g transform="translate(100, 100)">
+    <!-- Outer hexagonal frame -->
+    <polygon points="0,-72 62,-36 62,36 0,72 -62,36 -62,-36" fill="none" stroke="url(#chromeLatticeGrad)" stroke-width="4" stroke-linejoin="round"/>
+    
+    <!-- Inner hexagonal frame -->
+    <polygon points="0,-56 48,-28 48,28 0,56 -48,28 -48,-28" fill="none" stroke="url(#chromeLatticeGrad)" stroke-width="2" opacity="0.5"/>
+    
+    <!-- Hexagonal blue fill -->
+    <polygon points="0,-48 41,-24 41,24 0,48 -41,24 -41,-24" fill="url(#hexBlueGrad)" opacity="0.9"/>
+    
+    <!-- Inner dark hexagon -->
+    <polygon points="0,-36 31,-18 31,18 0,36 -31,18 -31,-18" fill="#0D1117" opacity="0.6"/>
+    
+    <!-- Ascending path through hexagon -->
+    <g filter="url(#glow)">
+      <path d="M -18,18 L 0,0 L 18,-18 L 24,-24" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <polygon points="24,-24 16,-24 24,-16" fill="white"/>
+    </g>
+    
+    <!-- Hexagonal junction nodes -->
+    <circle cx="0" cy="-56" r="4" fill="#C9D1D9"/>
+    <circle cx="48" cy="-28" r="4" fill="#C9D1D9"/>
+    <circle cx="48" cy="28" r="4" fill="#C9D1D9"/>
+    <circle cx="0" cy="56" r="4" fill="#C9D1D9"/>
+    <circle cx="-48" cy="28" r="4" fill="#C9D1D9"/>
+    <circle cx="-48" cy="-28" r="4" fill="#C9D1D9"/>
+  </g>
+
+  <!-- WORDMARK -->
+  <g transform="translate(200, 72)">
+    <!-- OMN - Bold -->
+    <text x="0" y="52" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="68" font-weight="800" fill="#FFFFFF" letter-spacing="3">OMN</text>
+    <!-- yra - Light, Blue -->
+    <text x="188" y="52" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="68" font-weight="300" fill="#00A8E8" letter-spacing="1">yra</text>
+    <!-- TM -->
+    <text x="328" y="30" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#8B949E">™</text>
+
+    <!-- GROUP - tracked -->
+    <text x="195" y="90" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="500" fill="#8B949E" letter-spacing="14">GROUP</text>
+
+    <!-- Decorative hexagonal lines flanking GROUP -->
+    <line x1="0" y1="80" x2="170" y2="80" stroke="#8B949E" stroke-width="1" opacity="0.4"/>
+    <line x1="340" y1="80" x2="520" y2="80" stroke="#8B949E" stroke-width="1" opacity="0.4"/>
+  </g>
+</svg>

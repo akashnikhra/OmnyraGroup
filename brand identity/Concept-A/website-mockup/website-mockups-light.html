@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OMNyraGroup — Website Mockups — Light Design — Concept A</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+  :root {
+    --white: #FFFFFF;
+    --off-white: #F7F9FC;
+    --ice: #EDF1F7;
+    --platinum: #E2E8F0;
+    --chrome: #CBD5E1;
+    --slate: #64748B;
+    --deep-space: #0F172A;
+    --electric-blue: #0077E6;
+    --blue-bright: #0099FF;
+    --blue-light: #E0F2FE;
+    --midnight: #1E293B;
+    --cerulean: #0369A1;
+    --signal-red: #DC2626;
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+    --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06);
+    --shadow-lg: 0 8px 30px rgba(15, 23, 42, 0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #E8ECF1;
+    font-family: 'Inter', sans-serif;
+    color: var(--deep-space);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .page-header {
+    text-align: center;
+    padding: 60px 40px 20px;
+    position: relative;
+  }
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 120px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--electric-blue), transparent);
+  }
+  .page-header h1 {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 8px;
+  }
+  .page-header h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--deep-space);
+    letter-spacing: -0.02em;
+  }
+  .page-header h2 span { color: var(--electric-blue); font-weight: 300; }
+  .page-header p {
+    font-size: 13px;
+    color: var(--slate);
+    margin-top: 12px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  .mockups-section {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+  }
+
+  .device-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .device-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--slate);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .device-label::before,
+  .device-label::after {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--chrome);
+  }
+  .device-dims {
+    font-size: 9px;
+    color: var(--electric-blue);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+  }
+
+  .device-frame {
+    position: relative;
+    background: #D1D9E6;
+    border-radius: 16px;
+    padding: 12px;
+    box-shadow:
+      0 0 0 1px rgba(15, 23, 42, 0.05),
+      0 20px 60px rgba(15, 23, 42, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .device-frame.desktop {
+    width: 960px;
+    border-radius: 12px;
+    padding: 8px 8px 28px;
+  }
+  .device-frame.desktop::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: #B0BAC9;
+    border-radius: 2px;
+  }
+
+  .device-frame.tablet {
+    width: 380px;
+    border-radius: 18px;
+    padding: 16px 10px;
+  }
+  .device-frame.tablet::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 4px;
+    background: #B0BAC9;
+    border-radius: 2px;
+  }
+
+  .device-frame.mobile {
+    width: 220px;
+    border-radius: 24px;
+    padding: 14px 6px;
+  }
+  .device-frame.mobile::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 6px;
+    background: #D1D9E6;
+    border-radius: 0 0 8px 8px;
+    z-index: 10;
+  }
+
+  .screen {
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    background: var(--white);
+    box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.05);
+  }
+
+  .device-frame.desktop .screen { height: 540px; }
+  .device-frame.tablet .screen { height: 500px; }
+  .device-frame.mobile .screen { height: 440px; }
+
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    background: var(--white);
+    border-bottom: 1px solid var(--ice);
+    position: relative;
+    z-index: 5;
+  }
+
+  .logo-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .logo-emblem {
+    width: 32px;
+    height: 32px;
+    position: relative;
+  }
+  .logo-emblem svg { width: 100%; height: 100%; }
+
+  .logo-text {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+  .logo-text .omn { color: var(--deep-space); }
+  .logo-text .yra { color: var(--electric-blue); font-weight: 300; }
+  .logo-text .group {
+    font-size: 8px;
+    font-weight: 500;
+    color: var(--slate);
+    letter-spacing: 3px;
+    display: block;
+    margin-top: -2px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--slate);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--electric-blue); }
+  .nav-links a.active { color: var(--electric-blue); font-weight: 600; }
+
+  .nav-cta {
+    background: var(--electric-blue);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 9px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0, 119, 230, 0.3);
+  }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .mobile-menu span {
+    width: 18px;
+    height: 2px;
+    background: var(--deep-space);
+    border-radius: 1px;
+  }
+
+  .hero {
+    position: relative;
+    padding: 36px 28px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background:
+      radial-gradient(ellipse at 20% 80%, rgba(0, 119, 230, 0.04) 0%, transparent 50%),
+      linear-gradient(180deg, var(--off-white) 0%, var(--white) 100%);
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--electric-blue);
+    background: var(--blue-light);
+    border: 1px solid rgba(0, 119, 230, 0.15);
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    width: fit-content;
+  }
+
+  .hero h2 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    margin-bottom: 10px;
+    max-width: 400px;
+    color: var(--deep-space);
+  }
+  .hero h2 .blue { color: var(--electric-blue); font-weight: 300; }
+
+  .hero p {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--slate);
+    line-height: 1.6;
+    max-width: 360px;
+    margin-bottom: 18px;
+  }
+
+  .hero-features {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .hero-feature {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--slate);
+  }
+  .hero-feature::before {
+    content: '\2713';
+    color: var(--electric-blue);
+    font-weight: 700;
+    font-size: 10px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--electric-blue);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 6px rgba(0, 119, 230, 0.3);
+  }
+  .btn-primary::after {
+    content: '\2192';
+    font-size: 13px;
+  }
+
+  .btn-outline {
+    background: var(--white);
+    color: var(--deep-space);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: 6px;
+    border: 1px solid var(--platinum);
+    cursor: pointer;
+  }
+
+  .btn-whatsapp {
+    background: #25D366;
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .stats-bar {
+    display: flex;
+    gap: 1px;
+    background: var(--ice);
+  }
+  .stat {
+    flex: 1;
+    padding: 16px 14px;
+    background: var(--white);
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--electric-blue);
+  }
+  .stat-label {
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--slate);
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+  }
+
+  .section-heading {
+    padding: 22px 24px 12px;
+  }
+  .section-heading h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--deep-space);
+  }
+  .section-heading p {
+    font-size: 10px;
+    color: var(--slate);
+  }
+
+  .course-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 0 24px 20px;
+  }
+
+  .course-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 14px;
+    border: 1px solid var(--ice);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .course-card:hover {
+    border-color: rgba(0, 119, 230, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 119, 230, 0.08);
+  }
+
+  .course-badge {
+    display: inline-block;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .badge-grc { background: var(--blue-light); color: var(--electric-blue); }
+  .badge-iso { background: var(--ice); color: var(--slate); }
+  .badge-tpr { background: #E0F7FA; color: #0369A1; }
+  .badge-risk { background: #FEF3C7; color: #B45309; }
+  .badge-privacy { background: #FCE7F3; color: #BE185D; }
+
+  .course-card h4 {
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    line-height: 1.3;
+    color: var(--deep-space);
+  }
+  .course-card p {
+    font-size: 9px;
+    color: var(--slate);
+    line-height: 1.5;
+  }
+
+  .course-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--ice);
+  }
+  .course-meta .salary {
+    font-size: 9px;
+    color: var(--electric-blue);
+    font-weight: 600;
+  }
+
+  .pricing-card {
+    margin: 0 24px 20px;
+    background: linear-gradient(135deg, var(--electric-blue), #0055CC);
+    border-radius: 10px;
+    padding: 20px;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .pricing-card::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+  }
+  .pricing-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 6px;
+  }
+  .pricing-amount {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+  }
+  .pricing-amount .old {
+    text-decoration: line-through;
+    opacity: 0.5;
+    font-size: 16px;
+    margin-right: 6px;
+  }
+  .pricing-note {
+    font-size: 10px;
+    opacity: 0.8;
+    margin-top: 4px;
+  }
+  .pricing-features {
+    list-style: none;
+    margin-top: 12px;
+  }
+  .pricing-features li {
+    font-size: 9px;
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.9;
+  }
+  .pricing-features li::before {
+    content: '\2713';
+    font-weight: 700;
+  }
+
+  .site-footer {
+    background: var(--deep-space);
+    padding: 18px 24px;
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .footer-tagline {
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.06em;
+  }
+  .footer-links {
+    display: flex;
+    gap: 14px;
+  }
+  .footer-links a {
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+  }
+  .footer-bottom {
+    text-align: center;
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .orbital-deco {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 160px;
+    height: 160px;
+    opacity: 0.03;
+    pointer-events: none;
+  }
+
+  /* TABLET */
+  .tablet .site-header {
+    padding: 10px 14px;
+    gap: 6px;
+  }
+  .tablet .logo-group { gap: 6px; }
+  .tablet .logo-emblem { width: 24px; height: 24px; }
+  .tablet .logo-text { font-size: 13px; letter-spacing: 0.5px; }
+  .tablet .logo-text .group { font-size: 7px; letter-spacing: 2px; }
+  .tablet .nav-links { gap: 0; flex-wrap: nowrap; }
+  .tablet .nav-links li { white-space: nowrap; }
+  .tablet .nav-links a { font-size: 9px; padding: 4px 6px; letter-spacing: 0; }
+  .tablet .nav-cta { font-size: 9px; padding: 6px 12px; }
+  .tablet .hero { padding: 24px 18px; }
+  .tablet .hero h2 { font-size: 20px; }
+  .tablet .hero p { font-size: 10px; }
+  .tablet .hero-features { gap: 10px; }
+  .tablet .hero-feature { font-size: 8px; }
+  .tablet .course-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 0 16px 16px; }
+  .tablet .section-heading { padding: 16px 16px 10px; }
+  .tablet .stats-bar { flex-wrap: wrap; }
+  .tablet .stat { min-width: 33%; }
+  .tablet .pricing-card { margin: 0 16px 16px; padding: 16px; }
+  .tablet .site-footer { padding: 14px 16px; }
+
+  /* MOBILE */
+  .mobile-device .site-header { padding: 10px 12px; }
+  .mobile-device .nav-links { display: none; }
+  .mobile-device .mobile-menu { display: flex; }
+  .mobile-device .hero { padding: 18px 12px; min-height: 160px; }
+  .mobile-device .hero h2 { font-size: 16px; max-width: 100%; }
+  .mobile-device .hero p { font-size: 9px; max-width: 100%; }
+  .mobile-device .hero-features { gap: 8px; margin-bottom: 14px; }
+  .mobile-device .hero-feature { font-size: 7px; }
+  .mobile-device .hero-actions { flex-direction: column; }
+  .mobile-device .btn-primary, .mobile-device .btn-outline, .mobile-device .btn-whatsapp {
+    width: 100%;
+    justify-content: center;
+    font-size: 10px;
+    padding: 9px 16px;
+  }
+  .mobile-device .stats-bar { flex-direction: column; }
+  .mobile-device .stat { padding: 10px 12px; }
+  .mobile-device .stat-num { font-size: 16px; }
+  .mobile-device .course-grid { grid-template-columns: 1fr; gap: 8px; padding: 0 12px 12px; }
+  .mobile-device .section-heading { padding: 12px 12px 8px; }
+  .mobile-device .section-heading h3 { font-size: 13px; }
+  .mobile-device .pricing-card { margin: 0 12px 12px; padding: 14px; }
+  .mobile-device .pricing-amount { font-size: 22px; }
+  .mobile-device .site-footer { padding: 12px; }
+  .mobile-device .footer-top { flex-direction: column; gap: 8px; }
+
+  .sentinel-dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin: 12px 0;
+  }
+  .sentinel-dots span {
+    width: 4px;
+    height: 4px;
+    background: var(--chrome);
+    border-radius: 50%;
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <h1>OmnyraGroup — Concept A</h1>
+  <h2>Website Mockups <span>— Light Design</span></h2>
+  <p>Desktop · Tablet · Mobile — Orbital Precision Light Theme</p>
+</header>
+
+<section class="mockups-section">
+
+  <!-- DESKTOP -->
+  <div class="device-group">
+    <div class="device-label">Desktop <span class="device-dims">1920 × 1080</span></div>
+    <div class="device-frame desktop">
+      <div class="screen">
+        <header class="site-header">
+          <div class="logo-group">
+            <div class="logo-emblem">
+              <svg viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="20" r="18" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="12 3 12 3 12 3 12 3" stroke-linecap="round"/>
+                <circle cx="20" cy="20" r="14" fill="#0077E6" opacity="0.9"/>
+                <circle cx="20" cy="20" r="10" fill="#F7F9FC" opacity="0.6"/>
+                <path d="M15 25 L25 15" stroke="#0F172A" stroke-width="2" stroke-linecap="round"/>
+                <polygon points="25,15 22,15 25,18" fill="#0F172A"/>
+                <circle cx="36" cy="14" r="2" fill="#CBD5E1"/>
+                <circle cx="8" cy="14" r="1.5" fill="#CBD5E1"/>
+              </svg>
+            </div>
+            <div class="logo-text">
+              <span class="omn">OMN</span><span class="yra">yra</span>
+              <span class="group">GROUP</span>
+            </div>
+          </div>
+          <ul class="nav-links">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Programs</a></li>
+            <li><a href="#">Why Us</a></li>
+            <li><a href="#">Outcomes</a></li>
+            <li><a href="#">Reviews</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+          <button class="nav-cta">Book 1-on-1 Call</button>
+        </header>
+
+        <section class="hero">
+          <svg class="orbital-deco" viewBox="0 0 200 200" fill="none">
+            <circle cx="100" cy="100" r="90" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="8 4"/>
+            <circle cx="100" cy="100" r="70" stroke="#0077E6" stroke-width="0.5" stroke-dasharray="4 4"/>
+          </svg>
+          <div class="hero-badge">
+            <span>Trained 250+ Candidates Globally</span>
+          </div>
+          <h2>Become Job-Ready in <span class="blue">Cybersecurity Governance & Risk</span></h2>
+          <p>Practical GRC, TPRM, ISO 27001, Risk Management & Data Privacy training with dedicated 1-on-1 career coaching for professionals targeting global roles.</p>
+          <div class="hero-features">
+            <span class="hero-feature">Interview Coaching</span>
+            <span class="hero-feature">Resume & CV Tailoring</span>
+            <span class="hero-feature">Real-World Case Studies</span>
+            <span class="hero-feature">1-on-1 Career Mentoring</span>
+          </div>
+          <div class="hero-actions">
+            <button class="btn-primary">Enroll Now</button>
+            <button class="btn-outline">Book Free Coaching Call</button>
+            <button class="btn-whatsapp">Chat via WhatsApp</button>
+          </div>
+        </section>
+
+        <div class="stats-bar">
+          <div class="stat">
+            <div class="stat-num">96%</div>
+            <div class="stat-label">Placement Success</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">250+</div>
+            <div class="stat-label">Trained Globally</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">1:1</div>
+            <div class="stat-label">Personal Coaching</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">35h</div>
+            <div class="stat-label">Live GRC Coaching</div>
+          </div>
+        </div>
+
+        <section>
+          <div class="section-heading">
+            <h3>Training Programs</h3>
+            <p>Master Specialized Risk Domains</p>
+          </div>
+          <div class="course-grid">
+            <div class="course-card">
+              <span class="course-badge badge-grc">GRC</span>
+              <h4>Governance, Risk & Compliance</h4>
+              <p>Align information security goals with organizational strategy, evaluate risk, and demonstrate compliance with international standards.</p>
+              <div class="course-meta">
+                <span class="salary">$85k–$110k</span>
+              </div>
+            </div>
+            <div class="course-card">
+              <span class="course-badge badge-tpr">TPRM</span>
+              <h4>Third-Party Risk Management</h4>
+              <p>Evaluate and mitigate cybersecurity risks introduced by external service providers, SaaS apps, and vendor supply chains.</p>
+              <div class="course-meta">
+                <span class="salary">$90k–$125k</span>
+              </div>
+            </div>
+            <div class="course-card">
+              <span class="course-badge badge-iso">ISO</span>
+              <h4>ISO 27001 Readiness</h4>
+              <p>Master designing, implementing, and auditing an Information Security Management System (ISMS) compliant with ISO 27001:2022.</p>
+              <div class="course-meta">
+                <span class="salary">$95k–$130k</span>
+              </div>
+            </div>
+            <div class="course-card">
+              <span class="course-badge badge-risk">RISK</span>
+              <h4>Risk Management</h4>
+              <p>Identify, analyze, evaluate, and treat vulnerabilities using qualitative and quantitative risk formulas for C-level presentation.</p>
+              <div class="course-meta">
+                <span class="salary">$88k–$120k</span>
+              </div>
+            </div>
+            <div class="course-card">
+              <span class="course-badge badge-privacy">PRIVACY</span>
+              <h4>Data Privacy</h4>
+              <p>Learn modern international data privacy laws, security design frameworks, and audit patterns for complex global regulatory environments.</p>
+              <div class="course-meta">
+                <span class="salary">$92k–$125k</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <div class="footer-top">
+            <div class="footer-tagline">Precision in Motion</div>
+            <div class="footer-links">
+              <a href="#">NIST CSF</a>
+              <a href="#">ISO 27001</a>
+              <a href="#">GDPR</a>
+              <a href="#">SOC 2</a>
+            </div>
+          </div>
+          <div class="footer-bottom">© 2026 OMNyra Group. All rights reserved.</div>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLET -->
+  <div class="device-group">
+    <div class="device-label">Tablet <span class="device-dims">768 × 1024</span></div>
+    <div class="device-frame tablet">
+      <div class="screen tablet">
+        <header class="site-header">
+          <div class="logo-group">
+            <div class="logo-emblem" style="width:24px;height:24px;">
+              <svg viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="20" r="18" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="12 3 12 3 12 3 12 3" stroke-linecap="round"/>
+                <circle cx="20" cy="20" r="14" fill="#0077E6" opacity="0.9"/>
+                <circle cx="20" cy="20" r="10" fill="#F7F9FC" opacity="0.6"/>
+                <path d="M15 25 L25 15" stroke="#0F172A" stroke-width="2" stroke-linecap="round"/>
+                <polygon points="25,15 22,15 25,18" fill="#0F172A"/>
+              </svg>
+            </div>
+            <div class="logo-text">
+              <span class="omn">OMN</span><span class="yra">yra</span>
+              <span class="group">GROUP</span>
+            </div>
+          </div>
+          <ul class="nav-links">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">Programs</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+          <button class="nav-cta">Call</button>
+        </header>
+
+        <section class="hero">
+          <div class="hero-badge">
+            <span>250+ Trained Globally</span>
+          </div>
+          <h2>Become Job-Ready in <span class="blue">Cybersecurity Governance & Risk</span></h2>
+          <p>Practical GRC, TPRM, ISO 27001 training with dedicated 1-on-1 career coaching.</p>
+          <div class="hero-features">
+            <span class="hero-feature">Interview Coaching</span>
+            <span class="hero-feature">Resume Tailoring</span>
+            <span class="hero-feature">1-on-1 Mentoring</span>
+          </div>
+          <div class="hero-actions">
+            <button class="btn-primary">Enroll Now</button>
+            <button class="btn-outline">Book Call</button>
+          </div>
+        </section>
+
+        <div class="stats-bar">
+          <div class="stat">
+            <div class="stat-num">96%</div>
+            <div class="stat-label">Placement</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">250+</div>
+            <div class="stat-label">Trained</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">1:1</div>
+            <div class="stat-label">Coaching</div>
+          </div>
+        </div>
+
+        <section>
+          <div class="section-heading">
+            <h3>Training Programs</h3>
+            <p>Master Specialized Risk Domains</p>
+          </div>
+          <div class="course-grid">
+            <div class="course-card">
+              <span class="course-badge badge-grc">GRC</span>
+              <h4>Governance, Risk & Compliance</h4>
+              <p>Align security goals with organizational strategy and demonstrate compliance.</p>
+              <div class="course-meta">
+                <span class="salary">$85k–$110k</span>
+              </div>
+            </div>
+            <div class="course-card">
+              <span class="course-badge badge-tpr">TPRM</span>
+              <h4>Third-Party Risk Management</h4>
+              <p>Evaluate and mitigate vendor supply chain cybersecurity risks.</p>
+              <div class="course-meta">
+                <span class="salary">$90k–$125k</span>
+              </div>
+            </div>
+            <div class="course-card">
+              <span class="course-badge badge-iso">ISO</span>
+              <h4>ISO 27001 Readiness</h4>
+              <p>Master ISMS design, implementation, and audit compliant with ISO 27001.</p>
+              <div class="course-meta">
+                <span class="salary">$95k–$130k</span>
+              </div>
+            </div>
+            <div class="course-card">
+              <span class="course-badge badge-privacy">PRIVACY</span>
+              <h4>Data Privacy</h4>
+              <p>Learn GDPR, CCPA, HIPAA compliance and privacy impact assessments.</p>
+              <div class="course-meta">
+                <span class="salary">$92k–$125k</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="pricing-card">
+          <div class="pricing-label">35 Hours Live GRC Coaching</div>
+          <div class="pricing-amount"><span class="old">$1000</span> $850</div>
+          <div class="pricing-note">Personal Cohort · Group Discount: $650 each (min 3)</div>
+          <ul class="pricing-features">
+            <li>Full 35-Hour Cohort Live Lectures</li>
+            <li>ATS CV & Resume Audit Reports</li>
+            <li>Weekly 1-on-1 Executive Q&A</li>
+          </ul>
+        </div>
+
+        <footer class="site-footer">
+          <div class="footer-top">
+            <div class="footer-tagline">Precision in Motion</div>
+            <div class="footer-links">
+              <a href="#">Privacy</a>
+              <a href="#">Terms</a>
+              <a href="#">Contact</a>
+            </div>
+          </div>
+          <div class="footer-bottom">© 2026 OMNyra Group</div>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOBILE -->
+  <div class="device-group">
+    <div class="device-label">Mobile <span class="device-dims">375 × 812</span></div>
+    <div class="device-frame mobile">
+      <div class="screen mobile-device">
+        <header class="site-header">
+          <div class="logo-group">
+            <div class="logo-emblem" style="width:22px;height:22px;">
+              <svg viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="20" r="18" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="12 3 12 3 12 3 12 3" stroke-linecap="round"/>
+                <circle cx="20" cy="20" r="14" fill="#0077E6" opacity="0.9"/>
+                <circle cx="20" cy="20" r="10" fill="#F7F9FC" opacity="0.6"/>
+                <path d="M15 25 L25 15" stroke="#0F172A" stroke-width="2" stroke-linecap="round"/>
+                <polygon points="25,15 22,15 25,18" fill="#0F172A"/>
+              </svg>
+            </div>
+            <div class="logo-text" style="font-size:12px;">
+              <span class="omn">OMN</span><span class="yra">yra</span>
+            </div>
+          </div>
+          <div class="mobile-menu">
+            <span></span><span></span><span></span>
+          </div>
+        </header>
+
+        <section class="hero">
+          <div class="hero-badge" style="font-size:7px;padding:4px 8px;">
+            <span>250+ Trained</span>
+          </div>
+          <h2>Become Job-Ready in <span class="blue">Cybersecurity Governance & Risk</span></h2>
+          <p>Practical GRC training with 1-on-1 career coaching for global roles.</p>
+          <div class="hero-features">
+            <span class="hero-feature">Interview Coaching</span>
+            <span class="hero-feature">Resume Tailoring</span>
+          </div>
+          <div class="hero-actions">
+            <button class="btn-primary">Enroll Now</button>
+            <button class="btn-outline">Book Free Call</button>
+            <button class="btn-whatsapp">Chat via WhatsApp</button>
+          </div>
+        </section>
+
+        <div class="stats-bar">
+          <div class="stat">
+            <div class="stat-num">96%</div>
+            <div class="stat-label">Placement</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">250+</div>
+            <div class="stat-label">Trained</div>
+          </div>
+        </div>
+
+        <section>
+          <div class="section-heading">
+            <h3>Programs</h3>
+            <p>Specialized Risk Domains</p>
+          </div>
+          <div class="course-grid">
+            <div class="course-card">
+              <span class="course-badge badge-grc">GRC</span>
+              <h4>Governance, Risk & Compliance</h4>
+              <p>Align security goals with organizational strategy.</p>
+              <div class="course-meta">
+                <span class="salary">$85k–$110k</span>
+              </div>
+            </div>
+            <div class="course-card">
+              <span class="course-badge badge-tpr">TPRM</span>
+              <h4>Third-Party Risk Management</h4>
+              <p>Evaluate vendor supply chain cybersecurity risks.</p>
+              <div class="course-meta">
+                <span class="salary">$90k–$125k</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="pricing-card">
+          <div class="pricing-label">35h Live GRC Coaching</div>
+          <div class="pricing-amount"><span class="old">$1000</span> $850</div>
+          <div class="pricing-note">Group: $650 each (min 3)</div>
+        </div>
+
+        <footer class="site-footer">
+          <div class="footer-bottom">© 2026 OMNyra Group</div>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="sentinel-dots">
+  <span></span><span></span><span></span><span></span>
+</div>
+
+</body>
+</html>

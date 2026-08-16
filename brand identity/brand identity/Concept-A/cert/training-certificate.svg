@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 842 595" width="842" height="595">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0077CC;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0099FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00BBFF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="chromeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7A8A9A;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#D0D8E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A8B4C2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C8A84E;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#E8CC6E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C8A84E;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <path id="certTextTop" d="M 421,421 m -100,0 a 100,100 0 1,1 200,0 a 100,100 0 1,1 -200,0" fill="none"/>
+    <path id="certTextBot" d="M 421,421 m -78,0 a 78,78 0 1,0 156,0 a 78,78 0 1,0 -156,0" fill="none"/>
+  </defs>
+
+  <!-- Page -->
+  <rect width="842" height="595" fill="#FFFFFF"/>
+
+  <!-- Border frame -->
+  <rect x="20" y="20" width="802" height="555" fill="none" stroke="#0A1628" stroke-width="1.5"/>
+  <rect x="24" y="24" width="794" height="547" fill="none" stroke="#A8B4C2" stroke-width="0.5"/>
+
+  <!-- Corner accents -->
+  <line x1="20" y1="40" x2="40" y2="20" stroke="#0099FF" stroke-width="2"/>
+  <line x1="802" y1="20" x2="822" y2="40" stroke="#0099FF" stroke-width="2"/>
+  <line x1="20" y1="555" x2="40" y2="575" stroke="#0099FF" stroke-width="2"/>
+  <line x1="802" y1="575" x2="822" y2="555" stroke="#0099FF" stroke-width="2"/>
+
+  <!-- Logo top center -->
+  <g transform="translate(371, 38) scale(0.35)">
+    <g transform="translate(40, 40)">
+      <circle cx="0" cy="0" r="32" fill="none" stroke="url(#chromeGrad)" stroke-width="4" stroke-dasharray="22 5 22 5 22 5 22 5" stroke-linecap="round"/>
+      <circle cx="30" cy="-10" r="2.8" fill="#A8B4C2"/>
+      <circle cx="10" cy="-30" r="2.5" fill="#A8B4C2"/>
+      <circle cx="-26" cy="-18" r="2.5" fill="#A8B4C2"/>
+      <circle cx="-26" cy="18" r="2.5" fill="#A8B4C2"/>
+      <circle cx="0" cy="0" r="24" fill="url(#blueGrad)"/>
+      <circle cx="0" cy="0" r="18" fill="#0A1628" opacity="0.55"/>
+      <path d="M -8,8 L 10,-10" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <polygon points="10,-10 5,-10 10,-5" fill="white"/>
+    </g>
+    <text x="82" y="38" font-family="'Inter', Arial, sans-serif" font-size="24" font-weight="800" fill="#0A1628" letter-spacing="1">OMN</text>
+    <text x="138" y="38" font-family="'Inter', Arial, sans-serif" font-size="24" font-weight="300" fill="#0099FF">yra</text>
+    <text x="82" y="56" font-family="'Inter', Arial, sans-serif" font-size="8" font-weight="500" fill="#A8B4C2" letter-spacing="4">GROUP</text>
+  </g>
+
+  <!-- Certificate title -->
+  <text x="421" y="115" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="10" font-weight="500" fill="#A8B4C2" letter-spacing="8">CERTIFICATE OF COMPLETION</text>
+
+  <!-- Decorative line -->
+  <line x1="321" y1="130" x2="521" y2="130" stroke="#0099FF" stroke-width="1" opacity="0.4"/>
+
+  <!-- Presented to -->
+  <text x="421" y="170" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="11" font-weight="300" fill="#A8B4C2" letter-spacing="3">THIS CERTIFICATE IS AWARDED TO</text>
+
+  <!-- Recipient name -->
+  <text x="421" y="225" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="42" font-weight="800" fill="#0A1628" letter-spacing="1">[Recipient Name]</text>
+
+  <!-- Name underline -->
+  <line x1="180" y1="240" x2="662" y2="240" stroke="#0099FF" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- For completing -->
+  <text x="421" y="275" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="11" font-weight="300" fill="#A8B4C2" letter-spacing="2">FOR SUCCESSFUL COMPLETION OF</text>
+
+  <!-- Course title -->
+  <text x="421" y="315" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="22" font-weight="700" fill="#0A1628" letter-spacing="1">[Course Title]</text>
+
+  <!-- Course subtitle -->
+  <text x="421" y="340" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="12" font-weight="400" fill="#0099FF" letter-spacing="2">[Specialization — GRC / ISO 27001 / Third-Party Risk / Compliance]</text>
+
+  <!-- Date and credential -->
+  <text x="421" y="380" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="10" font-weight="400" fill="#A8B4C2" letter-spacing="1">Completed on [Date] | Credential ID: [ID]</text>
+
+  <!-- Certification seal -->
+  <g transform="translate(421, 421)">
+    <!-- Seal outer ring -->
+    <circle cx="0" cy="0" r="52" fill="none" stroke="url(#chromeGrad)" stroke-width="4" stroke-dasharray="30 8 30 8 30 8 30 8" stroke-linecap="round"/>
+
+    <!-- Seal inner -->
+    <circle cx="0" cy="0" r="38" fill="url(#blueGrad)" opacity="0.12"/>
+    <circle cx="0" cy="0" r="28" fill="#0A1628" opacity="0.08"/>
+
+    <!-- Mini emblem -->
+    <path d="M -8,8 L 10,-10" stroke="#0099FF" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <polygon points="10,-10 5,-10 10,-5" fill="#0099FF"/>
+
+    <!-- Circular text -->
+    <text font-family="'Inter', Arial, sans-serif" font-size="5.5" font-weight="600" fill="#0A1628" letter-spacing="2.5">
+      <textPath href="#certTextTop" startOffset="14%">CERTIFIED BY OMNYRAGROUP</textPath>
+    </text>
+    <text font-family="'Inter', Arial, sans-serif" font-size="5" font-weight="400" fill="#A8B4C2" letter-spacing="2">
+      <textPath href="#certTextBot" startOffset="16%">GRC · ISO · COMPLIANCE</textPath>
+    </text>
+
+    <!-- Dots -->
+    <circle cx="-40" cy="0" r="1.5" fill="#0099FF"/>
+    <circle cx="40" cy="0" r="1.5" fill="#0099FF"/>
+  </g>
+
+  <!-- Signature lines -->
+  <g transform="translate(0, 490)">
+    <!-- Left signature -->
+    <line x1="120" y1="0" x2="300" y2="0" stroke="#C8D0DA" stroke-width="0.5"/>
+    <text x="210" y="15" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="8" font-weight="400" fill="#0A1628">[Instructor Name]</text>
+    <text x="210" y="27" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="7" font-weight="300" fill="#A8B4C2">Lead Practitioner</text>
+
+    <!-- Right signature -->
+    <line x1="542" y1="0" x2="722" y2="0" stroke="#C8D0DA" stroke-width="0.5"/>
+    <text x="632" y="15" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="8" font-weight="400" fill="#0A1628">[Director Name]</text>
+    <text x="632" y="27" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="7" font-weight="300" fill="#A8B4C2">Director, OMNyra Group</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="421" y="555" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="7" font-weight="300" fill="#C8D0DA" letter-spacing="1">OMNyraGroup™ | Precision in Motion | www.omnyragroup.online</text>
+</svg>

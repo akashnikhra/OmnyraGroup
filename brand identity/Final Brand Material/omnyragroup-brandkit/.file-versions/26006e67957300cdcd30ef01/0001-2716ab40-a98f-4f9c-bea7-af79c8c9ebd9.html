@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMNyra Group - LinkedIn Cover</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #e8e8e8;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .cover-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #8B949E;
+        }
+
+        .linkedin-cover {
+            width: 1584px;
+            height: 396px;
+            background: linear-gradient(135deg, #0D1117 0%, #161B22 50%, #1a2332 100%);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            padding: 0 80px;
+        }
+
+        /* Hexagonal Background Pattern */
+        .hex-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.08;
+        }
+
+        .hex-grid svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Glowing Hexagon */
+        .glow-hex {
+            position: absolute;
+            right: 150px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 280px;
+            height: 280px;
+            opacity: 0.15;
+        }
+
+        .glow-hex svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 30px #00A8E8);
+        }
+
+        /* Content */
+        .content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+        }
+
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .company-name {
+            font-size: 32px;
+            font-weight: 600;
+            color: #FFFFFF;
+            letter-spacing: 1px;
+        }
+
+        .company-name span {
+            color: #00A8E8;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: #8B949E;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .headline {
+            font-size: 42px;
+            font-weight: 700;
+            color: #FFFFFF;
+            line-height: 1.2;
+            max-width: 600px;
+        }
+
+        .headline span {
+            color: #00A8E8;
+        }
+
+        .subheadline {
+            font-size: 16px;
+            color: #C9D1D9;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-top: 10px;
+        }
+
+        .cta-button {
+            background: #00A8E8;
+            color: #FFFFFF;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-url {
+            font-size: 13px;
+            color: #8B949E;
+        }
+
+        .cta-url span {
+            color: #00A8E8;
+        }
+
+        /* Decorative Elements */
+        .accent-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00A8E8 0%, #0077B6 50%, #00A8E8 100%);
+        }
+
+        .corner-accent {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 80px;
+            height: 80px;
+            border: 2px solid rgba(0, 168, 232, 0.3);
+            border-radius: 50%;
+        }
+
+        .corner-accent-inner {
+            position: absolute;
+            top: 55px;
+            right: 55px;
+            width: 50px;
+            height: 50px;
+            border: 1px solid rgba(0, 168, 232, 0.2);
+            border-radius: 50%;
+        }
+
+        /* Scale for preview */
+        .preview-container {
+            width: 100%;
+            max-width: 800px;
+            overflow: hidden;
+        }
+
+        .preview-container .linkedin-cover {
+            transform: scale(0.5);
+            transform-origin: top left;
+            width: 200%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <p class="cover-label">LinkedIn Cover Banner (1584 x 396)</p>
+    
+    <div class="preview-container">
+        <div class="linkedin-cover">
+            <!-- Hexagonal Grid Background -->
+            <div class="hex-grid">
+                <svg viewBox="0 0 1584 396" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="hexGrid" width="60" height="52" patternUnits="userSpaceOnUse">
+                            <polygon points="30,0 60,15 60,37 30,52 0,37 0,15" fill="none" stroke="#00A8E8" stroke-width="0.5"/>
+                        </pattern>
+                    </defs>
+                    <rect width="1584" height="396" fill="url(#hexGrid)"/>
+                </svg>
+            </div>
+
+            <!-- Glowing Hexagon -->
+            <div class="glow-hex">
+                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 10L180 55V145L100 190L20 145V55L100 10Z" stroke="#00A8E8" stroke-width="2" fill="none"/>
+                    <path d="M60 120L100 40L140 120" stroke="#00A8E8" stroke-width="2" fill="none"/>
+                    <circle cx="100" cy="40" r="8" fill="#00A8E8"/>
+                </svg>
+            </div>
+
+            <!-- Decorative Elements -->
+            <div class="corner-accent"></div>
+            <div class="corner-accent-inner"></div>
+
+            <!-- Content -->
+            <div class="content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M30 5L50 17.5V42.5L30 55L10 42.5V17.5L30 5Z" stroke="#00A8E8" stroke-width="2" fill="none"/>
+                            <path d="M20 35L30 15L40 35" stroke="#00A8E8" stroke-width="2" fill="none"/>
+                            <circle cx="30" cy="15" r="3" fill="#00A8E8"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="company-name">OMN<span>y</span>ra</div>
+                        <div class="tagline">GROUP</div>
+                    </div>
+                </div>
+
+                <div class="headline">
+                    Empowering Careers.<br>
+                    <span>Securing</span> the Future.
+                </div>
+
+                <div class="subheadline">
+                    Industry-focused training in GRC, TPRM, ISO 27001, Risk Management & Data Privacy for professionals worldwide.
+                </div>
+
+                <div class="cta-section">
+                    <div class="cta-button">Explore Programs</div>
+                    <div class="cta-url">Visit: <span>omnyragroup.online</span></div>
+                </div>
+            </div>
+
+            <div class="accent-line"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "fileName": "email-signature.html",
+  "currentVersionId": "21fa1431-0cdd-45a9-a75a-9c2fab5f9dd4",
+  "entries": [
+    {
+      "id": "21fa1431-0cdd-45a9-a75a-9c2fab5f9dd4",
+      "fileName": "email-signature.html",
+      "version": 1,
+      "label": "Version 1",
+      "createdAt": 1786855891519,
+      "source": "manual",
+      "prompt": null,
+      "size": 10061,
+      "mime": "text/html; charset=utf-8",
+      "kind": "html",
+      "contentPath": "0001-21fa1431-0cdd-45a9-a75a-9c2fab5f9dd4.html",
+      "contentDigest": "8c039d8af7d625cfa32cd82427b0b84c9e6ab07dcb6c2046bf833e28c61293d0",
+      "promptSource": "manual"
+    }
+  ]
+}

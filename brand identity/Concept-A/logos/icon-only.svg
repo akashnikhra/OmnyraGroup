@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0077CC;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0099FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00BBFF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="chromeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7A8A9A;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#D0D8E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A8B4C2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g transform="translate(100, 100)">
+    <!-- Outer chrome ring - segmented -->
+    <circle cx="0" cy="0" r="82" fill="none" stroke="url(#chromeGrad)" stroke-width="9" stroke-dasharray="55 14 55 14 55 14 55 14" stroke-linecap="round"/>
+
+    <!-- Chrome nodes -->
+    <circle cx="78" cy="-25" r="7" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="1"/>
+    <circle cx="25" cy="-78" r="6" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="1"/>
+    <circle cx="-66" cy="-48" r="6" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="1"/>
+    <circle cx="-66" cy="48" r="6" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="1"/>
+
+    <!-- Inner blue circle -->
+    <circle cx="0" cy="0" r="64" fill="url(#blueGrad)" opacity="0.95"/>
+
+    <!-- Inner darker circle for depth -->
+    <circle cx="0" cy="0" r="48" fill="#0A1628" opacity="0.6"/>
+
+    <!-- Directional arrow - ascending -->
+    <g filter="url(#glow)">
+      <path d="M -20,20 L 24,-24" stroke="white" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+      <polygon points="24,-24 10,-24 24,-10" fill="white"/>
+    </g>
+
+    <!-- Subtle orbital ring -->
+    <circle cx="0" cy="0" r="56" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.2" stroke-dasharray="8 4"/>
+  </g>
+</svg>

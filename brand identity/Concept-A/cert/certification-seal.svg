@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0077CC;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0099FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00BBFF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="chromeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7A8A9A;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#D0D8E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A8B4C2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Circular text path -->
+    <path id="textCircle" d="M 150,150 m -105,0 a 105,105 0 1,1 210,0 a 105,105 0 1,1 -210,0" fill="none"/>
+    <path id="textCircleBottom" d="M 150,150 m -80,0 a 80,80 0 1,0 160,0 a 80,80 0 1,0 -160,0" fill="none"/>
+  </defs>
+
+  <!-- Outer decorative ring -->
+  <circle cx="150" cy="150" r="145" fill="none" stroke="#0A1628" stroke-width="2"/>
+  <circle cx="150" cy="150" r="140" fill="none" stroke="url(#chromeGrad)" stroke-width="4"/>
+  <circle cx="150" cy="150" r="132" fill="none" stroke="#A8B4C2" stroke-width="1" opacity="0.3"/>
+
+  <!-- Sentinel ring -->
+  <circle cx="150" cy="150" r="120" fill="none" stroke="url(#chromeGrad)" stroke-width="7" stroke-dasharray="80 16 80 16 80 16 80 16" stroke-linecap="round"/>
+
+  <!-- Chrome nodes -->
+  <circle cx="266" cy="122" r="5" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="1"/>
+  <circle cx="178" cy="32" r="4.5" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="1"/>
+  <circle cx="56" cy="90" r="4.5" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="1"/>
+  <circle cx="56" cy="210" r="4.5" fill="url(#chromeGrad)" stroke="#5A6A7A" stroke-width="1"/>
+
+  <!-- Inner blue circle -->
+  <circle cx="150" cy="150" r="90" fill="url(#blueGrad)"/>
+
+  <!-- Inner dark -->
+  <circle cx="150" cy="150" r="66" fill="#0A1628" opacity="0.55"/>
+
+  <!-- Central emblem -->
+  <g filter="url(#glow)">
+    <path d="M 130,170 L 172,128" stroke="white" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <polygon points="172,128 160,128 172,140" fill="white"/>
+  </g>
+
+  <!-- Orbital ring -->
+  <circle cx="150" cy="150" r="82" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="6 3"/>
+
+  <!-- Circular text - top -->
+  <text font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#0A1628" letter-spacing="5">
+    <textPath href="#textCircle" startOffset="12%">CERTIFIED BY OMNYRAGROUP</textPath>
+  </text>
+
+  <!-- Decorative dots between text -->
+  <circle cx="75" cy="152" r="2.5" fill="#0099FF"/>
+  <circle cx="225" cy="152" r="2.5" fill="#0099FF"/>
+
+  <!-- Circular text - bottom -->
+  <text font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="9" font-weight="400" fill="#A8B4C2" letter-spacing="3">
+    <textPath href="#textCircleBottom" startOffset="18%">SECURITY · PRECISION · TRUST</textPath>
+  </text>
+
+  <!-- Outer decorative dots -->
+  <circle cx="150" cy="6" r="3" fill="#A8B4C2"/>
+  <circle cx="150" cy="294" r="3" fill="#A8B4C2"/>
+  <circle cx="6" cy="150" r="3" fill="#A8B4C2"/>
+  <circle cx="294" cy="150" r="3" fill="#A8B4C2"/>
+</svg>

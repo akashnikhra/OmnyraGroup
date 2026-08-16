@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "fileName": "business-card.html",
+  "currentVersionId": "31c9d505-4582-4dcf-96d1-ee3016df613e",
+  "entries": [
+    {
+      "id": "31c9d505-4582-4dcf-96d1-ee3016df613e",
+      "fileName": "business-card.html",
+      "version": 1,
+      "label": "Version 1",
+      "createdAt": 1786855784148,
+      "source": "manual",
+      "prompt": null,
+      "size": 8359,
+      "mime": "text/html; charset=utf-8",
+      "kind": "html",
+      "contentPath": "0001-31c9d505-4582-4dcf-96d1-ee3016df613e.html",
+      "contentDigest": "86d0f656c8cd82dcccb89bc60fae17c37e8f512825c935083446039770f98f4c",
+      "promptSource": "manual"
+    }
+  ]
+}

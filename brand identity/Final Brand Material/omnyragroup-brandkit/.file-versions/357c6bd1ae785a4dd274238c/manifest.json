@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "fileName": "social-post-template.html",
+  "currentVersionId": "acb487fa-f6dc-4aa7-b486-928937987151",
+  "entries": [
+    {
+      "id": "acb487fa-f6dc-4aa7-b486-928937987151",
+      "fileName": "social-post-template.html",
+      "version": 1,
+      "label": "Version 1",
+      "createdAt": 1786855862096,
+      "source": "manual",
+      "prompt": null,
+      "size": 9517,
+      "mime": "text/html; charset=utf-8",
+      "kind": "html",
+      "contentPath": "0001-acb487fa-f6dc-4aa7-b486-928937987151.html",
+      "contentDigest": "410a8841a7bbf5a6df54562451d55c54f5571a48ef19d23170b4afaaacad69e3",
+      "promptSource": "manual"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "fileName": "linkedin-cover.html",
+  "currentVersionId": "2716ab40-a98f-4f9c-bea7-af79c8c9ebd9",
+  "entries": [
+    {
+      "id": "2716ab40-a98f-4f9c-bea7-af79c8c9ebd9",
+      "fileName": "linkedin-cover.html",
+      "version": 1,
+      "label": "Version 1",
+      "createdAt": 1786855838803,
+      "source": "manual",
+      "prompt": null,
+      "size": 7832,
+      "mime": "text/html; charset=utf-8",
+      "kind": "html",
+      "contentPath": "0001-2716ab40-a98f-4f9c-bea7-af79c8c9ebd9.html",
+      "contentDigest": "6c01c9a4c47237f277bb35dffba918dbc2dc13f7d9c924a0108e11217babfba5",
+      "promptSource": "manual"
+    }
+  ]
+}

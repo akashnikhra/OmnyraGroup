@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMNyra Group - Business Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f5f5;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .card-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #8B949E;
+            margin-bottom: -40px;
+        }
+
+        .business-card {
+            width: 3.5in;
+            height: 2in;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        /* FRONT SIDE */
+        .card-front {
+            background: linear-gradient(135deg, #0D1117 0%, #161B22 100%);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .company-name {
+            color: #FFFFFF;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .company-name span {
+            color: #00A8E8;
+        }
+
+        .tagline {
+            color: #8B949E;
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 2px;
+        }
+
+        .person-info {
+            margin-top: auto;
+        }
+
+        .person-name {
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .person-title {
+            color: #00A8E8;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hex-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 120px;
+            height: 120px;
+            opacity: 0.05;
+        }
+
+        /* BACK SIDE */
+        .card-back {
+            background: #FFFFFF;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .back-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-logo .logo-icon {
+            width: 28px;
+            height: 28px;
+        }
+
+        .back-company {
+            font-size: 12px;
+            font-weight: 600;
+            color: #0D1117;
+        }
+
+        .back-company span {
+            color: #00A8E8;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 8px;
+            color: #161B22;
+        }
+
+        .contact-item svg {
+            width: 12px;
+            height: 12px;
+            fill: #00A8E8;
+        }
+
+        .back-tagline {
+            font-size: 7px;
+            color: #8B949E;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-align: right;
+        }
+
+        .accent-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00A8E8 0%, #0077B6 100%);
+        }
+
+        .hex-watermark {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            opacity: 0.08;
+        }
+    </style>
+</head>
+<body>
+    <p class="card-label">Front Side</p>
+    <div class="business-card card-front">
+        <svg class="hex-pattern" viewBox="0 0 100 100">
+            <defs>
+                <pattern id="hexPattern" width="20" height="17.32" patternUnits="userSpaceOnUse">
+                    <polygon points="10,0 20,5 20,12.32 10,17.32 0,12.32 0,5" fill="none" stroke="#00A8E8" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="100" height="100" fill="url(#hexPattern)"/>
+        </svg>
+        
+        <div class="logo-section">
+            <div class="logo-icon">
+                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30 5L50 17.5V42.5L30 55L10 42.5V17.5L30 5Z" stroke="#00A8E8" stroke-width="2" fill="none"/>
+                    <path d="M20 35L30 15L40 35" stroke="#00A8E8" stroke-width="2" fill="none"/>
+                    <circle cx="30" cy="15" r="3" fill="#00A8E8"/>
+                </svg>
+            </div>
+            <div>
+                <div class="company-name">OMN<span>y</span>ra</div>
+                <div class="tagline">GROUP</div>
+            </div>
+        </div>
+
+        <div class="person-info">
+            <div class="person-name">Your Name</div>
+            <div class="person-title">Your Title</div>
+        </div>
+    </div>
+
+    <p class="card-label">Back Side</p>
+    <div class="business-card card-back">
+        <svg class="hex-watermark" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 5L50 17.5V42.5L30 55L10 42.5V17.5L30 5Z" stroke="#00A8E8" stroke-width="1" fill="none"/>
+            <path d="M20 35L30 15L40 35" stroke="#00A8E8" stroke-width="1" fill="none"/>
+        </svg>
+
+        <div class="back-logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30 5L50 17.5V42.5L30 55L10 42.5V17.5L30 5Z" stroke="#00A8E8" stroke-width="2" fill="none"/>
+                    <path d="M20 35L30 15L40 35" stroke="#00A8E8" stroke-width="2" fill="none"/>
+                    <circle cx="30" cy="15" r="3" fill="#00A8E8"/>
+                </svg>
+            </div>
+            <div class="back-company">OMN<span>y</span>ra GROUP</div>
+        </div>
+
+        <div class="contact-details">
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <span>omnyra.training@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                <span>+91 9063370816</span>
+            </div>
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Global | US & UK</span>
+            </div>
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                <span>omnyragroup.online</span>
+            </div>
+        </div>
+
+        <div class="back-tagline">Empowering Careers. Securing the Future.</div>
+        <div class="accent-bar"></div>
+    </div>
+</body>
+</html>

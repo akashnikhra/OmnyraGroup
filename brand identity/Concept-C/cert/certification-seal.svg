@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <linearGradient id="cyanGlowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00B4D8;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00D4FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#48E0FF;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Circular text path -->
+    <path id="textCircle" d="M 150,150 m -105,0 a 105,105 0 1,1 210,0 a 105,105 0 1,1 -210,0" fill="none"/>
+    <path id="textCircleBottom" d="M 150,150 m -80,0 a 80,80 0 1,0 160,0 a 80,80 0 1,0 -160,0" fill="none"/>
+  </defs>
+
+  <!-- Outer decorative ring -->
+  <circle cx="150" cy="150" r="145" fill="none" stroke="#0B0F1A" stroke-width="2"/>
+  <circle cx="150" cy="150" r="140" fill="none" stroke="url(#cyanGlowGrad)" stroke-width="4" filter="url(#glow)" opacity="0.8"/>
+  <circle cx="150" cy="150" r="132" fill="none" stroke="#6B7280" stroke-width="1" opacity="0.3"/>
+
+  <!-- Framework lines radiating -->
+  <g filter="url(#softGlow)" opacity="0.5">
+    <line x1="150" y1="30" x2="150" y2="70" stroke="#00D4FF" stroke-width="2"/>
+    <line x1="230" y1="70" x2="195" y2="95" stroke="#00D4FF" stroke-width="2"/>
+    <line x1="230" y1="190" x2="195" y2="165" stroke="#00D4FF" stroke-width="2"/>
+    <line x1="150" y1="230" x2="150" y2="190" stroke="#00D4FF" stroke-width="2"/>
+    <line x1="70" y1="190" x2="105" y2="165" stroke="#00D4FF" stroke-width="2"/>
+    <line x1="70" y1="70" x2="105" y2="95" stroke="#00D4FF" stroke-width="2"/>
+  </g>
+
+  <!-- Inner circle with gradient -->
+  <circle cx="150" cy="150" r="120" fill="#00D4FF" opacity="0.15"/>
+
+  <!-- Inner dark core -->
+  <circle cx="150" cy="150" r="90" fill="#0B0F1A" opacity="0.55"/>
+
+  <!-- Framework grid inside -->
+  <g opacity="0.3">
+    <line x1="110" y1="130" x2="190" y2="130" stroke="#00D4FF" stroke-width="0.8"/>
+    <line x1="110" y1="150" x2="190" y2="150" stroke="#00D4FF" stroke-width="0.8"/>
+    <line x1="110" y1="170" x2="190" y2="170" stroke="#00D4FF" stroke-width="0.8"/>
+    <line x1="130" y1="110" x2="130" y2="190" stroke="#00D4FF" stroke-width="0.8"/>
+    <line x1="150" y1="110" x2="150" y2="190" stroke="#00D4FF" stroke-width="0.8"/>
+    <line x1="170" y1="110" x2="170" y2="190" stroke="#00D4FF" stroke-width="0.8"/>
+  </g>
+
+  <!-- Central emblem -->
+  <g filter="url(#glow)">
+    <path d="M 130,170 L 172,128" stroke="white" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <polygon points="172,128 160,128 172,140" fill="white"/>
+  </g>
+
+  <!-- Tungsten accent nodes -->
+  <circle cx="150" cy="30" r="5" fill="#FF9F43" filter="url(#softGlow)"/>
+  <circle cx="230" cy="70" r="4.5" fill="#FF9F43" filter="url(#softGlow)"/>
+  <circle cx="230" cy="190" r="4.5" fill="#FF9F43" filter="url(#softGlow)"/>
+  <circle cx="150" cy="230" r="5" fill="#FF9F43" filter="url(#softGlow)"/>
+  <circle cx="70" cy="190" r="4.5" fill="#FF9F43" filter="url(#softGlow)"/>
+  <circle cx="70" cy="70" r="4.5" fill="#FF9F43" filter="url(#softGlow)"/>
+
+  <!-- Circular text - top -->
+  <text font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#0B0F1A" letter-spacing="5">
+    <textPath href="#textCircle" startOffset="12%">CERTIFIED BY OMNYRAGROUP</textPath>
+  </text>
+
+  <!-- Decorative dots between text -->
+  <circle cx="75" cy="152" r="2.5" fill="#00D4FF"/>
+  <circle cx="225" cy="152" r="2.5" fill="#00D4FF"/>
+
+  <!-- Circular text - bottom -->
+  <text font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="9" font-weight="400" fill="#6B7280" letter-spacing="3">
+    <textPath href="#textCircleBottom" startOffset="18%">SECURITY · PRECISION · TRUST</textPath>
+  </text>
+
+  <!-- Outer decorative dots -->
+  <circle cx="150" cy="6" r="3" fill="#6B7280"/>
+  <circle cx="150" cy="294" r="3" fill="#6B7280"/>
+  <circle cx="6" cy="150" r="3" fill="#6B7280"/>
+  <circle cx="294" cy="150" r="3" fill="#6B7280"/>
+</svg>
