@@ -176,14 +176,14 @@
   display: inline-flex; align-items: center; gap: 10px;
   padding: 14px 28px; border-radius: var(--radius-md); font-weight: 600;
   font-size: 15px; border: 1px solid transparent; cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+  transition: box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
   will-change: transform;
 }
 .btn-primary { background: var(--hex-blue); color: var(--white); box-shadow: 0 8px 24px rgba(0,168,232,0.3); }
 .btn-primary:hover { box-shadow: 0 12px 32px rgba(0,168,232,0.45); }
 .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
 .btn-ghost:hover { border-color: var(--hex-blue); color: var(--hex-blue); }
-.magnetic { transition: transform 0.2s cubic-bezier(.2,.8,.2,1); }
+.magnetic { transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease; }
 .scroll-cue {
   position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
   display: flex; flex-direction: column; align-items: center; gap: 10px;
