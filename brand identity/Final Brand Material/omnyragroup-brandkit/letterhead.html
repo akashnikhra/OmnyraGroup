@@ -168,10 +168,20 @@
         }
 
         .footer-tagline {
-            font-size: 7px;
+            font-size: 6px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             color: #C9D1D9;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-tagline .dot {
+            width: 2px;
+            height: 2px;
+            background: #C9D1D9;
+            border-radius: 50%;
         }
 
         /* Watermark */
@@ -257,7 +267,15 @@
                     omnyragroup.online
                 </span>
             </div>
-            <div class="footer-tagline">Empowering Careers. Securing the Future.</div>
+            <div class="footer-tagline">
+                <span>Practical</span>
+                <span class="dot"></span>
+                <span>Relevant</span>
+                <span class="dot"></span>
+                <span>Career-Focused</span>
+                <span class="dot"></span>
+                <span>Global Opportunities</span>
+            </div>
         </footer>
     </div>
 </body>

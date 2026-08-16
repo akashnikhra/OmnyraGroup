@@ -130,12 +130,23 @@
         }
 
         .back-tagline {
-            font-size: 6.5px;
+            font-size: 5.5px;
             color: #8B949E;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             text-align: center;
             margin-top: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .back-tagline .dot {
+            width: 2px;
+            height: 2px;
+            background: #C9D1D9;
+            border-radius: 50%;
         }
 
         .accent-bar {
@@ -196,7 +207,15 @@
             </div>
         </div>
 
-        <div class="back-tagline">Empowering Careers. Securing the Future.</div>
+        <div class="back-tagline">
+            <span>Practical</span>
+            <span class="dot"></span>
+            <span>Relevant</span>
+            <span class="dot"></span>
+            <span>Career-Focused</span>
+            <span class="dot"></span>
+            <span>Global Opportunities</span>
+        </div>
         <div class="accent-bar"></div>
     </div>
 </body>

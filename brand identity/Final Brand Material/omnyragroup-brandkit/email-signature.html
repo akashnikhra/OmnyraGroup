@@ -164,10 +164,21 @@
 
         .tagline {
             margin-top: 16px;
-            font-size: 10px;
+            font-size: 9px;
             color: #8B949E;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .tagline .dot {
+            width: 2px;
+            height: 2px;
+            background: #C9D1D9;
+            border-radius: 50%;
         }
 
         /* Plain text version for email clients */
@@ -242,7 +253,15 @@
                     </div>
                 </div>
 
-                <div class="tagline">Empowering Careers. Securing the Future.</div>
+                <div class="tagline">
+                    <span>Practical</span>
+                    <span class="dot"></span>
+                    <span>Relevant</span>
+                    <span class="dot"></span>
+                    <span>Career-Focused</span>
+                    <span class="dot"></span>
+                    <span>Global Opportunities</span>
+                </div>
             </div>
         </div>
     </div>
@@ -257,7 +276,8 @@ Email: omnyra.training@gmail.com
 Phone: +91 9063370816
 Web: omnyragroup.online
 
-Empowering Careers. Securing the Future.</pre>
+Empowering Careers. Securing the Future.
+Practical | Relevant | Career-Focused | Global Opportunities</pre>
     </div>
 </body>
 </html>
