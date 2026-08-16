@@ -22,6 +22,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script type="importmap">
+  {
+    "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js" }
+  }
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -355,6 +360,185 @@
       btn.addEventListener('mouseleave', () => { xTo(0); yTo(0); });
     });
   });
+</script>
+<script type="module">
+  import * as THREE from 'three';
+
+  const canvas = document.getElementById('bg-canvas');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 200);
+  camera.position.set(0, 0, 28);
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x0d1117, 0);
+
+  // Read theme-driven lattice colors from CSS variables
+  function hexVar(name, fallback) {
+    const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return v || fallback;
+  }
+  const colors = {
+    far: () => new THREE.Color(hexVar('--hex-stroke', '#C9D1D9')),
+    mid: () => new THREE.Color(hexVar('--hex-stroke', '#C9D1D9')),
+    node: () => new THREE.Color(hexVar('--node-color', '#00A8E8')),
+  };
+
+  // Hexagon shape geometry (flat-top, in XY plane)
+  function makeHexGeometry(size) {
+    const shape = new THREE.Shape();
+    for (let i = 0; i < 6; i++) {
+      const a = (Math.PI / 3) * i;
+      const x = size * Math.cos(a);
+      const y = size * Math.sin(a);
+      if (i === 0) shape.moveTo(x, y); else shape.lineTo(x, y);
+    }
+    shape.closePath();
+    return new THREE.ShapeGeometry(shape);
+  }
+  function makeRingGeometry(size) {
+    const pts = [];
+    for (let i = 0; i <= 6; i++) {
+      const a = (Math.PI / 3) * i;
+      pts.push(new THREE.Vector3(size * Math.cos(a), size * Math.sin(a), 0));
+    }
+    return new THREE.BufferGeometry().setFromPoints(pts);
+  }
+
+  // Build a layer: a grid of instanced hex rings + a sparse set of instanced node dots
+  function buildLayer({ countX, countY, hexSize, depth, strokeOpacity, nodeFraction }) {
+    const ringGeo = makeRingGeometry(hexSize);
+    const ringMat = new THREE.LineBasicMaterial({ color: colors.far(), transparent: true, opacity: strokeOpacity });
+    const ringCount = countX * countY;
+    const ringMesh = new THREE.InstancedMesh(ringGeo, ringMat, ringCount);
+    ringMesh.frustumCulled = false;
+
+    const dummy = new THREE.Object3D();
+    const cols = countX, rows = countY;
+    const offsetX = -(cols - 1) * hexSize * Math.sqrt(3) / 2;
+    const offsetY = -(rows - 1) * hexSize * 1.5;
+    const positions = [];
+    let idx = 0;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const x = offsetX + c * hexSize * Math.sqrt(3) + (r % 2 ? hexSize * Math.sqrt(3) / 4 : 0);
+        const y = offsetY + r * hexSize * 1.5;
+        dummy.position.set(x, y, depth);
+        dummy.updateMatrix();
+        ringMesh.setMatrixAt(idx, dummy.matrix);
+        positions.push({ x, y, depth, idx });
+        idx++;
+      }
+    }
+    ringMesh.instanceMatrix.needsUpdate = true;
+    scene.add(ringMesh);
+
+    // Node dots (instanced small circles) on a subset
+    const nodeCount = Math.floor(ringCount * nodeFraction);
+    const nodeGeo = new THREE.CircleGeometry(hexSize * 0.12, 12);
+    const nodeMat = new THREE.MeshBasicMaterial({ color: colors.node(), transparent: true, opacity: 0.0 });
+    const nodeMesh = new THREE.InstancedMesh(nodeGeo, nodeMat, nodeCount);
+    nodeMesh.frustumCulled = false;
+    const nodeIdxs = new Set();
+    while (nodeIdxs.size < nodeCount) nodeIdxs.add(Math.floor(Math.random() * ringCount));
+    let n = 0;
+    for (const i of nodeIdxs) {
+      const p = positions[i];
+      dummy.position.set(p.x, p.y, depth + 0.05);
+      dummy.scale.setScalar(1);
+      dummy.updateMatrix();
+      nodeMesh.setMatrixAt(n, dummy.matrix);
+      nodeMesh.setColorAt(n, colors.node());
+      n++;
+    }
+    nodeMesh.instanceMatrix.needsUpdate = true;
+    if (nodeMesh.instanceColor) nodeMesh.instanceColor.needsUpdate = true;
+    scene.add(nodeMesh);
+
+    return { ringMesh, nodeMesh, nodeMat, ringMat, positions, nodeCount };
+  }
+
+  const isMobile = window.innerWidth < 880;
+  const base = isMobile ? { cx: 9, cy: 7, size: 2.6 } : { cx: 14, cy: 10, size: 2.6 };
+
+  const farLayer  = buildLayer({ countX: base.cx, countY: base.cy, hexSize: base.size, depth: -18, strokeOpacity: 0.05, nodeFraction: 0.06 });
+  const midLayer  = buildLayer({ countX: base.cx - 2, countY: base.cy - 1, hexSize: base.size * 1.05, depth: -10, strokeOpacity: 0.08, nodeFraction: 0.10 });
+  const nearLayer = buildLayer({ countX: 6, countY: 4, hexSize: base.size * 1.1, depth: -4, strokeOpacity: 0.10, nodeFraction: 0.18 });
+
+  // Mouse parallax (pointer-fine only)
+  let mx = 0, my = 0, tmx = 0, tmy = 0;
+  window.addEventListener('mousemove', (e) => {
+    tmx = (e.clientX / window.innerWidth - 0.5) * 2;
+    tmy = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  // Scroll-driven climb: rotationY + upward Y offset + node brightness ramp
+  let scrollProgress = 0;
+  window.addEventListener('scroll', () => {
+    scrollProgress = Math.min(1, window.scrollY / (document.body.scrollHeight - window.innerHeight));
+  }, { passive: true });
+
+  // Theme react: re-instance colors when theme changes
+  function recolor() {
+    farLayer.ringMat.color = colors.far(); farLayer.ringMat.needsUpdate = true;
+    midLayer.ringMat.color = colors.mid(); midLayer.ringMat.needsUpdate = true;
+    nearLayer.ringMat.color = colors.mid(); nearLayer.ringMat.needsUpdate = true;
+    farLayer.nodeMat.color = colors.node();
+    midLayer.nodeMat.color = colors.node();
+    nearLayer.nodeMat.color = colors.node();
+  }
+  window.addEventListener('themechange', () => setTimeout(recolor, 50));
+
+  // Animate
+  let raf;
+  function tick() {
+    raf = requestAnimationFrame(tick);
+    mx += (tmx - mx) * 0.05;
+    my += (tmy - my) * 0.05;
+
+    // Parallax: each layer shifts at different rate vs mouse + scroll
+    farLayer.ringMesh.position.x = mx * 1.2;
+    farLayer.ringMesh.position.y = my * 0.8 + scrollProgress * 6;
+    midLayer.ringMesh.position.x = mx * 2.0;
+    midLayer.ringMesh.position.y = my * 1.4 + scrollProgress * 8;
+    nearLayer.ringMesh.position.x = mx * 3.2;
+    nearLayer.ringMesh.position.y = my * 2.2 + scrollProgress * 10;
+    farLayer.nodeMesh.position.copy(farLayer.ringMesh.position);
+    midLayer.nodeMesh.position.copy(midLayer.ringMesh.position);
+    nearLayer.nodeMesh.position.copy(nearLayer.ringMesh.position);
+
+    // Scroll-driven Y-rotation (the "climb")
+    scene.rotation.y = scrollProgress * 0.35;
+
+    // Node brightness ramps with scroll (vertical activation gradient)
+    const target = 0.15 + scrollProgress * 0.5;
+    farLayer.nodeMat.opacity += (target * 0.5 - farLayer.nodeMat.opacity) * 0.05;
+    midLayer.nodeMat.opacity += (target * 0.8 - midLayer.nodeMat.opacity) * 0.05;
+    nearLayer.nodeMat.opacity += (target - nearLayer.nodeMat.opacity) * 0.05;
+
+    renderer.render(scene, camera);
+  }
+
+  function resize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  }
+  window.addEventListener('resize', resize);
+
+  if (reduceMotion) {
+    // Static single render
+    renderer.render(scene, camera);
+  } else {
+    tick();
+  }
+
+  // Expose for cleanup / theme re-render
+  window.__omnyraLattice = { scene, camera, renderer, recolor };
 </script>
 </body>
 </html>
