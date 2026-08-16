@@ -160,6 +160,39 @@
   .nav-links a { font-size: 22px; }
   .hamburger { display: block; }
 }
+.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 120px; }
+.hero-inner { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.hero-logo-wrap { margin-bottom: 8px; }
+.hero-logo { height: 70px; width: auto; opacity: 0; }
+.hero-title {
+  font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 800;
+  max-width: 900px; margin: 6px auto;
+  background: linear-gradient(180deg, var(--text) 60%, var(--hex-blue) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero-sub { font-size: clamp(1rem, 1.5vw, 1.2rem); font-weight: 300; color: var(--text-muted); max-width: 560px; margin: 0 auto; }
+.hero-cta { display: flex; gap: 16px; margin-top: 18px; flex-wrap: wrap; justify-content: center; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px; border-radius: var(--radius-md); font-weight: 600;
+  font-size: 15px; border: 1px solid transparent; cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+  will-change: transform;
+}
+.btn-primary { background: var(--hex-blue); color: var(--white); box-shadow: 0 8px 24px rgba(0,168,232,0.3); }
+.btn-primary:hover { box-shadow: 0 12px 32px rgba(0,168,232,0.45); }
+.btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+.btn-ghost:hover { border-color: var(--hex-blue); color: var(--hex-blue); }
+.magnetic { transition: transform 0.2s cubic-bezier(.2,.8,.2,1); }
+.scroll-cue {
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);
+}
+.scroll-line { width: 1px; height: 40px; background: var(--accent-gradient); position: relative; overflow: hidden; }
+.scroll-line::after { content: ''; position: absolute; top: -40px; left: 0; width: 100%; height: 40px; background: var(--hex-blue); animation: scrollDot 2s ease-in-out infinite; }
+@keyframes scrollDot { 0% { top: -40px; } 100% { top: 40px; } }
+@media (max-width: 880px) { .hero-logo { height: 54px; } }
   </style>
 </head>
 <body>
@@ -189,7 +222,32 @@
   </div>
 </nav>
   <!-- Sections appended in later tasks -->
-  <main class="layer" id="content"></main>
+  <main class="layer" id="content">
+    <section class="hero" id="home">
+      <div class="hero-inner container">
+        <div class="hero-logo-wrap">
+          <img class="hero-logo" src="img/Monochrome_white-transparent.png" alt="OMNyra Group" />
+        </div>
+        <p class="eyebrow" data-scramble="GRC TRAINING & RISK ADVISORY · EST. 2026">GRC TRAINING & RISK ADVISORY · EST. 2026</p>
+        <h1 class="hero-title" data-scramble="Empowering Careers. Securing the Future.">Empowering Careers. Securing the Future.</h1>
+        <p class="hero-sub">Premium practitioner-led GRC training for Students, Fresh Graduates, Career Switchers & Working Professionals — Global · US & UK.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary magnetic" href="https://wa.me/919063370816" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.46 3.087z"/></svg>
+            Enroll via WhatsApp
+          </a>
+          <a class="btn btn-ghost magnetic" href="mailto:omnyra.training@gmail.com">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Email Us
+          </a>
+        </div>
+      </div>
+      <div class="scroll-cue" aria-hidden="true">
+        <span>Scroll to ascend</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+  </main>
   <!-- Scripts appended in later tasks -->
 <script>
   (function () {
@@ -223,6 +281,80 @@
       links.classList.remove('open'); hamburger.classList.remove('open'); hamburger.setAttribute('aria-expanded', 'false');
     }));
   })();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ScrambleText: resolve each char from random hex-string set
+  function scrambleText(el, opts) {
+    opts = opts || {};
+    const finalText = opts.text || el.textContent;
+    const duration = opts.duration || 1.2;
+    const chars = 'ABCDEF0123456789@#&.';
+    const len = finalText.length;
+    const frames = 14;
+    const frameDur = duration * 1000 / frames;
+    let frame = 0;
+    el.textContent = '';
+    const interval = setInterval(() => {
+      let out = '';
+      for (let i = 0; i < len; i++) {
+        const progress = frame / frames;
+        const charProgress = (i / len);
+        if (progress > charProgress) out += finalText[i];
+        else if (finalText[i] === ' ') out += ' ';
+        else out += chars[Math.floor(Math.random() * chars.length)];
+      }
+      el.textContent = out;
+      frame++;
+      if (frame > frames) { clearInterval(interval); el.textContent = finalText; }
+    }, frameDur);
+  }
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Hero entrance
+  gsap.matchMedia().add({
+    reduce: '(prefers-reduced-motion: reduce)',
+    full: '(prefers-reduced-motion: no-preference)'
+  }, (ctx) => {
+    const { reduce } = ctx.conditions;
+    const tl = gsap.timeline({ delay: 0.2 });
+    if (reduce) {
+      gsap.set('.hero-logo, .eyebrow, .hero-title, .hero-sub, .hero-cta', { opacity: 1, y: 0 });
+      return;
+    }
+    tl.from('.hero-logo', { opacity: 0, y: 20, duration: 0.8, ease: 'power2.out' })
+      .from('.eyebrow', { opacity: 0, y: 14, duration: 0.5 }, '-=0.3')
+      .from('.hero-title', { opacity: 0, y: 20, duration: 0.7 }, '-=0.2')
+      .from('.hero-sub', { opacity: 0, y: 14, duration: 0.5 }, '-=0.3')
+      .from('.hero-cta', { opacity: 0, y: 14, duration: 0.5 }, '-=0.2')
+      .from('.scroll-cue', { opacity: 0, duration: 0.5 }, '-=0.1');
+    // ScrambleText on the title and eyebrow after they appear
+    tl.add(() => {
+      scrambleText(document.querySelector('.hero-title'), { duration: 1.0 });
+      scrambleText(document.querySelector('.eyebrow'), { duration: 0.8 });
+    }, '-=0.4');
+  });
+
+  // Magnetic CTAs (pointer-fine only)
+  gsap.matchMedia().add('(hover: hover) and (pointer: fine)', () => {
+    document.querySelectorAll('.magnetic').forEach(btn => {
+      const xTo = gsap.quickTo(btn, 'x', { duration: 0.3, ease: 'power3.out' });
+      const yTo = gsap.quickTo(btn, 'y', { duration: 0.3, ease: 'power3.out' });
+      btn.addEventListener('mousemove', (e) => {
+        const r = btn.getBoundingClientRect();
+        const mx = e.clientX - (r.left + r.width / 2);
+        const my = e.clientY - (r.top + r.height / 2);
+        const dist = Math.hypot(mx, my);
+        if (dist < 60) { xTo(mx * 0.35); yTo(my * 0.35); }
+        else { xTo(0); yTo(0); }
+      });
+      btn.addEventListener('mouseleave', () => { xTo(0); yTo(0); });
+    });
+  });
 </script>
 </body>
 </html>
