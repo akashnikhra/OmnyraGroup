@@ -1,0 +1,8 @@
+node_modules/
+*.log
+screenshot-tight.png
+smoke-hero*.cjs
+.claude/
+.playwright-cli/
+opencode-agentrouter-support/
+
