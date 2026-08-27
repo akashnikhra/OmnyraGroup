@@ -65,11 +65,11 @@
 
       --space-xs: 4px;
       --space-sm: 8px;
-      --space-md: 16px;
-      --space-lg: 24px;
-      --space-xl: 32px;
-      --space-2xl: 40px;
-      --space-3xl: 60px;
+      --space-md: 14px;
+      --space-lg: 20px;
+      --space-xl: 26px;
+      --space-2xl: 32px;
+      --space-3xl: 40px;
 
       --radius-sm: 6px;
       --radius-md: 8px;
@@ -817,7 +817,7 @@
     .section {
       position: relative;
       z-index: 1;
-      padding: 120px 0;
+      padding: 64px 0;
     }
     .container {
       max-width: 1200px;
@@ -830,22 +830,22 @@
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--hex-blue);
-      margin-bottom: var(--space-md);
+      margin-bottom: var(--space-sm);
     }
     .section-headline {
       font-size: clamp(32px, 5vw, 48px);
       font-weight: 700;
       line-height: 1.15;
       color: var(--white);
-      margin-bottom: var(--space-md);
+      margin-bottom: var(--space-sm);
     }
     .section-subheadline {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 400;
       line-height: 1.6;
       color: var(--chrome-lattice);
       max-width: 600px;
-      margin-bottom: var(--space-3xl);
+      margin-bottom: var(--space-xl);
     }
     .gradient-text {
       background: var(--accent-gradient);
@@ -858,7 +858,7 @@
       height: 3px;
       background: var(--accent-gradient);
       border-radius: 2px;
-      margin-bottom: var(--space-2xl);
+      margin-bottom: var(--space-lg);
     }
 
     /* Glass Card */
@@ -920,14 +920,14 @@
        7. HERO SECTION
        ======================================== */
     .hero {
-      min-height: 100vh;
+      min-height: 85vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       position: relative;
       z-index: 1;
-      padding: 120px var(--space-2xl) 80px;
+      padding: 90px var(--space-2xl) 36px;
     }
     .hero-content {
       max-width: 720px;
@@ -1782,12 +1782,12 @@
        18. RESPONSIVE — MOBILE
        ======================================== */
     @media (max-width: 640px) {
-      .section { padding: 80px 0; }
-      .container { padding: 0 20px; }
+      .section { padding: 48px 0; }
+      .container { padding: 0 16px; }
 
-      .hero { padding: 100px 20px 60px; }
-      .hero h1 { font-size: clamp(32px, 8vw, 48px); }
-      .hero-logo img { height: 50px; }
+      .hero { padding: 80px 16px 36px; }
+      .hero h1 { font-size: clamp(30px, 8vw, 44px); }
+      .hero-logo img { height: 46px; }
 
       .program-cards-pane {
         grid-template-columns: 1fr;
@@ -1901,7 +1901,7 @@
 
     <!-- ① HERO -->
     <section class="hero" id="hero" aria-label="Hero">
-      <div class="hero-content" style="max-width: 1280px; margin: 0 auto; text-align: left; padding: 20px 20px 40px 20px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center; width: 100%;">
+      <div class="hero-content" style="max-width: 1280px; margin: 0 auto; text-align: left; padding: 10px 20px 20px 20px; display: flex; flex-wrap: wrap; gap: 32px; align-items: center; width: 100%;">
         
         <!-- Left Column: Hero Text & Features -->
         <div class="hero-left" style="flex: 1 1 500px;">
