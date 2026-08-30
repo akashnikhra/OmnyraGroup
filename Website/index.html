@@ -318,6 +318,10 @@
     html[data-theme="light"] #aurora-bg {
       background: #F8FAFC;
     }
+    html[data-theme="light"] #canvas-container {
+      opacity: 0;
+      pointer-events: none;
+    }
     html[data-theme="light"] .orb-1 {
       background: #38BDF8;
       opacity: 0.18;
@@ -402,26 +406,28 @@
       stroke: #0284C7 !important;
     }
     html[data-theme="light"] .hero-ctas .cta-btn:first-child {
-      background: transparent !important;
+      background: #0077B6 !important;
       border: 1.5px solid #0077B6 !important;
-      color: #0077B6 !important;
+      color: #FFFFFF !important;
       font-weight: 700;
     }
     html[data-theme="light"] .hero-ctas .cta-btn:first-child:hover {
-      background: #0077B6 !important;
+      background: #005f8f !important;
+      border-color: #005f8f !important;
       color: #FFFFFF !important;
-      box-shadow: 0 8px 24px rgba(0, 119, 182, 0.25);
+      box-shadow: 0 8px 24px rgba(0, 119, 182, 0.35);
     }
     html[data-theme="light"] .hero-ctas .cta-btn:last-child {
-      background: rgba(22, 163, 74, 0.08) !important;
+      background: #16A34A !important;
       border: 1.5px solid #16A34A !important;
-      color: #16A34A !important;
+      color: #FFFFFF !important;
       font-weight: 700;
     }
     html[data-theme="light"] .hero-ctas .cta-btn:last-child:hover {
-      background: #16A34A !important;
+      background: #15803D !important;
+      border-color: #15803D !important;
       color: #FFFFFF !important;
-      box-shadow: 0 8px 24px rgba(22, 163, 74, 0.25);
+      box-shadow: 0 8px 24px rgba(22, 163, 74, 0.35);
     }
 
     /* Hero Matrix & Quiz Widget in Light Theme */
@@ -614,22 +620,22 @@
     html[data-theme="light"] .program-tab-btn {
       background: rgba(255, 255, 255, 0.9);
       border: 1px solid rgba(0, 0, 0, 0.12);
-      color: #475569;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      color: #334155;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
     html[data-theme="light"] .program-tab-btn:hover {
       border-color: rgba(2, 132, 199, 0.6);
       color: #0F172A;
-      background: rgba(2, 132, 199, 0.06);
+      background: rgba(2, 132, 199, 0.08);
     }
     html[data-theme="light"] .program-tab-btn.active {
       border-color: #0284C7;
-      color: #0F172A;
-      background: rgba(2, 132, 199, 0.12);
-      box-shadow: 0 0 16px rgba(2, 132, 199, 0.22);
+      color: #FFFFFF;
+      background: #0284C7;
+      box-shadow: 0 0 16px rgba(2, 132, 199, 0.3);
     }
     html[data-theme="light"] .program-tab-btn.active svg {
-      stroke: #0284C7;
+      stroke: #FFFFFF;
     }
     html[data-theme="light"] .program-desc-text {
       color: #475569;
@@ -1116,11 +1122,16 @@
     /* Tabs Navigation */
     .program-tabs-nav {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content: center;
       gap: 10px;
       margin-bottom: var(--space-md);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 4px 0;
     }
+    .program-tabs-nav::-webkit-scrollbar { display: none; }
     .program-tab-btn {
       display: inline-flex;
       align-items: center;
@@ -1858,8 +1869,8 @@
       .section { padding: 48px 0; }
       .container { padding: 0 16px; }
 
-      .hero { padding: 80px 16px 36px; }
-      .hero h1 { font-size: clamp(30px, 8vw, 44px); }
+      .hero { padding: 80px 16px 36px; min-height: auto; }
+      .hero h1 { font-size: clamp(24px, 7vw, 36px); }
       .hero-logo img { height: 46px; }
 
       .program-cards-pane {
@@ -1983,10 +1994,9 @@
             <span style="display: block; width: 8px; height: 8px; border-radius: 50%; background-color: #25D366; box-shadow: 0 0 8px rgba(37, 211, 102, 0.6);"></span>
             <span style="color: #99F2FF; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">TRAINED 250+ CANDIDATES GLOBALLY • 1-ON-1 GRC COACHING</span>
           </div>
-          <h1 class="reveal" style="font-size: clamp(2.5rem, 4.5vw, 4rem); line-height: 1.1; margin-bottom: 16px; text-transform: capitalize; letter-spacing: -0.02em;">
+          <h1 class="reveal" style="font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-bottom: 16px; text-transform: capitalize; letter-spacing: -0.02em;">
             Become Job-Ready in<br>
-            Cybersecurity<br>
-            <span class="gradient-text" style="background: linear-gradient(90deg, #99F2FF, #00A8E8); -webkit-background-clip: text; color: transparent;">Governance &amp; Risk</span>
+            <span class="gradient-text" style="background: linear-gradient(90deg, #99F2FF, #00A8E8); -webkit-background-clip: text; color: transparent;">Cybersecurity Governance &amp; Risk</span>
           </h1>
           <p class="hero-sub reveal" style="max-width: 600px; margin-bottom: 24px; font-size: 1rem; text-align: left; opacity: 0.9;">
             Practical GRC, TPRM, ISO 27001, Risk Management &amp; Data Privacy training with dedicated 1-on-1 career coaching for professionals targeting global roles.
@@ -2198,7 +2208,7 @@
       <div class="container">
         <div class="about-grid">
           <div class="about-text">
-            <p class="section-label reveal">Who We Are</p>
+            <p class="section-label reveal" style="visibility: hidden;">Who We Are</p>
             <h2 class="section-headline reveal">We Don't Just Teach GRC.<br>We Build <span class="gradient-text">GRC Careers.</span></h2>
             <div class="accent-divider reveal"></div>
             <p class="reveal">OMNyra Group is a premium GRC training and risk advisory firm founded on one belief: the cybersecurity industry doesn't need more theory — it needs practitioners who can hit the ground running.</p>
@@ -2821,7 +2831,7 @@
     <!-- ④ WHY OMNYRA -->
     <section class="section" id="why" aria-label="Why OMNyra">
       <div class="container">
-        <p class="section-label reveal">Why OMNyra</p>
+        <p class="section-label reveal" style="visibility: hidden;">Why OMNyra</p>
         <h2 class="section-headline reveal">Not Another Certification Mill.<br>This Is <span class="gradient-text">Career Architecture.</span></h2>
         <p class="section-subheadline reveal">We reverse-engineered the hiring process. Every element of our program is designed to make you undeniable to employers. <strong>We don't teach theory — we teach what works.</strong></p>
 
@@ -2874,7 +2884,7 @@
     <!-- ⑤ PLANS -->
     <section class="section" id="plans" aria-label="Choose Your Plan">
       <div class="container">
-        <p class="section-label reveal">Choose Your Path</p>
+        <p class="section-label reveal" style="visibility: hidden;">Choose Your Path</p>
         <h2 class="section-headline reveal">Find Your Path.<br>Zero Guesswork. <span class="gradient-text">Maximum Impact.</span></h2>
         <p class="section-subheadline reveal">Whether you're testing the waters or going all-in, we have a track designed for exactly where you are right now.</p>
 
@@ -2962,7 +2972,7 @@
                 <li><span class="check">✓</span> Group discounts on all plans</li>
                 <li><span class="check">✓</span> Optional: custom curriculum modules</li>
               </ul>
-              <a href="mailto:omnyra.training@gmail.com?subject=Team%20Training%20Inquiry" class="cta-btn cta-btn-outline" style="width:100%;justify-content:center;">Request Custom Pricing <span aria-hidden="true">→</span></a>
+              <a href="mailto:omnyra.training@gmail.com?subject=Team%20Training%20Inquiry" class="cta-btn cta-btn-outline" style="width:100%;justify-content:center;">Get Custom Quote <span aria-hidden="true">→</span></a>
               <p class="plan-best-for"><strong>Best for:</strong> Teams of 3+ · Batches · Corporate training programs.</p>
             </div>
           </div>
@@ -3670,7 +3680,7 @@
       const region = regionAnswer && regionAnswer.region ? regionAnswer.region : 'your target';
       document.getElementById('resultCareer').innerHTML =
         `Suggested career path: <strong style="color:#00A8E8">${career}</strong> — aligned to ${region} market demand.`;
-      document.getElementById('resultCta').textContent = planKey === 'custom' ? 'Request Custom Pricing →' : `View ${plan.name} details →`;
+      document.getElementById('resultCta').textContent = planKey === 'custom' ? 'Get Custom Quote →' : `View ${plan.name} details →`;
 
       document.querySelectorAll('.plan').forEach(p => {
         p.classList.remove('plan--recommended');
