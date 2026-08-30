@@ -2214,20 +2214,20 @@
               <div class="quiz__step" data-step="1">
                 <p class="quiz__q"><span class="quiz__q-num">01 / 05</span>Where are you starting from?</p>
                 <div class="quiz__options">
-                  <button type="button" class="quiz__opt" data-m="0" data-r="0">Non-technical, new to security</button>
-                  <button type="button" class="quiz__opt" data-m="1" data-r="0">General IT / tech background</button>
-                  <button type="button" class="quiz__opt" data-m="3" data-r="0">Cybersecurity technical role</button>
-                  <button type="button" class="quiz__opt" data-m="4" data-r="0">Already in GRC, audit or risk</button>
+                  <button type="button" class="quiz__opt" data-m="0" data-r="0" data-career="grc">Non-technical, new to security</button>
+                  <button type="button" class="quiz__opt" data-m="1" data-r="0" data-career="iso">General IT / tech background</button>
+                  <button type="button" class="quiz__opt" data-m="3" data-r="0" data-career="risk">Cybersecurity technical role</button>
+                  <button type="button" class="quiz__opt" data-m="4" data-r="0" data-career="advance">Already in GRC, audit or risk</button>
                 </div>
               </div>
 
               <div class="quiz__step" data-step="2" hidden>
                 <p class="quiz__q"><span class="quiz__q-num">02 / 05</span>How much work experience do you have?</p>
                 <div class="quiz__options">
-                  <button type="button" class="quiz__opt" data-m="0" data-r="0">Student / exploring</button>
-                  <button type="button" class="quiz__opt" data-m="0" data-r="1">0–2 years</button>
-                  <button type="button" class="quiz__opt" data-m="0" data-r="3">2–5 years</button>
-                  <button type="button" class="quiz__opt" data-m="0" data-r="4">5+ years</button>
+                  <button type="button" class="quiz__opt" data-m="0" data-r="0" data-exp="student">Student / exploring</button>
+                  <button type="button" class="quiz__opt" data-m="0" data-r="1" data-exp="junior">0–2 years</button>
+                  <button type="button" class="quiz__opt" data-m="0" data-r="3" data-exp="mid">2–5 years</button>
+                  <button type="button" class="quiz__opt" data-m="0" data-r="4" data-exp="senior">5+ years</button>
                 </div>
               </div>
 
@@ -3701,7 +3701,9 @@
             m: parseInt(opt.dataset.m || 0, 10),
             r: parseInt(opt.dataset.r || 0, 10),
             plan: opt.dataset.plan || null,
-            region: opt.dataset.region || null
+            region: opt.dataset.region || null,
+            career: opt.dataset.career || null,
+            exp: opt.dataset.exp || null
           };
           setTimeout(() => {
             if (idx < steps.length - 1) {
@@ -3747,7 +3749,28 @@
       }
     };
 
-    const careerByBackground = ['GRC Analyst', 'TPRM Analyst', 'ISO 27001 Consultant', 'Privacy Advocate'];
+    // Title matrix — aligned to OMNyra's six program tracks and standard market titles
+    const CAREER_TRACKS = {
+      grc:     { student:'GRC Analyst',                 junior:'Junior GRC Analyst',         mid:'GRC Analyst',                  senior:'GRC Manager' },
+      iso:     { student:'ISO 27001 Associate',         junior:'ISO 27001 Implementer',      mid:'ISO 27001 Lead Implementer',   senior:'Security Compliance Manager' },
+      risk:    { student:'Risk & Compliance Associate', junior:'Cybersecurity Risk Analyst', mid:'Cybersecurity Risk Analyst',   senior:'Enterprise Risk Manager' },
+      privacy: { student:'Privacy Associate',           junior:'Data Privacy Analyst',       mid:'Data Privacy Analyst',         senior:'Data Protection Officer (DPO)' },
+      ai:      { student:'AI Governance Associate',     junior:'AI Governance Analyst',      mid:'AI Governance Analyst / Lead', senior:'AI Governance & Risk Lead' }
+    };
+    const EXP_ORDER = ['student', 'junior', 'mid', 'senior'];
+
+    function resolveCareer(bgAnswer, expAnswer, goalAnswer, regionAnswer) {
+      let track = (bgAnswer && bgAnswer.career) ? bgAnswer.career : 'grc';
+      if (track === 'advance') {
+        track = (regionAnswer && regionAnswer.region === 'the UK') ? 'privacy' : 'grc';
+      }
+      if (goalAnswer && goalAnswer.plan === 'nexus') track = 'ai';
+      let tier = (expAnswer && expAnswer.exp) ? expAnswer.exp : 'mid';
+      if (bgAnswer && bgAnswer.career === 'advance' && EXP_ORDER.indexOf(tier) < EXP_ORDER.indexOf('mid')) {
+        tier = 'mid';
+      }
+      return (CAREER_TRACKS[track] && CAREER_TRACKS[track][tier]) || CAREER_TRACKS.grc.mid;
+    }
 
     function showResult(){
       const vals = Object.values(answers);
@@ -3766,12 +3789,8 @@
       else if (total <= 2) planKey = 'node';
       else planKey = 'lattice';
 
-      let career = careerByBackground[0];
-      if (bgAnswer) {
-        const bgIndex = [0, 1, 3, 4].indexOf(bgAnswer.m);
-        if (bgIndex >= 0) career = careerByBackground[bgIndex];
-      }
-      if (goalAnswer && goalAnswer.plan === 'nexus') career = 'AI Governance & Risk Lead';
+      const expAnswer = answers[1];
+      const career = resolveCareer(bgAnswer, expAnswer, goalAnswer, regionAnswer);
 
       quizWrap.hidden = true;
       resultWrap.hidden = false;
@@ -3787,9 +3806,21 @@
       const plan = planCopy[planKey];
       document.getElementById('resultPlanName').textContent = plan.name;
       document.getElementById('resultPlanDesc').textContent = plan.desc;
-      const region = regionAnswer && regionAnswer.region ? regionAnswer.region : 'your target';
-      document.getElementById('resultCareer').innerHTML =
-        `Suggested career path: <strong style="color:#00A8E8">${career}</strong> — aligned to ${region} market demand.`;
+      const regionPhrase = {
+        'the US': 'the US market',
+        'the UK': 'the UK market',
+        India: 'the Indian market',
+        'a remote, global': 'remote & global roles'
+      };
+      const rp = (regionAnswer && regionPhrase[regionAnswer.region]) || 'your target market';
+      const careerEl = document.getElementById('resultCareer');
+      if (planKey === 'custom') {
+        careerEl.innerHTML =
+          `Best fit: <strong style="color:#00A8E8">team upskilling</strong> across GRC, TPRM, ISO 27001 & AI governance — mapped to roles across ${rp}.`;
+      } else {
+        careerEl.innerHTML =
+          `Suggested career path: <strong style="color:#00A8E8">${career}</strong> — strong demand across ${rp}.`;
+      }
       document.getElementById('resultCta').textContent = planKey === 'custom' ? 'Get Custom Quote →' : `View ${plan.name} details →`;
 
       document.querySelectorAll('.plan').forEach(p => {
