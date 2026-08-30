@@ -301,34 +301,65 @@
        LIGHT THEME VARIABLES & OVERRIDES
        ======================================== */
     html[data-theme="light"] {
-      --carbon-foundation: #F8FAFC;
+      --carbon-foundation: #F0F4F8;
       --deep-carbon: #FFFFFF;
       --white: #0F172A; /* Primary dark heading text */
       --steel: #334155; /* High contrast body text */
       --chrome-lattice: #64748B; /* Muted/secondary text */
-      --dark-bg-gradient: linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 100%);
+      --dark-bg-gradient: linear-gradient(135deg, #F0F4F8 0%, #E8EDF2 100%);
       --accent-gradient: linear-gradient(90deg, #0284C7 0%, #0077B6 100%);
     }
 
     html[data-theme="light"] body {
-      background: #F8FAFC;
+      background: #F0F4F8;
       color: #334155;
     }
 
     html[data-theme="light"] #aurora-bg {
-      background: #F8FAFC;
+      background: #F0F4F8;
+    }
+    html[data-theme="light"] #aurora-bg .orb-1 {
+      background: #38BDF8;
+      opacity: 0.12;
+    }
+    html[data-theme="light"] #aurora-bg .orb-2 {
+      background: #0284C7;
+      opacity: 0.08;
     }
     html[data-theme="light"] #canvas-container {
       opacity: 0;
       pointer-events: none;
     }
+
+    /* Light mode section differentiation */
+    html[data-theme="light"] .section {
+      background: transparent;
+    }
+    html[data-theme="light"] #about {
+      background: linear-gradient(180deg, #F0F4F8 0%, #E4E9F0 50%, #F0F4F8 100%);
+    }
+    html[data-theme="light"] #programs {
+      background: linear-gradient(180deg, #F0F4F8 0%, #E8EDF2 30%, #F0F4F8 100%);
+    }
+    html[data-theme="light"] #why {
+      background: linear-gradient(180deg, #F0F4F8 0%, #E4E9F0 50%, #F0F4F8 100%);
+    }
+    html[data-theme="light"] #plans {
+      background: linear-gradient(180deg, #F0F4F8 0%, #E8EDF2 30%, #F0F4F8 100%);
+    }
+    html[data-theme="light"] #corporate {
+      background: linear-gradient(180deg, #F0F4F8 0%, #E4E9F0 50%, #F0F4F8 100%);
+    }
+    html[data-theme="light"] #contact {
+      background: linear-gradient(180deg, #E8EDF2 0%, #DDE4EC 50%, #E8EDF2 100%);
+    }
     html[data-theme="light"] .orb-1 {
       background: #38BDF8;
-      opacity: 0.18;
+      opacity: 0.15;
     }
     html[data-theme="light"] .orb-2 {
       background: #0284C7;
-      opacity: 0.12;
+      opacity: 0.10;
     }
 
     /* Navigation */
