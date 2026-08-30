@@ -1071,16 +1071,68 @@
       flex-direction: column;
       align-items: center;
       gap: 8px;
-      color: var(--chrome-lattice);
+      color: var(--white);
       font-size: 11px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      opacity: 0.5;
-      animation: bounce 2s ease-in-out infinite;
+      opacity: 0.8;
+      animation: scrollPulse 2.5s ease-in-out infinite;
+    }
+    .scroll-indicator::before {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(0, 168, 232, 0.15);
+      border: 1px solid rgba(0, 168, 232, 0.3);
+      animation: scrollGlow 2.5s ease-in-out infinite;
     }
     .scroll-indicator svg {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 6px rgba(0, 168, 232, 0.6));
+    }
+    .scroll-indicator span {
+      position: relative;
+      z-index: 1;
+      font-weight: 600;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.8; }
+      50% { transform: translateX(-50%) translateY(6px); opacity: 1; }
+    }
+    @keyframes scrollGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0, 168, 232, 0); }
+      50% { box-shadow: 0 0 20px 4px rgba(0, 168, 232, 0.3); }
+    }
+
+    /* Light mode scroll indicator */
+    html[data-theme="light"] .scroll-indicator {
+      color: #0F172A;
+    }
+    html[data-theme="light"] .scroll-indicator::before {
+      background: rgba(0, 119, 182, 0.12);
+      border-color: rgba(0, 119, 182, 0.25);
+    }
+    html[data-theme="light"] .scroll-indicator svg {
+      stroke: #0077B6;
+      filter: drop-shadow(0 0 4px rgba(0, 119, 182, 0.4));
+    }
+    html[data-theme="light"] .scroll-indicator span {
+      text-shadow: none;
+      color: #334155;
+    }
+    html[data-theme="light"] @keyframes scrollGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0, 119, 182, 0); }
+      50% { box-shadow: 0 0 16px 2px rgba(0, 119, 182, 0.2); }
     }
 
     /* ========================================
