@@ -8,14 +8,24 @@
   <link rel="apple-touch-icon" sizes="180x180" href="../favicon.png">
   <meta name="description" content="OMNyra Group — Premium GRC training, ISO 27001 readiness, third-party risk management, and regulatory compliance advisory. Empowering Careers. Securing the Future.">
   <link rel="canonical" href="https://omnyragroup.online/">
+  <link rel="alternate" hreflang="en" href="https://omnyragroup.online/" />
+  <link rel="alternate" hreflang="en-us" href="https://omnyragroup.online/" />
+  <link rel="alternate" hreflang="en-gb" href="https://omnyragroup.online/" />
+  <link rel="alternate" hreflang="x-default" href="https://omnyragroup.online/" />
   <meta property="og:type" content="website">
   <meta property="og:title" content="OMNyra Group — GRC Training & Risk Advisory">
   <meta property="og:description" content="Practitioner-led training that transforms beginners into highly sought-after Governance, Risk & Compliance specialists — ready for the global stage.">
   <meta property="og:url" content="https://omnyragroup.online/">
   <meta property="og:site_name" content="OMNyra Group">
+  <meta property="og:image" content="https://omnyragroup.online/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="OMNyra Group — GRC Training & Risk Advisory" />
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="OMNyra Group — GRC Training & Risk Advisory">
   <meta name="twitter:description" content="Practitioner-led training that transforms beginners into highly sought-after Governance, Risk & Compliance specialists.">
+  <meta name="twitter:image" content="https://omnyragroup.online/og-image.png" />
+  <meta name="twitter:image:alt" content="OMNyra Group — GRC Training & Risk Advisory" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -484,6 +494,11 @@
     html[data-theme="light"] .result__panel {
       border-top: 1px solid rgba(0, 0, 0, 0.08);
     }
+    @media (max-width: 768px) {
+      html[data-theme="light"] .result__panel {
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+      }
+    }
     html[data-theme="light"] .result__panel h3 {
       color: #0284C7;
     }
@@ -527,19 +542,64 @@
     /* Shared Glass Cards */
     html[data-theme="light"] .glass-card,
     html[data-theme="light"] .program-subcard,
-    html[data-theme="light"] .plan-card,
-    html[data-theme="light"] .career-card,
-    html[data-theme="light"] .faq-item {
+    html[data-theme="light"] .plan-card {
       background: rgba(255, 255, 255, 0.95);
       border: 1px solid rgba(0, 0, 0, 0.08);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
     }
     html[data-theme="light"] .glass-card:hover,
     html[data-theme="light"] .program-subcard:hover,
-    html[data-theme="light"] .plan-card:hover,
-    html[data-theme="light"] .career-card:hover {
+    html[data-theme="light"] .plan-card:hover {
       border-color: rgba(2, 132, 199, 0.4);
       box-shadow: 0 14px 35px rgba(2, 132, 199, 0.1);
+    }
+    html[data-theme="light"] .plan-card-teams {
+      border-top: 2px solid rgba(0, 119, 182, 0.5);
+    }
+    html[data-theme="light"] .plan-badge-teams {
+      color: #0284C7;
+    }
+
+    html[data-theme="light"] .contact-choice {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    html[data-theme="light"] .contact-choice:hover {
+      border-color: #0284C7 !important;
+      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.12);
+    }
+    html[data-theme="light"] .contact-choice div[style*="font-weight: 700"] {
+      color: #0F172A;
+    }
+    html[data-theme="light"] .channel-toggle {
+      background: rgba(0, 0, 0, 0.06);
+    }
+    html[data-theme="light"] .channel-btn {
+      background: rgba(2, 132, 199, 0.12);
+      color: #0284C7;
+    }
+    html[data-theme="light"] .channel-btn:not(.active) {
+      background: transparent;
+      color: #64748B;
+    }
+    html[data-theme="light"] .channel-btn:hover:not(.active) {
+      color: #334155;
+    }
+    html[data-theme="light"] .contact-pill--email {
+      background: rgba(2, 132, 199, 0.06);
+      border-color: rgba(2, 132, 199, 0.12);
+    }
+    html[data-theme="light"] .contact-pill--email:hover {
+      background: rgba(2, 132, 199, 0.1);
+      border-color: rgba(2, 132, 199, 0.2);
+    }
+    html[data-theme="light"] .contact-pill--whatsapp {
+      background: rgba(22, 163, 74, 0.06);
+      border-color: rgba(22, 163, 74, 0.12);
+    }
+    html[data-theme="light"] .contact-pill--whatsapp:hover {
+      background: rgba(22, 163, 74, 0.1);
+      border-color: rgba(22, 163, 74, 0.2);
     }
 
     /* Section Headers */
@@ -681,28 +741,7 @@
       color: #0F172A;
     }
 
-    /* Careers Section */
-    html[data-theme="light"] .career-card h3 {
-      color: #0F172A;
-    }
-    html[data-theme="light"] .career-card p {
-      color: #475569;
-    }
-
-    /* FAQ & Contact Section */
-    html[data-theme="light"] .faq-question {
-      color: #0F172A;
-    }
-    html[data-theme="light"] .faq-chevron {
-      stroke: #0284C7;
-    }
-    html[data-theme="light"] .faq-answer p {
-      color: #475569;
-    }
-    html[data-theme="light"] .faq-item.open {
-      border-color: rgba(2, 132, 199, 0.4);
-      background: rgba(2, 132, 199, 0.03);
-    }
+    /* Contact Section */
     html[data-theme="light"] .contact-item {
       color: #334155;
     }
@@ -1414,9 +1453,6 @@
       grid-template-columns: repeat(3, 1fr);
       gap: var(--space-lg);
     }
-    .bento-grid .glass-card:first-child {
-      grid-column: span 2;
-    }
     .bento-stat {
       font-size: 14px;
       font-weight: 700;
@@ -1441,7 +1477,7 @@
        ======================================== */
     .plans-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: var(--space-lg);
       align-items: start;
     }
@@ -1520,6 +1556,22 @@
       background: linear-gradient(135deg, rgba(0, 168, 232, 0.08) 0%, transparent 100%);
     }
 
+    /* Teams card — subtle blue top accent */
+    .plan-card-teams {
+      border-top: 2px solid rgba(0, 168, 232, 0.4);
+    }
+    .plan-badge-teams {
+      color: var(--hex-blue);
+    }
+    .plan-card-teams .plan-card-header {
+      background: linear-gradient(135deg, rgba(0, 168, 232, 0.05) 0%, transparent 100%);
+    }
+
+    /* Prevent CTA text wrapping in plan cards */
+    .plan-card .cta-btn {
+      white-space: nowrap;
+    }
+
     .plans-group-banner {
       text-align: center;
       margin-top: var(--space-2xl);
@@ -1535,99 +1587,7 @@
     }
 
     /* ========================================
-       12. CAREER OUTCOMES SECTION
-       ======================================== */
-    .careers-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-lg);
-    }
-    .career-card {
-      border-left: 3px solid var(--hex-blue);
-      padding-left: var(--space-lg);
-    }
-    .career-card h3 {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: var(--space-sm);
-    }
-    .career-card p {
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--chrome-lattice);
-    }
-
-    /* ========================================
-       13. FAQ SECTION
-       ======================================== */
-    .faq-list {
-      max-width: 800px;
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-md);
-    }
-    .faq-item {
-      background: rgba(22, 27, 34, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      transition: border-color 0.3s ease;
-    }
-    .faq-item.open {
-      border-color: rgba(0, 168, 232, 0.2);
-    }
-    .faq-question {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: var(--space-lg) var(--space-xl);
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-family: var(--font-family);
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--white);
-      text-align: left;
-      transition: color 0.3s ease;
-    }
-    .faq-question:hover { color: var(--hex-blue); }
-    .faq-question:focus-visible {
-      outline: 2px solid var(--hex-blue);
-      outline-offset: -2px;
-      border-radius: var(--radius-lg);
-    }
-    .faq-icon {
-      width: 24px;
-      height: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: transform 0.3s ease;
-    }
-    .faq-item.open .faq-icon { transform: rotate(45deg); }
-    .faq-icon svg {
-      width: 16px;
-      height: 16px;
-      stroke: var(--hex-blue);
-      stroke-width: 2;
-    }
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .faq-answer-inner {
-      padding: 0 var(--space-xl) var(--space-lg);
-      font-size: 15px;
-      line-height: 1.8;
-      color: var(--chrome-lattice);
-    }
-
-    /* ========================================
-       14. CONTACT SECTION
+       12. CONTACT SECTION
        ======================================== */
     .contact-section {
       text-align: center;
@@ -1700,7 +1660,7 @@
     }
     .footer-copy {
       background: var(--carbon-foundation);
-      padding: 16px var(--space-2xl);
+      padding: 8px var(--space-2xl) 16px;
       text-align: center;
       font-size: 12px;
       color: rgba(139, 148, 158, 0.5);
@@ -1713,6 +1673,20 @@
       text-transform: uppercase;
       margin-top: 4px;
       color: rgba(139, 148, 158, 0.3);
+    }
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-md);
+      padding: 8px var(--space-2xl) 0;
+      background: var(--carbon-foundation);
+    }
+    .footer-social a {
+      color: var(--chrome-lattice);
+      transition: color 0.2s ease;
+    }
+    .footer-social a:hover {
+      color: var(--hex-blue);
     }
 
     /* ========================================
@@ -1738,6 +1712,108 @@
     }
 
     /* ========================================
+       16b. CORPORATE / FAQ / CONTACT EXTRAS
+       ======================================== */
+    .contact-choice:hover {
+      border-color: #00A8E8 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,168,232,0.15);
+    }
+    .contact-choice:active {
+      transform: translateY(0);
+    }
+
+    .channel-toggle {
+      display: inline-flex;
+      background: rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: 4px;
+      position: relative;
+      z-index: 10;
+    }
+    .channel-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      background: rgba(0,168,232,0.15);
+      color: #00A8E8;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: inherit;
+      position: relative;
+      z-index: 10;
+    }
+    .channel-btn:not(.active) {
+      background: transparent;
+      color: var(--chrome-lattice);
+    }
+    .channel-btn:hover:not(.active) {
+      color: var(--steel);
+    }
+
+    .contact-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      border-radius: 28px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-pill::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 50%);
+      pointer-events: none;
+    }
+    .contact-pill span {
+      letter-spacing: -0.01em;
+    }
+    .contact-pill--email {
+      background: rgba(0,168,232,0.1);
+      color: #00A8E8;
+      border: 1px solid rgba(0,168,232,0.18);
+    }
+    .contact-pill--email:hover {
+      background: rgba(0,168,232,0.16);
+      border-color: rgba(0,168,232,0.28);
+      transform: translateY(-1px);
+    }
+    .contact-pill--whatsapp {
+      background: rgba(37,211,102,0.1);
+      color: #25D366;
+      border: 1px solid rgba(37,211,102,0.18);
+    }
+    .contact-pill--whatsapp:hover {
+      background: rgba(37,211,102,0.16);
+      border-color: rgba(37,211,102,0.28);
+      transform: translateY(-1px);
+    }
+
+    #corporate .glass-card {
+      transition: all 0.25s ease;
+    }
+    #corporate .glass-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+    }
+
+
+
+    /* ========================================
        17. RESPONSIVE — TABLET
        ======================================== */
     @media (max-width: 1024px) {
@@ -1761,9 +1837,6 @@
       .bento-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-      .bento-grid .glass-card:first-child {
-        grid-column: span 2;
-      }
       .plans-grid {
         grid-template-columns: 1fr;
         max-width: 440px;
@@ -1773,7 +1846,7 @@
       .plan-card.featured {
         transform: none;
       }
-      .careers-grid {
+      .plans-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
@@ -1808,9 +1881,12 @@
       .bento-grid .glass-card:first-child {
         grid-column: span 1;
       }
-      .careers-grid { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .contact-details { flex-direction: column; align-items: center; }
+      .channel-btn { font-size: 0.8rem; padding: 6px 12px; gap: 4px; }
+      .channel-btn svg { width: 13px; height: 13px; }
+      .contact-pill { font-size: 0.82rem; padding: 10px 18px; gap: 8px; }
+      .contact-pill svg { width: 14px; height: 14px; }
 
       .scroll-indicator { display: none; }
     }
@@ -1859,7 +1935,6 @@
         <a href="#programs">Programs</a>
         <a href="#why">Why OMNyra</a>
         <a href="#plans">Plans</a>
-        <a href="#careers">Careers</a>
         <a href="#contact">Contact</a>
       </nav>
       <!-- Desktop Theme Toggle -->
@@ -1881,7 +1956,6 @@
       <a href="#programs">Programs</a>
       <a href="#why">Why OMNyra</a>
       <a href="#plans">Plans</a>
-      <a href="#careers">Careers</a>
       <a href="#contact">Contact</a>
       <!-- Mobile Theme Toggle -->
       <div class="mobile-theme-row">
@@ -1971,6 +2045,8 @@
             .quiz__intro { font-size: 0.85rem; color: var(--chrome-lattice); margin: 0 0 22px; }
             .quiz__step { animation: fadeIn .35s ease; }
             @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+            #resultWrap { animation: resultReveal .45s ease; }
+            @keyframes resultReveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
             .quiz__q { font-size: 1.05rem; font-weight: 600; margin: 0 0 16px; display: flex; flex-direction: column; gap: 6px; color: var(--white); }
             .quiz__q-num { font-size: 0.7rem; color: rgba(255,255,255,0.5); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
             .quiz__options { display: flex; flex-direction: column; gap: 8px; }
@@ -1987,13 +2063,29 @@
             .quiz__skip { font-size: 0.8rem; color: rgba(255,255,255,0.4); text-decoration: none; background: none; border: none; cursor: pointer; margin-left: auto; transition: color 0.2s; }
             .quiz__skip:hover { color: #00A8E8; }
 
-            .result__panel { margin-top: 22px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
-            .result__panel h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; color: #00A8E8; }
-            .result__desc { color: var(--chrome-lattice); font-size: 0.9rem; margin: 0 0 10px; }
-            .result__career { font-size: 0.85rem; color: var(--white); margin: 0 0 20px; }
+            .result__layout { display: flex; gap: 20px; align-items: flex-start; }
+            .result__matrix-col { flex: 0 0 180px; }
+            .result__matrix-col .matrix { max-width: 180px; }
+            .result__matrix-col .matrix__axes { font-size: 0.58rem; }
+            .result__matrix-col .matrix__labels { font-size: 0.65rem; margin-top: 10px; padding-top: 10px; }
+            .result__info-col { flex: 1 1 0; min-width: 0; }
+            .result__panel { padding-top: 0; border-top: none; margin-top: 0; }
+            .result__panel h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 6px; color: #00A8E8; }
+            .result__desc { color: var(--chrome-lattice); font-size: 0.85rem; margin: 0 0 8px; line-height: 1.45; }
+            .result__career { font-size: 0.82rem; color: var(--white); margin: 0 0 16px; }
             .result__career strong { color: #EAB308; }
-            .result__actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+            .result__actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
             .result__actions .btn { padding: 10px 18px; font-size: 0.85rem; background: #00A8E8; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; }
+            .result__actions .btn:hover { background: #0090cc; }
+
+            @media (max-width: 768px) {
+              .result__layout { flex-direction: column; }
+              .result__matrix-col { flex: none; width: 100%; }
+              .result__matrix-col .matrix { max-width: 160px; margin: 0 auto; }
+              .result__matrix-col .matrix__axes { justify-content: space-between; }
+              .result__info-col { width: 100%; }
+              .result__panel { padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 16px; }
+            }
           </style>
 
           <div class="matrix-card" id="matrixCard">
@@ -2004,7 +2096,7 @@
             <!-- QUIZ STATE -->
             <div id="quizWrap">
               <div class="quiz__progress"><div class="quiz__progress-bar" id="quizProgressBar"></div></div>
-              <p class="quiz__intro">Answer 5 quick questions — we'll plot your position and recommend a plan.</p>
+              <p class="quiz__intro">Answer 5 quick questions — we'll plot your position and recommend a plan. <a href="#plan-custom" class="quiz__skip" style="display:inline;">Leading a team? Skip to Custom Training →</a></p>
 
               <div class="quiz__step" data-step="1">
                 <p class="quiz__q"><span class="quiz__q-num">01 / 05</span>Where are you starting from?</p>
@@ -2043,6 +2135,7 @@
                   <button type="button" class="quiz__opt" data-m="1" data-r="0" data-plan="lattice">Switching careers into GRC</button>
                   <button type="button" class="quiz__opt" data-m="0" data-r="1" data-plan="lattice">Landing my first GRC role, fast</button>
                   <button type="button" class="quiz__opt" data-m="2" data-r="1" data-plan="nexus">Leading GRC + AI governance</button>
+                  <button type="button" class="quiz__opt" data-m="0" data-r="0" data-plan="custom">Training my team or organization</button>
                 </div>
               </div>
 
@@ -2064,23 +2157,29 @@
 
             <!-- RESULT STATE -->
             <div id="resultWrap" hidden>
-              <div class="matrix" id="matrixGrid"></div>
-              <div class="matrix__axes">
-                <span>Market Alignment &rarr;</span>
-                <span>Interview Readiness &uarr;</span>
-              </div>
-              <div class="matrix__labels">
-                <span>High Risk</span>
-                <span>Ready to Hire</span>
-              </div>
-              <div class="result__panel">
-                <span class="quiz__q-num" style="margin-bottom:8px; display:block;">Recommended For You</span>
-                <h3 id="resultPlanName">Lattice</h3>
-                <p id="resultPlanDesc" class="result__desc"></p>
-                <p id="resultCareer" class="result__career"></p>
-                <div class="result__actions">
-                  <a href="#plans" class="btn" id="resultCta">View plan &rarr;</a>
-                  <button type="button" class="quiz__skip" id="retakeBtn" style="margin-left:0;">Retake quiz</button>
+              <div class="result__layout">
+                <div class="result__matrix-col">
+                  <div class="matrix" id="matrixGrid"></div>
+                  <div class="matrix__axes">
+                    <span>Market Alignment &rarr;</span>
+                    <span>Interview Readiness &uarr;</span>
+                  </div>
+                  <div class="matrix__labels">
+                    <span>High Risk</span>
+                    <span>Ready to Hire</span>
+                  </div>
+                </div>
+                <div class="result__info-col">
+                  <div class="result__panel">
+                    <span class="quiz__q-num" style="margin-bottom:6px; display:block;">Recommended For You</span>
+                    <h3 id="resultPlanName">Lattice</h3>
+                    <p id="resultPlanDesc" class="result__desc"></p>
+                    <p id="resultCareer" class="result__career"></p>
+                    <div class="result__actions">
+                      <a href="#plans" class="btn" id="resultCta">View plan &rarr;</a>
+                      <button type="button" class="quiz__skip" id="retakeBtn" style="margin-left:0;">Retake quiz</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2724,7 +2823,7 @@
       <div class="container">
         <p class="section-label reveal">Why OMNyra</p>
         <h2 class="section-headline reveal">Not Another Certification Mill.<br>This Is <span class="gradient-text">Career Architecture.</span></h2>
-        <p class="section-subheadline reveal">We reverse-engineered the hiring process. Every element of our program is designed to make you undeniable to employers.</p>
+        <p class="section-subheadline reveal">We reverse-engineered the hiring process. Every element of our program is designed to make you undeniable to employers. <strong>We don't teach theory — we teach what works.</strong></p>
 
         <div class="bento-grid">
           <!-- Tile 1 — Live Training (spans 2 cols) -->
@@ -2761,6 +2860,13 @@
             <div class="bento-title">Career Mentorship</div>
             <div class="bento-desc">Guidance that doesn't end with a certificate. Our mentors help you navigate job applications, salary negotiations, and the first 90 days of your new GRC career.</div>
           </div>
+
+          <!-- Tile 6 — Academic vs Practitioner-Led -->
+          <div class="glass-card reveal">
+            <div class="bento-stat">VS</div>
+            <div class="bento-title">Academic vs Practitioner-Led</div>
+            <div class="bento-desc">Theory-heavy training leaves graduates struggling. We teach what actually works — real case studies, current frameworks, job-ready skills from day one.</div>
+          </div>
         </div>
       </div>
     </section>
@@ -2769,7 +2875,7 @@
     <section class="section" id="plans" aria-label="Choose Your Plan">
       <div class="container">
         <p class="section-label reveal">Choose Your Path</p>
-        <h2 class="section-headline reveal">Three Plans. Zero Guesswork.<br>Find the Fit That <span class="gradient-text">Fuels Your Future.</span></h2>
+        <h2 class="section-headline reveal">Find Your Path.<br>Zero Guesswork. <span class="gradient-text">Maximum Impact.</span></h2>
         <p class="section-subheadline reveal">Whether you're testing the waters or going all-in, we have a track designed for exactly where you are right now.</p>
 
         <div class="plans-grid">
@@ -2789,7 +2895,7 @@
                 <li><span class="check">✓</span> Certificate of Completion</li>
                 <li><span class="check">✓</span> Access to Community Group</li>
               </ul>
-              <a href="#contact" class="cta-btn cta-btn-outline" style="width:100%;justify-content:center;">Contact for Pricing →</a>
+              <a href="#contact" class="cta-btn cta-btn-outline" style="width:100%;justify-content:center;">Contact for Pricing <span aria-hidden="true">→</span></a>
               <p class="plan-best-for"><strong>Best for:</strong> Students &amp; career explorers who want a focused introduction.</p>
             </div>
           </div>
@@ -2812,7 +2918,7 @@
                 <li><span class="check">✓</span> Mock Interview Session</li>
                 <li><span class="check">✓</span> Certificate of Completion</li>
               </ul>
-              <a href="#contact" class="cta-btn" style="width:100%;justify-content:center;">Contact for Pricing →</a>
+              <a href="#contact" class="cta-btn" style="width:100%;justify-content:center;">Contact for Pricing <span aria-hidden="true">→</span></a>
               <p class="plan-best-for"><strong>Best for:</strong> Fresh graduates &amp; career switchers ready to land their first GRC role.</p>
             </div>
           </div>
@@ -2835,78 +2941,158 @@
                 <li><span class="check">✓</span> Priority Placement Support</li>
                 <li><span class="check">✓</span> Lifetime Community Access</li>
               </ul>
-              <a href="#contact" class="cta-btn cta-btn-outline" style="width:100%;justify-content:center;">Contact for Pricing →</a>
+              <a href="#contact" class="cta-btn cta-btn-outline" style="width:100%;justify-content:center;">Contact for Pricing <span aria-hidden="true">→</span></a>
               <p class="plan-best-for"><strong>Best for:</strong> Working professionals who want to future-proof with AI-driven GRC automation.</p>
+            </div>
+          </div>
+
+          <!-- TEAMS / CUSTOM -->
+          <div id="plan-custom" class="glass-card plan-card plan-card-teams reveal">
+            <div class="plan-card-header">
+              <div class="plan-badge plan-badge-teams">For Teams</div>
+              <div class="plan-name">Custom</div>
+              <div class="plan-tagline">Build your team's GRC capability.</div>
+            </div>
+            <div class="plan-card-body">
+              <ul class="plan-features">
+                <li><span class="check">✓</span> 3+ participants from your organization</li>
+                <li><span class="check">✓</span> Any program track or combination</li>
+                <li><span class="check">✓</span> Custom scheduling (weekly, intensive, etc.)</li>
+                <li><span class="check">✓</span> Dedicated cohort with your team only</li>
+                <li><span class="check">✓</span> Group discounts on all plans</li>
+                <li><span class="check">✓</span> Optional: custom curriculum modules</li>
+              </ul>
+              <a href="mailto:omnyra.training@gmail.com?subject=Team%20Training%20Inquiry" class="cta-btn cta-btn-outline" style="width:100%;justify-content:center;">Request Custom Pricing <span aria-hidden="true">→</span></a>
+              <p class="plan-best-for"><strong>Best for:</strong> Teams of 3+ · Batches · Corporate training programs.</p>
             </div>
           </div>
         </div>
 
-        <div class="plans-group-banner reveal">
-          🎯 <strong>Team Training?</strong> Groups of 3 or more unlock exclusive pricing. Contact us to discuss your team's goals.
+        <div class="plans-group-banner reveal" style="background: linear-gradient(135deg, rgba(0,168,232,0.1), rgba(37,211,102,0.06)); border: 1px solid rgba(0,168,232,0.25); border-radius: 12px; padding: 24px 28px; margin-top: 28px;">
+          <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+            <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(0,168,232,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00A8E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div style="flex: 1 1 300px;">
+              <p style="margin: 0 0 6px; font-size: 1rem; font-weight: 700; color: var(--white);">Bring Your Team. Train Together.</p>
+              <p style="margin: 0; font-size: 0.88rem; color: var(--chrome-lattice); line-height: 1.5;">
+                Custom pricing for batches of 3+. Corporate training programs tailored to your organization's GRC needs.
+                Flexible scheduling. Volume discounts. Dedicated support.
+              </p>
+            </div>
+            <a href="#corporate" class="cta-btn" style="white-space: nowrap; background: transparent; border: 1px solid #00A8E8; color: #00A8E8; padding: 10px 20px; font-size: 0.85rem;">
+              See Team Options →
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ⑥ CAREER OUTCOMES -->
-    <section class="section" id="careers" aria-label="Career Outcomes">
+    <!-- ⑤b CORPORATE & TEAM TRAINING -->
+    <section id="corporate" class="section" aria-label="Corporate & Team Training" style="padding: 64px 0;">
       <div class="container">
-        <p class="section-label reveal">Where You'll Land</p>
-        <h2 class="section-headline reveal">Your Training Ends.<br>Your Career <span class="gradient-text">Takes Off.</span></h2>
-        <p class="section-subheadline reveal">Our graduates step into roles that start at $97K+ in the US market. Here's where our training can take you.</p>
+        <div class="section-header reveal" style="text-align: center; margin-bottom: 48px;">
+          <p class="section-label">For Teams & Organizations</p>
+          <h2 class="section-headline">Corporate & Team <span class="gradient-text">Training</span></h2>
+          <p class="section-subheadline" style="max-width: 600px; margin: 0 auto;">
+            Upskill your team with practitioner-led GRC training. Custom curricula, flexible scheduling, and dedicated support for organizations of any size.
+          </p>
+        </div>
 
-        <div class="careers-grid">
-          <div class="glass-card career-card reveal">
-            <h3>GRC Analyst</h3>
-            <p>The backbone of any compliance program. Assess organizational risk, implement controls, and ensure regulatory requirements are met across every department.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; max-width: 960px; margin: 0 auto;">
+          <div class="glass-card reveal" style="padding: 28px; border-radius: 12px; border-top: 2px solid #00A8E8;">
+            <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(0,168,232,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00A8E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: var(--white);">Bring Your Own Group</h3>
+            <p style="color: var(--chrome-lattice); font-size: 0.88rem; line-height: 1.5; margin: 0;">
+              Form your own team of 3+ and unlock exclusive group pricing. Choose any program track — we customize the schedule to fit your cohort.
+            </p>
           </div>
-          <div class="glass-card career-card reveal">
-            <h3>Risk Analyst</h3>
-            <p>Quantify threats. Model scenarios. Advise leadership. Risk Analysts are the strategic thinkers who turn uncertainty into actionable intelligence for the C-suite.</p>
+
+          <div class="glass-card reveal" style="padding: 28px; border-radius: 12px; border-top: 2px solid #25D366;">
+            <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(37,211,102,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: var(--white);">Corporate Programs</h3>
+            <p style="color: var(--chrome-lattice); font-size: 0.88rem; line-height: 1.5; margin: 0;">
+              Tailored training for organizations — align your team on GRC frameworks, ISO 27001, TPRM, and AI governance with custom curriculum.
+            </p>
           </div>
-          <div class="glass-card career-card reveal">
-            <h3>TPRM Analyst</h3>
-            <p>Own the vendor ecosystem. Evaluate third-party risk, manage due diligence workflows, and protect the organization from supply chain vulnerabilities.</p>
+
+          <div class="glass-card reveal" style="padding: 28px; border-radius: 12px; border-top: 2px solid #EAB308;">
+            <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(234,179,8,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EAB308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: var(--white);">Custom Pricing</h3>
+            <p style="color: var(--chrome-lattice); font-size: 0.88rem; line-height: 1.5; margin: 0;">
+              No one-size-fits-all pricing. We build packages based on team size, program selection, and delivery format — virtual, in-person, or hybrid.
+            </p>
           </div>
-          <div class="glass-card career-card reveal">
-            <h3>Compliance Analyst</h3>
-            <p>Navigate the regulatory maze with precision. From SOX to GDPR, Compliance Analysts ensure the organization operates within legal and ethical boundaries.</p>
-          </div>
-          <div class="glass-card career-card reveal">
-            <h3>ISO 27001 Consultant</h3>
-            <p>The specialist organizations call when they need to achieve or maintain ISO 27001 certification. Lead gap analyses, build ISMS frameworks, and guide audit readiness.</p>
-          </div>
-          <div class="glass-card career-card reveal">
-            <h3>Privacy Advocate</h3>
-            <p>Champion data rights in the age of AI. Privacy Advocates design data protection programs, conduct DPIAs, and ensure organizations respect user privacy at every touchpoint.</p>
-          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 36px;" class="reveal">
+          <a href="mailto:omnyra.training@gmail.com?subject=Corporate%20/%20Team%20Training%20Inquiry" class="cta-btn" style="background: #00A8E8; color: white; padding: 14px 28px; font-size: 0.9rem;">
+            Request Custom Pricing →
+          </a>
+          <p style="margin-top: 12px; font-size: 0.8rem; color: var(--chrome-lattice);">
+            Or <a href="https://wa.me/919063370816?text=Hi%20OMNyra%2C%20I%27m%20interested%20in%20corporate%20or%20team%20training." target="_blank" rel="noopener noreferrer" style="color: #25D366; text-decoration: none;">WhatsApp Us</a>
+          </p>
         </div>
       </div>
     </section>
 
-
-
-    <!-- ⑧ CONTACT / CTA -->
+    <!-- ⑥ CONTACT / CTA -->
     <section class="section contact-section" id="contact" aria-label="Contact Us">
-      <div class="container">
+      <div class="container" style="max-width: 720px; text-align: center;">
         <p class="section-label reveal">Let's Talk</p>
         <h2 class="section-headline reveal">Your Future in GRC Starts<br>With a <span class="gradient-text">Single Conversation.</span></h2>
-        <p class="section-subheadline reveal">No sales pitch. No pressure. Just a conversation about where you are, where you want to be, and how we can get you there.</p>
+        <p class="section-subheadline reveal">Whether you're an individual looking for career coaching or a team seeking GRC training — we're here to help.</p>
 
-        <a href="mailto:omnyra.training@gmail.com" class="cta-btn reveal" style="margin-bottom: 20px;">Start a Conversation →</a>
+        <!-- Contact channel toggle -->
+        <div class="channel-toggle-wrap" style="text-align: center; margin-bottom: 20px;">
+          <div class="channel-toggle" id="channelToggle">
+            <button class="channel-btn active" data-channel="email" onclick="setChannel('email')">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              Email
+            </button>
+            <button class="channel-btn" data-channel="whatsapp" onclick="setChannel('whatsapp')">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp
+            </button>
+          </div>
+        </div>
 
-        <div class="contact-details reveal">
-          <a href="mailto:omnyra.training@gmail.com" class="contact-item">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            omnyra.training@gmail.com
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 520px; margin: 0 auto 32px;" class="reveal">
+          <a href="mailto:omnyra.training@gmail.com?subject=Individual%20Coaching%20Inquiry" class="glass-card contact-choice contact-card" data-contact="individual" style="padding: 24px; border-radius: 10px; text-decoration: none; text-align: center; display: block; transition: all 0.25s ease;">
+            <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(0,168,232,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00A8E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div style="font-weight: 700; color: var(--white); font-size: 0.95rem; margin-bottom: 4px;">Individual</div>
+            <div style="color: var(--chrome-lattice); font-size: 0.82rem;">Coaching &amp; career support</div>
           </a>
-          <a href="https://wa.me/919063370816" target="_blank" rel="noopener noreferrer" class="contact-item">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            +91 9063370816
+          <a href="mailto:omnyra.training@gmail.com?subject=Corporate%20/%20Team%20Training%20Inquiry" class="glass-card contact-choice contact-card" data-contact="team" style="padding: 24px; border-radius: 10px; text-decoration: none; text-align: center; border: 1px solid rgba(0,168,232,0.3); display: block; transition: all 0.25s ease;">
+            <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(0,168,232,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00A8E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <div style="font-weight: 700; color: var(--white); font-size: 0.95rem; margin-bottom: 4px;">Team / Corporate</div>
+            <div style="color: var(--chrome-lattice); font-size: 0.82rem;">Batches &amp; custom programs</div>
           </a>
-          <a href="https://omnyragroup.online" target="_blank" rel="noopener noreferrer" class="contact-item">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            omnyragroup.online
-          </a>
+        </div>
+
+        <div class="contact-details reveal" style="margin-top: 16px; display: block; text-align: center;">
+          <p style="color: var(--chrome-lattice); font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 18px; text-align: center; width: 100%;">General Queries</p>
+          <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; text-align: center;">
+            <a href="mailto:omnyra.training@gmail.com" class="contact-pill contact-pill--email">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <span>Email Us</span>
+            </a>
+            <a href="https://wa.me/919063370816" target="_blank" rel="noopener noreferrer" class="contact-pill contact-pill--whatsapp">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <span>WhatsApp Us</span>
+            </a>
+          </div>
+        </div>
         </div>
       </div>
     </section>
@@ -2928,6 +3114,13 @@
         <span class="dot"></span>
         <span>Global Opportunities</span>
       </div>
+    </div>
+    <div class="footer-social">
+      <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+      </a>
     </div>
     <div class="footer-copy">
       © 2026 OMNyra Group. All rights reserved.
@@ -3124,7 +3317,7 @@
       // Reveal animations for all .reveal elements
       gsap.utils.toArray('.reveal').forEach((el, i) => {
         // Skip child cards that have dedicated grid triggers
-        if (el.classList.contains('plan-card') || el.classList.contains('career-card')) return;
+        if (el.classList.contains('plan-card')) return;
 
         gsap.fromTo(el,
           { opacity: 0, y: 28 },
@@ -3196,32 +3389,6 @@
             const featured = document.querySelector('.plan-card.featured');
             if (featured && window.innerWidth > 900) featured.style.transform = 'scale(1.03)';
           }, 700);
-        },
-        once: true
-      });
-
-      // Staggered career cards
-      ScrollTrigger.create({
-        trigger: '.careers-grid',
-        start: 'top 85%',
-        onEnter: () => {
-          gsap.fromTo('.career-card',
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 0.55, stagger: 0.08, ease: 'power3.out' }
-          );
-        },
-        once: true
-      });
-
-      // Staggered FAQ items
-      ScrollTrigger.create({
-        trigger: '.faq-list',
-        start: 'top 85%',
-        onEnter: () => {
-          gsap.fromTo('.faq-item',
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out' }
-          );
         },
         once: true
       });
@@ -3325,30 +3492,7 @@
 
     sections.forEach(section => observer.observe(section));
 
-    // ==========================================
-    // 4. FAQ ACCORDION
-    // ==========================================
-    document.querySelectorAll('.faq-question').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.closest('.faq-item');
-        const answer = item.querySelector('.faq-answer');
-        const isOpen = item.classList.contains('open');
 
-        // Close all
-        document.querySelectorAll('.faq-item.open').forEach(openItem => {
-          openItem.classList.remove('open');
-          openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-          openItem.querySelector('.faq-answer').style.maxHeight = null;
-        });
-
-        // Open clicked (if it was closed)
-        if (!isOpen) {
-          item.classList.add('open');
-          btn.setAttribute('aria-expanded', 'true');
-          answer.style.maxHeight = answer.scrollHeight + 'px';
-        }
-      });
-    });
 
     // ==========================================
     // 5. PROGRAM TABS SWITCHING
@@ -3380,7 +3524,7 @@
     });
 
     // ===== Career Readiness Quiz =====
-    const redRGB = [218, 91, 82], amberRGB = [231, 169, 61], greenRGB = [76, 174, 124];
+    const redRGB = [248, 81, 73], amberRGB = [0, 168, 232], greenRGB = [37, 211, 102];
     function lerp(a, b, t){ return Math.round(a + (b - a) * t); }
     function clamp(n, lo, hi){ return Math.max(lo, Math.min(hi, n)); }
 
@@ -3399,7 +3543,7 @@
           }
           const cell = document.createElement('div');
           cell.className = 'matrix__cell';
-          cell.style.setProperty('--c', `rgba(${c[0]},${c[1]},${c[2]},0.55)`);
+          cell.style.setProperty('--c', `rgba(${c[0]},${c[1]},${c[2]},0.7)`);
           container.appendChild(cell);
         }
       }
@@ -3475,6 +3619,11 @@
         name: 'Nexus',
         desc: "You're positioned to lead — Nexus adds all 6 tracks, AI governance automation, and 1-on-1 executive coaching for maximum readiness.",
         id: 'plan-nexus'
+      },
+      custom: {
+        name: 'Custom',
+        desc: "You're building a team — Custom Training gives you dedicated cohorts, flexible scheduling, and group discounts for 3+ participants.",
+        id: 'plan-custom'
       }
     };
 
@@ -3491,7 +3640,8 @@
 
       const total = marketScore + readinessScore;
       let planKey = 'lattice';
-      if (goalAnswer && goalAnswer.plan === 'nexus') planKey = 'nexus';
+      if (goalAnswer && goalAnswer.plan === 'custom') planKey = 'custom';
+      else if (goalAnswer && goalAnswer.plan === 'nexus') planKey = 'nexus';
       else if (total >= 6) planKey = 'nexus';
       else if (total <= 2) planKey = 'node';
       else planKey = 'lattice';
@@ -3520,7 +3670,7 @@
       const region = regionAnswer && regionAnswer.region ? regionAnswer.region : 'your target';
       document.getElementById('resultCareer').innerHTML =
         `Suggested career path: <strong style="color:#00A8E8">${career}</strong> — aligned to ${region} market demand.`;
-      document.getElementById('resultCta').textContent = `View ${plan.name} details →`;
+      document.getElementById('resultCta').textContent = planKey === 'custom' ? 'Request Custom Pricing →' : `View ${plan.name} details →`;
 
       document.querySelectorAll('.plan').forEach(p => {
         p.classList.remove('plan--recommended');
@@ -3551,6 +3701,37 @@
         });
       });
     }
+
+    /* ---- Contact Channel Toggle ---- */
+    const channelLinks = {
+      individual: {
+        email: 'mailto:omnyra.training@gmail.com?subject=Individual%20Coaching%20Inquiry',
+        whatsapp: 'https://wa.me/919063370816?text=Hi%20OMNyra%2C%20I%27m%20interested%20in%20individual%20coaching%20and%20career%20support.'
+      },
+      team: {
+        email: 'mailto:omnyra.training@gmail.com?subject=Corporate%20/%20Team%20Training%20Inquiry',
+        whatsapp: 'https://wa.me/919063370816?text=Hi%20OMNyra%2C%20I%27m%20interested%20in%20corporate%20or%20team%20training.'
+      }
+    };
+
+    window.setChannel = function(channel) {
+      document.querySelectorAll('.channel-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.channel === channel);
+      });
+      document.querySelectorAll('.contact-card').forEach(card => {
+        const type = card.dataset.contact;
+        const url = channelLinks[type][channel];
+        if (channel === 'whatsapp') {
+          card.setAttribute('href', url);
+          card.setAttribute('target', '_blank');
+          card.setAttribute('rel', 'noopener noreferrer');
+        } else {
+          card.setAttribute('href', url);
+          card.removeAttribute('target');
+          card.removeAttribute('rel');
+        }
+      });
+    };
 
   })();
   </script>

@@ -1,0 +1,53 @@
+# OMNyra Group
+> Premium GRC training and risk advisory firm
+
+## About
+OMNyra Group transforms beginners into job-ready GRC specialists through practitioner-led training. Founded in 2026, serving students globally with focus on US and UK markets.
+
+## Services
+- GRC Training (Governance, Risk & Compliance)
+- TPRM Training (Third-Party Risk Management)
+- ISO 27001 Readiness
+- Risk Management
+- Data Privacy
+- AI Governance & Risk
+
+## Key Facts
+- Founded: 2026
+- Location: Global (US & UK focus)
+- Training Format: Live, practitioner-led sessions
+- Hours: 35 hours of live training
+- Tracks: 6 specialized programs
+- Price: Starting at $850 USD
+- Contact: omnyra.training@gmail.com
+- WhatsApp: +91 9063370816
+
+## Programs
+1. Governance, Risk & Compliance (GRC)
+2. Third-Party Risk Management (TPRM)
+3. ISO 27001 Readiness
+4. Risk Management
+5. Data Privacy
+6. AI Governance & Risk
+
+## Frameworks Covered
+- NIST CSF
+- SOC 2 Type II
+- COBIT
+- ISO 27001/27036
+- SIG / SIG Lite
+- ServiceNow GRC
+- OneTrust TPRM
+- RSAM
+
+## Target Audience
+- Students and fresh graduates
+- Career switchers
+- Working professionals
+- International students
+- Teams and organizations
+
+## Contact
+- Email: omnyra.training@gmail.com
+- WhatsApp: +91 9063370816
+- Website: https://omnyragroup.online
