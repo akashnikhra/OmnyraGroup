@@ -311,7 +311,7 @@
     }
 
     html[data-theme="light"] body {
-      background: rgba(240,244,248,0.92);
+      background: transparent;
       color: #334155;
     }
 
@@ -327,7 +327,7 @@
       opacity: 0.08;
     }
     html[data-theme="light"] #canvas-container {
-      opacity: 0.35;
+      opacity: 0.8;
       pointer-events: none;
     }
 
@@ -336,22 +336,22 @@
       background: transparent;
     }
     html[data-theme="light"] #about {
-      background: linear-gradient(180deg, rgba(240,244,248,0.88) 0%, rgba(228,233,240,0.88) 50%, rgba(240,244,248,0.88) 100%);
+      background: transparent;
     }
     html[data-theme="light"] #programs {
-      background: linear-gradient(180deg, rgba(240,244,248,0.88) 0%, rgba(232,237,242,0.88) 30%, rgba(240,244,248,0.88) 100%);
+      background: transparent;
     }
     html[data-theme="light"] #why {
-      background: linear-gradient(180deg, rgba(240,244,248,0.88) 0%, rgba(228,233,240,0.88) 50%, rgba(240,244,248,0.88) 100%);
+      background: transparent;
     }
     html[data-theme="light"] #plans {
-      background: linear-gradient(180deg, rgba(240,244,248,0.88) 0%, rgba(232,237,242,0.88) 30%, rgba(240,244,248,0.88) 100%);
+      background: transparent;
     }
     html[data-theme="light"] #corporate {
-      background: linear-gradient(180deg, rgba(240,244,248,0.88) 0%, rgba(228,233,240,0.88) 50%, rgba(240,244,248,0.88) 100%);
+      background: transparent;
     }
     html[data-theme="light"] #contact {
-      background: linear-gradient(180deg, rgba(232,237,242,0.92) 0%, rgba(221,228,236,0.92) 50%, rgba(232,237,242,0.92) 100%);
+      background: transparent;
     }
     html[data-theme="light"] .orb-1 {
       background: #38BDF8;
@@ -811,6 +811,45 @@
       color: #64748B;
       font-weight: 600;
       opacity: 1;
+    }
+
+    /* Content container backgrounds for light theme (sections transparent for hex lattice) */
+    html[data-theme="light"] .about-grid {
+      background: rgba(240, 244, 248, 0.85);
+      border-radius: 16px;
+      padding: 32px;
+    }
+    html[data-theme="light"] .stat-card {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    html[data-theme="light"] .program-tabs {
+      background: rgba(240, 244, 248, 0.85);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    html[data-theme="light"] .program-subcard {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    html[data-theme="light"] .why-bento > div {
+      background: rgba(255, 255, 255, 0.90);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    html[data-theme="light"] .plans-group {
+      background: rgba(240, 244, 248, 0.80);
+      border-radius: 16px;
+      padding: 32px;
+    }
+    html[data-theme="light"] .corp-hero-content {
+      background: rgba(240, 244, 248, 0.85);
+      border-radius: 16px;
+      padding: 32px;
+    }
+    html[data-theme="light"] .contact-grid {
+      background: rgba(240, 244, 248, 0.85);
+      border-radius: 16px;
+      padding: 32px;
     }
 
     /* Hamburger */
@@ -3370,10 +3409,17 @@
       window.updateThreeTheme = function(isLight) {
         if (scene && scene.fog) {
           scene.fog.color.setHex(isLight ? 0xF8FAFC : 0x0D1117);
+          scene.fog.density = isLight ? 0.018 : 0.025;
         }
         if (hexMat) {
           hexMat.color.setHex(isLight ? 0x94A3B8 : 0x8B949E);
-          hexMat.opacity = isLight ? 0.24 : 0.14;
+          hexMat.opacity = isLight ? 0.4 : 0.14;
+        }
+        if (nodeMat) {
+          nodeMat.opacity = isLight ? 0.6 : 0.45;
+        }
+        if (pMat) {
+          pMat.opacity = isLight ? 0.7 : 0.55;
         }
       };
       // Check saved theme for 3D scene initialization
