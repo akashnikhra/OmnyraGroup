@@ -8,6 +8,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
   <meta name="description" content="OMNyra Group — Premium GRC training, ISO 27001 readiness, third-party risk management, and regulatory compliance advisory. Empowering Careers. Securing the Future.">
   <link rel="canonical" href="https://omnyragroup.online/">
+  <meta name="robots" content="index, follow">
   <link rel="alternate" hreflang="en" href="https://omnyragroup.online/" />
   <link rel="alternate" hreflang="en-us" href="https://omnyragroup.online/" />
   <link rel="alternate" hreflang="en-gb" href="https://omnyragroup.online/" />
@@ -17,6 +18,7 @@
   <meta property="og:description" content="Practitioner-led training that transforms beginners into highly sought-after Governance, Risk & Compliance specialists — ready for the global stage.">
   <meta property="og:url" content="https://omnyragroup.online/">
   <meta property="og:site_name" content="OMNyra Group">
+  <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://omnyragroup.online/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -25,6 +27,7 @@
   <meta name="twitter:title" content="OMNyra Group — GRC Training & Risk Advisory">
   <meta name="twitter:description" content="Practitioner-led training that transforms beginners into highly sought-after Governance, Risk & Compliance specialists.">
   <meta name="twitter:image" content="https://omnyragroup.online/og-image.png" />
+  <meta name="twitter:site" content="@omnyragroup">
   <meta name="twitter:image:alt" content="OMNyra Group — GRC Training & Risk Advisory" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +44,13 @@
     "telephone": "+91-9063370816",
     "foundingDate": "2026",
     "areaServed": "Global",
-    "knowsAbout": ["GRC", "Governance Risk Compliance", "ISO 27001", "Third-Party Risk Management", "Regulatory Compliance", "Risk Advisory", "Data Privacy", "AI Governance", "AI Risk Management"]
+    "knowsAbout": ["GRC", "Governance Risk Compliance", "ISO 27001", "Third-Party Risk Management", "Regulatory Compliance", "Risk Advisory", "Data Privacy", "AI Governance", "AI Risk Management"],
+    "logo": "https://omnyragroup.online/Website/img/primary-logo-transparent.png",
+    "sameAs": [
+      "https://www.linkedin.com/company/omnyragroup",
+      "https://www.instagram.com/omnyragroup",
+      "https://twitter.com/omnyragroup"
+    ]
   }
   </script>
 
@@ -2225,7 +2234,7 @@
        ============================ -->
   <header class="nav" id="nav" role="banner">
     <a href="#hero" class="nav-logo" aria-label="OMNyra Group — Home">
-      <img src="Website/img/Monochrome_white-transparent.png" alt="OMNyra Group">
+      <img src="Website/img/Monochrome_white-transparent.png" alt="OMNyra Group" width="1792" height="705">
     </a>
     <div class="nav-right-wrap">
       <nav class="nav-links" role="navigation" aria-label="Main navigation">
@@ -2506,7 +2515,7 @@
             <p class="reveal">Every session is live. Every case study is real. Every graduate leaves with a portfolio of work, a polished resume, and the confidence to walk into any interview.</p>
           </div>
           <div class="about-visual">
-            <img src="Website/img/Monochrome_white-transparent.png" alt="OMNyra Group" class="reveal" loading="lazy">
+            <img src="Website/img/Monochrome_white-transparent.png" alt="OMNyra Group" class="reveal" loading="lazy" width="1792" height="705">
             <div class="stats-grid">
               <div class="stat-item reveal">
                 <div class="stat-number" data-count="6">0</div>
@@ -3958,13 +3967,13 @@
     function applyTheme(theme) {
       if (theme === 'light') {
         htmlEl.setAttribute('data-theme', 'light');
-        if (navLogoImg) navLogoImg.src = 'img/primary-logo-transparent.png';
-        if (aboutLogoImg) aboutLogoImg.src = 'img/primary-logo-transparent.png';
+        if (navLogoImg) navLogoImg.src = 'Website/img/primary-logo-transparent.png';
+        if (aboutLogoImg) aboutLogoImg.src = 'Website/img/primary-logo-transparent.png';
         if (window.updateThreeTheme) window.updateThreeTheme(true);
       } else {
         htmlEl.removeAttribute('data-theme');
-        if (navLogoImg) navLogoImg.src = 'img/Monochrome_white-transparent.png';
-        if (aboutLogoImg) aboutLogoImg.src = 'img/Monochrome_white-transparent.png';
+        if (navLogoImg) navLogoImg.src = 'Website/img/Monochrome_white-transparent.png';
+        if (aboutLogoImg) aboutLogoImg.src = 'Website/img/Monochrome_white-transparent.png';
         if (window.updateThreeTheme) window.updateThreeTheme(false);
       }
       localStorage.setItem('omnyra-theme', theme);
