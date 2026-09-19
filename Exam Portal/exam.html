@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="color-scheme" content="light dark">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem('omnyra.exam.theme'));if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam Session — OMNyra Exam Portal</title>
+  <meta name="description" content="Timed OMNyra GRC mock exam session with auto-save.">
+  <link rel="icon" type="image/png" href="img/icon-only-transparent.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to questions</a>
+  <header class="nav" role="banner">
+    <a href="index.html" class="nav-logo" aria-label="OMNyra Exam Portal — Home">
+      <img data-logo-swap src="img/primary-logo-transparent.png" alt="OMNyra Group" width="200" height="79">
+    </a>
+    <div class="nav-right-wrap">
+      <nav class="nav-links" aria-label="Portal navigation">
+        <a href="index.html">Exams</a>
+        <a href="admin.html">Admin</a>
+        <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+      </nav>
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle Light/Dark Theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav>
+      <a href="index.html">Exams</a>
+      <a href="admin.html">Admin</a>
+      <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+      <div class="mobile-theme-row"><span>Theme Mode</span>
+        <button class="theme-toggle-btn" id="mobileThemeToggle" aria-label="Toggle light/dark theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <main id="main">
+    <div class="wrap">
+      <section class="section" aria-label="Exam session">
+        <div id="fatal"></div>
+        <div id="runner" hidden>
+          <h1 id="examTitle" style="font-size:1.5rem;margin:6px 0 2px;letter-spacing:-.01em;">Exam</h1>
+          <p class="help" id="examSub" style="margin:0 0 16px;"></p>
+          <div class="timer-bar" role="timer" aria-label="Time remaining" aria-live="off">
+            <span aria-hidden="true">⏱</span>
+            <span class="timer" id="timer">--:--</span>
+            <span class="help" id="countMeta"></span>
+            <span class="autosave" id="autosave">Auto-save: on (every 15s)</span>
+            <span style="flex:1"></span>
+            <button class="btn btn-primary" id="submitBtn">Submit exam</button>
+          </div>
+          <div class="exam-layout">
+            <div id="questions" aria-label="Questions"></div>
+            <aside class="palette" aria-label="Question palette">
+              <h3>Question palette</h3>
+              <div class="palette-grid" id="paletteGrid" role="group" aria-label="Jump to question"></div>
+              <div class="legend">
+                <span><i style="background:rgba(0,168,232,.4);border:1px solid #00A8E8;"></i>Answered</span>
+                <span><i style="background:transparent;border:1px solid var(--chrome-lattice);"></i>Unanswered</span>
+                <span><i style="background:var(--warning);"></i>Flagged</span>
+              </div>
+              <div class="btn-row"><button class="btn btn-outline" id="submitBtn2" style="width:100%;">Submit exam</button></div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-accent" aria-hidden="true"></div>
+    <div class="wrap footer-inner">
+      <img data-logo-swap src="img/primary-logo-transparent.png" alt="OMNyra Group">
+      <div><p><strong>OMNyra Group</strong> — Empowering Careers. Securing the Future.</p>
+      <p><a href="mailto:omnyra.training@gmail.com">omnyra.training@gmail.com</a> · <a href="index.html">Back to catalog</a></p></div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop" id="submitModal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="submitTitle">
+      <h2 id="submitTitle">Submit this exam?</h2>
+      <p id="submitText"></p>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="confirmSubmit">Yes, submit</button>
+        <button class="btn btn-ghost" id="cancelSubmit">Keep answering</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop" id="idleModal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="idleTitle">
+      <h2 id="idleTitle">Still there?</h2>
+      <p>No activity for 30 minutes. Your answers are auto-saved. Choose <strong>Continue</strong> to keep the session, or submit now. Closing this keeps the timer running.</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="idleContinue">Continue exam</button>
+        <button class="btn btn-outline" id="idleSubmit">Submit now</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop" id="timeModal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="timeTitle">
+      <h2 id="timeTitle">Time's up</h2>
+      <p>Your session reached the time limit. Answers saved so far will be submitted automatically.</p>
+      <div class="btn-row"><button class="btn btn-primary" id="timeOk">View result</button></div>
+    </div>
+  </div>
+
+  <script src="assets/portal.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var P = window.OmnyraPortal;
+    P.initTheme(); P.initNav();
+    var LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
+    var params = new URLSearchParams(window.location.search);
+    var attemptId = params.get('attempt');
+    var fatal = document.getElementById('fatal');
+    var submitted = false; // double-submit guard
+
+    function showFatal(msg) {
+      fatal.innerHTML = '<div class="card" role="alert"><h2 style="margin-top:0;">Session unavailable</h2><p class="help">' +
+        P.esc(msg) + '</p><div class="btn-row"><a class="btn btn-primary" href="index.html">Back to catalog</a></div></div>';
+    }
+    if (!attemptId) { showFatal('Missing ?attempt= id. Start an exam from the catalog so an attempt token is issued.'); return; }
+    var attempt = P.store.getAttempt(attemptId);
+    if (!attempt) { showFatal('Attempt not found on this device (localStorage was cleared or this is a different browser).'); return; }
+    if (attempt.submittedAt) { window.location.replace('result.html?attempt=' + encodeURIComponent(attemptId)); return; }
+
+    P.loadCatalog().then(function (exams) {
+      var exam = exams.find(function (x) { return x.id === attempt.examId; });
+      if (!exam) { showFatal('Exam "' + attempt.examId + '" is no longer in questions/manifest.json.'); return; }
+      if (!exam.open || !exam.questionFile) { showFatal('Exam "' + attempt.examId + '" is not currently open.'); return; }
+      fetch(exam.questionFile, { cache: 'no-store' }).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      }).then(function (qset) { boot(exam, qset.questions || []); })
+      .catch(function () { showFatal('Could not load question file "' + exam.questionFile + '".'); });
+    }).catch(function () { showFatal('Could not load questions/manifest.json.'); });
+
+    function boot(exam, questions) {
+      if (!questions.length) { showFatal('Question set is empty.'); return; }
+      document.getElementById('runner').hidden = false;
+      document.getElementById('examTitle').textContent = exam.title;
+      document.getElementById('examSub').textContent =
+        ((attempt.student && (attempt.student.name || attempt.student.displayName)) ? (attempt.student.name || attempt.student.displayName) + ' · ' : '') + questions.length + ' questions · ' + exam.durationMinutes + ' min · auto-saves every 15s';
+      var deadline = new Date(attempt.startedAt).getTime() + exam.durationMinutes * 60 * 1000;
+      var timerEl = document.getElementById('timer');
+      var tick = setInterval(function () {
+        var ms = deadline - Date.now();
+        if (ms <= 0) { clearInterval(tick); onTimeout(); return; }
+        var m = Math.floor(ms / 60000), s = Math.floor((ms % 60000) / 1000);
+        timerEl.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+        timerEl.classList.toggle('low', ms < 5 * 60 * 1000);
+      }, 500);
+
+      var qWrap = document.getElementById('questions');
+      var pal = document.getElementById('paletteGrid');
+      questions.forEach(function (q, i) {
+        var card = document.createElement('section');
+        card.className = 'q-card'; card.id = 'q-' + q.id;
+        card.setAttribute('aria-labelledby', 'qt-' + q.id);
+        var opts = q.options.map(function (op, oi) {
+          return '<li><button type="button" class="opt" data-q="' + P.esc(q.id) + '" data-i="' + oi + '" role="radio" aria-checked="false">' +
+            '<span class="key" aria-hidden="true">' + LETTERS[oi] + '</span><span>' + P.esc(op) + '</span></button></li>';
+        }).join('');
+        card.innerHTML =
+          '<div class="q-head"><span class="q-num">Question ' + (i + 1) + ' of ' + questions.length + ' · ' + q.marks + ' mark' + (q.marks > 1 ? 's' : '') + '</span>' +
+          '<button type="button" class="flag-btn" data-flag="' + P.esc(q.id) + '" aria-pressed="false">⚑ Flag for review</button></div>' +
+          '<p class="q-text" id="qt-' + P.esc(q.id) + '">' + P.esc(q.question) + '</p>' +
+          '<p class="q-topic">' + P.esc(q.topic || 'General') + ' · ' + P.esc(q.difficulty || 'medium') + '</p>' +
+          '<ul class="opts" role="radiogroup" aria-label="Question ' + (i + 1) + ' options">' + opts + '</ul>';
+        qWrap.appendChild(card);
+        var pb = document.createElement('button');
+        pb.type = 'button'; pb.className = 'pal-btn'; pb.textContent = String(i + 1);
+        pb.setAttribute('data-pal', q.id);
+        pb.setAttribute('aria-label', 'Go to question ' + (i + 1));
+        pb.addEventListener('click', function () {
+          document.getElementById('q-' + q.id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+          syncPalette(i);
+        });
+        pal.appendChild(pb);
+      });
+
+      function paint() {
+        qWrap.querySelectorAll('.opt').forEach(function (b) {
+          var on = attempt.answers[b.getAttribute('data-q')] === Number(b.getAttribute('data-i'));
+          b.classList.toggle('selected', on);
+          b.setAttribute('aria-checked', on ? 'true' : 'false');
+        });
+        qWrap.querySelectorAll('[data-flag]').forEach(function (b) {
+          var on = !!attempt.flags[b.getAttribute('data-flag')];
+          b.classList.toggle('flagged', on);
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        pal.querySelectorAll('[data-pal]').forEach(function (b, i) {
+          var qid = b.getAttribute('data-pal');
+          b.classList.toggle('answered', attempt.answers[qid] !== undefined);
+          b.classList.toggle('flagged', !!attempt.flags[qid]);
+        });
+        var answered = Object.keys(attempt.answers).length;
+        document.getElementById('countMeta').textContent = answered + '/' + questions.length + ' answered';
+      }
+      function syncPalette(i) {
+        pal.querySelectorAll('[data-pal]').forEach(function (b, j) { b.classList.toggle('current', i === j); });
+      }
+      function persist(silent) {
+        attempt.lastSavedAt = P.nowIso();
+        P.store.saveAttempt(attempt);
+        if (!silent) {
+          document.getElementById('autosave').textContent = 'Saved ' + new Date().toLocaleTimeString();
+        }
+      }
+      qWrap.addEventListener('click', function (e) {
+        var opt = e.target.closest('.opt');
+        if (opt) {
+          attempt.answers[opt.getAttribute('data-q')] = Number(opt.getAttribute('data-i'));
+          persist(true); paint(); return;
+        }
+        var fl = e.target.closest('[data-flag]');
+        if (fl) {
+          var qid = fl.getAttribute('data-flag');
+          if (attempt.flags[qid]) delete attempt.flags[qid]; else attempt.flags[qid] = true;
+          persist(true); paint();
+        }
+      });
+      setInterval(function () { if (!submitted) { persist(false); } }, 15000);
+      window.addEventListener('beforeunload', function () { if (!submitted) persist(true); });
+
+      // 30-min inactivity warning (timer keeps running — modal says so)
+      P.watchInactivity(function () { if (!submitted) P.openModal('idleModal'); });
+      document.getElementById('idleContinue').addEventListener('click', function () { P.closeModal('idleModal'); });
+      document.getElementById('idleSubmit').addEventListener('click', function () { P.closeModal('idleModal'); askSubmit(); });
+
+      function counts() {
+        var answered = Object.keys(attempt.answers).length;
+        var flagged = Object.keys(attempt.flags).length;
+        return { answered: answered, unanswered: questions.length - answered, flagged: flagged };
+      }
+      function askSubmit() {
+        var c = counts();
+        document.getElementById('submitText').textContent =
+          c.answered + '/' + questions.length + ' answered' +
+          (c.unanswered ? ' · ' + c.unanswered + ' unanswered (counted as incorrect)' : '') +
+          (c.flagged ? ' · ' + c.flagged + ' flagged' : '') + '. Submit now? This cannot be undone.';
+        P.openModal('submitModal');
+      }
+      function doSubmit(auto) {
+        if (submitted) return; // prevent double-submit
+        submitted = true;
+        persist(true);
+        attempt.submittedAt = P.nowIso();
+        attempt.autoSubmitted = !!auto;
+        P.store.saveAttempt(attempt);
+        P.store.remove(P.K.activeAttempt);
+        window.location.href = 'result.html?attempt=' + encodeURIComponent(attempt.attemptId);
+      }
+      function onTimeout() {
+        if (submitted) return;
+        attempt.answers = attempt.answers || {};
+        P.openModal('timeModal');
+        document.getElementById('timeOk').addEventListener('click', function () { doSubmit(true); }, { once: true });
+        setTimeout(function () { doSubmit(true); }, 8000); // auto-submit even if user walks away
+      }
+      document.getElementById('submitBtn').addEventListener('click', askSubmit);
+      document.getElementById('submitBtn2').addEventListener('click', askSubmit);
+      document.getElementById('cancelSubmit').addEventListener('click', function () { P.closeModal('submitModal'); });
+      document.getElementById('confirmSubmit').addEventListener('click', function () { doSubmit(false); });
+      paint(); syncPalette(0);
+    }
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="color-scheme" content="light dark">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem('omnyra.exam.theme'));if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Students — OMNyra Admin Console</title>
+  <meta name="description" content="OMNyra Admin Console: per-student exam progress across all exams.">
+  <link rel="icon" type="image/png" href="../img/icon-only-transparent.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/portal.css">
+  <script>window.OMNYRA_MANIFEST_URL = '../questions/manifest.json'; window.OMNYRA_IMG_BASE = '../';</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="nav" role="banner">
+    <a href="index.html" class="nav-logo" aria-label="OMNyra Admin Console — Home">
+      <img data-logo-swap src="../img/primary-logo-transparent.png" alt="OMNyra Group" width="200" height="79">
+    </a>
+    <div class="nav-right-wrap">
+      <nav class="nav-links" aria-label="Admin navigation">
+        <a href="index.html">Dashboard</a>
+        <a href="students.html" class="active" aria-current="page">Students</a>
+        <a href="upload.html">Upload</a>
+        <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+      </nav>
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle Light/Dark Theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav>
+      <a href="index.html">Dashboard</a>
+      <a href="students.html">Students</a>
+      <a href="upload.html">Upload</a>
+      <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+    </nav>
+  </div>
+
+  <main id="main">
+    <div class="wrap">
+      <section class="hero" aria-label="Student progress">
+        <span class="eyebrow"><span class="dot" aria-hidden="true"></span> Admin Console · Students</span>
+        <h1>Every student, <span class="gradient-text">every attempt.</span></h1>
+        <p class="hero-sub" id="sessionLine">Loading session…</p>
+        <div class="btn-row"><button class="btn btn-ghost" id="signOutBtn">Sign out</button></div>
+        <div class="accent-bar" aria-hidden="true"></div>
+      </section>
+
+      <section class="section" aria-label="Filters">
+        <div class="card">
+          <div class="grid" style="grid-template-columns:1fr 1fr;gap:14px;">
+            <label class="field">Exam
+              <select id="examFilter"><option value="">All exams</option></select>
+            </label>
+            <label class="field">Search student
+              <input type="search" id="searchBox" placeholder="email or name…" autocomplete="off">
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Progress table">
+        <div class="section-head"><h2>Progress</h2><p id="progressMeta">Loading…</p></div>
+        <div class="card" style="padding:0;overflow:auto;">
+          <table class="val-table" style="margin:0;" aria-label="Student progress">
+            <thead><tr><th>Student</th><th>Exam</th><th>Attempts</th><th>Best</th><th>Status</th><th>Last active</th></tr></thead>
+            <tbody id="progressRows"><tr><td colspan="6">Loading…</td></tr></tbody>
+          </table>
+        </div>
+        <p class="help" style="margin-top:12px;">Best % and attempt counts update on every graded submit. Per-question answers stay private to each student (visible only in their own result review).</p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-accent" aria-hidden="true"></div>
+    <div class="wrap footer-inner">
+      <img data-logo-swap src="../img/primary-logo-transparent.png" alt="OMNyra Group">
+      <div>
+        <p><strong>OMNyra Group</strong> — Empowering Careers. Securing the Future.</p>
+        <p><a href="mailto:omnyra.training@gmail.com">omnyra.training@gmail.com</a></p>
+      </div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../assets/config.js"></script>
+  <script src="../assets/portal.js"></script>
+  <script type="module">
+    import "../assets/remote.js";
+    const P = window.OmnyraPortal;
+    const R = window.OmnyraRemote;
+    P.initTheme(); P.initNav();
+
+    await R.ready;
+    let guard;
+    try {
+      guard = await R.requireAdmin("login.html");
+    } catch (e) {
+      document.getElementById('sessionLine').textContent = P.friendlyError(e) + " Returning to admin sign-in…";
+      setTimeout(() => window.location.replace("login.html"), 1600);
+      throw e;
+    }
+    if (!guard) throw new Error('redirect');
+    const profile = await R.getProfile().catch(() => null);
+    document.getElementById('sessionLine').textContent =
+      "Signed in as " + ((profile && profile.email) || "admin") + " · per-student progress below.";
+    document.getElementById('signOutBtn').addEventListener('click', async () => {
+      await R.signOut();
+      window.location.replace("login.html");
+    });
+
+    let allRows = [], examTitles = {};
+    try {
+      const exams = await R.listExamsAdmin();
+      exams.forEach(ex => { examTitles[ex.id] = ex.title; });
+      const sel = document.getElementById('examFilter');
+      exams.forEach(ex => {
+        const o = document.createElement('option');
+        o.value = ex.id; o.textContent = ex.title;
+        sel.appendChild(o);
+      });
+      allRows = await R.listStudentProgress();
+      render();
+    } catch (e) {
+      document.getElementById('progressMeta').textContent = 'Could not load progress.';
+      document.getElementById('progressRows').innerHTML = '<tr><td colspan="6">' + P.esc(P.friendlyError(e)) + '</td></tr>';
+    }
+
+    function render() {
+      const examId = document.getElementById('examFilter').value;
+      const q = document.getElementById('searchBox').value.trim().toLowerCase();
+      const rows = allRows.filter(r =>
+        (!examId || r.examId === examId) &&
+        (!q || (r.email || '').toLowerCase().includes(q) || (r.displayName || '').toLowerCase().includes(q)));
+      const students = new Set(rows.map(r => r.studentId)).size;
+      document.getElementById('progressMeta').textContent =
+        rows.length + ' records · ' + students + ' students · live from database';
+      document.getElementById('progressRows').innerHTML = rows.map(r => {
+        const passed = r.best !== null && r.best >= 70;
+        return '<tr><td><strong>' + P.esc(r.displayName || r.email) + '</strong><br><span class="help">' + P.esc(r.email) + '</span></td>' +
+        '<td>' + P.esc(examTitles[r.examId] || r.examId) + '</td>' +
+        '<td>' + r.attempts + '</td>' +
+        '<td>' + (r.best !== null ? r.best + '%' : '—') + '</td>' +
+        '<td>' + (r.best === null ? '<span class="badge soon">No grade</span>' : (passed ? '<span class="badge open">Passing</span>' : '<span class="badge soon">Practice</span>')) + '</td>' +
+        '<td class="help">' + (r.lastAt ? new Date(r.lastAt).toLocaleString() : '—') + '</td></tr>';
+      }).join('') || '<tr><td colspan="6">No records yet — progress appears after the first graded submit.</td></tr>';
+    }
+    document.getElementById('examFilter').addEventListener('change', render);
+    document.getElementById('searchBox').addEventListener('input', render);
+  </script>
+</body>
+</html>

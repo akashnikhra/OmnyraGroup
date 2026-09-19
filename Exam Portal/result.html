@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="color-scheme" content="light dark">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem('omnyra.exam.theme'));if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Result — OMNyra Exam Portal</title>
+  <meta name="description" content="OMNyra mock exam result with per-question rationale and topic breakdown.">
+  <link rel="icon" type="image/png" href="img/icon-only-transparent.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to result</a>
+  <header class="nav" role="banner">
+    <a href="index.html" class="nav-logo" aria-label="OMNyra Exam Portal — Home">
+      <img data-logo-swap src="img/primary-logo-transparent.png" alt="OMNyra Group" width="200" height="79">
+    </a>
+    <div class="nav-right-wrap">
+      <nav class="nav-links" aria-label="Portal navigation">
+        <a href="index.html">Exams</a>
+        <a href="admin.html">Admin</a>
+        <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+      </nav>
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle Light/Dark Theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav>
+      <a href="index.html">Exams</a>
+      <a href="admin.html">Admin</a>
+      <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+      <div class="mobile-theme-row"><span>Theme Mode</span>
+        <button class="theme-toggle-btn" id="mobileThemeToggle" aria-label="Toggle light/dark theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <main id="main">
+    <div class="wrap">
+      <section class="section" aria-label="Exam result">
+        <div id="fatal"></div>
+        <div id="result" hidden>
+          <div class="card score-hero">
+            <div class="stat-label" id="rExam">Exam</div>
+            <svg class="score-ring" viewBox="0 0 120 120" role="img" id="ringSvg" aria-label="Score">
+              <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(139,148,158,.25)" stroke-width="10"/>
+              <circle id="ringFg" cx="60" cy="60" r="52" fill="none" stroke="#00A8E8" stroke-width="10"
+                stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7" transform="rotate(-90 60 60)"/>
+              <text id="ringText" x="60" y="68" text-anchor="middle" font-size="24" font-weight="700" fill="currentColor">0%</text>
+            </svg>
+            <div class="verdict" id="rVerdict"></div>
+            <p class="help" id="rMeta" style="margin:0;"></p>
+            <div class="btn-row" style="justify-content:center;">
+              <a class="btn btn-primary" href="index.html">Back to catalog</a>
+              <button class="btn btn-outline" id="retryBtn">Retry exam</button>
+            </div>
+          </div>
+
+          <div class="section" aria-label="Topic breakdown">
+            <div class="section-head"><h2>Topic-wise breakdown</h2><p>Find your weak areas</p></div>
+            <div class="card" id="topicBox"></div>
+          </div>
+
+          <div class="section" aria-label="Answer review">
+            <div class="section-head"><h2>Answer review</h2><p>Correct answers with rationale</p></div>
+            <div id="reviewBox"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-accent" aria-hidden="true"></div>
+    <div class="wrap footer-inner">
+      <img data-logo-swap src="img/primary-logo-transparent.png" alt="OMNyra Group">
+      <div><p><strong>OMNyra Group</strong> — Empowering Careers. Securing the Future.</p>
+      <p><a href="mailto:omnyra.training@gmail.com">omnyra.training@gmail.com</a> · <a href="index.html">Back to catalog</a></p></div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/portal.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var P = window.OmnyraPortal;
+    P.initTheme(); P.initNav();
+    var LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
+    var params = new URLSearchParams(window.location.search);
+    var attemptId = params.get('attempt');
+    function fatal(msg) {
+      document.getElementById('fatal').innerHTML = '<div class="card" role="alert"><h2 style="margin-top:0;">Result unavailable</h2><p class="help">' +
+        P.esc(msg) + '</p><div class="btn-row"><a class="btn btn-primary" href="index.html">Back to catalog</a></div></div>';
+    }
+    if (!attemptId) { fatal('Missing ?attempt= id.'); return; }
+    var attempt = P.store.getAttempt(attemptId);
+    if (!attempt) { fatal('Attempt not found on this device.'); return; }
+    if (!attempt.submittedAt) { window.location.replace('exam.html?attempt=' + encodeURIComponent(attemptId)); return; }
+
+    P.loadCatalog().then(function (exams) {
+      var exam = exams.find(function (x) { return x.id === attempt.examId; });
+      if (!exam || !exam.questionFile) { fatal('Exam manifest entry missing.'); return; }
+      fetch(exam.questionFile, { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (qset) {
+        render(exam, qset.questions || []);
+      }).catch(function () { fatal('Could not load question file.'); });
+    }).catch(function () { fatal('Could not load catalog.'); });
+
+    function render(exam, questions) {
+      document.getElementById('result').hidden = false;
+      var correct = 0, totalMarks = 0, earned = 0;
+      var topics = {};
+      questions.forEach(function (q) {
+        var given = attempt.answers[q.id];
+        var ok = given === q.correctIndex;
+        if (ok) { correct++; earned += (q.marks || 1); }
+        totalMarks += (q.marks || 1);
+        var t = topics[q.topic || 'General'] || (topics[q.topic || 'General'] = { n: 0, ok: 0 });
+        t.n++; if (ok) t.ok++;
+      });
+      var pct = questions.length ? Math.round((earned / totalMarks) * 100) : 0;
+      var passed = pct >= exam.passPercent;
+      // persist progress (idempotent per attempt: dedupe by attemptId)
+      var key = P.studentKey(P.getStudent());
+      var all = P.store.getProgress();
+      var seen = (all[key] && all[key][exam.id] && all[key][exam.id].history || []).some(function (h) { return h.attemptId === attempt.attemptId; });
+      if (!seen) P.recordResult(exam.id, pct, passed, questions.length, correct);
+      // stamp attemptId into latest history entry for dedupe
+      var all2 = P.store.getProgress();
+      var hist = all2[key] && all2[key][exam.id] && all2[key][exam.id].history;
+      if (hist && hist.length && !hist[hist.length - 1].attemptId) { hist[hist.length - 1].attemptId = attempt.attemptId; P.store.saveProgress(all2); }
+
+      document.getElementById('rExam').textContent = exam.title;
+      var C = 2 * Math.PI * 52;
+      var fg = document.getElementById('ringFg');
+      fg.style.strokeDasharray = C.toFixed(1);
+      fg.style.strokeDashoffset = (C * (1 - pct / 100)).toFixed(1);
+      var light = P.currentTheme() === 'light';
+      fg.setAttribute('stroke', passed ? (light ? '#15803d' : '#25D366') : (light ? '#b45309' : '#EAB308'));
+      document.getElementById('ringText').textContent = pct + '%';
+      document.getElementById('ringSvg').setAttribute('aria-label', 'Score ' + pct + ' percent');
+      var v = document.getElementById('rVerdict');
+      v.textContent = passed ? 'Passed — job-ready signal.' : 'Not yet — review and retry.';
+      v.className = 'verdict ' + (passed ? 'pass' : 'fail');
+      document.getElementById('rMeta').textContent =
+        correct + '/' + questions.length + ' correct · pass mark ' + exam.passPercent + '%' +
+        (attempt.autoSubmitted ? ' · auto-submitted at time limit' : ' · submitted ' + new Date(attempt.submittedAt).toLocaleString());
+
+      var tb = document.getElementById('topicBox');
+      tb.innerHTML = Object.keys(topics).map(function (t) {
+        var o = topics[t], p = Math.round((o.ok / o.n) * 100);
+        return '<div class="topic-row"><span><strong>' + P.esc(t) + '</strong> <span class="help">· ' + o.ok + '/' + o.n + '</span></span><strong>' + p + '%</strong>' +
+          '<div class="progress-track" style="grid-column:1/-1;margin-top:0;" role="progressbar" aria-valuenow="' + p + '" aria-valuemin="0" aria-valuemax="100" aria-label="' + P.esc(t) + ' score"><div class="progress-fill" style="width:' + p + '%"></div></div></div>';
+      }).join('');
+
+      var rb = document.getElementById('reviewBox');
+      rb.innerHTML = '';
+      questions.forEach(function (q, i) {
+        var given = attempt.answers[q.id];
+        var ok = given === q.correctIndex;
+        var cls = given === undefined ? 'wrong' : (ok ? 'correct' : 'wrong');
+        var pill = given === undefined ? '<span class="pill skipped">Skipped</span>' : (ok ? '<span class="pill correct">Correct</span>' : '<span class="pill wrong">Incorrect</span>');
+        var opts = q.options.map(function (op, oi) {
+          var marker = '';
+          if (oi === q.correctIndex) marker = ' <strong style="color:var(--success);">✓ correct</strong>';
+          else if (oi === given) marker = ' <strong style="color:var(--signal-red);">✗ your answer</strong>';
+          return '<li>' + LETTERS[oi] + '. ' + P.esc(op) + marker + '</li>';
+        }).join('');
+        var d = document.createElement('div');
+        d.className = 'review-item ' + cls;
+        d.innerHTML = '<div class="q-head"><span class="q-num">Q' + (i + 1) + ' · ' + P.esc(q.topic || 'General') + '</span>' + pill + '</div>' +
+          '<p class="q-text">' + P.esc(q.question) + '</p>' +
+          '<ul class="help" style="margin:8px 0 0;padding-left:18px;">' + opts + '</ul>' +
+          '<div class="rationale"><strong>Rationale:</strong> ' + P.esc(q.rationale || '—') + '</div>';
+        rb.appendChild(d);
+      });
+
+      document.getElementById('retryBtn').addEventListener('click', function () {
+        var s = P.getStudent() || attempt.student;
+        var next = {
+          attemptId: P.uuid(), examId: exam.id, examTitle: exam.title,
+          studentId: P.studentKey(s), student: s,
+          startedAt: P.nowIso(), durationMinutes: exam.durationMinutes,
+          answers: {}, flags: {}, submittedAt: null, lastSavedAt: P.nowIso()
+        };
+        P.store.saveAttempt(next);
+        P.store.set(P.K.activeAttempt, next.attemptId);
+        window.location.href = 'exam.html?attempt=' + encodeURIComponent(next.attemptId);
+      });
+    }
+  })();
+  </script>
+</body>
+</html>

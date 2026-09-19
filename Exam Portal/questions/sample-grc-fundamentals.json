@@ -1,0 +1,161 @@
+{
+  "examId": "grc-fundamentals",
+  "title": "GRC Fundamentals — Sample Set",
+  "description": "Entry-level check across GRC foundations, risk management, controls, TPRM, ISO 27001, audit evidence and privacy. Low-stakes practice; answers are revealed only after submit.",
+  "version": "1.0.0",
+  "durationMinutes": 30,
+  "passPercent": 70,
+  "status": "published",
+  "questions": [
+    {
+      "correctIndex": 1,
+      "difficulty": "easy",
+      "id": "q01",
+      "marks": 1,
+      "options": [
+        "Avoiding all business risk entirely",
+        "Aligning governance, risk management and compliance so the organisation meets objectives while staying within obligations",
+        "Replacing internal audit with automated dashboards",
+        "Outsourcing every control to vendors"
+      ],
+      "question": "What is the primary purpose of Governance, Risk and Compliance (GRC)?",
+      "rationale": "GRC integrates governance structures, risk processes and compliance obligations so risk-taking stays aligned with strategy — it does not eliminate risk.",
+      "topic": "GRC foundations"
+    },
+    {
+      "correctIndex": 1,
+      "difficulty": "easy",
+      "id": "q02",
+      "marks": 1,
+      "options": [
+        "Risk register",
+        "Risk appetite statement",
+        "Incident ticket",
+        "Asset inventory"
+      ],
+      "question": "Which artefact formally expresses how much risk an organisation is willing to take?",
+      "rationale": "The risk appetite statement, approved by governance, sets boundaries; the register tracks individual risks against it.",
+      "topic": "Risk management"
+    },
+    {
+      "correctIndex": 2,
+      "difficulty": "medium",
+      "id": "q03",
+      "marks": 1,
+      "options": [
+        "Transfer → Avoid → Mitigate → Accept",
+        "Identify → Assess → Treat → Monitor",
+        "Monitor → Identify → Accept → Transfer",
+        "Assess → Transfer → Identify → Close"
+      ],
+      "question": "What is the correct order of the core risk management lifecycle?",
+      "rationale": "Risks must be identified, then assessed (likelihood × impact), treated per appetite, then continuously monitored.",
+      "topic": "Risk management"
+    },
+    {
+      "correctIndex": 0,
+      "difficulty": "medium",
+      "id": "q04",
+      "marks": 1,
+      "options": [
+        "A control that stops an unwanted event before it happens",
+        "A control that fixes data after a breach",
+        "A report sent to regulators each quarter",
+        "A backup restored during disaster recovery"
+      ],
+      "question": "Which BEST describes a preventive control?",
+      "rationale": "Preventive controls (e.g. MFA, segregation of duties) act before an event; detective controls find it, corrective controls fix it.",
+      "topic": "Controls"
+    },
+    {
+      "correctIndex": 3,
+      "difficulty": "medium",
+      "id": "q05",
+      "marks": 1,
+      "options": [
+        "The vendor's marketing brochure",
+        "A signed NDA alone",
+        "The contract value",
+        "Access to sensitive data, criticality of the service, and substitutability"
+      ],
+      "question": "What should drive inherent-risk tiering of a third party in TPRM?",
+      "rationale": "Tiering reflects what the vendor can impact (data, critical operations) and how hard it is to replace — not price or paperwork alone.",
+      "topic": "TPRM"
+    },
+    {
+      "correctIndex": 1,
+      "difficulty": "medium",
+      "id": "q06",
+      "marks": 1,
+      "options": [
+        "A penetration test report",
+        "An independent auditor's opinion on the operating effectiveness of a service organisation's controls",
+        "A vendor's self-assessment spreadsheet",
+        "A cyber-insurance policy"
+      ],
+      "question": "In a vendor review, what does a SOC 2 Type II report give you?",
+      "rationale": "SOC 2 Type II is an independent attestation over a period, covering operating effectiveness — stronger than self-attestations or point-in-time Type I.",
+      "topic": "TPRM"
+    },
+    {
+      "correctIndex": 2,
+      "difficulty": "medium",
+      "id": "q07",
+      "marks": 1,
+      "options": [
+        "Only the firewall rules",
+        "Scope, leadership accountability, risk assessment, objectives and documented processes for operating them",
+        "The number of employees",
+        "The office floor plan"
+      ],
+      "question": "Under ISO/IEC 27001:2022, what must an ISMS include at minimum?",
+      "rationale": "Clause 4–10 requires defined scope, leadership, risk assessment/treatment, objectives, resources, documented processes and continual improvement.",
+      "topic": "ISO 27001"
+    },
+    {
+      "correctIndex": 0,
+      "difficulty": "hard",
+      "id": "q08",
+      "marks": 1,
+      "options": [
+        "Recording which Annex A controls apply (with justifications for inclusions and exclusions) and how they are implemented",
+        "Listing every employee's salary band",
+        "Publishing customer data for transparency",
+        "Deleting all logs after 24 hours"
+      ],
+      "question": "What is the Statement of Applicability (SoA) in ISO 27001?",
+      "rationale": "The SoA maps each Annex A control to in/out-of-scope with justification plus implementation status — a mandatory audit artefact.",
+      "topic": "ISO 27001"
+    },
+    {
+      "correctIndex": 2,
+      "difficulty": "easy",
+      "id": "q09",
+      "marks": 1,
+      "options": [
+        "Who caused the incident",
+        "Whether evidence is sufficient, relevant and reliable to support the control conclusion",
+        "The auditor's travel expenses",
+        "How long the auditee has worked at the company"
+      ],
+      "question": "During control testing, what is the auditor actually judging about evidence?",
+      "rationale": "Audit conclusions stand on evidence that is sufficient (enough), relevant (on-point) and reliable (trustworthy source).",
+      "topic": "Audit & evidence"
+    },
+    {
+      "correctIndex": 1,
+      "difficulty": "medium",
+      "id": "q10",
+      "marks": 1,
+      "options": [
+        "Collect as much personal data as possible for future use",
+        "Process only the personal data that is adequate, relevant and limited to the stated purpose",
+        "Keep personal data forever to train models",
+        "Share personal data with any partner to reduce storage cost"
+      ],
+      "question": "What does the data-minimisation principle require?",
+      "rationale": "Data minimisation (GDPR Art. 5, mirrored in global privacy regimes) limits collection and retention to what the purpose needs.",
+      "topic": "Data privacy"
+    }
+  ]
+}

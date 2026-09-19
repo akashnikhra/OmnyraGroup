@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="color-scheme" content="light dark">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem('omnyra.exam.theme'));if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — OMNyra Admin Console</title>
+  <meta name="description" content="OMNyra Exam Portal admin dashboard: exams, question counts, publish flow.">
+  <link rel="icon" type="image/png" href="../img/icon-only-transparent.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/portal.css">
+  <script>window.OMNYRA_MANIFEST_URL = '../questions/manifest.json'; window.OMNYRA_IMG_BASE = '../';</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="nav" role="banner">
+    <a href="index.html" class="nav-logo" aria-label="OMNyra Admin Console — Home">
+      <img data-logo-swap src="../img/primary-logo-transparent.png" alt="OMNyra Group" width="200" height="79">
+    </a>
+    <div class="nav-right-wrap">
+      <nav class="nav-links" aria-label="Admin navigation">
+        <a href="index.html" class="active" aria-current="page">Dashboard</a>
+        <a href="students.html">Students</a>
+        <a href="upload.html">Upload</a>
+        <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+      </nav>
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle Light/Dark Theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav>
+      <a href="index.html">Dashboard</a>
+      <a href="students.html">Students</a>
+      <a href="upload.html">Upload</a>
+      <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+    </nav>
+  </div>
+
+  <main id="main">
+    <div class="wrap">
+      <section class="hero" aria-label="Admin dashboard">
+        <span class="eyebrow"><span class="dot" aria-hidden="true"></span> Admin Console · Dashboard</span>
+        <h1>Question bank <span class="gradient-text">at a glance.</span></h1>
+        <p class="hero-sub" id="sessionLine">Loading session…</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="upload.html">Upload question set</a>
+          <button class="btn btn-ghost" id="signOutBtn">Sign out</button>
+        </div>
+        <div class="accent-bar" aria-hidden="true"></div>
+      </section>
+
+      <section class="section" aria-label="Stats">
+        <div class="grid stats" id="statGrid" role="list"></div>
+      </section>
+
+      <section class="section" aria-label="Exams table">
+        <div class="section-head"><h2>Exams</h2><p id="examMeta">Loading…</p></div>
+        <div class="card" style="padding:0;overflow:auto;">
+          <table class="val-table" style="margin:0;" aria-label="Exams">
+            <thead><tr><th>Exam</th><th>Status</th><th>Version</th><th>Questions</th><th>Duration</th><th>Pass</th><th>Updated</th><th>Actions</th></tr></thead>
+            <tbody id="examRows"><tr><td colspan="8">Loading…</td></tr></tbody>
+          </table>
+        </div>
+        <p class="help" style="margin-top:12px;"><strong>Pause</strong> hides an exam from students instantly (new starts blocked; graded results stay viewable). <strong>Publish</strong> makes it live instantly. New sets and question edits happen in <a href="upload.html">Upload</a>. Every publish also downloads a Git-backup JSON — commit it under <code>questions/</code> so Git stays the restorable source.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-accent" aria-hidden="true"></div>
+    <div class="wrap footer-inner">
+      <img data-logo-swap src="../img/primary-logo-transparent.png" alt="OMNyra Group">
+      <div>
+        <p><strong>OMNyra Group</strong> — Empowering Careers. Securing the Future.</p>
+        <p><a href="mailto:omnyra.training@gmail.com">omnyra.training@gmail.com</a></p>
+      </div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../assets/config.js"></script>
+  <script src="../assets/portal.js"></script>
+  <script type="module">
+    import "../assets/remote.js";
+    const P = window.OmnyraPortal;
+    const R = window.OmnyraRemote;
+    P.initTheme(); P.initNav();
+
+    await R.ready;
+    let guard;
+    try {
+      guard = await R.requireAdmin("login.html");
+    } catch (e) {
+      document.getElementById('sessionLine').textContent = P.friendlyError(e) + " Returning to admin sign-in…";
+      setTimeout(() => window.location.replace("login.html"), 1600);
+      throw e;
+    }
+    if (!guard) throw new Error('redirect');
+    const profile = await R.getProfile().catch(() => null);
+    document.getElementById('sessionLine').textContent =
+      "Signed in as " + ((profile && profile.email) || (guard.session.user && guard.session.user.email) || "admin") + " · role: admin.";
+    document.getElementById('signOutBtn').addEventListener('click', async () => {
+      await R.signOut();
+      window.location.replace("login.html");
+    });
+
+    try {
+      const exams = await R.listExamsAdmin();
+      let qTotal = 0;
+      const counts = {};
+      await Promise.all(exams.map(async (ex) => {
+        try {
+          const { count } = await R.sb.from("questions").select("id", { count: "exact", head: true }).eq("exam_id", ex.id);
+          counts[ex.id] = count || 0; qTotal += count || 0;
+        } catch (e) { counts[ex.id] = null; }
+      }));
+      const pub = exams.filter(e => e.status === "published").length;
+      const draft = exams.filter(e => e.status !== "published").length;
+      const stat = (label, num) => '<div class="card" role="listitem"><div class="stat-label">' + label + '</div><div class="stat-num">' + num + '</div></div>';
+      document.getElementById('statGrid').innerHTML =
+        stat("Exams", exams.length) + stat("Published", pub) + stat("Draft / archived", draft) + stat("Questions in bank", qTotal);
+      document.getElementById('examMeta').textContent = exams.length + " exams · live from database";
+      document.getElementById('examRows').innerHTML = exams.map((ex) => {
+        const live = ex.status === 'published';
+        const actions = live
+          ? '<button class="btn btn-outline" data-pause="' + P.esc(ex.id) + '">Pause</button> ' +
+            '<button class="btn btn-ghost" data-archive="' + P.esc(ex.id) + '">Archive</button>'
+          : '<button class="btn btn-primary" data-publish="' + P.esc(ex.id) + '">Publish</button>';
+        return '<tr><td><strong>' + P.esc(ex.title) + '</strong><br><span class="help">' + P.esc(ex.id) + '</span></td>' +
+        '<td><span class="badge ' + (live ? 'open' : 'soon') + '">' + P.esc(ex.status) + '</span></td>' +
+        '<td>' + P.esc(ex.version || '—') + '</td>' +
+        '<td>' + (counts[ex.id] === null || counts[ex.id] === undefined ? '—' : counts[ex.id]) + '</td>' +
+        '<td>' + ex.duration_minutes + ' min</td>' +
+        '<td>' + Number(ex.pass_percent) + '%</td>' +
+        '<td class="help">' + (ex.updated_at ? new Date(ex.updated_at).toLocaleString() : '—') + '</td>' +
+        '<td>' + actions + '</td></tr>';
+      }).join('') || '<tr><td colspan="8">No exams yet — upload the first set.</td></tr>';
+      document.getElementById('examRows').addEventListener('click', async (e) => {
+        const t = e.target.closest('[data-pause],[data-publish],[data-archive]');
+        if (!t || t.disabled) return;
+        const id = t.getAttribute('data-pause') || t.getAttribute('data-publish') || t.getAttribute('data-archive');
+        const action = t.hasAttribute('data-pause') ? 'draft' : (t.hasAttribute('data-publish') ? 'published' : 'archived');
+        const verb = action === 'published' ? 'Publish' : (action === 'draft' ? 'Pause' : 'Archive');
+        const warn = action === 'published'
+          ? ' Students will see it in the catalog instantly.'
+          : ' It will vanish from the student catalog instantly (new starts blocked; graded results stay viewable).';
+        if (!window.confirm(verb + ' "' + id + '"?' + warn)) return;
+        t.disabled = true;
+        try {
+          await R.setExamStatus(id, action);
+          window.location.reload();
+        } catch (ex) { t.disabled = false; P.toast(P.friendlyError(ex)); }
+      });
+    } catch (e) {
+      document.getElementById('examMeta').textContent = 'Could not load exams.';
+      document.getElementById('examRows').innerHTML = '<tr><td colspan="8">' + P.esc(P.friendlyError(e)) + '</td></tr>';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="color-scheme" content="light dark">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem('omnyra.exam.theme'));if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam Session — OMNyra Student Console</title>
+  <meta name="description" content="Timed OMNyra GRC mock exam session with auto-save.">
+  <link rel="icon" type="image/png" href="../img/icon-only-transparent.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/portal.css">
+  <script>window.OMNYRA_MANIFEST_URL = '../questions/manifest.json'; window.OMNYRA_IMG_BASE = '../';</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to questions</a>
+  <header class="nav" role="banner">
+    <a href="index.html" class="nav-logo" aria-label="OMNyra Student Console — Home">
+      <img data-logo-swap src="../img/primary-logo-transparent.png" alt="OMNyra Group" width="200" height="79">
+    </a>
+    <div class="nav-right-wrap">
+      <nav class="nav-links" aria-label="Student navigation">
+        <a href="index.html">Exams</a>
+        <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+      </nav>
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle Light/Dark Theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav>
+      <a href="index.html">Exams</a>
+      <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+    </nav>
+  </div>
+
+  <main id="main">
+    <div class="wrap">
+      <section class="section" aria-label="Exam session">
+        <div id="fatal"></div>
+        <div id="runner" hidden>
+          <h1 id="examTitle" style="font-size:1.5rem;margin:6px 0 2px;letter-spacing:-.01em;">Exam</h1>
+          <p class="help" id="examSub" style="margin:0 0 16px;"></p>
+          <div class="timer-bar" role="timer" aria-label="Time remaining" aria-live="off">
+            <span aria-hidden="true">⏱</span>
+            <span class="timer" id="timer">--:--</span>
+            <span class="help" id="countMeta"></span>
+            <span class="autosave" id="autosave">Auto-save: on (every 15s)</span>
+            <span style="flex:1"></span>
+            <button class="btn btn-primary" id="submitBtn">Submit exam</button>
+          </div>
+          <div class="exam-layout">
+            <div id="questions" aria-label="Questions"></div>
+            <aside class="palette" aria-label="Question palette">
+              <h3>Question palette</h3>
+              <div class="palette-grid" id="paletteGrid" role="group" aria-label="Jump to question"></div>
+              <div class="legend">
+                <span><i style="background:rgba(0,168,232,.4);border:1px solid #00A8E8;"></i>Answered</span>
+                <span><i style="background:transparent;border:1px solid var(--chrome-lattice);"></i>Unanswered</span>
+                <span><i style="background:var(--warning);"></i>Flagged</span>
+              </div>
+              <div class="btn-row"><button class="btn btn-outline" id="submitBtn2" style="width:100%;">Submit exam</button></div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-accent" aria-hidden="true"></div>
+    <div class="wrap footer-inner">
+      <img data-logo-swap src="../img/primary-logo-transparent.png" alt="OMNyra Group">
+      <div><p><strong>OMNyra Group</strong> — Empowering Careers. Securing the Future.</p>
+      <p><a href="mailto:omnyra.training@gmail.com">omnyra.training@gmail.com</a> · <a href="index.html">Back to catalog</a></p></div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop" id="submitModal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="submitTitle">
+      <h2 id="submitTitle">Submit this exam?</h2>
+      <p id="submitText"></p>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="confirmSubmit">Yes, submit</button>
+        <button class="btn btn-ghost" id="cancelSubmit">Keep answering</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop" id="idleModal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="idleTitle">
+      <h2 id="idleTitle">Still there?</h2>
+      <p>No activity for 30 minutes. Your answers are auto-saved. Choose <strong>Continue</strong> to keep the session, or submit now. Closing this keeps the timer running.</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="idleContinue">Continue exam</button>
+        <button class="btn btn-outline" id="idleSubmit">Submit now</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop" id="timeModal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="timeTitle">
+      <h2 id="timeTitle">Time's up</h2>
+      <p>Your session reached the time limit. Answers saved so far will be submitted automatically.</p>
+      <div class="btn-row"><button class="btn btn-primary" id="timeOk">View result</button></div>
+    </div>
+  </div>
+
+  <script src="../assets/config.js"></script>
+  <script src="../assets/portal.js"></script>
+  <script type="module">
+    import "../assets/remote.js";
+    const P = window.OmnyraPortal;
+    const R = window.OmnyraRemote;
+    P.initTheme(); P.initNav();
+    const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
+    const params = new URLSearchParams(window.location.search);
+    const attemptId = params.get('attempt');
+    const fatal = document.getElementById('fatal');
+    let submitted = false;
+
+    function showFatal(msg) {
+      fatal.innerHTML = '<div class="card" role="alert"><h2 style="margin-top:0;">Session unavailable</h2><p class="help">' +
+        P.esc(msg) + '</p><div class="btn-row"><a class="btn btn-primary" href="index.html">Back to catalog</a></div></div>';
+    }
+    if (!attemptId) { showFatal('Missing ?attempt= id. Start an exam from the catalog so an attempt token is issued.'); throw new Error('no attempt'); }
+
+    await R.ready;
+    const remote = R.mode() === "remote" && params.get('remote') === '1';
+    if (remote) {
+      const g = await R.requireStudent("login.html");
+      if (!g) throw new Error('redirect');
+      if (await R.isAdmin()) { showFatal('Admin accounts can\'t take exams. Use the Admin Console to manage the question bank.'); throw new Error('admin-blocked'); }
+    }
+
+    let questions = [], exam = null, attempt = null, answers = {}, flags = {}, deadline = 0, source = "static";
+
+    if (remote) {
+      try {
+        attempt = await R.getAttemptById(attemptId);
+      } catch (e) { showFatal(P.friendlyError(e)); throw e; }
+      if (!attempt) { showFatal('Attempt not found for this account. Start the exam again from the catalog.'); throw new Error('no attempt'); }
+      if (attempt.status === 'graded') { window.location.replace('result.html?attempt=' + encodeURIComponent(attemptId) + '&remote=1'); throw new Error('graded'); }
+      if (!['created', 'in-progress', 'autosaved'].includes(attempt.status)) { showFatal('This session is ' + attempt.status + ' and can no longer be answered.'); throw new Error('closed'); }
+      const exams = await P.loadCatalog().catch(() => []);
+      exam = exams.find(x => x.id === attempt.exam_id);
+      if (!exam) { showFatal('Exam "' + attempt.exam_id + '" is no longer published.'); throw new Error('no exam'); }
+      try {
+        const q = await P.loadQuestions(exam);
+        questions = q.questions; source = q.source;
+      } catch (e) { showFatal('Could not load questions for "' + exam.id + '".'); throw e; }
+      if (!questions.length) { showFatal('Question set is empty.'); throw new Error('empty'); }
+      try { answers = await R.loadAnswers(attemptId); } catch (e) {}
+      // Server-shuffled order: every attempt carries its own question_order,
+      // so each sitting (and each retry) shows a different sequence.
+      const qOrder = attempt.question_order || [];
+      if (qOrder.length) {
+        const pos = {};
+        qOrder.forEach((id, i) => { pos[id] = i; });
+        questions.sort((a, b) => {
+          const pa = pos[a.qid] !== undefined ? pos[a.qid] : 1e9;
+          const pb = pos[b.qid] !== undefined ? pos[b.qid] : 1e9;
+          return pa - pb;
+        });
+      }
+      // Remote rows are keyed by question UUID; map UI keys to UUIDs.
+      questions.forEach(q => { q._key = q.qid || q.id; q._label = q.id; });
+      deadline = new Date(attempt.started_at).getTime() + exam.durationMinutes * 60 * 1000;
+      document.getElementById('examSub').textContent = '';
+      bootRunner(true);
+    } else {
+      attempt = P.store.getAttempt(attemptId);
+      if (!attempt) { showFatal('Attempt not found on this device (localStorage was cleared or this is a different browser).'); throw new Error('no attempt'); }
+      if (attempt.submittedAt) { window.location.replace('result.html?attempt=' + encodeURIComponent(attemptId)); throw new Error('submitted'); }
+      const exams = await P.loadCatalog().catch(() => []);
+      exam = exams.find(x => x.id === attempt.examId);
+      if (!exam) { showFatal('Exam "' + attempt.examId + '" is no longer in the catalog.'); throw new Error('no exam'); }
+      if (!exam.open || (!exam.questionFile && R.mode() !== "remote")) { showFatal('Exam "' + attempt.examId + '" is not currently open.'); throw new Error('closed'); }
+      try {
+        const q = await P.loadQuestions(exam);
+        questions = q.questions; source = q.source;
+      } catch (e) { showFatal('Could not load question file.'); throw e; }
+      if (!questions.length) { showFatal('Question set is empty.'); throw new Error('empty'); }
+      if (attempt.seed === undefined) { attempt.seed = (Math.random() * 0x7fffffff) | 0; P.store.saveAttempt(attempt); }
+      questions = P.shuffleSeeded(questions, attempt.seed);
+      questions.forEach(q => { q._key = q.id; q._label = q.id; });
+      answers = attempt.answers || {}; flags = attempt.flags || {};
+      deadline = new Date(attempt.startedAt).getTime() + exam.durationMinutes * 60 * 1000;
+      bootRunner(false);
+    }
+
+    function bootRunner(isRemote) {
+      document.getElementById('runner').hidden = false;
+      document.getElementById('examTitle').textContent = exam.title;
+      const who = (!isRemote && attempt.student && (attempt.student.name || attempt.student.displayName)) ? (attempt.student.name || attempt.student.displayName) + ' · ' : '';
+      document.getElementById('examSub').textContent =
+        who + questions.length + ' questions · ' + exam.durationMinutes + ' min · auto-saves every 15s' + (isRemote ? ' · server-timed & server-graded' : '');
+      const timerEl = document.getElementById('timer');
+      const tick = setInterval(() => {
+        const ms = deadline - Date.now();
+        if (ms <= 0) { clearInterval(tick); onTimeout(); return; }
+        const m = Math.floor(ms / 60000), s = Math.floor((ms % 60000) / 1000);
+        timerEl.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+        timerEl.classList.toggle('low', ms < 5 * 60 * 1000);
+      }, 500);
+
+      const qWrap = document.getElementById('questions');
+      const pal = document.getElementById('paletteGrid');
+      questions.forEach((q, i) => {
+        const card = document.createElement('section');
+        card.className = 'q-card'; card.id = 'q-' + q._key;
+        const opts = q.options.map((op, oi) =>
+          '<li><button type="button" class="opt" data-q="' + P.esc(q._key) + '" data-i="' + oi + '" role="radio" aria-checked="false">' +
+          '<span class="key" aria-hidden="true">' + LETTERS[oi] + '</span><span>' + P.esc(op) + '</span></button></li>'
+        ).join('');
+        card.innerHTML =
+          '<div class="q-head"><span class="q-num">Question ' + (i + 1) + ' of ' + questions.length + ' · ' + q.marks + ' mark' + (q.marks > 1 ? 's' : '') + '</span>' +
+          '<button type="button" class="flag-btn" data-flag="' + P.esc(q._key) + '" aria-pressed="false">⚑ Flag for review</button></div>' +
+          '<p class="q-text">' + P.esc(q.question) + '</p>' +
+          '<p class="q-topic">' + P.esc(q.topic || 'General') + ' · ' + P.esc(q.difficulty || 'medium') + '</p>' +
+          '<ul class="opts" role="radiogroup" aria-label="Question ' + (i + 1) + ' options">' + opts + '</ul>';
+        qWrap.appendChild(card);
+        const pb = document.createElement('button');
+        pb.type = 'button'; pb.className = 'pal-btn'; pb.textContent = String(i + 1);
+        pb.setAttribute('data-pal', q._key);
+        pb.setAttribute('aria-label', 'Go to question ' + (i + 1));
+        pb.addEventListener('click', () => {
+          document.getElementById('q-' + CSS.escape(q._key)).scrollIntoView({ behavior: 'smooth', block: 'start' });
+          syncPalette(i);
+        });
+        pal.appendChild(pb);
+      });
+
+      function paint() {
+        qWrap.querySelectorAll('.opt').forEach((b) => {
+          const on = answers[b.getAttribute('data-q')] === Number(b.getAttribute('data-i'));
+          b.classList.toggle('selected', on);
+          b.setAttribute('aria-checked', on ? 'true' : 'false');
+        });
+        qWrap.querySelectorAll('[data-flag]').forEach((b) => {
+          const on = !!flags[b.getAttribute('data-flag')];
+          b.classList.toggle('flagged', on);
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        pal.querySelectorAll('[data-pal]').forEach((b) => {
+          const qid = b.getAttribute('data-pal');
+          b.classList.toggle('answered', answers[qid] !== undefined);
+          b.classList.toggle('flagged', !!flags[qid]);
+        });
+        document.getElementById('countMeta').textContent = Object.keys(answers).length + '/' + questions.length + ' answered';
+      }
+      function syncPalette(i) {
+        pal.querySelectorAll('[data-pal]').forEach((b, j) => b.classList.toggle('current', i === j));
+      }
+      let saveTimer = null;
+      function persist(silent) {
+        if (isRemote) {
+          clearTimeout(saveTimer);
+          const run = () => R.saveAnswers(attemptId, answers).then(() => {
+            if (!silent) document.getElementById('autosave').textContent = 'Saved ' + new Date().toLocaleTimeString();
+          }).catch(() => { if (!silent) document.getElementById('autosave').textContent = 'Save failed — retrying'; });
+          if (silent) { saveTimer = setTimeout(run, 500); }
+          else run();
+          return;
+        }
+        attempt.answers = answers; attempt.flags = flags;
+        attempt.lastSavedAt = P.nowIso();
+        P.store.saveAttempt(attempt);
+        if (!silent) document.getElementById('autosave').textContent = 'Saved ' + new Date().toLocaleTimeString();
+      }
+      qWrap.addEventListener('click', (e) => {
+        const opt = e.target.closest('.opt');
+        if (opt) { answers[opt.getAttribute('data-q')] = Number(opt.getAttribute('data-i')); persist(true); paint(); return; }
+        const fl = e.target.closest('[data-flag]');
+        if (fl) {
+          const qid = fl.getAttribute('data-flag');
+          if (flags[qid]) delete flags[qid]; else flags[qid] = true;
+          persist(true); paint();
+        }
+      });
+      setInterval(() => { if (!submitted) persist(false); }, 15000);
+      window.addEventListener('beforeunload', () => { if (!submitted) { if (isRemote) persist(true); else persist(true); } });
+
+      P.watchInactivity(() => { if (!submitted) P.openModal('idleModal'); });
+      document.getElementById('idleContinue').addEventListener('click', () => P.closeModal('idleModal'));
+      document.getElementById('idleSubmit').addEventListener('click', () => { P.closeModal('idleModal'); askSubmit(); });
+
+      function counts() {
+        const answered = Object.keys(answers).length;
+        const flagged = Object.keys(flags).length;
+        return { answered, unanswered: questions.length - answered, flagged };
+      }
+      function askSubmit() {
+        const c = counts();
+        document.getElementById('submitText').textContent =
+          c.answered + '/' + questions.length + ' answered' +
+          (c.unanswered ? ' · ' + c.unanswered + ' unanswered (counted as incorrect)' : '') +
+          (c.flagged ? ' · ' + c.flagged + ' flagged' : '') + '. Submit now? This cannot be undone.';
+        P.openModal('submitModal');
+      }
+      async function doSubmit(auto) {
+        if (submitted) return;
+        submitted = true;
+        if (isRemote) {
+          try { persist(true); await new Promise(r => setTimeout(r, 600)); } catch (e) {}
+          try {
+            await R.submitAttempt(attemptId);
+          } catch (e) {
+            if (String((e && e.message) || e).includes('graded') || String(JSON.stringify(e)).includes('replayed')) {
+              // already graded — fall through to result
+            } else { submitted = false; P.toast(P.friendlyError(e)); return; }
+          }
+          try { localStorage.removeItem(P.K.activeAttempt); } catch (e) {}
+          window.location.href = 'result.html?attempt=' + encodeURIComponent(attemptId) + '&remote=1';
+          return;
+        }
+        persist(true);
+        attempt.submittedAt = P.nowIso();
+        attempt.autoSubmitted = !!auto;
+        P.store.saveAttempt(attempt);
+        P.store.remove(P.K.activeAttempt);
+        window.location.href = 'result.html?attempt=' + encodeURIComponent(attempt.attemptId);
+      }
+      function onTimeout() {
+        if (submitted) return;
+        P.openModal('timeModal');
+        document.getElementById('timeOk').addEventListener('click', () => doSubmit(true), { once: true });
+        setTimeout(() => doSubmit(true), 8000);
+      }
+      document.getElementById('submitBtn').addEventListener('click', askSubmit);
+      document.getElementById('submitBtn2').addEventListener('click', askSubmit);
+      document.getElementById('cancelSubmit').addEventListener('click', () => P.closeModal('submitModal'));
+      document.getElementById('confirmSubmit').addEventListener('click', () => doSubmit(false));
+      paint(); syncPalette(0);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="color-scheme" content="light dark">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem('omnyra.exam.theme'));if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exams — OMNyra Student Console</title>
+  <meta name="description" content="OMNyra Group Student Console — timed GRC, TPRM, ISO 27001 and Data Privacy mock exams.">
+  <link rel="icon" type="image/png" href="../img/icon-only-transparent.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/portal.css">
+  <script>window.OMNYRA_MANIFEST_URL = '../questions/manifest.json'; window.OMNYRA_IMG_BASE = '../';</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="nav" role="banner">
+    <a href="index.html" class="nav-logo" aria-label="OMNyra Student Console — Home">
+      <img data-logo-swap src="../img/primary-logo-transparent.png" alt="OMNyra Group" width="200" height="79">
+    </a>
+    <div class="nav-right-wrap">
+      <nav class="nav-links" aria-label="Student navigation">
+        <a href="index.html" class="active" aria-current="page">Exams</a>
+        <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+      </nav>
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle Light/Dark Theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav>
+      <a href="index.html">Exams</a>
+      <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+      <div class="mobile-theme-row"><span id="mobileSessionLabel">Student Console</span></div>
+    </nav>
+  </div>
+
+  <main id="main">
+    <div class="wrap">
+      <section class="hero" aria-label="Student intro">
+        <span class="eyebrow"><span class="dot" aria-hidden="true"></span> Student Console · Mock Exams</span>
+        <h1>Prove you're <span class="gradient-text">job-ready in GRC.</span></h1>
+        <p class="hero-sub" id="sessionLine">Timed mock exams mapped to OMNyra training outcomes.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#catalog">Browse exams</a>
+          <button class="btn btn-ghost" id="signOutBtn" hidden>Sign out</button>
+        </div>
+        <div class="accent-bar" aria-hidden="true"></div>
+      </section>
+
+      <section class="section" id="identitySection" aria-label="Student identity" hidden>
+        <div class="card">
+          <div class="section-head"><h2>Student identity</h2><p>No password in local mode — stored only on this device.</p></div>
+          <form id="studentForm" novalidate>
+            <div class="grid" style="grid-template-columns:1fr 1fr;gap:14px;">
+              <label class="field">Full name
+                <input type="text" id="studentName" autocomplete="name" placeholder="e.g. Alex Morgan" required>
+              </label>
+              <label class="field">Email
+                <input type="email" id="studentEmail" autocomplete="email" placeholder="you@example.com" required>
+              </label>
+            </div>
+            <p class="error-text" id="studentError" role="alert" aria-live="polite"></p>
+            <div class="btn-row">
+              <button class="btn btn-primary" type="submit">Save identity</button>
+              <button class="btn btn-ghost" type="button" id="clearIdentity">Clear</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Your progress">
+        <div class="section-head"><h2>Your progress</h2><p id="progressWho">Best scores</p></div>
+        <div class="grid stats" id="progressGrid" role="list"></div>
+      </section>
+
+      <section class="section" id="catalog" aria-label="Exam catalog">
+        <div class="section-head"><h2>Exam catalog</h2><p id="catalogMeta">Loading…</p></div>
+        <div id="resumeBanner"></div>
+        <div class="grid catalog" id="catalogGrid" role="list"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-accent" aria-hidden="true"></div>
+    <div class="wrap footer-inner">
+      <img data-logo-swap src="../img/primary-logo-transparent.png" alt="OMNyra Group">
+      <div>
+        <p><strong>OMNyra Group</strong> — Empowering Careers. Securing the Future.</p>
+        <p><a href="mailto:omnyra.training@gmail.com">omnyra.training@gmail.com</a> · <a href="https://wa.me/919063370816" target="_blank" rel="noopener">+91 9063370816 (WhatsApp)</a></p>
+      </div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop" id="startModal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="startTitle">
+      <h2 id="startTitle">Start exam?</h2>
+      <p id="startText"></p>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="startConfirm">Start timed session</button>
+        <button class="btn btn-ghost" id="startCancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/config.js"></script>
+  <script src="../assets/portal.js"></script>
+  <script type="module">
+    import "../assets/remote.js";
+    const P = window.OmnyraPortal;
+    const R = window.OmnyraRemote;
+    P.initTheme(); P.initNav();
+
+    await R.ready;
+    const remote = R.mode() === "remote";
+    let session = null, profile = null;
+    let pendingExam = null;
+
+    if (remote) {
+      const g = await R.requireStudent("login.html");
+      if (!g) throw new Error("redirect"); // redirected to login
+      session = g.session;
+      try { profile = await R.getProfile(); } catch (e) {}
+      const email = (profile && profile.email) || (session.user && session.user.email) || "";
+      const name = (profile && profile.display_name) || "";
+      document.getElementById('sessionLine').textContent =
+        "Signed in as " + email + " · progress syncs across devices.";
+      document.getElementById('signOutBtn').hidden = false;
+      document.getElementById('signOutBtn').addEventListener('click', async () => {
+        await R.signOut();
+        window.location.replace("login.html");
+      });
+      // Mirror remote identity into the local identity slot so shared helpers keep working.
+      P.saveStudent({ name: name || email.split("@")[0], email, savedAt: P.nowIso() });
+      if (await R.isAdmin()) {
+        document.getElementById('sessionLine').textContent = "This account is an admin — admins can't take exams.";
+        document.getElementById('catalogMeta').textContent = 'Not available for admin accounts.';
+        document.getElementById('catalogGrid').innerHTML = '<div class="card" role="alert"><p><strong>Admin accounts can\'t take exams.</strong> Use the <a href="../admin/index.html">Admin Console</a> to manage the question bank. Sign out below to switch to a student account.</p></div>';
+        document.getElementById('progressWho').textContent = 'Not tracked for admins';
+        throw new Error("admin-blocked");
+      }
+    } else {
+      document.getElementById('identitySection').hidden = false;
+      document.getElementById('sessionLine').textContent += " Your progress saves on this device.";
+      const s = P.getStudent();
+      if (s) {
+        document.getElementById('studentName').value = s.name || s.displayName || '';
+        document.getElementById('studentEmail').value = s.email || '';
+      }
+      document.getElementById('studentForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('studentName').value.trim();
+        const email = document.getElementById('studentEmail').value.trim();
+        const err = document.getElementById('studentError');
+        if (name.length < 2) { err.textContent = 'Please enter your full name.'; return; }
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { err.textContent = 'Please enter a valid email.'; return; }
+        err.textContent = '';
+        P.saveStudent({ name, email, savedAt: P.nowIso() });
+        P.toast('Identity saved on this device.');
+        renderProgress(window.__exams || []);
+      });
+      document.getElementById('clearIdentity').addEventListener('click', () => {
+        P.store.remove(P.K.student);
+        document.getElementById('studentName').value = '';
+        document.getElementById('studentEmail').value = '';
+        P.toast('Identity cleared.');
+        renderProgress(window.__exams || []);
+      });
+    }
+
+    function renderProgress(exams, remoteRows) {
+      const grid = document.getElementById('progressGrid');
+      grid.innerHTML = '';
+      let passed = 0, attempts = 0;
+      if (remote && remoteRows) {
+        const byExam = {};
+        remoteRows.forEach(r => { byExam[r.exam_id] = r; });
+        exams.forEach((ex) => {
+          const r = byExam[ex.id];
+          const pct = r && r.best_percent !== null ? Math.round(Number(r.best_percent)) : null;
+          if (r) { attempts += r.attempts_count; if (pct !== null && pct >= ex.passPercent) passed++; }
+          const card = document.createElement('div');
+          card.className = 'card'; card.setAttribute('role', 'listitem');
+          card.innerHTML =
+            '<div class="stat-label">' + P.esc(ex.title) + '</div>' +
+            '<div class="stat-num' + (pct !== null && pct >= ex.passPercent ? ' accent' : '') + '">' + (pct !== null ? pct + '%' : '—') + '</div>' +
+            '<div class="help">' + (r ? ('Best score · ' + r.attempts_count + ' attempt' + (r.attempts_count > 1 ? 's' : '')) : 'Not attempted yet') + '</div>' +
+            (pct !== null ? '<div class="progress-track" role="progressbar" aria-valuenow="' + pct + '" aria-valuemin="0" aria-valuemax="100"><div class="progress-fill" style="width:' + pct + '%"></div></div>' : '');
+          grid.appendChild(card);
+        });
+        document.getElementById('progressWho').textContent = passed + '/' + exams.length + ' passed · ' + attempts + ' attempts · synced';
+        return;
+      }
+      const all = P.store.getProgress()[P.studentKey(P.getStudent())] || {};
+      exams.forEach((ex) => {
+        const r = all[ex.id];
+        if (r) { attempts += r.attempts; if (r.best >= ex.passPercent) passed++; }
+        const card = document.createElement('div');
+        card.className = 'card'; card.setAttribute('role', 'listitem');
+        card.innerHTML =
+          '<div class="stat-label">' + P.esc(ex.title) + '</div>' +
+          '<div class="stat-num' + (r && r.best >= ex.passPercent ? ' accent' : '') + '">' + (r ? r.best + '%' : '—') + '</div>' +
+          '<div class="help">' + (r ? ('Best score · ' + r.attempts + ' attempt' + (r.attempts > 1 ? 's' : '')) : 'Not attempted yet') + '</div>' +
+          (r ? '<div class="progress-track" role="progressbar" aria-valuenow="' + r.best + '" aria-valuemin="0" aria-valuemax="100"><div class="progress-fill" style="width:' + r.best + '%"></div></div>' : '');
+        grid.appendChild(card);
+      });
+      document.getElementById('progressWho').textContent = passed + '/' + exams.length + ' passed · ' + attempts + ' attempts';
+    }
+
+    async function renderResume(exams) {
+      const box = document.getElementById('resumeBanner');
+      box.innerHTML = '';
+      if (remote) {
+        for (const ex of exams.filter(e => e.open)) {
+          try {
+            const a = await R.getActiveAttempt(ex.id);
+            if (a) {
+              const div = document.createElement('div');
+              div.className = 'card';
+              div.style.borderColor = 'rgba(234,179,8,.5)';
+              div.innerHTML = '<strong>Resume in-progress session?</strong><p class="help" style="margin:6px 0 12px;">' +
+                P.esc(ex.title) + ' · started ' + P.esc(new Date(a.started_at).toLocaleString()) + ' · server-timed</p>' +
+                '<div class="btn-row" style="margin-top:0;"><a class="btn btn-primary" href="exam.html?attempt=' + encodeURIComponent(a.id) + '&remote=1">Resume</a></div>';
+              box.appendChild(div);
+              return;
+            }
+          } catch (e) {}
+        }
+        return;
+      }
+      const activeId = P.store.get(P.K.activeAttempt, null);
+      if (!activeId) return;
+      const a = P.store.getAttempt(activeId);
+      if (!a || a.submittedAt) { P.store.remove(P.K.activeAttempt); return; }
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.style.borderColor = 'rgba(234,179,8,.5)';
+      div.innerHTML = '<strong>Resume in-progress session?</strong><p class="help" style="margin:6px 0 12px;">' +
+        P.esc(a.examTitle || a.examId) + ' · started ' + P.esc(new Date(a.startedAt).toLocaleString()) + '</p>' +
+        '<div class="btn-row" style="margin-top:0;"><a class="btn btn-primary" href="exam.html?attempt=' + encodeURIComponent(a.attemptId) + '">Resume</a>' +
+        '<button class="btn btn-ghost" id="discardAttempt">Discard</button></div>';
+      box.appendChild(div);
+      document.getElementById('discardAttempt').addEventListener('click', () => {
+        P.store.clearAttempt(a.attemptId); P.store.remove(P.K.activeAttempt);
+        renderResume(window.__exams || []); P.toast('In-progress session discarded.');
+      });
+    }
+
+    function startFlow(ex) {
+      if (!remote && !P.getStudent()) {
+        P.toast('Save your student identity first.');
+        document.getElementById('studentName').focus();
+        document.getElementById('studentForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      pendingExam = ex;
+      document.getElementById('startText').textContent =
+        ex.title + ' · ' + ex.durationMinutes + ' minutes · pass mark ' + ex.passPercent + '%. The timer starts immediately and your answers auto-save every 15 seconds.' +
+        (remote ? ' Timing and grading are enforced server-side.' : '');
+      P.openModal('startModal');
+    }
+
+    try {
+      const exams = await P.loadCatalog();
+      window.__exams = exams;
+      const openCount = exams.filter(e => e.open).length;
+      document.getElementById('catalogMeta').textContent =
+        exams.length + ' exams · ' + openCount + ' open now' + (remote ? ' · live from database' : ' · local catalog');
+      const grid = document.getElementById('catalogGrid');
+      grid.innerHTML = '';
+      exams.forEach((ex) => {
+        const el = document.createElement('article');
+        el.className = 'card exam-card'; el.setAttribute('role', 'listitem');
+        el.innerHTML =
+          '<div class="top"><span class="badge ' + (ex.open ? 'open' : 'soon') + '">' + (ex.open ? 'Open' : 'Coming soon') + '</span>' +
+          '<span class="help">' + ex.durationMinutes + ' min</span></div>' +
+          '<h3>' + P.esc(ex.title) + '</h3>' +
+          '<p class="desc">' + P.esc(ex.description || '') + '</p>' +
+          '<div class="meta"><span>Pass <strong>' + ex.passPercent + '%</strong></span></div>' +
+          '<div class="btn-row">' +
+          (ex.open ? '<button class="btn btn-primary" data-start="' + P.esc(ex.id) + '">Start exam</button>' : '<button class="btn btn-outline" disabled aria-disabled="true">Question set in review</button>') +
+          '</div>';
+        grid.appendChild(el);
+      });
+      grid.querySelectorAll('[data-start]').forEach((b) => {
+        b.addEventListener('click', () => {
+          const ex = exams.find(x => x.id === b.getAttribute('data-start'));
+          if (ex) startFlow(ex);
+        });
+      });
+      let remoteRows = null;
+      if (remote) { try { remoteRows = await R.getProgress(); } catch (e) {} }
+      renderProgress(exams, remoteRows);
+      await renderResume(exams);
+    } catch (e) {
+      document.getElementById('catalogMeta').textContent = 'Could not load catalog.';
+      document.getElementById('catalogGrid').innerHTML = '<div class="card"><p>Could not load the exam catalog. Serve over HTTP (<code>python -m http.server</code>) or check the backend configuration.</p></div>';
+    }
+
+    document.getElementById('startConfirm').addEventListener('click', async () => {
+      if (!pendingExam) return;
+      if (remote) {
+        try {
+          const row = await R.startAttempt(pendingExam.id);
+          P.store.set(P.K.activeAttempt, row.id);
+          P.closeModal('startModal');
+          window.location.href = 'exam.html?attempt=' + encodeURIComponent(row.id) + '&remote=1';
+        } catch (e) { P.toast(P.friendlyError(e)); }
+        return;
+      }
+      const s = P.getStudent();
+      const attempt = {
+        attemptId: P.uuid(), examId: pendingExam.id, examTitle: pendingExam.title,
+        studentId: P.studentKey(s), student: { name: s.name || s.displayName, email: s.email },
+        startedAt: P.nowIso(), durationMinutes: pendingExam.durationMinutes,
+        seed: (Math.random() * 0x7fffffff) | 0,
+        answers: {}, flags: {}, submittedAt: null, lastSavedAt: P.nowIso()
+      };
+      P.store.saveAttempt(attempt);
+      P.store.set(P.K.activeAttempt, attempt.attemptId);
+      P.closeModal('startModal');
+      window.location.href = 'exam.html?attempt=' + encodeURIComponent(attempt.attemptId);
+    });
+    document.getElementById('startCancel').addEventListener('click', () => P.closeModal('startModal'));
+    document.getElementById('startModal').addEventListener('click', (e) => {
+      if (e.target.id === 'startModal') P.closeModal('startModal');
+    });
+  </script>
+</body>
+</html>
