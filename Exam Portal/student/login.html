@@ -107,11 +107,17 @@
         window.history.replaceState({}, '', url.toString());
       }
     } catch (e) {}
-    // Already signed in? Go straight to catalog.
+    // Already signed in? Route by role (admins go to their console).
     if (R.mode() === "remote") {
       await R.handleCallback();
       const s = await R.getSession();
-      if (s) { window.location.replace("index.html"); }
+      let routed = false;
+      if (s) {
+        try {
+          if (await R.isAdmin()) { window.location.replace("../admin/index.html"); routed = true; }
+        } catch (e) {}
+        if (!routed) window.location.replace("index.html");
+      }
       note.textContent = "Backend connected — sign in to sync progress across devices.";
     } else {
       note.textContent = "Backend not configured — this portal runs locally. Progress stays on this device. (Admin: set assets/config.js.)";
