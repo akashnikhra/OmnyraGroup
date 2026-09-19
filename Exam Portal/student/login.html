@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="color-scheme" content="light dark">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem('omnyra.exam.theme'));if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Sign In — OMNyra Exam Portal</title>
+  <meta name="description" content="Student sign-in for OMNyra GRC mock exams. Passwordless email link.">
+  <link rel="icon" type="image/png" href="../img/icon-only-transparent.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/portal.css">
+  <script>window.OMNYRA_MANIFEST_URL = '../questions/manifest.json'; window.OMNYRA_IMG_BASE = '../';</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="nav" role="banner">
+    <a href="index.html" class="nav-logo" aria-label="OMNyra Student Console — Home">
+      <img data-logo-swap src="../img/primary-logo-transparent.png" alt="OMNyra Group" width="200" height="79">
+    </a>
+    <div class="nav-right-wrap">
+      <nav class="nav-links" aria-label="Student navigation">
+        <a href="index.html">Exams</a>
+        <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+      </nav>
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle Light/Dark Theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav>
+      <a href="index.html">Exams</a>
+      <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+    </nav>
+  </div>
+
+  <main id="main">
+    <div class="wrap">
+      <section class="hero" aria-label="Student sign in">
+        <span class="eyebrow"><span class="dot" aria-hidden="true"></span> Student Console · Sign in</span>
+        <h1>Your exams, <span class="gradient-text">on any device.</span></h1>
+        <p class="hero-sub">Passwordless sign-in — we email you a link. No passwords stored, ever.</p>
+        <div class="accent-bar" aria-hidden="true"></div>
+      </section>
+
+      <section class="section" aria-label="Sign in form">
+        <div class="card" id="loginCard">
+          <div class="section-head"><h2>Sign in with email</h2><p id="modeNote">Checking backend…</p></div>
+          <form id="loginForm" novalidate>
+            <label class="field">Email
+              <input type="email" id="loginEmail" autocomplete="email" placeholder="you@example.com" required>
+              <span class="help">We send a one-time sign-in link (valid ~1 hour).</span>
+            </label>
+            <p class="error-text" id="loginError" role="alert" aria-live="polite"></p>
+            <p class="help" id="loginSent" role="status" aria-live="polite"></p>
+            <div class="btn-row">
+              <button class="btn btn-primary" type="submit" id="loginBtn">Email me a sign-in link</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-accent" aria-hidden="true"></div>
+    <div class="wrap footer-inner">
+      <img data-logo-swap src="../img/primary-logo-transparent.png" alt="OMNyra Group">
+      <div>
+        <p><strong>OMNyra Group</strong> — Empowering Careers. Securing the Future.</p>
+        <p><a href="mailto:omnyra.training@gmail.com">omnyra.training@gmail.com</a> · <a href="https://omnyragroup.online/" target="_blank" rel="noopener">omnyragroup.online</a></p>
+      </div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../assets/config.js"></script>
+  <script src="../assets/portal.js"></script>
+  <script type="module">
+    import "../assets/remote.js";
+    const P = window.OmnyraPortal;
+    P.initTheme(); P.initNav();
+    const R = window.OmnyraRemote;
+    const err = document.getElementById('loginError');
+    const sent = document.getElementById('loginSent');
+    const note = document.getElementById('modeNote');
+    const btn = document.getElementById('loginBtn');
+
+    await R.ready;
+    // Surface expired/denied link errors (?error=… or #error=…) then clean the URL.
+    try {
+      const qp = new URLSearchParams(window.location.search);
+      const hp = new URLSearchParams((window.location.hash || "#").replace(/^#/, ""));
+      const errCode = qp.get('error') || hp.get('error');
+      if (errCode) {
+        const desc = ((qp.get('error_description') || hp.get('error_description') || '').replace(/\+/g, ' '));
+        err.textContent = /expired|invalid/i.test(desc + ' ' + errCode)
+          ? 'That link expired or was already used. Request a fresh one below — each new link invalidates older ones.'
+          : ('Sign-in failed: ' + (desc || errCode));
+        const url = new URL(window.location.href);
+        url.search = ''; url.hash = '';
+        window.history.replaceState({}, '', url.toString());
+      }
+    } catch (e) {}
+    // Already signed in? Go straight to catalog.
+    if (R.mode() === "remote") {
+      await R.handleCallback();
+      const s = await R.getSession();
+      if (s) { window.location.replace("index.html"); }
+      note.textContent = "Backend connected — sign in to sync progress across devices.";
+    } else {
+      note.textContent = "Backend not configured — this portal runs locally. Progress stays on this device. (Admin: set assets/config.js.)";
+      btn.disabled = true;
+      document.getElementById('loginEmail').disabled = true;
+      sent.textContent = "Tip: continue to the exam catalog without signing in — use the name/email identity there.";
+      const a = document.createElement("a");
+      a.className = "btn btn-outline"; a.href = "index.html"; a.textContent = "Continue to exams";
+      document.querySelector("#loginCard .btn-row").appendChild(a);
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      err.textContent = ""; sent.textContent = "";
+      const email = document.getElementById('loginEmail').value.trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { err.textContent = "Please enter a valid email."; return; }
+      btn.disabled = true;
+      try {
+        await R.sendLink(email, window.location.href);
+        sent.textContent = "Check your inbox — a sign-in link is on its way. It expires in about an hour.";
+        P.toast("Sign-in link sent.");
+        // 60s resend cooldown (free-tier email throttle protection).
+        let s = 60;
+        const label = btn.textContent;
+        const iv = setInterval(() => {
+          s--;
+          if (s <= 0) { clearInterval(iv); btn.disabled = false; btn.textContent = label; return; }
+          btn.disabled = true;
+          btn.textContent = "Resend available in " + s + "s";
+        }, 1000);
+      } catch (ex) {
+        err.textContent = P.friendlyError(ex);
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

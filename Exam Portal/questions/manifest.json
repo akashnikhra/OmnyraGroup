@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-14T00:00:00Z",
+  "catalogBase": "./",
+  "exams": [
+    {
+      "id": "grc-fundamentals",
+      "title": "GRC Fundamentals — Sample Set",
+      "file": "sample-grc-fundamentals.json",
+      "version": "1.0.0",
+      "questionCount": 10,
+      "durationMinutes": 30,
+      "passPercent": 70,
+      "status": "published"
+    },
+    {
+      "id": "tprm-essentials",
+      "title": "TPRM Essentials Mock",
+      "description": "Vendor risk tiering, SIG questionnaires, SOC 2 review and continuous monitoring.",
+      "file": "tprm-essentials.json",
+      "version": "unreleased",
+      "questionCount": 0,
+      "durationMinutes": 25,
+      "passPercent": 70,
+      "status": "draft"
+    },
+    {
+      "id": "iso27001-readiness",
+      "title": "ISO 27001 Readiness Mock",
+      "description": "ISMS scope, Annex A controls, Statement of Applicability and internal audit.",
+      "file": "iso27001-readiness.json",
+      "version": "unreleased",
+      "questionCount": 0,
+      "durationMinutes": 30,
+      "passPercent": 70,
+      "status": "draft"
+    },
+    {
+      "id": "privacy-ai-risk",
+      "title": "Data Privacy & AI Risk Mock",
+      "description": "Privacy principles, data-subject rights and AI-risk basics for GRC analysts.",
+      "file": "privacy-ai-risk.json",
+      "version": "unreleased",
+      "questionCount": 0,
+      "durationMinutes": 20,
+      "passPercent": 70,
+      "status": "draft"
+    }
+  ]
+}

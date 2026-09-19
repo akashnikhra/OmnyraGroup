@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="color-scheme" content="light dark">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem('omnyra.exam.theme'));if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Upload Question Set · OMNyra Exam Portal</title>
+  <meta name="description" content="OMNyra Exam Portal admin: validate and package question sets for the static catalog.">
+  <link rel="icon" type="image/png" href="img/icon-only-transparent.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="nav" role="banner">
+    <a href="index.html" class="nav-logo" aria-label="OMNyra Exam Portal — Home">
+      <img data-logo-swap src="img/primary-logo-transparent.png" alt="OMNyra Group" width="200" height="79">
+    </a>
+    <div class="nav-right-wrap">
+      <nav class="nav-links" aria-label="Portal navigation">
+        <a href="index.html">Exams</a>
+        <a href="admin.html" class="active" aria-current="page">Admin</a>
+        <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+      </nav>
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle Light/Dark Theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav>
+      <a href="index.html">Exams</a>
+      <a href="admin.html">Admin</a>
+      <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+      <div class="mobile-theme-row"><span>Theme Mode</span>
+        <button class="theme-toggle-btn" id="mobileThemeToggle" aria-label="Toggle light/dark theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <main id="main">
+    <div class="wrap">
+      <section class="hero" aria-label="Admin intro">
+        <span class="eyebrow"><span class="dot" aria-hidden="true"></span> Admin · Question-set uploader</span>
+        <h1>Ship a new <span class="gradient-text">mock exam.</span></h1>
+        <p class="hero-sub">Drop a JSON or CSV file. It is validated in your browser, previewed live, then downloaded as a versioned file you commit to <code>questions/</code>. Nothing uploads anywhere in v1.</p>
+        <div class="accent-bar" aria-hidden="true"></div>
+      </section>
+
+      <section class="section">
+        <div class="admin-grid">
+          <div class="card">
+            <h2 style="margin-top:0;font-size:1.1rem;">1 · Drop your file</h2>
+            <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Drop a JSON or CSV question file, or click to browse">
+              <p style="margin:0 0 6px;font-weight:600;">Drag &amp; drop JSON / CSV here</p>
+              <p class="help" style="margin:0;">or click to browse · validated locally · <a href="#" id="sampleLink">download sample JSON</a> · <a href="#" id="csvLink">download CSV template</a></p>
+              <input type="file" id="fileInput" accept=".json,.csv,application/json,text/csv">
+            </div>
+            <div class="btn-row template-row">
+              <a class="btn btn-outline" id="tplBtn" href="questions/template.csv" download="template.csv">Download CSV template</a>
+              <a class="btn btn-outline" id="tplExBtn" href="questions/template-with-examples.csv" download="template-with-examples.csv">Download CSV with examples</a>
+            </div>
+            <p class="help csv-status" id="csvStatus" role="status" aria-live="polite"></p>
+            <details class="format-guide">
+              <summary>CSV format guide</summary>
+              <ol>
+                <li><strong>Header row (exact, UTF-8):</strong> <code>id,question,optionA,optionB,optionC,optionD,correctIndex,rationale,topic,difficulty,marks</code> — legacy alias <code>option1,option2,option3,option4</code> is also accepted on upload.</li>
+                <li><strong>One row per question</strong> (max 500 rows + header). Keep the header as row 1; data starts row 2.</li>
+                <li><strong>Quoting:</strong> wrap any field containing a comma, quote, or line-break in <code>"double quotes"</code>; escape a literal quote as <code>""</code>. Example: <code>"Access to sensitive data, criticality of service, and substitutability"</code>.</li>
+                <li><strong>correctIndex</strong> is 0-based: <code>0</code>=A, <code>1</code>=B, <code>2</code>=C, <code>3</code>=D.</li>
+                <li><strong>marks</strong> is an integer <code>1–100</code>; <strong>difficulty</strong> is <code>easy|medium|hard</code>; <strong>question</strong> and <strong>rationale</strong> need ≥ 10 chars; all 4 options must be distinct.</li>
+                <li>Save as <strong>UTF-8</strong> (with or without BOM). Contract: <a href="BACKEND.md">BACKEND.md §4 — CSV columns</a>.</li>
+              </ol>
+              <p class="help">Missing server file? The buttons fall back to a built-in template download automatically.</p>
+            </details>
+            <div class="grid" style="grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;">
+              <label class="field">Exam id (kebab-case slug)
+                <input type="text" id="examId" placeholder="e.g. tprm-essentials">
+              </label>
+              <label class="field">Version (YYYY-MM-DD)
+                <input type="text" id="version" value="2026-09-14">
+              </label>
+              <label class="field">Duration (minutes, 1–600)
+                <input type="number" id="durationMinutes" value="30" min="1" max="600">
+              </label>
+              <label class="field">Pass percent (0–100)
+                <input type="number" id="passPercent" value="70" min="0" max="100">
+              </label>
+            </div>
+            <label class="field" style="margin-top:14px;">Set title
+              <input type="text" id="setTitle" placeholder="e.g. TPRM Essentials — Set A">
+            </label>
+            <h2 style="font-size:1.1rem;margin:20px 0 8px;">2 · Validation</h2>
+            <p id="valSummary" class="help">No file loaded yet. Required per question (same rules as <code>tools/validate-questions.mjs</code>): <code>id, question (≥10 chars), options[4 distinct], correctIndex 0–3, rationale (≥10 chars), topic, difficulty, marks (int 1–100)</code>. Max 500 questions per file.</p>
+            <div id="valTableWrap"></div>
+            <h2 style="font-size:1.1rem;margin:20px 0 8px;">3 · Publish</h2>
+            <div class="btn-row" style="margin-top:0;">
+              <button class="btn btn-primary" id="downloadBtn" disabled>Download versioned JSON</button>
+            </div>
+            <ol class="help" style="padding-left:18px;">
+              <li>Save the download as <code>Exam Portal/questions/&lt;exam-id&gt;.v&lt;YYYY-MM-DD&gt;.json</code>.</li>
+              <li>Add/edit the entry in <code>questions/manifest.json</code> (<code>id, title, file, version, questionCount, durationMinutes, passPercent, status: "published"</code>) and bump <code>updatedAt</code>.</li>
+              <li>Validate: <code>node "Exam Portal/tools/validate-questions.mjs" "Exam Portal/questions/&lt;file&gt;.json"</code> — must print PASS.</li>
+              <li>Commit (<code>feat:</code> prefix), push to <code>main</code> — GitHub Pages serves it statically; the catalog picks it up with zero code change.</li>
+              <li>TODO backend: POST the same JSON to the question-bank API instead (see README + BACKEND.md).</li>
+            </ol>
+          </div>
+          <div class="card">
+            <h2 style="margin-top:0;font-size:1.1rem;">Live preview</h2>
+            <p class="help" id="previewMeta">First 3 questions will render here.</p>
+            <div id="preview"></div>
+            <h2 style="font-size:1.1rem;margin:20px 0 8px;">Normalized JSON</h2>
+            <pre class="code" id="jsonOut" aria-label="Normalized JSON output">// awaiting file…</pre>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-accent" aria-hidden="true"></div>
+    <div class="wrap footer-inner">
+      <img data-logo-swap src="img/primary-logo-transparent.png" alt="OMNyra Group">
+      <div><p><strong>OMNyra Group</strong> — Empowering Careers. Securing the Future.</p>
+      <p><a href="mailto:omnyra.training@gmail.com">omnyra.training@gmail.com</a> · <a href="index.html">Back to catalog</a></p></div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/portal.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var P = window.OmnyraPortal;
+    P.initTheme(); P.initNav();
+    var state = { rows: [], errors: [], warnings: [] };
+    var dz = document.getElementById('dropzone');
+    var fi = document.getElementById('fileInput');
+
+    dz.addEventListener('click', function (e) { if (e.target.id !== 'sampleLink' && e.target.id !== 'csvLink') fi.click(); });
+    dz.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fi.click(); } });
+    ['dragover', 'dragenter'].forEach(function (ev) { dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.add('drag'); }); });
+    ['dragleave', 'drop'].forEach(function (ev) { dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.remove('drag'); }); });
+    dz.addEventListener('drop', function (e) {
+      var f = e.dataTransfer.files && e.dataTransfer.files[0];
+      if (f) readFile(f);
+    });
+    fi.addEventListener('change', function () { if (fi.files[0]) readFile(fi.files[0]); });
+
+    function readFile(f) {
+      var rd = new FileReader();
+      rd.onload = function () {
+        try {
+          var rows = f.name.toLowerCase().endsWith('.csv') ? parseCsv(String(rd.result)) : normalizeJson(String(rd.result));
+          state.rows = rows.rows; state.errors = rows.errors; state.warnings = rows.warnings || [];
+          if (!document.getElementById('setTitle').value && rows.suggestedTitle) document.getElementById('setTitle').value = rows.suggestedTitle;
+          render();
+        } catch (err) { state.rows = []; state.errors = [{ id: 'file', msg: 'Parse error: ' + err.message }]; state.warnings = []; render(); }
+      };
+      rd.readAsText(f);
+    }
+    function normalizeJson(text) {
+      var data = JSON.parse(text);
+      var arr = Array.isArray(data) ? data : data.questions;
+      if (!arr) throw new Error('Expected an array or {questions:[...]}.');
+      return { rows: arr, errors: validate(arr), warnings: [], suggestedTitle: data.title || '' };
+    }
+    // Minimal CSV parser (quoted fields supported). Canonical columns:
+    // id,question,optionA,optionB,optionC,optionD,correctIndex,rationale,topic,difficulty,marks
+    // Legacy alias option1..option4 also accepted (BACKEND.md §4). Quoting: fields with
+    // commas/quotes/newlines must be "double-quoted", literal quotes escaped as "".
+    function parseCsv(text) {
+      var lines = text.split(/\r?\n/).filter(function (l) { return l.trim(); });
+      if (lines.length < 2) throw new Error('Row 1: CSV needs a header row + at least 1 data row.');
+      function split(line) {
+        var out = [], cur = '', q = false;
+        for (var i = 0; i < line.length; i++) {
+          var c = line[i];
+          if (q) {
+            if (c === '"') { if (line[i + 1] === '"') { cur += '"'; i++; } else q = false; }
+            else cur += c;
+          } else if (c === '"') q = true;
+          else if (c === ',') { out.push(cur); cur = ''; }
+          else cur += c;
+        }
+        out.push(cur); return out;
+      }
+      var head = split(lines[0]).map(function (h) { return h.trim(); });
+      // Header-level legacy detection (mirrors tools/csv-to-json.mjs): canonical
+      // optionA..D wins; legacy option1..4 accepted with a non-blocking warning.
+      var usesLegacy = head.indexOf('option1') !== -1 || head.indexOf('option2') !== -1 ||
+        head.indexOf('option3') !== -1 || head.indexOf('option4') !== -1;
+      var warnings = [];
+      if (usesLegacy) warnings.push('Legacy header option1..option4 detected — accepted, but prefer canonical optionA..optionD (see questions/template.csv).');
+      var rows = lines.slice(1).map(function (ln, i) {
+        var cells = split(ln), o = {};
+        head.forEach(function (h, j) { o[h] = (cells[j] || '').trim(); });
+        // Canonical optionA–D; legacy option1–4 alias; pipe-joined `options` fallback.
+        var a = o.optionA !== undefined && o.optionA !== '' ? o.optionA : o.option1;
+        var b = o.optionB !== undefined && o.optionB !== '' ? o.optionB : o.option2;
+        var c = o.optionC !== undefined && o.optionC !== '' ? o.optionC : o.option3;
+        var d = o.optionD !== undefined && o.optionD !== '' ? o.optionD : o.option4;
+        var opts = [a, b, c, d].filter(function (x) { return x !== undefined && x !== ''; });
+        return {
+          id: o.id || ('csv-' + (i + 1)),
+          question: o.question || '',
+          options: opts.length ? opts : (o.options ? String(o.options).split('|') : []),
+          correctIndex: Number(o.correctIndex || 0),
+          rationale: o.rationale || '', topic: o.topic || 'General',
+          difficulty: o.difficulty || 'medium', marks: Number(o.marks || 1),
+          _csvLine: i + 2 // 1-based file line (header = line 1) for row-numbered errors
+        };
+      });
+      return { rows: rows, errors: validate(rows), warnings: warnings, suggestedTitle: '' };
+    }
+    function validate(arr) {
+      var errs = [], seen = {};
+      if (arr.length > 500) errs.push({ id: 'file', msg: 'max 500 questions per file (got ' + arr.length + ')' });
+      arr.forEach(function (q, i) {
+        var line = (q && q._csvLine) ? q._csvLine : (i + 1);
+        var tag = 'row ' + line + (q && q.id ? ' (' + q.id + ')' : '');
+        function bad(m) { errs.push({ id: tag, msg: m }); }
+        if (!q.id || !String(q.id).trim()) bad('missing id');
+        else if (!/^[A-Za-z0-9][A-Za-z0-9-_:.]{0,120}$/.test(String(q.id).trim())) bad('id must be 1-121 chars: alphanumerics plus - _ : .');
+        else if (seen[q.id]) bad('duplicate id'); else seen[q.id] = true;
+        if (!q.question || String(q.question).trim().length < 10) bad('question must be ≥ 10 chars');
+        if (!Array.isArray(q.options) || q.options.length !== 4) bad('options must be an array of exactly 4');
+        else {
+          var norm = [];
+          q.options.forEach(function (o, k) {
+            if (!String(o || '').trim()) bad('options[' + k + '] is empty');
+            else norm.push(String(o).trim().toLowerCase());
+          });
+          if (norm.length === 4 && new Set(norm).size !== 4) bad('all 4 options must be distinct (case-insensitive)');
+        }
+        if (!Number.isInteger(q.correctIndex) || q.correctIndex < 0 || q.correctIndex > 3) bad('correctIndex must be 0–3');
+        if (!q.rationale || String(q.rationale).trim().length < 10) bad('rationale must be ≥ 10 chars (explain WHY)');
+        if (!q.topic || !String(q.topic).trim()) bad('topic missing');
+        if (!['easy', 'medium', 'hard'].includes(q.difficulty)) bad('difficulty must be easy|medium|hard');
+        if (!Number.isInteger(Number(q.marks)) || Number(q.marks) < 1 || Number(q.marks) > 100) bad('marks must be an integer 1–100');
+      });
+      return errs;
+    }
+    function todayUtc() { return new Date().toISOString().slice(0, 10); }
+    function render() {
+      var ok = state.errors.length === 0 && state.rows.length > 0;
+      var warnHtml = (state.warnings && state.warnings.length)
+        ? '<br><span class="help">⚠ ' + state.warnings.map(function (w) { return P.esc(w); }).join('<br>⚠ ') + '</span>' : '';
+      document.getElementById('valSummary').innerHTML = state.rows.length === 0
+        ? 'No valid rows yet.' + warnHtml
+        : (ok ? '<span class="valid-ok">✓ ' + state.rows.length + ' questions valid.</span>' + warnHtml
+              : '<span class="valid-bad">✗ ' + state.errors.length + ' problem(s) in ' + state.rows.length + ' rows.</span> Fix and re-drop.' + warnHtml);
+      document.getElementById('valTableWrap').innerHTML = state.errors.length
+        ? '<table class="val-table"><thead><tr><th>ID</th><th>Issue</th></tr></thead><tbody>' +
+          state.errors.map(function (e) { return '<tr><td>' + P.esc(e.id) + '</td><td>' + P.esc(e.msg) + '</td></tr>'; }).join('') + '</tbody></table>' : '';
+      var pv = document.getElementById('preview'); pv.innerHTML = '';
+      state.rows.slice(0, 3).forEach(function (q, i) {
+        var d = document.createElement('div');
+        d.className = 'review-item';
+        d.innerHTML = '<div class="q-head"><span class="q-num">Q' + (i + 1) + ' · ' + P.esc(q.topic || '') + '</span></div>' +
+          '<p class="q-text">' + P.esc(q.question || '') + '</p>' +
+          '<ul class="help" style="padding-left:18px;margin:8px 0;">' + (q.options || []).map(function (o, k) {
+            return '<li>' + 'ABCD'[k] + '. ' + P.esc(o) + (k === q.correctIndex ? ' <strong style="color:var(--success);">✓</strong>' : '') + '</li>';
+          }).join('') + '</ul><div class="rationale">' + P.esc(q.rationale || '') + '</div>';
+        pv.appendChild(d);
+      });
+      document.getElementById('previewMeta').textContent =
+        state.rows.length ? ('Showing ' + Math.min(3, state.rows.length) + ' of ' + state.rows.length + ' questions.') : 'First 3 questions will render here.';
+      var examIdRaw = document.getElementById('examId').value.trim() || 'new-exam';
+      var verRaw = document.getElementById('version').value.trim() || todayUtc();
+      // Strip uploader-internal fields (e.g. _csvLine) so output matches the JSON contract exactly.
+      var cleanQuestions = state.rows.map(function (q) {
+        return {
+          id: q.id, question: q.question, options: q.options,
+          correctIndex: q.correctIndex, rationale: q.rationale, topic: q.topic,
+          difficulty: q.difficulty, marks: Number(q.marks)
+        };
+      });
+      var out = {
+        examId: examIdRaw,
+        title: document.getElementById('setTitle').value.trim() || 'Untitled Set',
+        version: verRaw,
+        durationMinutes: Math.max(1, Math.min(600, Number(document.getElementById('durationMinutes').value) || 30)),
+        passPercent: Math.max(0, Math.min(100, Number(document.getElementById('passPercent').value || 70))),
+        status: 'published',
+        questions: cleanQuestions
+      };
+      // Envelope-level checks (mirror tools/validate-questions.mjs).
+      var envErrs = [];
+      if (!/^[a-z0-9][a-z0-9-]{1,60}$/.test(examIdRaw)) envErrs.push({ id: 'envelope', msg: 'examId must be a kebab-case slug (2–61 chars)' });
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(verRaw)) envErrs.push({ id: 'envelope', msg: 'version should be YYYY-MM-DD for dated versioning' });
+      if (envErrs.length) {
+        document.getElementById('valTableWrap').innerHTML =
+          '<table class="val-table"><thead><tr><th>ID</th><th>Issue</th></tr></thead><tbody>' +
+          state.errors.concat(envErrs).map(function (e) { return '<tr><td>' + P.esc(e.id) + '</td><td>' + P.esc(e.msg) + '</td></tr>'; }).join('') + '</tbody></table>';
+        document.getElementById('valSummary').innerHTML = '<span class="valid-bad">✗ Fix envelope + row issues before downloading.</span>';
+      }
+      document.getElementById('jsonOut').textContent = JSON.stringify(out, null, 2);
+      document.getElementById('downloadBtn').disabled = !(ok && envErrs.length === 0);
+    }
+    ['examId', 'version', 'setTitle', 'durationMinutes', 'passPercent'].forEach(function (id) {
+      document.getElementById(id).addEventListener('input', render);
+    });
+    document.getElementById('downloadBtn').addEventListener('click', function () {
+      var examId = (document.getElementById('examId').value.trim() || 'new-exam').toLowerCase().replace(/[^a-z0-9-]+/g, '-');
+      var ver = (document.getElementById('version').value.trim() || todayUtc()).replace(/[^\d-]/g, '') || todayUtc();
+      var blob = new Blob([document.getElementById('jsonOut').textContent], { type: 'application/json' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = examId + '.v' + ver + '.json';
+      document.body.appendChild(a); a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+      P.toast('Downloaded. Commit it under questions/ per the steps.');
+    });
+    // CSV templates: prefer the Backend-owned server files
+    // (questions/template.csv, questions/template-with-examples.csv); fall back to an
+    // embedded Blob so the buttons always work, with a graceful status note.
+    var CSV_HEADER = 'id,question,optionA,optionB,optionC,optionD,correctIndex,rationale,topic,difficulty,marks';
+    var CSV_TEMPLATE_FALLBACK = '﻿' + CSV_HEADER + '\n';
+    var CSV_EXAMPLES_FALLBACK = '﻿' + CSV_HEADER + '\n' +
+      'grc-001,"What is the primary purpose of Governance, Risk and Compliance (GRC)?","Avoiding all business risk entirely","Aligning governance, risk management and compliance to meet objectives within obligations","Replacing internal audit with dashboards","Outsourcing every control to vendors",1,"GRC integrates governance, risk and compliance so risk-taking stays aligned with strategy.",Governance,easy,1\n' +
+      'tprm-001,"What should drive inherent-risk tiering of a third party in TPRM?","The vendor marketing brochure","A signed NDA alone","The contract value","Access to sensitive data, criticality of service, and substitutability",3,"Tiering reflects data access, criticality and substitutability — not price or paperwork.",TPRM,medium,2\n';
+    function saveBlob(text, filename, mime) {
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([text], { type: mime || 'text/csv;charset=utf-8' }));
+      a.download = filename;
+      document.body.appendChild(a); a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+    }
+    function csvStatus(msg) {
+      var el = document.getElementById('csvStatus');
+      if (el) el.textContent = msg;
+    }
+    function downloadCsvTemplate(url, filename, fallbackText, withExamples) {
+      fetch(url, { cache: 'no-store' }).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.text();
+      }).then(function (text) {
+        if (!text || !text.trim()) throw new Error('empty file');
+        saveBlob(text, filename);
+        csvStatus('');
+        P.toast('Downloaded ' + filename + '.');
+      }).catch(function () {
+        saveBlob(fallbackText, filename);
+        csvStatus('Server file ' + url + ' not found — downloaded a built-in ' +
+          (withExamples ? 'examples' : 'blank-header') + ' fallback instead. ' +
+          'Ask the Backend Architect to add questions/' + filename + ' (header: ' + CSV_HEADER + ').');
+        P.toast('Server template missing — built-in fallback downloaded.');
+      });
+    }
+    function downloadTemplate() { downloadCsvTemplate('questions/template.csv', 'template.csv', CSV_TEMPLATE_FALLBACK, false); }
+    function downloadExamples() { downloadCsvTemplate('questions/template-with-examples.csv', 'template-with-examples.csv', CSV_EXAMPLES_FALLBACK, true); }
+    document.getElementById('tplBtn').addEventListener('click', function (e) { e.preventDefault(); downloadTemplate(); });
+    document.getElementById('tplExBtn').addEventListener('click', function (e) { e.preventDefault(); downloadExamples(); });
+    document.getElementById('sampleLink').addEventListener('click', function (e) {
+      e.preventDefault();
+      fetch('questions/sample-grc-fundamentals.json').then(function (r) { return r.blob(); }).then(function (b) {
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(b); a.download = 'sample-grc-fundamentals.json';
+        document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+      }).catch(function () { P.toast('Sample file not found.'); });
+    });
+    document.getElementById('csvLink').addEventListener('click', function (e) {
+      e.preventDefault();
+      downloadTemplate();
+    });
+    // Default the Version field to today (UTC) so new sets match csv-to-json.mjs
+    // envelope defaults (new-exam / Untitled Set / today / 30 / 70).
+    try {
+      var verEl = document.getElementById('version');
+      if (verEl && !verEl.value) verEl.value = todayUtc();
+    } catch (e) {}
+    render();
+  })();
+  </script>
+</body>
+</html>

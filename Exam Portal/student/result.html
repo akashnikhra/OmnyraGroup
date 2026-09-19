@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="color-scheme" content="light dark">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem('omnyra.exam.theme'));if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Result — OMNyra Student Console</title>
+  <meta name="description" content="OMNyra mock exam result with per-question rationale and topic breakdown.">
+  <link rel="icon" type="image/png" href="../img/icon-only-transparent.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/portal.css">
+  <script>window.OMNYRA_MANIFEST_URL = '../questions/manifest.json'; window.OMNYRA_IMG_BASE = '../';</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to result</a>
+  <header class="nav" role="banner">
+    <a href="index.html" class="nav-logo" aria-label="OMNyra Student Console — Home">
+      <img data-logo-swap src="../img/primary-logo-transparent.png" alt="OMNyra Group" width="200" height="79">
+    </a>
+    <div class="nav-right-wrap">
+      <nav class="nav-links" aria-label="Student navigation">
+        <a href="index.html">Exams</a>
+        <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+      </nav>
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle Light/Dark Theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav>
+      <a href="index.html">Exams</a>
+      <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+    </nav>
+  </div>
+
+  <main id="main">
+    <div class="wrap">
+      <section class="section" aria-label="Exam result">
+        <div id="fatal"></div>
+        <div id="result" hidden>
+          <div class="card score-hero">
+            <div class="stat-label" id="rExam">Exam</div>
+            <svg class="score-ring" viewBox="0 0 120 120" role="img" id="ringSvg" aria-label="Score">
+              <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(139,148,158,.25)" stroke-width="10"/>
+              <circle id="ringFg" cx="60" cy="60" r="52" fill="none" stroke="#00A8E8" stroke-width="10"
+                stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7" transform="rotate(-90 60 60)"/>
+              <text id="ringText" x="60" y="68" text-anchor="middle" font-size="24" font-weight="700" fill="currentColor">0%</text>
+            </svg>
+            <div class="verdict" id="rVerdict"></div>
+            <p class="help" id="rMeta" style="margin:0;"></p>
+            <div class="btn-row" style="justify-content:center;">
+              <a class="btn btn-primary" href="index.html">Back to catalog</a>
+              <button class="btn btn-outline" id="retryBtn">Retry exam</button>
+            </div>
+          </div>
+
+          <div class="section" aria-label="Topic breakdown">
+            <div class="section-head"><h2>Topic-wise breakdown</h2><p>Find your weak areas</p></div>
+            <div class="card" id="topicBox"></div>
+          </div>
+
+          <div class="section" aria-label="Answer review">
+            <div class="section-head"><h2>Answer review</h2><p id="reviewNote">Correct answers with rationale</p></div>
+            <div id="reviewBox"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-accent" aria-hidden="true"></div>
+    <div class="wrap footer-inner">
+      <img data-logo-swap src="../img/primary-logo-transparent.png" alt="OMNyra Group">
+      <div><p><strong>OMNyra Group</strong> — Empowering Careers. Securing the Future.</p>
+      <p><a href="mailto:omnyra.training@gmail.com">omnyra.training@gmail.com</a> · <a href="index.html">Back to catalog</a></p></div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../assets/config.js"></script>
+  <script src="../assets/portal.js"></script>
+  <script type="module">
+    import "../assets/remote.js";
+    const P = window.OmnyraPortal;
+    const R = window.OmnyraRemote;
+    P.initTheme(); P.initNav();
+    const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
+    const params = new URLSearchParams(window.location.search);
+    const attemptId = params.get('attempt');
+
+    function fatal(msg) {
+      document.getElementById('fatal').innerHTML = '<div class="card" role="alert"><h2 style="margin-top:0;">Result unavailable</h2><p class="help">' +
+        P.esc(msg) + '</p><div class="btn-row"><a class="btn btn-primary" href="index.html">Back to catalog</a></div></div>';
+    }
+    if (!attemptId) { fatal('Missing ?attempt= id.'); throw new Error('no attempt'); }
+
+    await R.ready;
+    const remote = R.mode() === "remote" && params.get('remote') === '1';
+    if (remote) {
+      const g = await R.requireStudent("login.html");
+      if (!g) throw new Error('redirect');
+      if (await R.isAdmin()) { fatal('Admin accounts can\'t take exams.'); throw new Error('admin-blocked'); }
+    }
+
+    if (remote) {
+      let review;
+      try {
+        review = await R.getReview(attemptId);
+      } catch (e) { fatal(P.friendlyError(e)); throw e; }
+      const exams = await P.loadCatalog().catch(() => []);
+      let exam = exams.find(x => x.id === review.attempt.exam_id) || null;
+      if (!exam) {
+        // Exam paused/archived after grading — still show the archived result.
+        exam = { id: review.attempt.exam_id, title: review.attempt.exam_id, passPercent: 70, _retired: true };
+        document.getElementById('reviewNote').textContent = 'Server-graded answers with rationale · exam retired since';
+      } else {
+        document.getElementById('reviewNote').textContent = 'Server-graded answers with rationale';
+      }
+      renderRemote(exam, review);
+      document.getElementById('retryBtn').addEventListener('click', async () => {
+        try {
+          const row = await R.startAttempt(exam.id);
+          window.location.href = 'exam.html?attempt=' + encodeURIComponent(row.id) + '&remote=1';
+        } catch (e) { P.toast(P.friendlyError(e)); }
+      });
+    } else {
+      const attempt = P.store.getAttempt(attemptId);
+      if (!attempt) { fatal('Attempt not found on this device.'); throw new Error('no attempt'); }
+      if (!attempt.submittedAt) { window.location.replace('exam.html?attempt=' + encodeURIComponent(attemptId)); throw new Error('unsubmitted'); }
+      const exams = await P.loadCatalog().catch(() => []);
+      const exam = exams.find(x => x.id === attempt.examId);
+      if (!exam || !exam.questionFile) { fatal('Exam manifest entry missing.'); throw new Error('no exam'); }
+      let qset;
+      try {
+        const r = await fetch(exam.questionFile, { cache: 'no-store' });
+        qset = await r.json();
+      } catch (e) { fatal('Could not load question file.'); throw e; }
+      renderLocal(exam, attempt, qset.questions || []);
+      document.getElementById('retryBtn').addEventListener('click', () => {
+        const s = P.getStudent() || attempt.student;
+        const next = {
+          attemptId: P.uuid(), examId: exam.id, examTitle: exam.title,
+          studentId: P.studentKey(s), student: s,
+          startedAt: P.nowIso(), durationMinutes: exam.durationMinutes,
+          seed: (Math.random() * 0x7fffffff) | 0,
+          answers: {}, flags: {}, submittedAt: null, lastSavedAt: P.nowIso()
+        };
+        P.store.saveAttempt(next);
+        P.store.set(P.K.activeAttempt, next.attemptId);
+        window.location.href = 'exam.html?attempt=' + encodeURIComponent(next.attemptId);
+      });
+    }
+
+    function paintScore(title, pct, passed, meta) {
+      document.getElementById('result').hidden = false;
+      document.getElementById('rExam').textContent = title;
+      const C = 2 * Math.PI * 52;
+      const fg = document.getElementById('ringFg');
+      fg.style.strokeDasharray = C.toFixed(1);
+      fg.style.strokeDashoffset = (C * (1 - pct / 100)).toFixed(1);
+      const light = P.currentTheme() === 'light';
+      fg.setAttribute('stroke', passed ? (light ? '#15803d' : '#25D366') : (light ? '#b45309' : '#EAB308'));
+      document.getElementById('ringText').textContent = pct + '%';
+      document.getElementById('ringSvg').setAttribute('aria-label', 'Score ' + pct + ' percent');
+      const v = document.getElementById('rVerdict');
+      v.textContent = passed ? 'Passed — job-ready signal.' : 'Not yet — review and retry.';
+      v.className = 'verdict ' + (passed ? 'pass' : 'fail');
+      document.getElementById('rMeta').textContent = meta;
+    }
+
+    function paintTopics(topics) {
+      document.getElementById('topicBox').innerHTML = Object.keys(topics).map((t) => {
+        const o = topics[t], p = Math.round((o.ok / o.n) * 100);
+        return '<div class="topic-row"><span><strong>' + P.esc(t) + '</strong> <span class="help">· ' + o.ok + '/' + o.n + '</span></span><strong>' + p + '%</strong>' +
+          '<div class="progress-track" style="grid-column:1/-1;margin-top:0;" role="progressbar" aria-valuenow="' + p + '" aria-valuemin="0" aria-valuemax="100"><div class="progress-fill" style="width:' + p + '%"></div></div></div>';
+      }).join('');
+    }
+
+    function renderRemote(exam, review) {
+      // Show review in the same shuffled sequence the student sat.
+      const bank = (review.bank || []).slice();
+      const qOrder = (review.attempt && review.attempt.question_order) || [];
+      if (qOrder.length) {
+        const pos = {};
+        qOrder.forEach((id, i) => { pos[id] = i; });
+        bank.sort((a, b) => {
+          const pa = pos[a.id] !== undefined ? pos[a.id] : 1e9;
+          const pb = pos[b.id] !== undefined ? pos[b.id] : 1e9;
+          return pa - pb;
+        });
+      }
+      const pct = Math.round(Number(review.attempt.percent) || 0);
+      const passed = !!review.attempt.passed;
+      const total = bank.length, correct = bank.filter(q => {
+        const a = review.answers.find(x => x.question_id === q.id);
+        return a && a.is_correct;
+      }).length;
+      paintScore(exam.title, pct, passed,
+        correct + '/' + total + ' correct · score ' + review.attempt.score + '/' + review.attempt.max_score +
+        ' · pass mark ' + exam.passPercent + '% · server-graded ' + new Date(review.attempt.submitted_at).toLocaleString());
+      const topics = {};
+      const byA = {};
+      review.answers.forEach(a => { byA[a.question_id] = a; });
+      bank.forEach((q) => {
+        const t = topics[q.topic || 'General'] || (topics[q.topic || 'General'] = { n: 0, ok: 0 });
+        t.n++; if (byA[q.id] && byA[q.id].is_correct) t.ok++;
+      });
+      paintTopics(topics);
+      const rb = document.getElementById('reviewBox');
+      rb.innerHTML = '';
+      bank.forEach((q, i) => {
+        const a = byA[q.id];
+        const given = a ? a.selected_index : undefined;
+        const ok = !!(a && a.is_correct);
+        const pill = given === undefined || given === null ? '<span class="pill skipped">Skipped</span>' : (ok ? '<span class="pill correct">Correct</span>' : '<span class="pill wrong">Incorrect</span>');
+        const opts = q.options.map((op, oi) => {
+          let marker = '';
+          if (oi === q.correct_index) marker = ' <strong style="color:var(--success);">✓ correct</strong>';
+          else if (oi === given) marker = ' <strong style="color:var(--signal-red);">✗ your answer</strong>';
+          return '<li>' + LETTERS[oi] + '. ' + P.esc(op) + marker + '</li>';
+        }).join('');
+        const d = document.createElement('div');
+        d.className = 'review-item ' + (ok ? 'correct' : 'wrong');
+        d.innerHTML = '<div class="q-head"><span class="q-num">Q' + (i + 1) + ' · ' + P.esc(q.topic || 'General') + '</span>' + pill + '</div>' +
+          '<p class="q-text">' + P.esc(q.stem) + '</p>' +
+          '<ul class="help" style="margin:8px 0 0;padding-left:18px;">' + opts + '</ul>' +
+          '<div class="rationale"><strong>Rationale:</strong> ' + P.esc(q.rationale || '—') + '</div>';
+        rb.appendChild(d);
+      });
+    }
+
+    function renderLocal(exam, attempt, questions) {
+      let correct = 0, totalMarks = 0, earned = 0;
+      const topics = {};
+      questions.forEach((q) => {
+        const given = attempt.answers[q.id];
+        const ok = given === q.correctIndex;
+        if (ok) { correct++; earned += (q.marks || 1); }
+        totalMarks += (q.marks || 1);
+        const t = topics[q.topic || 'General'] || (topics[q.topic || 'General'] = { n: 0, ok: 0 });
+        t.n++; if (ok) t.ok++;
+      });
+      const pct = questions.length ? Math.round((earned / totalMarks) * 100) : 0;
+      const passed = pct >= exam.passPercent;
+      const key = P.studentKey(P.getStudent());
+      const all = P.store.getProgress();
+      const seen = (all[key] && all[key][exam.id] && all[key][exam.id].history || []).some(h => h.attemptId === attempt.attemptId);
+      if (!seen) P.recordResult(exam.id, pct, passed, questions.length, correct);
+      const all2 = P.store.getProgress();
+      const hist = all2[key] && all2[key][exam.id] && all2[key][exam.id].history;
+      if (hist && hist.length && !hist[hist.length - 1].attemptId) { hist[hist.length - 1].attemptId = attempt.attemptId; P.store.saveProgress(all2); }
+      paintScore(exam.title, pct, passed,
+        correct + '/' + questions.length + ' correct · pass mark ' + exam.passPercent + '%' +
+        (attempt.autoSubmitted ? ' · auto-submitted at time limit' : ' · submitted ' + new Date(attempt.submittedAt).toLocaleString()) + ' · practice scoring');
+      paintTopics(topics);
+      const rb = document.getElementById('reviewBox');
+      rb.innerHTML = '';
+      questions.forEach((q, i) => {
+        const given = attempt.answers[q.id];
+        const ok = given === q.correctIndex;
+        const pill = given === undefined ? '<span class="pill skipped">Skipped</span>' : (ok ? '<span class="pill correct">Correct</span>' : '<span class="pill wrong">Incorrect</span>');
+        const opts = q.options.map((op, oi) => {
+          let marker = '';
+          if (oi === q.correctIndex) marker = ' <strong style="color:var(--success);">✓ correct</strong>';
+          else if (oi === given) marker = ' <strong style="color:var(--signal-red);">✗ your answer</strong>';
+          return '<li>' + LETTERS[oi] + '. ' + P.esc(op) + marker + '</li>';
+        }).join('');
+        const d = document.createElement('div');
+        d.className = 'review-item ' + (given === undefined ? 'wrong' : (ok ? 'correct' : 'wrong'));
+        d.innerHTML = '<div class="q-head"><span class="q-num">Q' + (i + 1) + ' · ' + P.esc(q.topic || 'General') + '</span>' + pill + '</div>' +
+          '<p class="q-text">' + P.esc(q.question) + '</p>' +
+          '<ul class="help" style="margin:8px 0 0;padding-left:18px;">' + opts + '</ul>' +
+          '<div class="rationale"><strong>Rationale:</strong> ' + P.esc(q.rationale || '—') + '</div>';
+        rb.appendChild(d);
+      });
+    }
+  </script>
+</body>
+</html>

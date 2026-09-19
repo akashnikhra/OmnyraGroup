@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="color-scheme" content="light dark">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem('omnyra.exam.theme'));if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OMNyra Exam Portal — Student & Admin Consoles</title>
+  <meta name="description" content="OMNyra Group Exam Portal — choose the Student Console (timed GRC mock exams) or the Admin Console (question-bank publishing).">
+  <link rel="icon" type="image/png" href="img/icon-only-transparent.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="nav" role="banner">
+    <a href="student/index.html" class="nav-logo" aria-label="OMNyra Exam Portal — Home">
+      <img data-logo-swap src="img/primary-logo-transparent.png" alt="OMNyra Group" width="200" height="79">
+    </a>
+    <div class="nav-right-wrap">
+      <nav class="nav-links" aria-label="Portal navigation">
+        <a href="student/index.html">Student</a>
+        <a href="admin/index.html">Admin</a>
+        <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+      </nav>
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle Light/Dark Theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav>
+      <a href="student/index.html">Student Console</a>
+      <a href="admin/index.html">Admin Console</a>
+      <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+    </nav>
+  </div>
+
+  <main id="main">
+    <div class="wrap">
+      <section class="hero" aria-label="Portal entry">
+        <span class="eyebrow"><span class="dot" aria-hidden="true"></span> OMNyra Exam Portal</span>
+        <h1>Prove you're <span class="gradient-text">job-ready in GRC.</span></h1>
+        <p class="hero-sub">Timed mock exams for students · live question bank for admins. Pick your console — each signs in separately.</p>
+        <div class="accent-bar" aria-hidden="true"></div>
+      </section>
+
+      <section class="section" aria-label="Consoles">
+        <div class="grid catalog" role="list">
+          <article class="card exam-card" role="listitem">
+            <div class="top"><span class="badge open">Students</span><span class="help">timed mocks</span></div>
+            <h3>Student Console</h3>
+            <p class="desc">Sign in with an email link, take timed GRC / TPRM / ISO 27001 / Privacy mocks, get server-graded scores with rationale and topic breakdown. Progress syncs across devices.</p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="student/login.html">Student sign in</a>
+              <a class="btn btn-outline" href="student/index.html">Browse exams</a>
+            </div>
+          </article>
+          <article class="card exam-card" role="listitem">
+            <div class="top"><span class="badge soon">Admins</span><span class="help">restricted</span></div>
+            <h3>Admin Console</h3>
+            <p class="desc">Admin accounts only: dashboard with live exam stats, drag-drop JSON/CSV upload with validation, one-click publish to the live database plus a Git-backup download.</p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="admin/login.html">Admin sign in</a>
+              <a class="btn btn-outline" href="admin/index.html">Dashboard</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-accent" aria-hidden="true"></div>
+    <div class="wrap footer-inner">
+      <img data-logo-swap src="img/primary-logo-transparent.png" alt="OMNyra Group">
+      <div>
+        <p><strong>OMNyra Group</strong> — Empowering Careers. Securing the Future.</p>
+        <p><a href="mailto:omnyra.training@gmail.com">omnyra.training@gmail.com</a> · <a href="https://wa.me/919063370816" target="_blank" rel="noopener">+91 9063370816 (WhatsApp)</a> · <a href="https://omnyragroup.online/" target="_blank" rel="noopener">omnyragroup.online</a></p>
+      </div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/portal.js"></script>
+  <script>
+    window.OmnyraPortal.initTheme();
+    window.OmnyraPortal.initNav();
+  </script>
+</body>
+</html>
