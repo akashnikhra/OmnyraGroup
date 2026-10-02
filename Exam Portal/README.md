@@ -6,8 +6,8 @@ Timed GRC mock exams for OMNyra training students. **Static hosting (GitHub Page
 
 | Console | Entry | Pages |
 |---------|-------|-------|
-| Student | `index.html` → `student/login.html` | `student/index.html` (catalog), `student/exam.html?attempt=<uuid>&remote=1`, `student/result.html`, `student/login.html` |
-| Admin | `index.html` → `admin/login.html` | `admin/index.html` (dashboard), `admin/upload.html` (validate + publish), `admin/login.html` |
+| Student | `index.html` → `student/login.html` | `student/index.html` (catalog, assigned exams only), `student/exam.html?attempt=<uuid>&remote=1`, `student/result.html`, `student/login.html` (invite-only: email + exam code → confirm inbox → set password → email+password login) |
+| Admin | `index.html` → `admin/login.html` | `admin/index.html` (dashboard), `admin/access.html` (exam codes + invites + Excel bulk upload), `admin/upload.html` (validate + publish), `admin/login.html` |
 
 Student and admin areas never cross-link (except Main Site). Backend session = Supabase JWT; admin area additionally requires `profiles.role = 'admin'`.
 Legacy flat pages (`index.html` v1 home, `exam.html`, `result.html`, `admin.html`) remain as the local-only fallback/uploader.

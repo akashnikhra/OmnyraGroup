@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="color-scheme" content="light dark">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem('omnyra.exam.theme'));if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access — OMNyra Admin Console</title>
+  <meta name="description" content="OMNyra Admin Console: exam codes + student invites (email + mandatory exam code, Excel bulk upload).">
+  <link rel="icon" type="image/png" href="../img/icon-only-transparent.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/portal.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script>window.OMNYRA_MANIFEST_URL = '../questions/manifest.json'; window.OMNYRA_IMG_BASE = '../';</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="nav" role="banner">
+    <a href="index.html" class="nav-logo" aria-label="OMNyra Admin Console — Home">
+      <img data-logo-swap src="../img/primary-logo-transparent.png" alt="OMNyra Group" width="200" height="79">
+    </a>
+    <div class="nav-right-wrap">
+      <nav class="nav-links" aria-label="Admin navigation">
+        <a href="index.html">Dashboard</a>
+        <a href="students.html">Students</a>
+        <a href="access.html" class="active" aria-current="page">Access</a>
+        <a href="upload.html">Upload</a>
+        <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+      </nav>
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle Light/Dark Theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav>
+      <a href="index.html">Dashboard</a>
+      <a href="students.html">Students</a>
+      <a href="access.html">Access</a>
+      <a href="upload.html">Upload</a>
+      <a href="https://omnyragroup.online/" target="_blank" rel="noopener">Main Site</a>
+    </nav>
+  </div>
+
+  <main id="main">
+    <div class="wrap">
+      <section class="hero" aria-label="Student access">
+        <span class="eyebrow"><span class="dot" aria-hidden="true"></span> Admin Console · Student access</span>
+        <h1>Who gets <span class="gradient-text">which exam.</span></h1>
+        <p class="hero-sub" id="sessionLine">Loading session…</p>
+        <div class="btn-row"><button class="btn btn-ghost" id="signOutBtn">Sign out</button></div>
+        <div class="accent-bar" aria-hidden="true"></div>
+      </section>
+
+      <section class="section" aria-label="How it works">
+        <div class="card">
+          <div class="section-head"><h2>How invite-only access works</h2><p>Exam code is mandatory on every invite.</p></div>
+          <ol class="help" style="padding-left:18px;margin:0;">
+            <li><strong>Create an exam code</strong> below (one code → exactly one exam, reusable across the batch).</li>
+            <li><strong>Add emails with that code</strong> — single entry or Excel bulk upload (<code>email,exam_code</code>).</li>
+            <li><strong>Student flow:</strong> opens Student login → First-time tab → enters registered email + exam code + new password → clicks the confirmation email from <strong>omnyra.training@gmail.com</strong> (proves inbox ownership) → logs in → sees only assigned exams.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Exam codes">
+        <div class="section-head"><h2>1 · Exam codes</h2><p id="codeMeta">Loading…</p></div>
+        <div class="card">
+          <div class="grid" style="grid-template-columns:1fr 1fr 1fr;gap:14px;">
+            <label class="field">New code (4–32 chars, A–Z 0–9 -)
+              <input type="text" id="newCode" placeholder="e.g. GRC-AUG-01" autocomplete="off" style="text-transform:uppercase;">
+            </label>
+            <label class="field">Unlocks exam (mandatory)
+              <select id="newCodeExam"><option value="">— pick exam —</option></select>
+            </label>
+            <label class="field">Label / batch (optional)
+              <input type="text" id="newCodeLabel" placeholder="e.g. August GRC batch">
+            </label>
+          </div>
+          <p class="error-text" id="codeError" role="alert" aria-live="polite"></p>
+          <div class="btn-row">
+            <button class="btn btn-primary" id="createCodeBtn">Create code</button>
+          </div>
+        </div>
+        <div class="card" style="padding:0;overflow:auto;margin-top:14px;">
+          <table class="val-table" style="margin:0;" aria-label="Exam codes">
+            <thead><tr><th>Code</th><th>Exam</th><th>Label</th><th>Active</th><th>Created</th><th>Actions</th></tr></thead>
+            <tbody id="codeRows"><tr><td colspan="6">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Add invites">
+        <div class="section-head"><h2>2 · Add students (email + exam code)</h2><p>Code is mandatory — every row needs one.</p></div>
+        <div class="admin-grid">
+          <div class="card">
+            <h2 style="margin-top:0;font-size:1.1rem;">Single invite</h2>
+            <label class="field">Student email
+              <input type="email" id="oneEmail" placeholder="student@example.com" autocomplete="off">
+            </label>
+            <label class="field" style="margin-top:12px;">Exam code (mandatory)
+              <select id="oneCode"><option value="">— pick code —</option></select>
+            </label>
+            <p class="error-text" id="oneError" role="alert" aria-live="polite"></p>
+            <p class="help" id="oneOk" role="status" aria-live="polite"></p>
+            <div class="btn-row"><button class="btn btn-primary" id="addOneBtn">Add invite</button></div>
+          </div>
+          <div class="card">
+            <h2 style="margin-top:0;font-size:1.1rem;">Bulk upload (Excel / CSV)</h2>
+            <div class="dropzone" id="inviteDrop" role="button" tabindex="0" aria-label="Drop an Excel or CSV invite file, or click to browse">
+              <p style="margin:0 0 6px;font-weight:600;">Drag &amp; drop .xlsx / .csv here</p>
+              <p class="help" style="margin:0;">or click to browse · header <code>email,exam_code</code> · <a href="#" id="inviteTplLink">download template</a></p>
+              <input type="file" id="inviteFile" accept=".xlsx,.xls,.csv,text/csv">
+            </div>
+            <p class="help csv-status" id="inviteStatus" role="status" aria-live="polite"></p>
+            <div id="invitePreviewWrap"></div>
+            <div class="btn-row">
+              <button class="btn btn-primary" id="addBulkBtn" disabled>Add all valid invites</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Invites list">
+        <div class="section-head"><h2>3 · Invites</h2><p id="inviteMeta">Loading…</p></div>
+        <div class="card">
+          <div class="grid" style="grid-template-columns:1fr 1fr 1fr;gap:14px;">
+            <label class="field">Filter by code
+              <select id="filterCode"><option value="">All codes</option></select>
+            </label>
+            <label class="field">Filter by exam
+              <select id="filterExam"><option value="">All exams</option></select>
+            </label>
+            <label class="field">Search email
+              <input type="search" id="inviteSearch" placeholder="email…" autocomplete="off">
+            </label>
+          </div>
+        </div>
+        <div class="card" style="padding:0;overflow:auto;margin-top:14px;">
+          <table class="val-table" style="margin:0;" aria-label="Invites">
+            <thead><tr><th>Email</th><th>Code</th><th>Exam</th><th>Status</th><th>Added</th><th>Actions</th></tr></thead>
+            <tbody id="inviteRows"><tr><td colspan="6">Loading…</td></tr></tbody>
+          </table>
+        </div>
+        <p class="help" style="margin-top:12px;">Students confirm via the email from <strong>omnyra.training@gmail.com</strong> (Supabase custom SMTP). If a student never got it: check spam, confirm the email spelling here, then ask them to re-submit the setup form (it resends). <strong>Revoke</strong> blocks exam start instantly (server-enforced).</p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-accent" aria-hidden="true"></div>
+    <div class="wrap footer-inner">
+      <img data-logo-swap src="../img/primary-logo-transparent.png" alt="OMNyra Group">
+      <div>
+        <p><strong>OMNyra Group</strong> — Empowering Careers. Securing the Future.</p>
+        <p><a href="mailto:omnyra.training@gmail.com">omnyra.training@gmail.com</a> · <a href="index.html">Back to dashboard</a></p>
+      </div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../assets/config.js"></script>
+  <script src="../assets/portal.js"></script>
+  <script type="module">
+    import "../assets/remote.js";
+    const P = window.OmnyraPortal;
+    const R = window.OmnyraRemote;
+    P.initTheme(); P.initNav();
+
+    await R.ready;
+    let me = null;
+    try {
+      const g = await R.requireAdmin("login.html");
+      if (!g) throw new Error('redirect');
+      me = await R.getProfile().catch(() => null);
+    } catch (e) {
+      P.toast(P.friendlyError(e));
+      setTimeout(() => window.location.replace("login.html"), 1600);
+      throw e;
+    }
+    document.getElementById('sessionLine').textContent =
+      "Signed in as " + ((me && me.email) || "admin") + " · codes + invites below.";
+    document.getElementById('signOutBtn').addEventListener('click', async () => {
+      await R.signOut();
+      window.location.replace("login.html");
+    });
+
+    let exams = [], codes = [], invites = [];
+    const examTitle = (id) => (exams.find(e => e.id === id) || {}).title || id;
+
+    async function boot() {
+      try { exams = await R.listExamsAdmin(); } catch (e) { exams = []; }
+      const examOpts = exams.map(e => '<option value="' + P.esc(e.id) + '">' + P.esc(e.title) + ' (' + P.esc(e.id) + ')</option>').join('');
+      document.getElementById('newCodeExam').innerHTML = '<option value="">— pick exam —</option>' + examOpts;
+      document.getElementById('filterExam').innerHTML = '<option value="">All exams</option>' + examOpts;
+      await refreshCodes();
+      await refreshInvites();
+    }
+
+    async function refreshCodes() {
+      try {
+        codes = await R.listExamCodes();
+        document.getElementById('codeMeta').textContent = codes.length + " codes · one code = one exam";
+        document.getElementById('codeRows').innerHTML = codes.map(c =>
+          '<tr><td><strong>' + P.esc(c.code) + '</strong></td>' +
+          '<td>' + P.esc(examTitle(c.exam_id)) + '<br><span class="help">' + P.esc(c.exam_id) + '</span></td>' +
+          '<td class="help">' + P.esc(c.label || '—') + '</td>' +
+          '<td>' + (c.active ? '<span class="badge open">active</span>' : '<span class="badge soon">paused</span>') + '</td>' +
+          '<td class="help">' + (c.created_at ? new Date(c.created_at).toLocaleDateString() : '—') + '</td>' +
+          '<td><button class="btn btn-outline" data-toggle-code="' + P.esc(c.code) + '" data-active="' + (c.active ? '1' : '0') + '">' + (c.active ? 'Pause' : 'Activate') + '</button></td></tr>'
+        ).join('') || '<tr><td colspan="6">No codes yet — create the first one above.</td></tr>';
+        const opts = codes.filter(c => c.active).map(c => '<option value="' + P.esc(c.code) + '">' + P.esc(c.code) + ' → ' + P.esc(examTitle(c.exam_id)) + '</option>').join('');
+        document.getElementById('oneCode').innerHTML = '<option value="">— pick code —</option>' + opts;
+        document.getElementById('filterCode').innerHTML = '<option value="">All codes</option>' + codes.map(c => '<option value="' + P.esc(c.code) + '">' + P.esc(c.code) + '</option>').join('');
+      } catch (e) {
+        document.getElementById('codeMeta').textContent = 'Could not load codes.';
+        document.getElementById('codeRows').innerHTML = '<tr><td colspan="6">' + P.esc(P.friendlyError(e)) + '</td></tr>';
+      }
+    }
+
+    document.getElementById('createCodeBtn').addEventListener('click', async () => {
+      const err = document.getElementById('codeError');
+      err.textContent = "";
+      const code = document.getElementById('newCode').value.trim();
+      const examId = document.getElementById('newCodeExam').value;
+      const label = document.getElementById('newCodeLabel').value.trim();
+      if (!code) { err.textContent = "Enter a code (e.g. GRC-AUG-01)."; return; }
+      if (!examId) { err.textContent = "Pick the exam this code unlocks — exam assignment is mandatory."; return; }
+      try {
+        await R.createExamCode({ code, examId, label });
+        document.getElementById('newCode').value = "";
+        document.getElementById('newCodeLabel').value = "";
+        P.toast("Exam code created.");
+        await refreshCodes();
+      } catch (e) { err.textContent = P.friendlyError(e); }
+    });
+
+    document.getElementById('codeRows').addEventListener('click', async (e) => {
+      const b = e.target.closest('[data-toggle-code]');
+      if (!b || b.disabled) return;
+      const code = b.getAttribute('data-toggle-code');
+      const toActive = b.getAttribute('data-active') !== '1';
+      if (!window.confirm((toActive ? 'Activate' : 'Pause') + ' code "' + code + '"?' + (toActive ? '' : ' Students with this code lose access instantly.'))) return;
+      b.disabled = true;
+      try { await R.setExamCodeActive(code, toActive); await refreshCodes(); }
+      catch (ex) { b.disabled = false; P.toast(P.friendlyError(ex)); }
+    });
+
+    document.getElementById('addOneBtn').addEventListener('click', async () => {
+      const err = document.getElementById('oneError'), ok = document.getElementById('oneOk');
+      err.textContent = ""; ok.textContent = "";
+      const email = document.getElementById('oneEmail').value.trim();
+      const code = document.getElementById('oneCode').value;
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { err.textContent = "Enter a valid student email."; return; }
+      if (!code) { err.textContent = "Pick an exam code — it is mandatory."; return; }
+      try {
+        await R.addInvites([{ email, exam_code: code }]);
+        document.getElementById('oneEmail').value = "";
+        ok.textContent = "Invite added. Tell the student to open Student login → set password with email + code " + code + ".";
+        P.toast("Invite added.");
+        await refreshInvites();
+      } catch (e) { err.textContent = P.friendlyError(e); }
+    });
+
+    /* ---------- bulk Excel/CSV ---------- */
+    const state = { rows: [], errors: [] };
+    const dz = document.getElementById('inviteDrop'), fi = document.getElementById('inviteFile');
+    dz.addEventListener('click', (e) => { if (e.target.id !== 'inviteTplLink') fi.click(); });
+    dz.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fi.click(); } });
+    ['dragover','dragenter'].forEach(ev => dz.addEventListener(ev, (e) => { e.preventDefault(); dz.classList.add('drag'); }));
+    ['dragleave','drop'].forEach(ev => dz.addEventListener(ev, (e) => { e.preventDefault(); dz.classList.remove('drag'); }));
+    dz.addEventListener('drop', (e) => { const f = e.dataTransfer.files && e.dataTransfer.files[0]; if (f) readInviteFile(f); });
+    fi.addEventListener('change', () => { if (fi.files[0]) readInviteFile(fi.files[0]); });
+
+    function setInviteStatus(msg) { document.getElementById('inviteStatus').textContent = msg || ""; }
+
+    async function readInviteFile(f) {
+      setInviteStatus("Reading " + f.name + "…");
+      try {
+        const buf = await f.arrayBuffer();
+        let rows = [];
+        if (/\.csv$/i.test(f.name)) {
+          const text = new TextDecoder().decode(buf);
+          rows = parseInviteCsv(text);
+        } else {
+          if (!window.XLSX) throw new Error("Excel parser (SheetJS CDN) failed to load — check network or use CSV.");
+          const wb = window.XLSX.read(buf, { type: 'array' });
+          const ws = wb.Sheets[wb.SheetNames[0]];
+          const json = window.XLSX.utils.sheet_to_json(ws, { defval: "" });
+          rows = json.map(r => ({
+            email: String(r.email || r.Email || r.EMAIL || r.email_id || r.Email_Id || "").trim(),
+            exam_code: String(r.exam_code || r.examCode || r.code || r.Code || r.EXAM_CODE || "").trim()
+          }));
+        }
+        validateInviteRows(rows);
+      } catch (e) {
+        state.rows = []; state.errors = [{ id: 'file', msg: e.message }];
+        renderInvitePreview();
+      }
+    }
+
+    function parseInviteCsv(text) {
+      const lines = text.split(/\r?\n/).filter(l => l.trim() && !l.trim().startsWith('#'));
+      if (!lines.length) throw new Error("Empty file.");
+      const head = lines[0].split(',').map(h => h.trim().toLowerCase());
+      const ei = head.indexOf('email'), ci = head.indexOf('exam_code');
+      if (ei === -1 || ci === -1) throw new Error('Header must be exactly: email,exam_code');
+      return lines.slice(1).map(ln => {
+        const cells = ln.split(',');
+        return { email: (cells[ei] || "").trim(), exam_code: (cells[ci] || "").trim() };
+      });
+    }
+
+    function validateInviteRows(rows) {
+      const errs = [];
+      const byCode = {};
+      codes.forEach(c => { byCode[c.code] = c; });
+      const seen = new Set();
+      const good = [];
+      rows.forEach((r, i) => {
+        const tag = "row " + (i + 1) + (r.email ? " (" + r.email + ")" : "");
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(r.email || "")) { errs.push({ id: tag, msg: "invalid email" }); return; }
+        const code = String(r.exam_code || "").trim().toUpperCase();
+        if (!code) { errs.push({ id: tag, msg: "exam_code is required (create the code first)" }); return; }
+        if (!byCode[code]) { errs.push({ id: tag, msg: 'unknown exam_code "' + code + '"' }); return; }
+        const key = r.email.toLowerCase() + "|" + code;
+        if (seen.has(key)) { errs.push({ id: tag, msg: "duplicate row" }); return; }
+        seen.add(key);
+        good.push({ email: r.email.trim(), exam_code: code });
+      });
+      if (!rows.length) errs.push({ id: 'file', msg: 'No data rows found.' });
+      if (rows.length > 2000) errs.push({ id: 'file', msg: 'Max 2000 rows per upload (got ' + rows.length + '). Split the file.' });
+      state.rows = good; state.errors = errs;
+      renderInvitePreview();
+    }
+
+    function renderInvitePreview() {
+      const ok = state.errors.length === 0 && state.rows.length > 0;
+      setInviteStatus(state.rows.length === 0 && state.errors.length === 0 ? "" :
+        (ok ? "✓ " + state.rows.length + " invites ready." : "✗ " + state.errors.length + " problem(s) in " + (state.rows.length + state.errors.length) + " rows."));
+      document.getElementById('invitePreviewWrap').innerHTML =
+        (state.errors.length ? '<table class="val-table"><thead><tr><th>Row</th><th>Issue</th></tr></thead><tbody>' +
+          state.errors.map(e => '<tr><td>' + P.esc(e.id) + '</td><td>' + P.esc(e.msg) + '</td></tr>').join('') + '</tbody></table>' : '') +
+        (state.rows.length ? '<p class="help">First ' + Math.min(5, state.rows.length) + ' of ' + state.rows.length + ': ' +
+          state.rows.slice(0, 5).map(r => P.esc(r.email) + ' → ' + P.esc(r.exam_code)).join('; ') + '</p>' : '');
+      document.getElementById('addBulkBtn').disabled = !ok;
+    }
+
+    document.getElementById('addBulkBtn').addEventListener('click', async () => {
+      if (!state.rows.length) return;
+      const btn = document.getElementById('addBulkBtn');
+      btn.disabled = true;
+      try {
+        const res = await R.addInvites(state.rows);
+        setInviteStatus("✓ Added " + res.count + " invites. Students use email + code to set their password.");
+        P.toast("Bulk invites added.");
+        state.rows = []; state.errors = [];
+        document.getElementById('inviteFile').value = "";
+        renderInvitePreview();
+        await refreshInvites();
+      } catch (e) {
+        if (e.code === 'INVITE_ROWS_INVALID' && e.rows) {
+          state.errors = e.rows; renderInvitePreview();
+        } else setInviteStatus("✗ " + P.friendlyError(e));
+        btn.disabled = false;
+      }
+    });
+
+    document.getElementById('inviteTplLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      fetch('../questions/template-invites.csv').then(r => {
+        if (!r.ok) throw new Error('missing');
+        return r.text();
+      }).then(saveInviteTemplate).catch(() => saveInviteTemplate(
+        "# OMNyra invite template (header must be exactly email,exam_code)\nemail,exam_code\nstudent1@example.com,CHANGE-ME\n"));
+    });
+    function saveInviteTemplate(text) {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([text], { type: 'text/csv;charset=utf-8' }));
+      a.download = 'invite-template.csv';
+      document.body.appendChild(a); a.click();
+      setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+    }
+
+    /* ---------- invites list ---------- */
+    async function refreshInvites() {
+      try {
+        invites = await R.listInvitesAdmin({ limit: 1000 });
+        renderInvites();
+      } catch (e) {
+        document.getElementById('inviteMeta').textContent = 'Could not load invites.';
+        document.getElementById('inviteRows').innerHTML = '<tr><td colspan="6">' + P.esc(P.friendlyError(e)) + '</td></tr>';
+      }
+    }
+    function renderInvites() {
+      const fc = document.getElementById('filterCode').value;
+      const fe = document.getElementById('filterExam').value;
+      const q = document.getElementById('inviteSearch').value.trim().toLowerCase();
+      const rows = invites.filter(r =>
+        (!fc || r.exam_code === fc) && (!fe || r.exam_id === fe) &&
+        (!q || (r.email || '').toLowerCase().includes(q)));
+      document.getElementById('inviteMeta').textContent = rows.length + ' of ' + invites.length + ' invites';
+      document.getElementById('inviteRows').innerHTML = rows.map(r => {
+        const pill = r.status === 'revoked' ? '<span class="badge soon">revoked</span>'
+          : (r.status === 'registered' ? '<span class="badge open">registered</span>' : '<span class="badge soon">invited</span>');
+        const action = r.status === 'revoked'
+          ? '<button class="btn btn-outline" data-reinstate="' + r.id + '">Reinstate</button>'
+          : '<button class="btn btn-ghost" data-revoke="' + r.id + '">Revoke</button>';
+        return '<tr><td><strong>' + P.esc(r.email) + '</strong></td>' +
+          '<td><strong>' + P.esc(r.exam_code) + '</strong></td>' +
+          '<td>' + P.esc(examTitle(r.exam_id)) + '<br><span class="help">' + P.esc(r.exam_id) + '</span></td>' +
+          '<td>' + pill + '</td>' +
+          '<td class="help">' + (r.created_at ? new Date(r.created_at).toLocaleDateString() : '—') + '</td>' +
+          '<td>' + action + '</td></tr>';
+      }).join('') || '<tr><td colspan="6">No invites yet — add the first one above.</td></tr>';
+    }
+    ['filterCode','filterExam'].forEach(id => document.getElementById(id).addEventListener('change', renderInvites));
+    document.getElementById('inviteSearch').addEventListener('input', renderInvites);
+    document.getElementById('inviteRows').addEventListener('click', async (e) => {
+      const rev = e.target.closest('[data-revoke]'), rei = e.target.closest('[data-reinstate]');
+      const el = rev || rei;
+      if (!el || el.disabled) return;
+      const id = el.getAttribute('data-revoke') || el.getAttribute('data-reinstate');
+      const to = rev ? 'revoked' : 'invited';
+      if (rev && !window.confirm('Revoke this invite? The student loses exam access instantly.')) return;
+      el.disabled = true;
+      try { await R.setInviteStatus(id, to); await refreshInvites(); }
+      catch (ex) { el.disabled = false; P.toast(P.friendlyError(ex)); }
+    });
+
+    await boot();
+  </script>
+</body>
+</html>

@@ -6,7 +6,7 @@
   <script>(function(){try{var t=JSON.parse(localStorage.getItem('omnyra.exam.theme'));if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Sign In — OMNyra Exam Portal</title>
-  <meta name="description" content="Student sign-in for OMNyra GRC mock exams. Passwordless email link.">
+  <meta name="description" content="Invite-only student sign-in for OMNyra GRC mock exams. Admin adds your email with an exam code, you verify your inbox and set a password.">
   <link rel="icon" type="image/png" href="../img/icon-only-transparent.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,24 +42,57 @@
   <main id="main">
     <div class="wrap">
       <section class="hero" aria-label="Student sign in">
-        <span class="eyebrow"><span class="dot" aria-hidden="true"></span> Student Console · Sign in</span>
+        <span class="eyebrow"><span class="dot" aria-hidden="true"></span> Student Console · Invite-only sign in</span>
         <h1>Your exams, <span class="gradient-text">on any device.</span></h1>
-        <p class="hero-sub">Passwordless sign-in — we email you a link. No passwords stored, ever.</p>
+        <p class="hero-sub">Your admin adds your email with an exam code → you verify your inbox → set a password → sign in. Only assigned exams appear.</p>
         <div class="accent-bar" aria-hidden="true"></div>
       </section>
 
       <section class="section" aria-label="Sign in form">
         <div class="card" id="loginCard">
-          <div class="section-head"><h2>Sign in with email</h2><p id="modeNote">Checking backend…</p></div>
-          <form id="loginForm" novalidate>
+          <div class="section-head"><h2 id="tabTitle">Set your password (first time)</h2><p id="modeNote">Checking backend…</p></div>
+          <div class="btn-row" role="tablist" aria-label="Sign-in mode">
+            <button class="btn btn-outline" id="tabSetup" role="tab" aria-selected="true">First time: set password</button>
+            <button class="btn btn-ghost" id="tabLogin" role="tab" aria-selected="false">Returning: log in</button>
+          </div>
+
+          <!-- FIRST TIME: email + exam code + new password. Inbox proof = confirmation email click. -->
+          <form id="setupForm" novalidate style="margin-top:16px;">
+            <div class="grid" style="grid-template-columns:1fr 1fr;gap:14px;">
+              <label class="field">Registered email
+                <input type="email" id="setupEmail" autocomplete="email" placeholder="you@example.com" required>
+              </label>
+              <label class="field">Exam code (from your invite email)
+                <input type="text" id="setupCode" autocomplete="off" placeholder="e.g. GRC-AUG-01" required style="text-transform:uppercase;">
+              </label>
+            </div>
+            <div class="grid" style="grid-template-columns:1fr 1fr;gap:14px;">
+              <label class="field">New password (min 8 chars)
+                <input type="password" id="setupPass" autocomplete="new-password" placeholder="••••••••" required minlength="8">
+              </label>
+              <label class="field">Confirm password
+                <input type="password" id="setupPass2" autocomplete="new-password" placeholder="••••••••" required minlength="8">
+              </label>
+            </div>
+            <p class="error-text" id="setupError" role="alert" aria-live="polite"></p>
+            <p class="help" id="setupSent" role="status" aria-live="polite"></p>
+            <div class="btn-row">
+              <button class="btn btn-primary" type="submit" id="setupBtn">Verify &amp; send confirmation email</button>
+            </div>
+            <p class="help">We check your email + exam code against the admin invite list, then email a confirmation link from <strong>omnyra.training@gmail.com</strong>. Clicking it proves you own the inbox — then use the Log in tab.</p>
+          </form>
+
+          <!-- RETURNING: email + password -->
+          <form id="loginForm" novalidate style="margin-top:16px;" hidden>
             <label class="field">Email
               <input type="email" id="loginEmail" autocomplete="email" placeholder="you@example.com" required>
-              <span class="help">We send a one-time sign-in link (valid ~1 hour).</span>
+            </label>
+            <label class="field" style="margin-top:12px;">Password
+              <input type="password" id="loginPass" autocomplete="current-password" placeholder="••••••••" required>
             </label>
             <p class="error-text" id="loginError" role="alert" aria-live="polite"></p>
-            <p class="help" id="loginSent" role="status" aria-live="polite"></p>
             <div class="btn-row">
-              <button class="btn btn-primary" type="submit" id="loginBtn">Email me a sign-in link</button>
+              <button class="btn btn-primary" type="submit" id="loginBtn">Log in</button>
             </div>
           </form>
         </div>
@@ -86,72 +119,135 @@
     const P = window.OmnyraPortal;
     P.initTheme(); P.initNav();
     const R = window.OmnyraRemote;
-    const err = document.getElementById('loginError');
-    const sent = document.getElementById('loginSent');
     const note = document.getElementById('modeNote');
-    const btn = document.getElementById('loginBtn');
 
     await R.ready;
-    // Surface expired/denied link errors (?error=… or #error=…) then clean the URL.
+
+    // Surface expired/denied confirmation-link errors (?error=… or #error=…) then clean the URL.
     try {
       const qp = new URLSearchParams(window.location.search);
       const hp = new URLSearchParams((window.location.hash || "#").replace(/^#/, ""));
       const errCode = qp.get('error') || hp.get('error');
       if (errCode) {
         const desc = ((qp.get('error_description') || hp.get('error_description') || '').replace(/\+/g, ' '));
-        err.textContent = /expired|invalid/i.test(desc + ' ' + errCode)
-          ? 'That link expired or was already used. Request a fresh one below — each new link invalidates older ones.'
-          : ('Sign-in failed: ' + (desc || errCode));
+        document.getElementById('setupError').textContent = /expired|invalid/i.test(desc + ' ' + errCode)
+          ? 'That confirmation link expired or was already used. Re-submit the form below to get a fresh one.'
+          : ('Sign-up failed: ' + (desc || errCode));
         const url = new URL(window.location.href);
         url.search = ''; url.hash = '';
         window.history.replaceState({}, '', url.toString());
       }
     } catch (e) {}
-    // Already signed in? Route by role (admins go to their console).
-    if (R.mode() === "remote") {
-      await R.handleCallback();
-      const s = await R.getSession();
-      let routed = false;
-      if (s) {
-        try {
-          if (await R.isAdmin()) { window.location.replace("../admin/index.html"); routed = true; }
-        } catch (e) {}
-        if (!routed) window.location.replace("index.html");
-      }
-      note.textContent = "Backend connected — sign in to sync progress across devices.";
-    } else {
-      note.textContent = "Backend not configured — this portal runs locally. Progress stays on this device. (Admin: set assets/config.js.)";
-      btn.disabled = true;
-      document.getElementById('loginEmail').disabled = true;
-      sent.textContent = "Tip: continue to the exam catalog without signing in — use the name/email identity there.";
+
+    if (R.mode() !== "remote") {
+      note.textContent = "Backend not configured — invite login needs Supabase. (Admin: set assets/config.js.)";
+      ["setupEmail","setupCode","setupPass","setupPass2","loginEmail","loginPass"].forEach(id => {
+        const el = document.getElementById(id); if (el) el.disabled = true;
+      });
+      ["setupBtn","loginBtn"].forEach(id => { const el = document.getElementById(id); if (el) el.disabled = true; });
+      document.getElementById('setupSent').textContent = "Tip: continue to the exam catalog without signing in — use the name/email identity there (local practice mode).";
       const a = document.createElement("a");
       a.className = "btn btn-outline"; a.href = "index.html"; a.textContent = "Continue to exams";
       document.querySelector("#loginCard .btn-row").appendChild(a);
+    } else {
+      // Exchange ?code=… (email confirmation OR legacy magic-link) once per load.
+      try { await R.handleCallback(); } catch (e) {}
+      // Already signed in? Route by role (admins go to their console).
+      try {
+        const s = await R.getSession();
+        if (s) {
+          try { if (await R.isAdmin()) { window.location.replace("../admin/index.html"); throw new Error('routed'); } } catch (e) { if (e.message === 'routed') throw e; }
+          window.location.replace("index.html");
+        }
+      } catch (e) { if (e.message === 'routed') throw e; }
+      // Fresh confirmation? Tell them to log in now (inbox proven).
+      try {
+        const qp = new URLSearchParams(window.location.search);
+        if (qp.get('confirmed') === '1' || window.location.hash.includes('access_token')) showLogin();
+      } catch (e) {}
+      note.textContent = "Backend connected — invited students only. Your admin must add your email with an exam code first.";
     }
+
+    function showSetup() {
+      document.getElementById('setupForm').hidden = false;
+      document.getElementById('loginForm').hidden = true;
+      document.getElementById('tabTitle').textContent = "Set your password (first time)";
+      document.getElementById('tabSetup').setAttribute('aria-selected', 'true');
+      document.getElementById('tabLogin').setAttribute('aria-selected', 'false');
+    }
+    function showLogin() {
+      document.getElementById('setupForm').hidden = true;
+      document.getElementById('loginForm').hidden = false;
+      document.getElementById('tabTitle').textContent = "Log in";
+      document.getElementById('tabSetup').setAttribute('aria-selected', 'false');
+      document.getElementById('tabLogin').setAttribute('aria-selected', 'true');
+    }
+    document.getElementById('tabSetup').addEventListener('click', showSetup);
+    document.getElementById('tabLogin').addEventListener('click', showLogin);
+
+    document.getElementById('setupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const err = document.getElementById('setupError'), sent = document.getElementById('setupSent');
+      err.textContent = ""; sent.textContent = "";
+      const email = document.getElementById('setupEmail').value.trim();
+      const code = document.getElementById('setupCode').value.trim();
+      const p1 = document.getElementById('setupPass').value, p2 = document.getElementById('setupPass2').value;
+      const btn = document.getElementById('setupBtn');
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { err.textContent = "Please enter the registered email your admin invited."; return; }
+      if (!code) { err.textContent = "Exam code is required — copy it from your invite email."; return; }
+      if (p1.length < 8) { err.textContent = "Password must be at least 8 characters."; return; }
+      if (p1 !== p2) { err.textContent = "Passwords do not match."; return; }
+      btn.disabled = true;
+      try {
+        await R.signUpWithPassword(email, code, p1, window.location.href.split('?')[0] + "?confirmed=1");
+        sent.textContent = "Invite verified. Confirmation email sent from omnyra.training@gmail.com — click the link to prove inbox ownership, then log in.";
+        P.toast("Confirmation email sent.");
+        showLogin();
+      } catch (ex) {
+        const msg = (ex && ex.message) || "";
+        if (/User already registered/i.test(msg) || /already exists/i.test(msg)) {
+          err.textContent = "This email already has a password — use the Log in tab.";
+          showLogin();
+        } else err.textContent = P.friendlyError(ex);
+      } finally { btn.disabled = false; }
+    });
 
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      err.textContent = ""; sent.textContent = "";
+      const err = document.getElementById('loginError');
+      err.textContent = "";
       const email = document.getElementById('loginEmail').value.trim();
+      const pass = document.getElementById('loginPass').value;
+      const btn = document.getElementById('loginBtn');
       if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { err.textContent = "Please enter a valid email."; return; }
+      if (!pass) { err.textContent = "Please enter your password."; return; }
       btn.disabled = true;
       try {
-        await R.sendLink(email, window.location.href);
-        sent.textContent = "Check your inbox — a sign-in link is on its way. It expires in about an hour.";
-        P.toast("Sign-in link sent.");
-        // 60s resend cooldown (free-tier email throttle protection).
-        let s = 60;
-        const label = btn.textContent;
-        const iv = setInterval(() => {
-          s--;
-          if (s <= 0) { clearInterval(iv); btn.disabled = false; btn.textContent = label; return; }
-          btn.disabled = true;
-          btn.textContent = "Resend available in " + s + "s";
-        }, 1000);
+        await R.signInWithPassword(email, pass);
       } catch (ex) {
-        err.textContent = P.friendlyError(ex);
+        const msg = (ex && ex.message) || "";
+        if (/Email not confirmed/i.test(msg)) err.textContent = "Email not confirmed yet — click the link in your inbox first, then log in.";
+        else if (/Invalid login credentials/i.test(msg)) err.textContent = "Wrong email or password.";
+        else err.textContent = P.friendlyError(ex);
         btn.disabled = false;
+        return;
       }
+      // Post-login gates: admin accounts can't sit exams; students need a live invite.
+      try {
+        if (await R.isAdmin()) { window.location.replace("../admin/index.html"); return; }
+      } catch (e) {}
+      try {
+        const ok = await R.checkInvite(email);
+        if (!ok) {
+          await R.signOut();
+          err.textContent = "No active exam access for this email (revoked or expired). Contact your admin.";
+          btn.disabled = false;
+          return;
+        }
+        try { await R.claimInvites(); } catch (e) {}
+        P.saveStudent({ name: email.split("@")[0], email, savedAt: P.nowIso() });
+      } catch (e) {}
+      window.location.replace("index.html");
     });
   </script>
 </body>

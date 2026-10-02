@@ -150,6 +150,10 @@
       exam = exams.find(x => x.id === attempt.exam_id);
       if (!exam) { showFatal('Exam "' + attempt.exam_id + '" is no longer published.'); throw new Error('no exam'); }
       try {
+        const allowed = await R.myExamIds();
+        if (allowed.length && allowed.indexOf(exam.id) === -1) { showFatal('Your account has no access to "' + exam.id + '". Contact your admin to add your email with an exam code.'); throw new Error('not-invited'); }
+      } catch (e) { if (e.message === 'not-invited') throw e; /* access check best-effort; server enforces on start */ }
+      try {
         const q = await P.loadQuestions(exam);
         questions = q.questions; source = q.source;
       } catch (e) { showFatal('Could not load questions for "' + exam.id + '".'); throw e; }

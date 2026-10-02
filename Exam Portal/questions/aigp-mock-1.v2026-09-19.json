@@ -1,0 +1,1511 @@
+{
+  "examId": "aigp-mock-1",
+  "title": "AIGP Mock Test 1",
+  "description": "IAPP AIGP-style mock: 100 items across Foundations, Laws & Frameworks, Development, Deployment & Use, and Cross-Domain topics. Low-stakes practice; answers revealed only after submit.",
+  "version": "2026-09-19",
+  "durationMinutes": 120,
+  "passPercent": 70,
+  "status": "published",
+  "questions": [
+    {
+      "id": "aigp-001",
+      "question": "A retailer builds a system that groups its customers into segments based on purchasing patterns. The team supplies no labels and no target outcome; the system identifies structure in the data on its own. Which type of machine learning is being used?",
+      "options": [
+        "Unsupervised learning.",
+        "Reinforcement learning.",
+        "Semi-supervised learning.",
+        "Supervised learning."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. Unsupervised learning finds structure, such as clusters, in data that carries no labels or target outcome.",
+      "topic": "Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-002",
+      "question": "A US company markets an AI recruitment tool only to clients outside the European Union. One client uses the tool's output to shortlist candidates for roles based in Ireland. The company is told it may still fall within the EU AI Act. Which regulatory principle explains this?",
+      "options": [
+        "Reciprocity.",
+        "Proportionality.",
+        "Extraterritoriality.",
+        "Universal jurisdiction."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. Extraterritoriality is the application of a law beyond the regulating body's own borders, which is why output used within the Union can bring a third-country actor into scope.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-003",
+      "question": "A development team has finished preparing a dataset and is deciding which measurable characteristics to include as model inputs. They consult underwriters to identify which attributes genuinely carry predictive value for the outcome being modelled. What is this activity called?",
+      "options": [
+        "Data lineage mapping.",
+        "Data wrangling.",
+        "Feature engineering.",
+        "Hyperparameter tuning."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. Feature engineering identifies the set of measurable characteristics most important for the analysis, and is done with subject matter experts.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-004",
+      "question": "A delivery-time prediction model has performed within tolerance for two years. Over four months its accuracy declines steadily. No code has changed, no retraining has occurred, and the logs show no errors. In the same period the company entered three new cities. What is the most likely explanation?",
+      "options": [
+        "A software defect introduced in an unrelated release.",
+        "Model drift caused by changed input conditions.",
+        "Insufficient training data volume at the outset.",
+        "A security incident affecting the inference service."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. Drift occurs when the relationship between inputs and outputs changes over time, so an unchanged model degrades as the world it was trained on moves on.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-005",
+      "question": "An AI governance lead is asked to approve a vendor tool a business unit saw demonstrated last week. There is no written problem statement, no stated purpose and no named owner. What should the governance lead do first?",
+      "options": [
+        "Work with the sponsor to define the business problem, intended purpose and scope.",
+        "Escalate to the governance committee to block the procurement.",
+        "Complete a data protection impact assessment on the vendor's product.",
+        "Classify the tool against the EU AI Act risk categories."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. Nothing downstream — classification, assessment or control selection — can be done properly without a defined problem and intended purpose.",
+      "topic": "Cross-Domain",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-006",
+      "question": "A lending model is trained on applications from 2006 to 2012. It performs poorly on today's applicants because both the credit environment and the applicant population have changed substantially. Which source of bias does this describe?",
+      "options": [
+        "Implicit bias.",
+        "Temporal bias.",
+        "Overfitting.",
+        "Sampling bias."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. Temporal bias arises when the data reflects a world that no longer exists — past conditions, behaviour or prejudice.",
+      "topic": "Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-007",
+      "question": "An employer uses an AI model to screen job applicants using credit history obtained from a consumer reporting agency. Several applicants are rejected on negative entries. They are not notified of the adverse decision, not given a copy of the report, and not told of any right to dispute it. Which US law is most likely being violated?",
+      "options": [
+        "Fair Credit Reporting Act.",
+        "Americans with Disabilities Act.",
+        "Title VII of the Civil Rights Act.",
+        "Equal Credit Opportunity Act."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. The FCRA requires notice of adverse action taken on consumer report information, a copy of the report, and an opportunity to dispute it.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-008",
+      "question": "A data scientist removes every record more than three standard deviations from the mean before training a health risk model. A reviewer asks what was discarded and why it matters. Which answer is correct?",
+      "options": [
+        "Duplicates, which inflate apparent accuracy.",
+        "Missing values, which cannot be used in training.",
+        "Noise, which improves data quality with no fairness consequence.",
+        "Outliers, which are unusual but correct, so the model may now fail atypical people."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. Outliers are genuine but atypical records, and removing them builds a system that fails precisely the people who least resemble the average.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-009",
+      "question": "An organisation licenses a hosted model. The vendor silently deploys an updated version. The deployer's impact assessment, test evidence and documentation all describe the previous version. Which trustworthy-AI commitment has failed?",
+      "options": [
+        "Enabling human oversight.",
+        "Ensuring the integrity of the AI.",
+        "Embedding AI in the operating model.",
+        "Confirming systems are safe and secure."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. Integrity means the system running in production is the system that was assessed, which requires version control, change management and notification of model updates.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-010",
+      "question": "A team is preparing a dataset and spends most of the project timeline removing inaccuracies, standardising formats and resolving missing values. Which element of the data strategy is this, and roughly what share of the development life cycle does it typically consume?",
+      "options": [
+        "Data visualisation, about 40%.",
+        "Data wrangling, about 80%.",
+        "Data collection, about 50%.",
+        "Data governance, about 20%."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. Data wrangling converts raw data into valuable information and is the most time-consuming step, about 80% of the life cycle.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-011",
+      "question": "An assessment of a large model training programme records reputational, legal, individual and group impacts. A reviewer notes that one of the five levels of harm has been omitted entirely. Which is most likely missing?",
+      "options": [
+        "Organisational harm.",
+        "Individual harm.",
+        "Societal harm.",
+        "Environmental harm."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. Environmental harm — the carbon footprint of training and inference, and the drain on natural resources — is explicitly in scope and the level most often forgotten.",
+      "topic": "Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-012",
+      "question": "A multinational will deploy one AI-driven customer service system across the EU, the UK, Colorado and Singapore. The requirements differ and in places conflict in stringency. What should the AI governance professional recommend?",
+      "options": [
+        "Build a strategy on the strictest applicable requirements and harmonise them into one framework.",
+        "Defer compliance work until the EU AI Act is fully phased in.",
+        "Comply with the least restrictive applicable regime to preserve one global product.",
+        "Operate a separate compliance programme in each jurisdiction."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. The recommended approach is a compliance strategy based on the strictest requirements across applicable regulations, harmonised into a unified framework.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-013",
+      "question": "A hospital licenses a diagnostic support tool developed and CE-marked by a technology company, and uses it unmodified to assist clinicians. Under the EU AI Act, what is the hospital?",
+      "options": [
+        "A distributor.",
+        "A provider.",
+        "A deployer.",
+        "An importer."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. The deployer is the entity or professional user that applies an AI system for a specific purpose, and is primarily responsible for safe and ethical use in its operations.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-014",
+      "question": "A reviewer asks a development team for evidence that a model performs consistently when the same input is submitted repeatedly. The team cannot reproduce a reported defect because the output varies run to run. Which testing activity addresses this, and why does it matter for governance?",
+      "options": [
+        "Repeatability assessment, because an unreproducible system cannot be supervised or audited.",
+        "Privacy testing, because variance may leak training data.",
+        "Interpretability testing, because variance obscures feature importance.",
+        "Robustness testing, because it proves resilience to noise."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. Repeatability assessments run the same input repeatedly to confirm consistent results; without them an auditor cannot reproduce a finding and a reviewer cannot explain a decision to the person affected.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-015",
+      "question": "Several institutions want to build a shared fraud model. Each holds sensitive customer records and none may disclose raw data to the others, but all want the benefit of the combined data. Which privacy-enhancing technology best fits the requirement that computation happens jointly without any party seeing another's raw data?",
+      "options": [
+        "Secure multi-party computation.",
+        "Data masking.",
+        "Differential privacy.",
+        "Federated learning."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. Secure multi-party computation lets multiple parties jointly compute over their private inputs without revealing the raw data to one another.",
+      "topic": "Cross-Domain",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-016",
+      "question": "A recruitment model is validated at 94% agreement with the hiring decisions recruiters made over the previous decade, and this figure is presented to a steering group as evidence of accuracy. What is the central problem with that claim?",
+      "options": [
+        "The sample is too small to support a 94% figure.",
+        "High agreement with past decisions evidences replication of past practice, not accuracy.",
+        "Agreement is the wrong metric because recall is required for ranking tasks.",
+        "The threshold should have been set at 95% for employment use."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. Agreement with historical decisions measures similarity to the past; if those decisions were biased, a high score means the bias has been reproduced with fidelity.",
+      "topic": "Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-017",
+      "question": "Under the GDPR, an individual has the right not to be subject to a decision based solely on automated processing that produces legal effects or similarly significantly affects them. Which two words in that formulation most often determine whether the right is engaged?",
+      "options": [
+        "Automated and individual.",
+        "Decision and effects.",
+        "Legal and processing.",
+        "Solely and significantly."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. Whether the decision is solely automated, and whether the effect is significant, are the two qualifiers on which Article 22 turns.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-018",
+      "question": "A governance reviewer is told that a high-risk model has been tested. What is the most useful next request?",
+      "options": [
+        "Evidence against each of accuracy, robustness, reliability, privacy, interpretability, safety and bias.",
+        "The overall accuracy figure and the training dataset size.",
+        "Confirmation that the vendor's own testing was accepted.",
+        "A summary confirmation that testing was completed and signed off."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. Testing spans seven dimensions, so we tested it is not one answer but seven; most projects can evidence only a subset.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-019",
+      "question": "An AI system has been running for eight months. Overall accuracy remains inside tolerance, yet a caseworker reports that for one identifiable customer group the recommendations have been almost uniformly negative for three weeks. What does this most directly reveal about the monitoring design?",
+      "options": [
+        "Alert thresholds were set too tightly.",
+        "Monitoring was aggregate only, with no segmentation.",
+        "Logging retention was too short.",
+        "The baseline was recorded after release rather than at release."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. Aggregate accuracy can remain inside tolerance while a specific population is served badly; without segmented monitoring the failure is invisible.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-020",
+      "question": "A vendor states that its dataset is anonymous because direct identifiers have been replaced with pseudonyms. Under the GDPR, how should this be treated?",
+      "options": [
+        "As personal data only if the pseudonyms are reversible by the vendor.",
+        "As anonymous data, outside the scope of the regulation.",
+        "As pseudonymised data, which remains personal data and stays in scope.",
+        "As anonymous data, provided the key is held by a third party."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. Pseudonymised data remains personal data and stays within scope, and reidentification risk rises as models and auxiliary datasets improve.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-021",
+      "question": "A customer exercises the right to erasure. The record is deleted from the database, but the model trained on that record continues to behave as though the customer were present in the data. Which AI-specific privacy risk is this?",
+      "options": [
+        "Data repurposing.",
+        "Data persistence.",
+        "Data derived from the model.",
+        "Data spillover."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. Persistence is the endurance of data in the system after its purpose has ended, including inside model weights, checkpoints, caches and logs.",
+      "topic": "Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-022",
+      "question": "A project team debates adding several extra features that do not measurably improve model performance. Why should unnecessary features be avoided?",
+      "options": [
+        "They increase resource usage and complexity, complicate testing, and may contribute to overfitting.",
+        "They simplify the model architecture and reduce interpretability.",
+        "They reduce the model's ability to generalise, which is the primary concern.",
+        "They decrease training time and therefore mask cost."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. Unnecessary features waste money and resources, make testing more difficult, reduce explainability and can contribute to overfitting.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-023",
+      "question": "An organisation's AI incident policy defines an incident as a security breach or an availability failure. A model has begun producing materially worse outputs than its documentation states, with no breach and no outage. How should the governance professional characterise this?",
+      "options": [
+        "An incident, because performance materially below documented levels is itself an incident.",
+        "Not an incident until an affected person complains.",
+        "An incident only if a regulator has a reporting requirement.",
+        "Not an incident, but a maintenance item for the development backlog."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. An AI system performing materially worse than documented is an incident even with no breach, no attacker and no outage; a policy without a performance trigger will not detect it.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-024",
+      "question": "A governance body has a written mandate, a cross-functional membership and a quarterly reporting line to the executive committee. It reviews AI use cases and issues recommendations, but cannot delay or decline a launch. How should it accurately be described?",
+      "options": [
+        "An independent assurance function.",
+        "A second-line control with effective challenge.",
+        "An advisory group rather than a governance gate.",
+        "A first-line design authority."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. A body that cannot delay or decline a launch is an advisory group; saying so honestly is better than presenting it as a gate.",
+      "topic": "Cross-Domain",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-025",
+      "question": "Which statement correctly distinguishes ISO/IEC 42001 from the NIST AI Risk Management Framework?",
+      "options": [
+        "The AI RMF is legally binding in the United States; 42001 is voluntary.",
+        "42001 provides risk methodology; the AI RMF provides auditable structure.",
+        "Both are certifiable management system standards.",
+        "42001 is a certifiable management system standard; the AI RMF is voluntary guidance and is not certifiable."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. ISO/IEC 42001 establishes a certifiable AI management system; the NIST AI RMF is voluntary guidance offering outcomes and, with its Playbook, suggested actions.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-026",
+      "question": "An engineering lead argues that all seven key ethical considerations for AI can be satisfied through good model design. Which three are obligations the organisation provides rather than properties a model can have?",
+      "options": [
+        "Choice over personal information, human intervention, and accountability for security.",
+        "Transparency, explainability, and lawfulness.",
+        "Safety, accountability for security, and protection from unfair bias.",
+        "Lawfulness, safety, and protection from unfair bias."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. Appropriate choice over personal information used to develop AI, the ability to obtain human intervention in key decisions, and organisational accountability for security are things an organisation provides; a model cannot have them as features.",
+      "topic": "Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-027",
+      "question": "A model card for a live system still describes the architecture, training data and evaluation results of the version replaced nine months ago. Why is this worse than having no model card at all?",
+      "options": [
+        "Because it prevents champion and challenger comparison.",
+        "Because it duplicates the datasheet for the dataset.",
+        "Because a stale record is relied upon as accurate and misleads reviewers and regulators.",
+        "Because model cards must be published externally once created."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. Documentation is relied upon; a stale model card is believed, and so misleads the reviewers, auditors and affected people who depend on it.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-028",
+      "question": "An insurer licenses a vendor's claims model and fine-tunes it on eight years of its own claims data before putting it into production under its own brand. What is the most significant governance consequence?",
+      "options": [
+        "The insurer may have assumed provider obligations and must reassess its duties.",
+        "The insurer's retention schedule must be aligned to the vendor's.",
+        "The cloud hosting agreement must be renegotiated before deployment.",
+        "The vendor's published accuracy metrics remain valid because the architecture is unchanged."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. Substantially modifying a high-risk system, or placing it on the market under your own name, can convert a deployer into a provider with the fuller obligation set attaching.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-029",
+      "question": "Which instrument is the Council of Europe's methodology for assessing the risk and impact of AI systems from the standpoint of human rights, democracy and the rule of law?",
+      "options": [
+        "ISO/IEC 42005.",
+        "HUDERIA.",
+        "The NIST Generative AI Profile.",
+        "The EU AI Act conformity assessment."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. HUDERIA is the Council of Europe's methodology, and its scope expressly includes health and the environment, and democracy and the rule of law.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-030",
+      "question": "A team wants to train a shared model across three hospitals. Each hospital's patient records must remain on its own infrastructure, but the resulting model should reflect all three datasets. Which technique meets this requirement?",
+      "options": [
+        "Homomorphic encryption.",
+        "Differential privacy.",
+        "Federated learning.",
+        "Tokenisation."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. In federated learning the global model is downloaded to each location, trained on local data, and only model updates — never the training data — return to be aggregated.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-031",
+      "question": "A security team protects confidentiality well and has mature controls for transactional integrity. A reviewer notes that one AI-specific risk falls outside every existing control objective because the attack does not look like an attack — it looks like data. Which risk is described?",
+      "options": [
+        "Prompt injection.",
+        "Model theft.",
+        "Model inversion.",
+        "Training-data poisoning."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. Poisoning is the deliberate injection of crafted examples into training data to implant a behaviour or backdoor; training-set integrity is usually nobody's control objective.",
+      "topic": "Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-032",
+      "question": "An organisation has one AI governance lead, no dedicated budget, and 6,000 staff across four regulated markets. A team proposes a three-committee structure with quarterly reporting to each. What is the strongest governance objection?",
+      "options": [
+        "Committee structures are inconsistent with the three lines of defence.",
+        "Reporting should be monthly rather than quarterly in regulated markets.",
+        "Federated models are always preferable in regulated sectors.",
+        "The structure is disproportionate to the organisation's size and resource and describes a fiction."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. Governance must be tailored, and a structure that a single unfunded lead cannot operate is a document rather than a control.",
+      "topic": "Cross-Domain",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-033",
+      "question": "Which US state law imposes comprehensive, risk-based duties on developers and deployers of high-risk AI systems, with algorithmic discrimination at its core?",
+      "options": [
+        "Colorado SB 24-205.",
+        "California AB 2013.",
+        "Utah SB 149.",
+        "New York City Local Law 144."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. The Colorado AI Act imposes comprehensive risk-based obligations on developers and deployers of high-risk systems, organised around algorithmic discrimination.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-034",
+      "question": "An organisation deploys a model behind a REST API inside a container, rather than embedding it in each application. Which governance advantage does this most directly provide?",
+      "options": [
+        "It eliminates the need for segmented monitoring.",
+        "It transfers provider obligations to the platform team.",
+        "It removes the need for version control of the model.",
+        "It provides one chokepoint for logging, rate limiting, access control and shutdown."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. A single endpoint concentrates the operational controls, which is what makes a tested deactivation procedure realistic.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-035",
+      "question": "A reviewer asks who labelled a training dataset, against what definition, with what training, and whether inter-rater agreement was ever measured. Why do these questions matter?",
+      "options": [
+        "Because the labeller's judgement becomes the model's judgement, and a model cannot be better than its labels.",
+        "Because labelling is required before anonymisation can be applied.",
+        "Because unlabelled data cannot be used in any form of machine learning.",
+        "Because labelling determines the storage format of the dataset."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. Supervised learning depends entirely on labels, so inconsistent or poorly defined labelling caps the quality of everything built on it.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-036",
+      "question": "A human reviewer processes 200 model outputs an hour, is measured on throughput, is never told the model's error rate, and has overrides questioned by a manager. What is the governance problem?",
+      "options": [
+        "The problem is one of data quality rather than oversight design.",
+        "The review is a legitimate control provided the override rate is recorded.",
+        "The arrangement is nominal oversight; it lacks time, information, training and authority.",
+        "The problem is solved by increasing the number of reviewers."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. Human oversight has to be designed with time to review, information sufficient to disagree, training on failure modes, and authority to override without penalty.",
+      "topic": "Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-037",
+      "question": "Which of the following is the most common approach to AI regulation across jurisdictions worldwide?",
+      "options": [
+        "Constitutional amendment.",
+        "Overarching horizontal legislation covering all AI.",
+        "Targeted regulation of specific focus areas or practices.",
+        "Complete deference to voluntary industry self-regulation."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. Most jurisdictions regulate specific practices — automated decision-making, or employment uses — rather than the technology as a whole.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-038",
+      "question": "Which pairing correctly describes the difference between data lineage and data provenance?",
+      "options": [
+        "Lineage is the first instance or source; provenance is the flow of data over time.",
+        "Lineage is the flow of data over time; provenance is the first instance or source.",
+        "Both describe the original source, with lineage applying only to personal data.",
+        "Both describe transformations, with provenance applying only to structured data."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. Lineage tracks where data originated, how it changed and where it went, forming an audit trail; provenance refers specifically to the first instance of the data, or its source.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-039",
+      "question": "A model that only drafts customer claim-decision letters for an adjuster to send is proposed as low risk on the basis that a human sends the letter. What is the strongest counter-argument?",
+      "options": [
+        "Generative systems cannot be governed and should not be deployed.",
+        "The risk depends solely on the volume of letters produced.",
+        "Drafting tools are always classified as high risk under the EU AI Act.",
+        "As far as the customer is concerned the letter is the decision, and a fluent, confident, wrong letter is worse than none."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. The output is the communicated decision, and fluency lends unwarranted authority; the governance question is what the adjuster actually checks before sending.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-040",
+      "question": "An organisation begins its AI inventory from its project register and finds nine systems. A reviewer suggests a different starting point that typically uncovers considerably more. What is it?",
+      "options": [
+        "The procurement records and SaaS subscription list.",
+        "The IT asset management database.",
+        "The internal audit plan.",
+        "The data science team's model repository."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. The systems missing from most inventories are AI features switched on inside tools the organisation already owned, procured by a business unit and approved by nobody.",
+      "topic": "Cross-Domain",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-041",
+      "question": "Which type of neural network processes sequential data without recurrent connections, relying instead on a self-attention mechanism that enables efficient parallel processing?",
+      "options": [
+        "Transformer.",
+        "Graph neural network.",
+        "Convolutional neural network.",
+        "Recurrent neural network."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. A transformer uses self-attention to process sequential data efficiently in parallel, which is why it dominates natural language tasks.",
+      "topic": "Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-042",
+      "question": "Which of the following is expressly identified in the CNIL's AI guidance as a step to take when personal data is reused to develop an AI system?",
+      "options": [
+        "Obtain fresh consent in every case.",
+        "Check that the reuse is compatible with the initial purpose of collection.",
+        "Anonymise the data completely before any reuse.",
+        "Transfer the data to a processor in the same jurisdiction."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. Where personal data is reused, the guidance requires a check that the reuse is compatible with the purpose for which it was originally collected.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-043",
+      "question": "Which ordering correctly states the risk mitigation hierarchy applied when assessing AI risk?",
+      "options": [
+        "Remediate, avoid, minimise, offset.",
+        "Offset, remediate, minimise, avoid.",
+        "Avoid, minimise, remediate, offset.",
+        "Minimise, avoid, offset, remediate."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. The hierarchy is applied in order of preference: avoid the risk, then minimise it, then remediate the harm, then offset what remains.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-044",
+      "question": "A deployer's contract with an AI vendor contains no notification duty on model change. Four weeks after a silent vendor update, a group-level failure is discovered by chance. Where does the root cause of the detection delay lie?",
+      "options": [
+        "In the contract terms, which permitted an undisclosed change with no notice.",
+        "In the affected caseworker's failure to escalate sooner.",
+        "In the choice of deployment environment.",
+        "In the model architecture, which was insufficiently interpretable."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. The model was the symptom; a renewal term with no model-change notification duty is what made a four-week blind spot possible.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-045",
+      "question": "Which of the following is a stated purpose of feature engineering, alongside improving model performance and reducing computational cost?",
+      "options": [
+        "Removing the requirement for subject matter expertise.",
+        "Increasing the number of input variables available to the model.",
+        "Boosting explainability.",
+        "Eliminating the need for testing."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. Boosting explainability is a named purpose, and explainability underpins fairness, privacy, reliability, robustness, causality and trust.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-046",
+      "question": "A model predicts pregnancy from a customer's purchase history, although no health information was ever collected. Under the GDPR, how should the resulting inference be characterised?",
+      "options": [
+        "It is not personal data because it was never collected from the individual.",
+        "It is processing of special category data, because inference is processing.",
+        "It is anonymous statistical output and falls outside scope.",
+        "It is personal data but not special category data unless confirmed."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. Models can infer special category data from ordinary data, and inference is processing whether or not anyone intended it, which brings the Article 9 conditions into play.",
+      "topic": "Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-047",
+      "question": "Which pairing correctly describes ISO/IEC 22989 and ISO/IEC 42005?",
+      "options": [
+        "22989 is a Council of Europe methodology; 42005 is an ISO standard.",
+        "22989 provides the impact assessment method; 42005 provides the vocabulary.",
+        "22989 provides concepts and terminology; 42005 provides the AI system impact assessment method.",
+        "Both are certifiable management system standards."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. ISO/IEC 22989 supplies concepts and terminology, and ISO/IEC 42005 supplies guidance on assessing an AI system's impacts on individuals, groups and societies across the life cycle.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-048",
+      "question": "A team plans to complete Govern, then Map, then Measure, then Manage in sequence, reporting each as finished. What is wrong with this plan?",
+      "options": [
+        "The correct sequence begins with Map.",
+        "Govern is cross-cutting and informs the other three throughout rather than being a stage that completes.",
+        "Measure and Manage are the same function and should not be separated.",
+        "The framework applies only to generative AI systems."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. In the NIST AI RMF, Govern is cross-cutting: it cultivates the culture, policies, accountability structures and competence on which Map, Measure and Manage all depend.",
+      "topic": "Cross-Domain",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-049",
+      "question": "Which control most directly enables an organisation to reconstruct why a specific automated decision was reached eight months after it was made?",
+      "options": [
+        "A quarterly red team report.",
+        "A current model card.",
+        "Snapshots of the model and its outputs, with recorded model version and dataset.",
+        "A vendor attestation of accuracy."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. Point-in-time snapshots of the algorithm and its outputs, paired with the model version and exact dataset, are what make investigation and redress possible.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-050",
+      "question": "Which of the five V's of data preparation asks how frequently the dataset is updated or changed?",
+      "options": [
+        "Value.",
+        "Volume.",
+        "Velocity.",
+        "Veracity."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. Velocity concerns how often the data is updated and whether it changes regularly.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-051",
+      "question": "An autonomous warehouse robot improves its own routing over thousands of trial runs, guided by a score that rewards faster deliveries and penalises collisions. Which type of machine learning is this?",
+      "options": [
+        "Semi-supervised learning, because limited guidance is combined with experience.",
+        "Supervised learning, because the score acts as a label.",
+        "Unsupervised learning, because it finds structure without instruction.",
+        "Reinforcement learning, because it learns a policy from reward and penalty."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. The defining signature of reinforcement learning is a reward function that shapes a policy through trial and consequence.",
+      "topic": "Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-052",
+      "question": "Under the EU AI Act, which category of AI system is permitted but subject to strict obligations including risk management, data governance, technical documentation, logging, human oversight and conformity assessment?",
+      "options": [
+        "Unacceptable risk.",
+        "Minimal risk.",
+        "Limited risk.",
+        "High risk."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. High-risk systems are permitted but attract the full obligation set before and after market placement.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-053",
+      "question": "An organisation wants to deploy a generative assistant grounded in its own current policy documents, with answers that can cite their source and errors correctable by editing a document rather than retraining. Which approach fits?",
+      "options": [
+        "Retrieval-augmented generation against an authoritative internal knowledge base.",
+        "Train a model from scratch on internal data only.",
+        "Use the base model as-is with a longer system prompt.",
+        "Fine-tune the model on the policy corpus."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. RAG optimises output by referencing an authoritative knowledge base outside the training sources, keeping the knowledge current, inspectable and correctable while leaving the model replaceable.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-054",
+      "question": "Which statement best describes the relationship between model accuracy and interpretability when selecting an architecture for a decision that materially affects individuals?",
+      "options": [
+        "They are independent, so the choice is purely technical.",
+        "Complex architectures often achieve higher accuracy but are harder to explain, and the higher the stakes for the individual the more interpretability should weigh.",
+        "Interpretability always produces higher accuracy in regulated settings.",
+        "Accuracy should always be maximised, with explanation added afterwards."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. Deep networks and large ensembles typically win on accuracy and lose on explainability, so consequential decisions about people should weight interpretability more heavily.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-055",
+      "question": "An organisation maintains a separate AI risk register, a separate AI risk scale and a separate AI escalation route from its enterprise risk management framework. What is the principal objection?",
+      "options": [
+        "Separate registers are prohibited by ISO/IEC 42001.",
+        "AI risk should be owned exclusively by the second line.",
+        "AI risk is too novel to be expressed in enterprise terms.",
+        "A parallel register cannot be aggregated, compared or reported, and in practice nobody reads it."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. Integration with enterprise risk management — same register, scale, escalation route and board reporting — is what allows AI risk to be aggregated and acted upon.",
+      "topic": "Cross-Domain",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-056",
+      "question": "An organisation is described as being under competitive pressure to deploy AI faster than it can govern, because rivals have already launched. Which named organisational risk is this?",
+      "options": [
+        "Legal and regulatory risk.",
+        "Reputational risk.",
+        "Cultural risk.",
+        "Acceleration risk."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. Acceleration risk is the risk of deploying at a competitor's pace rather than at the pace the organisation can actually govern.",
+      "topic": "Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-057",
+      "question": "Which EU AI Act obligation requires that training, validation and testing datasets be relevant, sufficiently representative, and to the best extent possible free of errors and complete for the intended purpose?",
+      "options": [
+        "Article 9, risk management system.",
+        "Article 10, data and data governance.",
+        "Article 12, record-keeping and logging.",
+        "Article 15, accuracy, robustness and cybersecurity."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. Article 10 sets the data governance requirements, including examination for bias and a narrow permission to process special category data where strictly necessary to detect and correct it.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-058",
+      "question": "A red team is engaged to attempt to make a deployed language application leak data, bypass its guardrails and behave outside its intended purpose. What is the governance value of doing this before an adversary does?",
+      "options": [
+        "It removes the need for input and output filtering.",
+        "It surfaces failure modes that ordinary test sets do not contain, so mitigations can be layered before release.",
+        "It transfers liability for misuse to the red team's provider.",
+        "It replaces the requirement for repeatability assessment."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. Adversarial testing deliberately attempts to make the system fail, covering malicious inputs that a conventional test set never includes.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-059",
+      "question": "Which of the following is a deployer obligation under the EU AI Act rather than a provider obligation?",
+      "options": [
+        "Drawing up the technical documentation before market placement.",
+        "Completing the conformity assessment procedure.",
+        "Using the system in accordance with the provider's instructions for use.",
+        "Affixing the CE marking."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. Deployers must use the system in accordance with the instructions for use; departing from documented intended use can convert the deployer into a provider.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-060",
+      "question": "Singapore's 2019 Model AI Governance Framework rests on two principles. Which pair is correct?",
+      "options": [
+        "Decisions should be explainable, transparent and fair; and AI should be human-centric.",
+        "AI must be certified; and providers must register systems centrally.",
+        "AI must be risk-classified into four tiers; and high-risk uses require conformity assessment.",
+        "AI use must be disclosed; and generative outputs must be watermarked."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. The framework is voluntary and built on the twin principles that decisions be explainable, transparent and fair, and that AI be human-centric.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-061",
+      "question": "Which of the following best describes the difference between data corruption and data poisoning, and the control each calls for?",
+      "options": [
+        "Corruption is accidental and calls for data quality monitoring; poisoning is deliberate and calls for provenance, pipeline access control and anomaly detection.",
+        "Corruption is deliberate; poisoning is accidental.",
+        "Both are deliberate; both call for encryption at rest.",
+        "Both are accidental; both call for data quality monitoring."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. Corruption is accidental degradation from pipeline faults and drift in formats; poisoning is an adversary injecting crafted examples, which requires provenance, access control over the training pipeline and anomaly detection on the training set itself.",
+      "topic": "Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-062",
+      "question": "A governance professional is asked to name the deliverable that closes the design phase for a high-risk system. Which is the most complete answer?",
+      "options": [
+        "A signed business case and budget approval.",
+        "A design record: data rights confirmed, architecture chosen with interpretability in mind, metrics and thresholds agreed, oversight and deactivation assigned.",
+        "The trained model and its accuracy figure.",
+        "A vendor contract with an indemnity clause."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. The design gate turns on whether the system can be built safely, which requires confirmed data rights, a justified architecture, agreed metrics and thresholds, and assigned oversight and shutdown authority.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-063",
+      "question": "An organisation cleared a drafting assistant for individual employee use under an acceptable-use policy. Six months later a team is using it to produce all customer correspondence. Which governance failure has occurred?",
+      "options": [
+        "Staff training on output verification was insufficient.",
+        "The acceptable-use policy was too permissive about data inputs.",
+        "A tool cleared as an employee tool has migrated into business operations without assessment, owner or monitoring.",
+        "The vendor changed the model without notice."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. Tools cleared for individual use quietly become operational, and at that point they require the full lifecycle treatment: impact assessment, documented purpose, testing evidence, monitoring and an incident path.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-064",
+      "question": "A governance professional must choose which of four live systems to audit first: a product recommendation engine, a customer support chatbot, an AI-based clinical diagnostic tool, and an employee recruitment screener. Which should be prioritised?",
+      "options": [
+        "The recruitment screener.",
+        "The product recommendation engine.",
+        "The customer support chatbot.",
+        "The clinical diagnostic tool."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. Governance attention follows impact, and the diagnostic tool carries the greatest potential effect on human life together with the heaviest regulatory exposure.",
+      "topic": "Cross-Domain",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-065",
+      "question": "Which statement about the EU AI Act's exemptions is accurate?",
+      "options": [
+        "Open-source AI is exempt in all circumstances.",
+        "Systems used solely for national security purposes by Member States fall outside scope.",
+        "Research prototypes are permanently exempt once registered.",
+        "Small and medium enterprises are exempt from high-risk obligations."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. The exemption applies to systems used solely for national security purposes, and the word solely means a dual-use system is not exempt.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-066",
+      "question": "Which of the following is the correct order of the five levels of harm used to structure AI impact analysis?",
+      "options": [
+        "Group, individual, societal, organisational, environmental.",
+        "Organisational, individual, group, societal, environmental.",
+        "Individual, group, societal, environmental, organisational.",
+        "Individual, organisational, group, environmental, societal."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. The levels run individual, group, societal, environmental, organisational — organisations get into trouble because they harmed someone, so the harm to people is assessed first.",
+      "topic": "Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-067",
+      "question": "Which of the following is the defining feature of an algorithmic or AI impact assessment as distinct from a data protection impact assessment?",
+      "options": [
+        "It is completed by the vendor rather than the deploying organisation.",
+        "It is legally mandated in every jurisdiction.",
+        "It assesses impacts on individuals, groups and society, including accuracy, fairness, explainability, oversight and robustness.",
+        "It replaces the need for a privacy impact assessment."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. A DPIA asks about personal data processing; an AI impact assessment asks about the system's impacts on people and society, which is why a DPIA alone cannot evidence fairness or accuracy.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-068",
+      "question": "Which pairing correctly describes champion and challenger in production model management?",
+      "options": [
+        "Both terms describe versions of the same model at different thresholds.",
+        "The champion is the vendor's model; the challenger is the in-house alternative.",
+        "The champion is the newly built model; the challenger is the model in production.",
+        "The champion is the model in production; the challenger is a model built to outperform it, and the comparison detects drift and unexpected behaviour."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. Running the challenger against the champion on live data produces evidence rather than opinion about whether performance has degraded or a better model exists.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-069",
+      "question": "Which of the following practices is prohibited outright under the EU AI Act, with no compliance route available?",
+      "options": [
+        "Automated credit scoring with human review.",
+        "Emotion recognition used in customer service with disclosure.",
+        "Inferring emotions of employees in the workplace.",
+        "Biometric verification for device unlocking."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. Inferring emotions in the workplace or in educational institutions is a prohibited practice, and no assessment or safeguard makes it lawful.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-070",
+      "question": "A team reports that a model achieved 91% accuracy against an agreed threshold of 88%, but has produced no accuracy figures by affected group, explaining that the dataset does not contain the necessary attributes. What is the appropriate governance response?",
+      "options": [
+        "Treat the absence of subgroup evidence as an open risk and require a proxy-based or sampling approach before approval.",
+        "Reject the system outright and terminate the project.",
+        "Accept the result, since the agreed threshold has been met.",
+        "Treat bias testing as not applicable and record the reason."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. The gap must be recorded as a risk with a remedy: statistical sampling, proxy analysis or targeted data collection, with residual risk accepted by a named owner if the gap persists.",
+      "topic": "Cross-Domain",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-071",
+      "question": "Which of the following correctly describes the difference between a discriminative and a generative model?",
+      "options": [
+        "Both classify inputs, differing only in training method.",
+        "A generative model is always more accurate than a discriminative one.",
+        "A discriminative model creates new content; a generative model classifies inputs.",
+        "A discriminative model distinguishes between categories; a generative model produces new data resembling its training distribution."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. Discriminative models learn boundaries between classes; generative models learn the distribution well enough to produce new samples from it.",
+      "topic": "Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-072",
+      "question": "An organisation's AI assessments are consistently completed after the vendor contract has been signed. Which single change to the process would most improve it?",
+      "options": [
+        "Introduce a more detailed assessment template.",
+        "Move intake ahead of procurement.",
+        "Add a second independent reviewer to each assessment.",
+        "Shorten the assessment turnaround time."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. If the assessment arrives after the spend, the institutional answer has already been decided; intake must precede procurement or the assessment is a formality.",
+      "topic": "Cross-Domain",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-073",
+      "question": "Under the EU AI Act, within what window must a serious incident be reported to the relevant market surveillance authority?",
+      "options": [
+        "Within 30 days of confirmation.",
+        "Within 6 months, alongside the annual conformity review.",
+        "Within 72 hours in all cases.",
+        "Between 2 and 15 days, depending on severity."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. Serious incident reporting runs on a 2 to 15 day window, with the shortest windows applying to widespread infringement and to death.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-074",
+      "question": "Which practice most directly makes a documented kill switch a real control rather than a hypothesis?",
+      "options": [
+        "Requiring executive approval before any deactivation.",
+        "Recording it in the model card.",
+        "Testing the deactivation procedure and using feature flags to disable functionality without deploying code.",
+        "Naming a team with responsibility for shutdown."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. Feature flags allow functionality to be turned off at run time, and exercising the procedure is what converts a design into a control.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-075",
+      "question": "Which of the following residual risks is described as a property of the technology that testing reduces but never eliminates?",
+      "options": [
+        "Missing values in input data.",
+        "Undocumented feature definitions.",
+        "Duplicate records in the training set.",
+        "Hallucination, understood as confident, fluent output that is untrue."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. Brittleness, hallucination, embedded bias, uncertainty and the false positive/false negative trade-off are properties of the technology; governance makes them known, bounded, monitored and owned.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-076",
+      "question": "Which of the following is named as a foundational control for managing ethical risk in AI?",
+      "options": [
+        "Requiring unanimous committee decisions.",
+        "Appointing a single accountable data scientist.",
+        "Developing a cross-functional and demographically diverse oversight body.",
+        "Publishing model weights for external review."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. Cross-functional membership stops blind spots aligning, and demographic diversity is a control on the completeness of harm identification — a harm you have never experienced is one you have to be told about.",
+      "topic": "Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-077",
+      "question": "An analyst reviews a table of true positives, true negatives, false positives and false negatives in order to calculate precision, recall and accuracy. What is the analyst reviewing?",
+      "options": [
+        "A probability distribution chart.",
+        "A confusion matrix.",
+        "A receiver operating characteristic curve.",
+        "A feature importance ranking."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. A confusion matrix tabulates the four outcome classes and is the basis for precision, recall and accuracy.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-078",
+      "question": "Which is the correct definition of effective challenge in the context of AI model review?",
+      "options": [
+        "A mandatory second opinion from an external consultant.",
+        "A structured checklist completed before each release.",
+        "A formal sign-off by the project sponsor after review.",
+        "Critical analysis by objective, informed parties who have the standing, incentive and influence to act on what they find."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. Effective challenge requires competence, independence and influence together; an informed challenge that nobody must answer is theatre.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-079",
+      "question": "Which combination of obligations, taken together, constitutes accountability to a person affected by an automated decision?",
+      "options": [
+        "Disclosure and logging.",
+        "Disclosure, explanation and redress.",
+        "Explanation and encryption.",
+        "Redress and vendor indemnity."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. Telling people AI is involved, telling an affected person why this outcome in terms they can act on, and giving them a route to challenge it with someone empowered to overturn it — all three are required.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-080",
+      "question": "A business unit proposes extending an approved internal forecasting model to a new customer-facing use case, on the basis that the model already works well. What should the governance response be?",
+      "options": [
+        "Approve, since the model is already assessed and in production.",
+        "Treat the new purpose as requiring a new assessment, because obligations follow the intended use.",
+        "Approve subject to a performance review after six months.",
+        "Refuse, since approved systems cannot be repurposed."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. A new purpose can change the risk classification, the legal role and the applicable obligations, which is exactly why documented appropriate uses exist.",
+      "topic": "Cross-Domain",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-081",
+      "question": "Which activity forms part of data wrangling as described in the AI development life cycle?",
+      "options": [
+        "Setting the accuracy threshold for release.",
+        "Assigning the human oversight role.",
+        "Selecting the model architecture.",
+        "Cleansing, labelling, anonymisation and minimisation of the dataset."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. Wrangling turns raw data into valuable information through cleansing, labelling, anonymisation and minimisation, and is the most time-consuming step in the life cycle.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-082",
+      "question": "Which statement about the relationship between the EU AI Act's conformity assessment and the GDPR's data protection impact assessment is correct?",
+      "options": [
+        "They overlap but do not substitute; a high-risk system processing personal data needs both.",
+        "The DPIA replaces the conformity assessment for systems processing personal data.",
+        "Neither applies where the system is procured rather than built.",
+        "Completing the conformity assessment discharges the DPIA obligation."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. Conformity assessment asks whether the system may lawfully be placed on the market; the DPIA asks whether the processing poses a high risk to individuals and how it will be mitigated. The evidence largely serves both, but completing one does not discharge the other.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-083",
+      "question": "Which of the following is the strongest indicator that a human-in-the-loop control over a production model is nominal rather than effective?",
+      "options": [
+        "The reviewer is a senior member of staff.",
+        "The recorded override rate is close to zero and nobody has asked why.",
+        "The system logs every reviewed decision.",
+        "The reviewer's decisions are audited quarterly."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. An override rate near zero usually indicates automation bias rather than confidence, and an override rate nobody monitors means there is no evidence the control operates.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-084",
+      "question": "Which pair of properties of AI most directly breaks the assumptions behind conventional change management and testing controls?",
+      "options": [
+        "Complexity and data dependency.",
+        "Probabilistic outputs and opacity.",
+        "Autonomy and speed.",
+        "Potential for misuse and scale."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. Change management assumes deterministic behaviour and testing assumes repeatability, both of which probabilistic outputs undermine; peer review assumes inspectability, which opacity undermines.",
+      "topic": "Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-085",
+      "question": "Which of the following correctly describes a feature flag and its governance significance?",
+      "options": [
+        "A deployment technique that turns functionality off at run time without deploying new code, enabling rollback and jurisdiction-specific availability.",
+        "A statistical measure of a feature's predictive power.",
+        "A contractual clause restricting how a vendor may change a model.",
+        "A metadata tag recording which features were used in training."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. Feature flags let a capability be released and then restricted or disabled for particular users, groups or jurisdictions at run time, which is how a kill switch and a not-available-here restriction become real.",
+      "topic": "Cross-Domain",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-086",
+      "question": "An organisation wants one page it can put in front of any AI purchase request. Which set of headings best serves that purpose?",
+      "options": [
+        "Accuracy, precision, recall, and F1 score.",
+        "Risk owner, risk score, mitigation, and review date.",
+        "Cost, timeline, vendor references, and contract value.",
+        "Data considerations, security and safety, potential for bias, type of product, technical specifications, model performance, monitoring and maintenance, terms of use."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. These eight areas cover the evaluation of a vendor or open-source model, and attaching them to every purchase request is often the difference between a governed and an ungoverned estate.",
+      "topic": "Cross-Domain",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-087",
+      "question": "Which term does the EU AI Act use for models whose capabilities could pose risks at scale across the Union, attracting additional obligations including model evaluation, adversarial testing and systemic risk mitigation?",
+      "options": [
+        "Critical infrastructure AI systems.",
+        "Tier one generative models.",
+        "Foundation models of general application.",
+        "High impact general purpose AI models with systemic risk."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. This is the Act's own statutory phrase and the differentiator between the two GPAI tiers.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-088",
+      "question": "An AI system is discovered to have produced wrong outcomes that were already acted upon: letters sent, claims declined and shifts cancelled. What does effective incident handling require beyond correcting the model?",
+      "options": [
+        "Notification to the vendor under the support agreement.",
+        "A post-incident report to the development team.",
+        "Identification of affected people and unwinding of the consequences already in effect.",
+        "An updated model card and revised documentation."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. Downstream consequences are part of the incident: a wrong output already acted upon has to be unwound, not merely corrected, which requires the snapshots and logs that let affected people be identified.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-089",
+      "question": "Which of the following are the three inputs a production system will meet that a conventional test set typically does not contain?",
+      "options": [
+        "Training, validation and test data.",
+        "Duplicate, missing and malformed data.",
+        "Edge cases, unseen data and malicious data.",
+        "Structured, semi-structured and unstructured data."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. Edge cases are rare but legitimate, unseen data tests whether the model generalises rather than memorises, and malicious data is crafted deliberately to make the system fail.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-090",
+      "question": "Which of the following five named cost categories of running AI is most often the binding constraint in practice?",
+      "options": [
+        "Skilled professionals.",
+        "Environmental.",
+        "Storage.",
+        "High-speed network."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. Skilled professionals are scarce, expensive and hard to retain, and are frequently the constraint that determines what an organisation can actually do.",
+      "topic": "Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-091",
+      "question": "Which question, asked at the design stage, would have prevented a recruitment model from being validated against historical recruiter decisions and presented as accurate?",
+      "options": [
+        "How large is the training dataset?",
+        "Which architecture offers the best performance?",
+        "What is the model's precision and recall?",
+        "What does the validation metric actually measure?"
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. Asking what the metric measures exposes that agreement with historical decisions measures similarity to past practice, which is precisely what the project was meant to improve upon.",
+      "topic": "Cross-Domain",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-092",
+      "question": "Which of the following best describes the purpose of Article 4 of the EU AI Act?",
+      "options": [
+        "It establishes the conformity assessment procedure.",
+        "It requires AI literacy so that experts and non-experts alike, including decision-makers, can understand AI systems' functioning, risks and limitations.",
+        "It sets the penalties for prohibited practices.",
+        "It establishes the EU database for high-risk systems."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. The AI literacy requirement is expressly aimed at fostering transparency and oversight, covering both technical and non-technical staff and empowering informed decisions about AI use.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-093",
+      "question": "Which of the following correctly describes the difference between accuracy testing and bias testing?",
+      "options": [
+        "They are the same activity measured on different datasets.",
+        "Accuracy testing asks whether results are correct; bias testing asks whether outcomes differ systematically between groups.",
+        "Bias testing is a subset of privacy testing.",
+        "Accuracy testing is required by law; bias testing is voluntary."
+      ],
+      "correctIndex": 1,
+      "rationale": "Correct. A model can be highly accurate overall and still produce systematically different outcomes for different groups, which is why the two are separate dimensions requiring separate evidence.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-094",
+      "question": "Which of the following is the correct governance response when a business case for an AI system claims headcount reduction as its primary benefit?",
+      "options": [
+        "Refer it solely to human resources for consultation.",
+        "Require the benefit to be restated in non-headcount terms.",
+        "Accept it, since workforce planning falls outside AI governance.",
+        "Require the harm assessment to state who is affected and what happens to them."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. Where a business case claims headcount reduction, the assessment must identify who bears the concentrated cost and what provision is made, because the benefit is diffuse and the harm is not.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-095",
+      "question": "A governance professional is asked how often a live high-risk model should be reviewed. Which answer is most defensible?",
+      "options": [
+        "Whenever the vendor releases an update.",
+        "Only when an incident occurs.",
+        "Annually, in line with the audit cycle.",
+        "At a frequency driven by the system's risk score, with re-assessment also triggered by material change."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. Review frequency should follow the risk score rather than the calendar, with material change — new purpose, new data, model update — acting as an additional trigger.",
+      "topic": "Cross-Domain",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-096",
+      "question": "Which statement about training and testing features is correct?",
+      "options": [
+        "The same features must be used for training and testing, or inconsistency invalidates the evaluation.",
+        "Features used in testing should be a random subset of training features.",
+        "Feature selection is irrelevant once the architecture is fixed.",
+        "Different feature sets should be used for training and testing to avoid overfitting."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. Using the same features for training and testing avoids inconsistency, and versioned feature definitions can be mirrored between training and production.",
+      "topic": "Development",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-097",
+      "question": "Which of the following is a named MeitY advisory position in India concerning untested or unreliable AI models?",
+      "options": [
+        "They are permitted only for government use.",
+        "They may not be released under any circumstances.",
+        "They may be released only with output labelled as inherently fallible.",
+        "They require prior certification by a national authority."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. The advisory position is that untested or unreliable models may be released with output labelled as inherently fallible, alongside a requirement that platforms ensure AI does not facilitate unlawful content.",
+      "topic": "Laws & Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-098",
+      "question": "An organisation deploys an AI system on edge devices in the field. Which governance consequence follows most directly from that choice?",
+      "options": [
+        "Human oversight requirements no longer apply.",
+        "Data residency questions become more acute than in cloud deployment.",
+        "Fleet updating and monitoring become harder, and anyone holding the device has physical access to the model.",
+        "Provider obligations transfer to the device manufacturer."
+      ],
+      "correctIndex": 2,
+      "rationale": "Correct. Edge brings low latency and local data, at the cost of constrained compute, a fleet that is difficult to update and monitor, and physical access to the model.",
+      "topic": "Deployment & Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-099",
+      "question": "Which of the following distractor patterns should a candidate treat with most suspicion in AIGP scenario questions?",
+      "options": [
+        "Options that recommend engaging stakeholders.",
+        "Options that recommend proportionate treatment.",
+        "Options that recommend documenting a decision.",
+        "Options containing absolutes such as eliminate all bias or ensure no errors."
+      ],
+      "correctIndex": 3,
+      "rationale": "Correct. Absolutes are almost always wrong; correct answers use the language of mitigation, reduction to an acceptable level and monitoring.",
+      "topic": "Cross-Domain",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-100",
+      "question": "An organisation must decide who should chair the gate meeting that approves a high-risk AI system for release. Which arrangement is most defensible?",
+      "options": [
+        "The accountable owner of the use case, with governance present and able to record a dissent.",
+        "The head of internal audit, as the third line.",
+        "The vendor's account manager, as the technical expert.",
+        "The AI governance lead, to guarantee independence."
+      ],
+      "correctIndex": 0,
+      "rationale": "Correct. The accountable owner chairs and owns the outcome; governance attends, challenges, and has its dissent recorded, which preserves both ownership and effective challenge.",
+      "topic": "Cross-Domain",
+      "difficulty": "medium",
+      "marks": 1
+    }
+  ]
+}

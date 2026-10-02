@@ -353,3 +353,12 @@ end $$;
 drop trigger if exists on_auth_user_created on auth.users;
 create trigger on_auth_user_created after insert on auth.users
   for each row execute function public.handle_new_user();
+
+-- ============================================================
+-- Invite-only student access (v2): run
+--   supabase/migration_exam_access.sql
+-- AFTER this file. It adds exam_codes + exam_invites, anon-safe
+-- check/validate RPCs, claim_invites(), and hardens start_attempt
+-- with a NOT_INVITED guard. Kept separate so existing projects
+-- migrate without re-running the base schema.
+-- ============================================================

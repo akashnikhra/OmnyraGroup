@@ -283,6 +283,15 @@
       ATTEMPT_NOT_FOUND: "Session not found. Start the exam again from the catalog.",
       NOT_OWNER: "This session belongs to a different account.",
       NOT_ADMIN: "This area needs an admin account.",
+      NOT_INVITED: "This email has no access to that exam. Ask your admin to add your email with an exam code.",
+      INVITE_REVOKED: "Your access to this exam was revoked. Contact your admin.",
+      CODE_INACTIVE: "This exam code is paused. Contact your admin.",
+      CODE_EXPIRED: "This exam code has expired. Contact your admin.",
+      BAD_CODE: "Exam code format is invalid (use 4–32 chars: A–Z, 0–9, hyphens).",
+      BAD_EMAIL: "Please enter a valid email address.",
+      WEAK_PASSWORD: "Password must be at least 8 characters.",
+      EXAM_REQUIRED: "Pick the exam this code unlocks — exam assignment is mandatory.",
+      INVITE_ROWS_INVALID: "Some invite rows are invalid — fix the highlighted rows and retry.",
       LOCAL_ONLY: "Backend unavailable — running locally. Progress stays on this device."
     };
     if (msg.indexOf("PROBE_TIMEOUT") !== -1) return map.LOCAL_ONLY;

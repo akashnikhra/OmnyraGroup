@@ -267,7 +267,27 @@
     }
 
     try {
-      const exams = await P.loadCatalog();
+      let exams = await P.loadCatalog();
+      // Invite-only: remote students see ONLY their assigned exams.
+      // (Local-only mode still shows the full static catalog for practice.)
+      if (remote) {
+        try {
+          const allowed = new Set(await R.myExamIds());
+          try { await R.claimInvites(); } catch (e) {}
+          exams = exams.filter(e => allowed.has(e.id));
+          if (!exams.length) {
+            window.__exams = [];
+            document.getElementById('catalogMeta').textContent = 'No exams assigned yet.';
+            document.getElementById('catalogGrid').innerHTML = '<div class="card" role="alert"><p><strong>No exam access found for this account.</strong> Your admin must add your email with an exam code first — check your invite email for the code, or contact <a href="mailto:omnyra.training@gmail.com">omnyra.training@gmail.com</a>.</p></div>';
+            renderProgress([], null);
+            return;
+          }
+        } catch (e) {
+          document.getElementById('catalogMeta').textContent = 'Could not verify exam access.';
+          document.getElementById('catalogGrid').innerHTML = '<div class="card"><p>' + P.esc(P.friendlyError(e)) + '</p></div>';
+          return;
+        }
+      }
       window.__exams = exams;
       const openCount = exams.filter(e => e.open).length;
       document.getElementById('catalogMeta').textContent =

@@ -1,0 +1,10 @@
+# OMNyra Exam Portal — student invite upload template
+# One row per student. exam_code is MANDATORY and must already exist (Admin → Access → create code first).
+# Columns (exact header, UTF-8, comma delimiter):
+#   email,exam_code
+# - email: student email (must be valid; duplicates per code are merged)
+# - exam_code: batch code bound to exactly ONE exam, e.g. GRC-AUG-01 (case-insensitive, stored UPPER)
+# Lines starting with # and blank lines are ignored.
+email,exam_code
+student1@example.com,GRC-AUG-01
+student2@example.com,GRC-AUG-01

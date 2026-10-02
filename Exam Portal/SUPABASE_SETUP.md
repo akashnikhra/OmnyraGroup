@@ -11,16 +11,28 @@ works **local-only** until this is done (all pages degrade gracefully).
 
 ## 2. Run the schema
 Supabase Dashboard → SQL Editor → paste **`supabase/schema.sql`** → Run.
-It creates `profiles`, `exams`, `questions`, `attempts`, `attempt_answers`,
-`progress`, the `questions_public` answer-stripped view, `start_attempt` /
-`submit_attempt` RPCs, RLS policies, and the auto-profile trigger. Safe to re-run.
+Then paste **`supabase/migration_exam_access.sql`** → Run (invite-only
+student access: `exam_codes` + `exam_invites`, anon-safe
+`check_invite`/`validate_invite` RPCs, `claim_invites()`, and the
+`NOT_INVITED` guard inside `start_attempt`). Safe to re-run.
 
-## 3. Enable magic-link auth
-Authentication → Providers → enable **Email (OTP / magic link)**.
-Set Site URL to `https://omnyragroup.online` and add redirect
-`https://omnyragroup.online/Exam Portal/student/**` and
-`https://omnyragroup.online/Exam Portal/admin/**`.
-(Optional local dev: add `http://localhost:8123/Exam Portal/**`.)
+## 3. Enable password auth + your Gmail sender
+1. Authentication → Providers → enable **Email** (keep magic-link for
+   admins; students use **email + password** with confirmation ON —
+   "Confirm email" must stay enabled: the confirmation click is the
+   inbox-ownership proof before password login works).
+2. Authentication → Emails → SMTP Settings → enable custom SMTP:
+   host `smtp.gmail.com:587`, user `omnyra.training@gmail.com`, password =
+   a Gmail **App Password** (Google Account → Security → 2-Step Verification
+   → App passwords). All student mail (confirmation + invites) then comes
+   from your address, not Supabase default.
+3. Authentication → Email Templates → set Site URL to
+   `https://omnyragroup.online` and add redirects
+   `https://omnyragroup.online/Exam Portal/student/**` and
+   `https://omnyragroup.online/Exam Portal/admin/**`.
+   (Optional local dev: add `http://localhost:8123/Exam Portal/**`.)
+4. Brand the "Confirm signup" template (OMNyra header + "click to verify,
+   then log in with your password").
 
 ## 4. Make yourself admin
 1. Sign in once via `Exam Portal/admin/login.html` (creates your profile row).
@@ -42,11 +54,20 @@ database** (instant) → **Download Git-backup JSON** → commit under
 `Exam Portal/questions/` so Git stays the restorable source.
 (Or run the SQL bulk path per `BACKEND.md` §2.1.)
 
-## 7. Smoke test
-Student magic-link login → start → answer → wait 15s (autosave label changes)
-→ submit → grade → retry. Then: second submit replays stored grade
-(`replayed:true`); admin login with a student account is rejected; with the
-network blocked the portal falls back to local mode with the offline banner.
+## 7. Smoke test (invite-only)
+1. Admin Console → Access → create code (e.g. `GRC-AUG-01` → exam
+   `grc-fundamentals`) → add your own test email with that code (single
+   or `questions/template-invites.csv` bulk upload).
+2. Student login → First-time tab → registered email + exam code + new
+   password → confirmation email arrives from `omnyra.training@gmail.com`
+   → click link (inbox proof) → Log in tab → catalog shows ONLY the
+   assigned exam.
+3. Start → answer → wait 15s (autosave label changes) → submit → grade →
+   retry. Uninvited email on setup shows "no access"; revoked invite
+   blocks start (`NOT_INVITED`); admin account on student pages is rerouted.
+4. Legacy checks still hold: second submit replays stored grade
+   (`replayed:true`); with the network blocked the portal falls back to
+   local mode with the offline banner.
 
 ## Notes
 - Answers are never sent to students pre-submit: `questions_public` omits
