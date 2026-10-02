@@ -60,7 +60,7 @@
         <div class="card">
           <div class="section-head"><h2>How invite-only access works</h2><p>Exam code is mandatory on every invite.</p></div>
           <ol class="help" style="padding-left:18px;margin:0;">
-            <li><strong>Create an exam code</strong> below (one code → exactly one exam, reusable across the batch).</li>
+            <li><strong>Create an exam code</strong> below (one code → exactly one <strong>published</strong> exam, reusable across the batch — drafts can't get codes).</li>
             <li><strong>Add emails with that code</strong> — single entry or Excel bulk upload (<code>email,exam_code</code>).</li>
             <li><strong>Student flow:</strong> opens Student login → First-time tab → enters registered email + exam code + new password → clicks the confirmation email from <strong>omnyra.training@gmail.com</strong> (proves inbox ownership) → logs in → sees only assigned exams.</li>
           </ol>
@@ -199,8 +199,17 @@
 
     async function boot() {
       try { exams = await R.listExamsAdmin(); } catch (e) { exams = []; }
+      // Code creation is locked to PUBLISHED exams: a code for a draft would
+      // be dead on arrival (students only see published exams), so drafts are
+      // not even offered. Publish first in Dashboard.
+      const pub = exams.filter(e => String(e.status || "").toLowerCase() === "published");
       const examOpts = exams.map(e => '<option value="' + P.esc(e.id) + '">' + P.esc(e.title) + ' (' + P.esc(e.id) + ')</option>').join('');
-      document.getElementById('newCodeExam').innerHTML = '<option value="">— pick exam —</option>' + examOpts;
+      const pubOpts = pub.map(e => '<option value="' + P.esc(e.id) + '">' + P.esc(e.title) + ' (' + P.esc(e.id) + ')</option>').join('');
+      document.getElementById('newCodeExam').innerHTML = '<option value="">— pick exam —</option>' + pubOpts;
+      if (!pub.length) {
+        document.getElementById('codeError').textContent = "No published exams yet — publish one in Dashboard before creating codes.";
+        document.getElementById('createCodeBtn').disabled = true;
+      }
       document.getElementById('filterExam').innerHTML = '<option value="">All exams</option>' + examOpts;
       await refreshCodes();
       await refreshInvites();
@@ -210,14 +219,17 @@
       try {
         codes = await R.listExamCodes();
         document.getElementById('codeMeta').textContent = codes.length + " codes · one code = one exam";
-        document.getElementById('codeRows').innerHTML = codes.map(c =>
-          '<tr><td><strong>' + P.esc(c.code) + '</strong></td>' +
-          '<td>' + P.esc(examTitle(c.exam_id)) + '<br><span class="help">' + P.esc(c.exam_id) + '</span></td>' +
+        document.getElementById('codeRows').innerHTML = codes.map(c => {
+          const live = exams.find(e => e.id === c.exam_id);
+          const examLive = live && String(live.status || "").toLowerCase() === 'published';
+          return '<tr><td><strong>' + P.esc(c.code) + '</strong></td>' +
+          '<td>' + P.esc(examTitle(c.exam_id)) + '<br><span class="help">' + P.esc(c.exam_id) + '</span>' +
+          (examLive ? '' : '<br><span class="badge soon">exam not published — invisible to students</span>') + '</td>' +
           '<td class="help">' + P.esc(c.label || '—') + '</td>' +
           '<td>' + (c.active ? '<span class="badge open">active</span>' : '<span class="badge soon">paused</span>') + '</td>' +
           '<td class="help">' + (c.created_at ? new Date(c.created_at).toLocaleDateString() : '—') + '</td>' +
-          '<td><button class="btn btn-outline" data-toggle-code="' + P.esc(c.code) + '" data-active="' + (c.active ? '1' : '0') + '">' + (c.active ? 'Pause' : 'Activate') + '</button></td></tr>'
-        ).join('') || '<tr><td colspan="6">No codes yet — create the first one above.</td></tr>';
+          '<td><button class="btn btn-outline" data-toggle-code="' + P.esc(c.code) + '" data-active="' + (c.active ? '1' : '0') + '">' + (c.active ? 'Pause' : 'Activate') + '</button></td></tr>';
+        }).join('') || '<tr><td colspan="6">No codes yet — create the first one above.</td></tr>';
         const opts = codes.filter(c => c.active).map(c => '<option value="' + P.esc(c.code) + '">' + P.esc(c.code) + ' → ' + P.esc(examTitle(c.exam_id)) + '</option>').join('');
         document.getElementById('oneCode').innerHTML = '<option value="">— pick code —</option>' + opts;
         document.getElementById('filterCode').innerHTML = '<option value="">All codes</option>' + codes.map(c => '<option value="' + P.esc(c.code) + '">' + P.esc(c.code) + '</option>').join('');

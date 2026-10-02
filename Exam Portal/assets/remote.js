@@ -300,6 +300,14 @@ async function createExamCode({ code, examId, label, expiresAt }) {
   const c = normalizeCode(code);
   if (!/^[A-Z0-9][A-Z0-9-]{3,31}$/.test(c)) { const e = new Error("BAD_CODE"); e.code = "BAD_CODE"; throw e; }
   if (!examId) { const e = new Error("EXAM_REQUIRED"); e.code = "EXAM_REQUIRED"; throw e; }
+  // Guard: codes for unpublished exams would be dead on arrival (students
+  // only ever see published exams), so refuse at creation instead of
+  // failing silently at the student's screen.
+  const { data: examRow, error: examErr } = await sb.from("exams").select("id,status").eq("id", examId).maybeSingle();
+  if (examErr) throw examErr;
+  if (!examRow || String(examRow.status || "").toLowerCase() !== "published") {
+    const e = new Error("EXAM_NOT_PUBLISHED"); e.code = "EXAM_NOT_PUBLISHED"; throw e;
+  }
   const { data: { user } } = await sb.auth.getUser();
   const { data, error } = await sb.from("exam_codes").upsert({
     code: c, exam_id: examId, label: label || "",
