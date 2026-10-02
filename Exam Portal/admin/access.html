@@ -455,7 +455,7 @@
     function setEmailStatus(msg) { const el = document.getElementById('emailStatus'); if (el) el.textContent = msg || ""; }
     function summarizeInviteResults(results) {
       const rs = results || [];
-      const sent = rs.filter(r => r.status === 'sent').length;
+      const sent = rs.filter(r => r.status === 'sent' || r.status === 'resent').length;
       const dup = rs.filter(r => r.status === 'already_registered').length;
       const skip = rs.filter(r => String(r.status).indexOf('skipped') === 0).length;
       const fail = rs.filter(r => r.status === 'failed');

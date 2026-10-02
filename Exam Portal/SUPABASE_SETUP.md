@@ -28,10 +28,15 @@ Then paste **`supabase/migration_exam_access_v3.sql`** → Run (adds
    a Gmail **App Password** (Google Account → Security → 2-Step Verification
    → App passwords). All student mail (confirmation + invites) then comes
    from your address, not Supabase default.
-3. Authentication → Email Templates → set Site URL to
-   `https://omnyragroup.online` and add redirects
-   `https://omnyragroup.online/Exam Portal/student/**` and
-   `https://omnyragroup.online/Exam Portal/admin/**`.
+3. Authentication → URL Configuration → set Site URL to
+   `https://omnyragroup.online` and add ALL of these redirects (bare + `www`
+   hosts — invite links carry the admin page's host and Supabase rejects the
+   click when that exact host is missing):
+   `https://omnyragroup.online/Exam Portal/student/**`,
+   `https://omnyragroup.online/Exam Portal/admin/**`,
+   `https://www.omnyragroup.online/Exam Portal/student/**`,
+   `https://www.omnyragroup.online/Exam Portal/admin/**`,
+   `https://omnyragroup.online/**`.
    (Optional local dev: add `http://localhost:8123/Exam Portal/**`.)
 4. Brand the "Confirm signup" template (OMNyra header + "click to verify,
    then log in with your password").

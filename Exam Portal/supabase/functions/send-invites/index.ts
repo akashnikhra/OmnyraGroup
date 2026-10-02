@@ -85,58 +85,100 @@ Deno.serve(async (req: Request): Promise<Response> => {
     if (e1) throw e1;
 
     const results: Array<Record<string, string>> = [];
+
+    async function stampEmailed(inviteId: string): Promise<void> {
+      const now = new Date().toISOString();
+      await svc.from("exam_invites").update({ emailed_at: now, updated_at: now }).eq("id", inviteId);
+    }
+
+    async function sendInviteMail(email: string, code: string, title: string) {
+      const redirectTo = safeRedirect(String(redirectBase || ""), code);
+      return await svc.auth.admin.inviteUserByEmail(email, {
+        redirectTo,
+        data: { exam_code: code, exam_title: title },
+      });
+    }
+
+    // Resend path: if the address belongs to an account that never confirmed
+    // and never signed in (a dead invite), replace it with a fresh invite so
+    // the student gets a working link. Real accounts (confirmed, signed in,
+    // or admin) are never touched — returns false for those.
+    async function resendToUnconfirmed(email: string): Promise<boolean> {
+      const { data: list } = await svc.auth.admin.listUsers({ page: 1, perPage: 1000 });
+      const existing = (list?.users ?? []).find(
+        (u) => (u.email || "").toLowerCase() === email.toLowerCase(),
+      );
+      if (!existing || existing.email_confirmed_at || existing.last_sign_in_at) return false;
+      const { data: prof } = await svc.from("profiles").select("role").eq("id", existing.id).maybeSingle();
+      if (prof && prof.role === "admin") return false;
+      await svc.auth.admin.deleteUser(existing.id);
+      return true;
+    }
+
     for (const inv of invites ?? []) {
+      // Re-read per invite so a resend-after-recreate sees fresh state.
+      const { data: fresh } = await svc
+        .from("exam_invites")
+        .select("id,email,exam_code,exam_id,status")
+        .eq("id", inv.id)
+        .maybeSingle();
+      const current = fresh ?? inv;
+      let currentTitle = String(current.exam_id);
       try {
-        if (inv.status === "revoked") {
-          results.push({ id: inv.id, email: String(inv.email), status: "skipped_revoked" });
+        if (current.status === "revoked") {
+          results.push({ id: current.id, email: String(current.email), status: "skipped_revoked" });
           continue;
         }
         const { data: code } = await svc
           .from("exam_codes")
           .select("code,active,expires_at")
-          .eq("code", inv.exam_code)
+          .eq("code", current.exam_code)
           .maybeSingle();
         if (
           !code || code.active === false ||
           (code.expires_at && new Date(code.expires_at).getTime() <= Date.now())
         ) {
-          results.push({ id: inv.id, email: String(inv.email), status: "skipped_code_inactive" });
+          results.push({ id: current.id, email: String(current.email), status: "skipped_code_inactive" });
           continue;
         }
         const { data: exam } = await svc
           .from("exams")
           .select("title")
-          .eq("id", inv.exam_id)
+          .eq("id", current.exam_id)
           .maybeSingle();
-        const redirectTo = safeRedirect(String(redirectBase || ""), String(inv.exam_code));
-        const { error: invErr } = await svc.auth.admin.inviteUserByEmail(String(inv.email), {
-          redirectTo,
-          data: {
-            exam_code: String(inv.exam_code),
-            exam_title: (exam && exam.title) || String(inv.exam_id),
-          },
-        });
+        currentTitle = (exam && exam.title) || String(current.exam_id);
+
+        const { error: invErr } = await sendInviteMail(String(current.email), String(current.exam_code), currentTitle);
         if (invErr) {
           const msg = String(invErr.message || "");
           if (/already registered|already exists|already been registered/i.test(msg)) {
-            // Account exists: authorization still comes from the invite row,
-            // so the student can use setup/login directly — nothing to send.
-            results.push({ id: inv.id, email: String(inv.email), status: "already_registered" });
+            if (await resendToUnconfirmed(String(current.email))) {
+              const { error: retryErr } = await sendInviteMail(
+                String(current.email), String(current.exam_code), currentTitle,
+              );
+              if (!retryErr) {
+                await stampEmailed(current.id);
+                results.push({ id: current.id, email: String(current.email), status: "resent" });
+              } else {
+                results.push({
+                  id: current.id, email: String(current.email),
+                  status: "failed", detail: String(retryErr.message || ""),
+                });
+              }
+            } else {
+              results.push({ id: current.id, email: String(current.email), status: "already_registered" });
+            }
           } else {
-            results.push({ id: inv.id, email: String(inv.email), status: "failed", detail: msg });
+            results.push({ id: current.id, email: String(current.email), status: "failed", detail: msg });
           }
           continue;
         }
-        const now = new Date().toISOString();
-        await svc
-          .from("exam_invites")
-          .update({ emailed_at: now, updated_at: now })
-          .eq("id", inv.id);
-        results.push({ id: inv.id, email: String(inv.email), status: "sent" });
+        await stampEmailed(current.id);
+        results.push({ id: current.id, email: String(current.email), status: "sent" });
       } catch (err) {
         results.push({
-          id: inv.id,
-          email: String(inv.email),
+          id: current.id,
+          email: String(current.email),
           status: "failed",
           detail: String((err as Error)?.message || err),
         });
