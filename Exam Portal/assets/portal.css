@@ -44,6 +44,9 @@ html[data-theme="light"] {
   --page-bg: var(--light-bg-gradient);
 }
 *, *::before, *::after { box-sizing: border-box; }
+/* Author display utilities (e.g. .btn inline-flex) otherwise beat the UA
+ * [hidden] rule and show elements JS meant to keep hidden. */
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0; font-family: var(--font-family);

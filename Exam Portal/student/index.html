@@ -290,6 +290,8 @@
       P.openModal('startModal');
     }
 
+    bootCatalog();
+    async function bootCatalog() {
     try {
       const BUILD = (window.OmnyraPortal && window.OmnyraPortal.BUILD) || "?";
       document.getElementById('catalogMeta').textContent = 'Contacting database…';
@@ -355,6 +357,7 @@
       document.getElementById('catalogGrid').innerHTML = '<div class="card"><p>' + (timeout
         ? 'The database took too long (cold start or network stall). Your login is fine — just retry.'
         : 'Could not load the exam catalog. Serve over HTTP (<code>python -m http.server</code>) or check the backend configuration.') + '</p><div class="btn-row"><button class="btn btn-primary" onclick="window.location.reload()">Retry</button></div></div>';
+    }
     }
 
     document.getElementById('startConfirm').addEventListener('click', async () => {
