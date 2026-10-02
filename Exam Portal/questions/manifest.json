@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-14T00:00:00Z",
+  "updatedAt": "2026-10-02T19:35:18Z",
   "catalogBase": "./",
   "exams": [
     {
@@ -45,6 +45,50 @@
       "durationMinutes": 20,
       "passPercent": 70,
       "status": "draft"
+    },
+    {
+      "id": "aigp-practice-1",
+      "title": "AIGP Practice Mock 1",
+      "description": "100 scenario items · 165 min · 70% to pass (≈ scaled 300).",
+      "file": "aigp-practice-1.v2026-10-04.json",
+      "version": "2026-10-04",
+      "questionCount": 100,
+      "durationMinutes": 165,
+      "passPercent": 70,
+      "status": "published"
+    },
+    {
+      "id": "aigp-practice-2",
+      "title": "AIGP Practice Mock 2",
+      "description": "100 scenario items · 165 min · 70% to pass (≈ scaled 300).",
+      "file": "aigp-practice-2.v2026-10-04.json",
+      "version": "2026-10-04",
+      "questionCount": 100,
+      "durationMinutes": 165,
+      "passPercent": 70,
+      "status": "published"
+    },
+    {
+      "id": "aigp-practice-3",
+      "title": "AIGP Practice Mock 3",
+      "description": "100 scenario items · 165 min · 70% to pass (≈ scaled 300).",
+      "file": "aigp-practice-3.v2026-10-04.json",
+      "version": "2026-10-04",
+      "questionCount": 100,
+      "durationMinutes": 165,
+      "passPercent": 70,
+      "status": "published"
+    },
+    {
+      "id": "aigp-practice-4",
+      "title": "AIGP Practice Mock 4",
+      "description": "100 scenario items · 165 min · 70% to pass (≈ scaled 300).",
+      "file": "aigp-practice-4.v2026-10-04.json",
+      "version": "2026-10-04",
+      "questionCount": 100,
+      "durationMinutes": 165,
+      "passPercent": 70,
+      "status": "published"
     }
   ]
 }
