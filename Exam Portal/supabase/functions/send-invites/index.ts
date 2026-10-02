@@ -38,8 +38,8 @@ function json(body: unknown, status = 200): Response {
 // (named to avoid colliding with Supabase's own ?code= PKCE param).
 function safeRedirect(base: string, code: string): string {
   const b = String(base || "");
-  const prod = /^https:\/\/omnyragroup\.online\/.*student\/login\.html$/.test(b);
-  const local = /^http:\/\/localhost:\d+\/.*student\/login\.html$/.test(b);
+  const prod = /^https:\/\/(www\.)?omnyragroup\.online\/.*student\/login\.html$/.test(b);
+  const local = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?\/.*student\/login\.html$/.test(b);
   if (!prod && !local) throw new Error("BAD_REDIRECT");
   const sep = b.includes("?") ? "&" : "?";
   return `${b}${sep}invited=1&examCode=${encodeURIComponent(code)}`;
