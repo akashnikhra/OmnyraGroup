@@ -85,26 +85,52 @@ def parse_docx(path):
     return recs
 
 def to_portal(rec, qid):
-    assert len(rec['stem']) >= 10, f'short stem {qid}'
-    assert len(rec['expl']) >= 10, f'short rationale {qid}'
-    assert len(rec['options']) == 4 and len({o.lower() for o in rec['options']}) == 4, f'bad options {qid}'
-    assert rec['correct'] in (0, 1, 2, 3), f'no correct {qid}'
+    if len(rec['stem']) < 10:
+        raise ValueError(f'short stem {qid}: {len(rec["stem"])} chars')
+    if len(rec['expl']) < 10:
+        raise ValueError(f'short rationale {qid}: {len(rec["expl"])} chars')
+    opts = rec['options']
+    if len(opts) != 4 or len({o.lower() for o in opts}) != 4:
+        raise ValueError(f'bad options {qid}: need 4 distinct')
+    if rec['correct'] not in (0, 1, 2, 3):
+        raise ValueError(f'no correct {qid}: got {rec["correct"]!r}')
     return {'id': qid, 'question': rec['stem'], 'options': rec['options'],
             'correctIndex': rec['correct'], 'rationale': rec['expl'],
             'topic': rec['domain'] or 'General', 'difficulty': 'medium', 'marks': 1}
 
-def rebalance():
+def atomic_write_text(path, text):
+    # Same payload bytes as before (no trailing-newline change) to keep
+    # default-seed outputs byte-identical; tmp+rename only adds atomicity.
+    tmp = path + '.tmp'
+    with open(tmp, 'w', encoding='utf-8') as f:
+        f.write(text)
+    os.replace(tmp, path)
+
+def rebalance(seed=20261004):
     pools = {}
     for n, fn in enumerate(FILES):
         fp = os.path.join(SRC, fn)
         if not os.path.exists(fp):
             print(f'missing input file: {fp}', file=sys.stderr)
             sys.exit(1)
-        pools[n] = [r for r in parse_docx(fp)
-                    if not r['mismatch'] and r['correct'] is not None]
+        recs = parse_docx(fp)
+        n_mismatch = sum(1 for r in recs if r['mismatch'])
+        n_null = sum(1 for r in recs if r['correct'] is None)
+        kept = [r for r in recs if not r['mismatch'] and r['correct'] is not None]
+        print(f'{fn}: total={len(recs)} kept={len(kept)} mismatch={n_mismatch} null_correct={n_null}',
+              file=sys.stderr)
+        pools[n] = kept
+    expected_pools = {0: 150, 1: 150, 2: 60, 3: 100}
+    for s, exp in expected_pools.items():
+        got = len(pools[s])
+        if got != exp:
+            raise ValueError(f'pool {s} ({FILES[s]}): expected {exp} kept, got {got}')
+    print(f'seed={seed} pools=' + ','.join(f'{s}:{len(pools[s])}' for s in sorted(pools)),
+          file=sys.stderr)
+    print(f'seed={seed} pools=' + ','.join(f'{s}:{len(pools[s])}' for s in sorted(pools)))
     # proportional quota per 100Q mock: 33/33/13/21
     quota = {0: 33, 1: 33, 2: 13, 3: 21}
-    rng = random.Random(20261004)
+    rng = random.Random(seed)
     for p in pools.values():
         rng.shuffle(p)
     mocks, spare = [], []
@@ -112,11 +138,21 @@ def rebalance():
         take = []
         for s, q in quota.items():
             take += pools[s][m*q:(m+1)*q]
+        if len(take) != 100:
+            raise ValueError(f'mock {m+1}: expected 100, got {len(take)}')
         rng.shuffle(take)
         mocks.append(take)
     for s, p in pools.items():
         spare += p[4*quota[s]:]
-    assert sum(len(x) for x in mocks) == 400 and len(spare) == 60, 'split must be 400+60'
+    if sum(len(x) for x in mocks) != 400:
+        raise ValueError(f'split must be 400, got {sum(len(x) for x in mocks)}')
+    if len(spare) != 60:
+        raise ValueError(f'spare must be 60, got {len(spare)}')
+    general_fallbacks = sum(1 for p in pools.values() for r in p if not r['domain'])
+    if general_fallbacks:
+        print(f'warn: {general_fallbacks} records fell back to General topic', file=sys.stderr)
+    else:
+        print('General fallbacks: 0', file=sys.stderr)
     qdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'questions')
     for i, take in enumerate(mocks, 1):
         env = {'examId': f'aigp-practice-{i}', 'title': f'AIGP Practice Mock {i}',
@@ -124,22 +160,24 @@ def rebalance():
                'version': '2026-10-04', 'durationMinutes': 165, 'passPercent': 70,
                'status': 'published',
                'questions': [to_portal(r, f'aigp-p{i}-{j:03d}') for j, r in enumerate(take, 1)]}
-        open(os.path.join(qdir, f'aigp-practice-{i}.v2026-10-04.json'), 'w', encoding='utf-8').write(
-            json.dumps(env, ensure_ascii=False, indent=2))
-    open(os.path.join(qdir, 'aigp-spare-pool.v2026-10-04.json'), 'w', encoding='utf-8').write(
-        json.dumps({'examId': 'aigp-spare-pool', 'title': 'AIGP Spare Pool', 'version': '2026-10-04',
-                    'durationMinutes': 60, 'passPercent': 70, 'status': 'draft',
-                    'questions': [to_portal(r, f'aigp-sp-{j:03d}') for j, r in enumerate(spare, 1)]},
-                   ensure_ascii=False, indent=2))
+        atomic_write_text(os.path.join(qdir, f'aigp-practice-{i}.v2026-10-04.json'),
+                          json.dumps(env, ensure_ascii=False, indent=2))
+    atomic_write_text(os.path.join(qdir, 'aigp-spare-pool.v2026-10-04.json'),
+                      json.dumps({'examId': 'aigp-spare-pool', 'title': 'AIGP Spare Pool', 'version': '2026-10-04',
+                                  'durationMinutes': 60, 'passPercent': 70, 'status': 'draft',
+                                  'questions': [to_portal(r, f'aigp-sp-{j:03d}') for j, r in enumerate(spare, 1)]},
+                                 ensure_ascii=False, indent=2))
     print('wrote 4x100 + spare 60')
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(description='AIGP docx bank parser + rebalancer.')
-    ap.add_argument('--parse-only', action='store_true', help='parse 4 docx and assert total == 460')
-    ap.add_argument('--rebalance', action='store_true', help='stratified rebalance into 4x100 + 60 spare')
+    mode = ap.add_mutually_exclusive_group()
+    mode.add_argument('--parse-only', action='store_true', help='parse 4 docx and check total == 460')
+    mode.add_argument('--rebalance', action='store_true', help='stratified rebalance into 4x100 + 60 spare')
+    ap.add_argument('--seed', type=int, default=20261004, help='RNG seed for deterministic shuffle (default 20261004)')
     args = ap.parse_args()
     if args.rebalance:
-        rebalance()
+        rebalance(args.seed)
         sys.exit(0)
     total = 0
     for fn in FILES:
@@ -151,4 +189,5 @@ if __name__ == '__main__':
         print(f'{fn}: {len(recs)} records, mismatches={[i+1 for i, r in enumerate(recs) if r["mismatch"]][:10]}')
         total += len(recs)
     print(f'TOTAL {total}')
-    assert total == 460, f'expected 460, got {total}'
+    if total != 460:
+        raise ValueError(f'expected 460, got {total}')
