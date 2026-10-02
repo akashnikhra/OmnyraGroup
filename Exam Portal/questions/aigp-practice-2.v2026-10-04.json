@@ -1,0 +1,1511 @@
+{
+  "examId": "aigp-practice-2",
+  "title": "AIGP Practice Mock 2",
+  "description": "IAPP AIGP-style mock: 100 scenario items. Exam-only timed practice; answers revealed after submit.",
+  "version": "2026-10-04",
+  "durationMinutes": 165,
+  "passPercent": 70,
+  "status": "published",
+  "questions": [
+    {
+      "id": "aigp-p2-001",
+      "question": "A customer support platform deploys a generative AI assistant to draft responses for agents. After launch, the governance team sees a gradual rise in inaccurate answers for a newly released product line, even though performance on older products remains stable. The team suspects the model is relying on outdated patterns rather than current product information. Which governance action is MOST appropriate first?",
+      "options": [
+        "Remove testing on legacy products",
+        "Add live monitoring for drift indicators",
+        "Expand agent use without changes",
+        "Increase training epochs on old data"
+      ],
+      "correctIndex": 1,
+      "rationale": "The scenario points to performance degradation during live use for a specific, newly changed context, most consistent with drift or stale knowledge at inference. The best first response is to strengthen monitoring so the organization can detect, measure, and manage the issue before deciding on retraining or other remediation.",
+      "topic": "10 - Data, Training, Testing, Inference, and Feedback Loops",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-002",
+      "question": "A financial services firm is retiring an older AI credit scoring system after replacing it with a newer model. The project manager proposes simply disabling the application and preserving all related data indefinitely in case questions arise later. What is the BEST governance response?",
+      "options": [
+        "Delete all records to remove risk",
+        "Retire only after formal closure steps",
+        "Keep system active for comparison",
+        "Accept because future audits need data"
+      ],
+      "correctIndex": 1,
+      "rationale": "Retirement is a formal governance stage, not just shutting off a system. It includes handling data according to requirements, informing users, updating dependencies and records, and capturing lessons learned.",
+      "topic": "4 - The AI Governance Lifecycle",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-003",
+      "question": "A standardized documentation artifact accompanying an AI model at deployment that records intended use, known limitations, performance across subgroups, and ethical considerations is called a:",
+      "options": [
+        "Model Card documenting intended use, limitations, subgroup performance, and ethical considerations",
+        "EU Declaration of Conformity attesting the system satisfies all high-risk AI requirements",
+        "Datasheet for Datasets recording why, how, and under what conditions training data was created",
+        "AI Policy Document stating binding organizational requirements for AI development and deployment governance"
+      ],
+      "correctIndex": 0,
+      "rationale": "A Model Card is the standardized documentation artifact accompanying an AI model at deployment, recording intended use, out-of-scope uses, training data summary, subgroup performance metrics, known limitations, and ethical considerations. It serves as an external communications artifact enabling deployers, users, and auditors to understand the model's design and limitations.",
+      "topic": "D4",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-004",
+      "question": "A retailer’s customer-service chatbot sometimes gives incorrect store hours and, in rare cases, exposes private customer information. Security controls make the privacy incident unlikely, while wrong store hours occur regularly. If the governance lead is using a probability-severity matrix to decide where to focus executive attention, which risk should be flagged as MORE concerning?",
+      "options": [
+        "Privacy exposure due to greater severity",
+        "Both equally due to customer impact",
+        "Wrong store hours due to higher frequency",
+        "Neither until quantified financial loss"
+      ],
+      "correctIndex": 0,
+      "rationale": "A probability-severity matrix distinguishes frequent low-impact issues from less likely but more damaging harms. Privacy exposure is a classic low-probability, high-severity risk.",
+      "topic": "32 - Probability, Severity, and Harm Matrices",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-005",
+      "question": "A DPO reviews the privacy policy before deploying an AI system that continuously analyzes employee productivity metrics. Which provision is MOST important to add under GDPR Article 13?",
+      "options": [
+        "An explicit statement that automated profiling occurs, its logic, and employees' right to human review of significant decisions",
+        "A data minimization section specifying which essential performance metrics the AI may collect per employee role",
+        "A disclosure section listing all third-party vendors with authorized access to employee metrics reports from the AI system",
+        "A retention schedule specifying how long raw employee productivity metric data is stored before mandatory deletion"
+      ],
+      "correctIndex": 0,
+      "rationale": "GDPR Article 13(2)(f) requires proactive disclosure when automated decision-making including profiling occurs, its logic, and consequences. Deploying employee productivity AI without this disclosure in the privacy notice violates the transparency obligation before any data is processed.",
+      "topic": "D1",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-006",
+      "question": "A global professional services firm wants to build trust in its internal AI assistant after employees express concern that the tool can access broad company information. Which leadership approach would BEST support responsible adoption?",
+      "options": [
+        "Delegate risk ownership to users",
+        "Pair clear guidance with reflection",
+        "Emphasize productivity over safeguards",
+        "Limit discussion to technical teams"
+      ],
+      "correctIndex": 1,
+      "rationale": "Responsible adoption depends on both formal direction and attention to the human side of trust, privacy, and control. Employees need support to understand how the tool works, what boundaries apply, and how to raise concerns.",
+      "topic": "98 - Case Study Internal Generative AI Assistant",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-007",
+      "question": "A multinational health technology company is preparing to deploy the same AI triage tool in hospitals across Germany, several U.S. states, and China. The governance lead wants a single design principle that best reflects why the deployment plan cannot simply be copied across all three regions. Which principle is MOST important?",
+      "options": [
+        "Cloud hosting location removes most regulatory differences",
+        "Technical model accuracy determines legal treatment everywhere",
+        "Regional AI rules shape design and operations differently",
+        "Open-source components reduce cross-border compliance burdens"
+      ],
+      "correctIndex": 2,
+      "rationale": "Regional AI regulation differs in structure, priorities, and implementation, which directly affects system design, deployment, workflows, and compliance strategy. Europe emphasizes stricter requirements; the United States relies more on sectoral and existing laws; China emphasizes alignment with government expectations and content controls.",
+      "topic": "43 - Global AI Regulation Overview",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-008",
+      "question": "An HR team is preparing to procure a third-party AI screening platform. The vendor offers strong efficiency claims but refuses to explain training data sources, bias testing methods, or whether the model can be audited. What is the MOST appropriate governance response?",
+      "options": [
+        "Deploy with stricter recruiter quotas",
+        "Delay purchase pending satisfactory answers",
+        "Accept vendor assurances in writing",
+        "Proceed after candidate notice only"
+      ],
+      "correctIndex": 1,
+      "rationale": "Vendor review is a key governance control for AI used in sensitive contexts like hiring. If the organization cannot understand how the model was trained, tested, or audited, it cannot responsibly assess fairness, explainability, or compliance risk.",
+      "topic": "94 - Case Study AI Resume Screening System",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-009",
+      "question": "An AI governance officer is aligning the organization's IP policy with the EU AI Act for a generative AI system that produces creative content. The current IP policy assigns copyright to the organization for employee works. Which gap must the updated policy address for AI-generated outputs?",
+      "options": [
+        "Address uncertainty in copyright ownership of AI-generated content lacking human authorship",
+        "Classify all AI-generated text as public domain and waive organizational claims",
+        "Add a patent-pending notation to all AI-generated marketing materials before customer distribution",
+        "Require human co-authorship attestation for all AI-generated customer deliverables"
+      ],
+      "correctIndex": 0,
+      "rationale": "Existing IP policies built around human authorship do not address the legal ambiguity of AI-generated content. Most jurisdictions do not recognize AI as a copyright author, so the policy must explicitly address ownership claims, training data IP exposure, and how the organization will manage the resulting uncertainty.",
+      "topic": "D1",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-010",
+      "question": "A law firm adopts an AI contract review system. It performs well, but the vendor refuses to share how the model was trained, what data was used, or which risks were assessed. Even internal staff don't know if the system meets legal compliance standards. Which AI property is most clearly lacking in this situation?",
+      "options": [
+        "Interpretability",
+        "Contestability",
+        "Explainability",
+        "Transparency"
+      ],
+      "correctIndex": 3,
+      "rationale": "Transparency involves openness about the design, training, data sources, and limitations of an AI system. Even if the tool works, refusing to disclose how it was built shows a clear transparency failure, not necessarily about individual predictions, but system-level clarity.",
+      "topic": "General",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-011",
+      "question": "An insurer wants to improve AI governance readiness without adding heavy manual work for underwriters. Which approach BEST balances compliance and operational efficiency?",
+      "options": [
+        "Manual logs after each case",
+        "Quarterly binders from managers",
+        "Digital checklists in workflow",
+        "Separate monthly attestations by email"
+      ],
+      "correctIndex": 2,
+      "rationale": "The best approach integrates compliance evidence collection into normal work so documentation is created as part of routine operations. This reduces burden while improving consistency and accessibility of records.",
+      "topic": "42 - Enforcement, Penalties, and Accountability",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-012",
+      "question": "A software company has an AI governance RACI that was created at project kickoff. Six months later, the team has added a third-party training dataset and a new cloud deployment model, but the RACI has not changed. What is the GREATEST governance weakness?",
+      "options": [
+        "The chart lacks visual simplicity",
+        "The team uses too few meetings",
+        "The project has excessive documentation",
+        "The model is no longer current"
+      ],
+      "correctIndex": 3,
+      "rationale": "AI projects evolve, and a RACI that is not updated fails to reflect new risks, vendors, or responsibilities. The RACI should be maintained as a living document.",
+      "topic": "23 - AI Governance RACI and Stakeholder Accountability",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-013",
+      "question": "A logistics company proposes an AI system to reroute deliveries based on traffic and weather predictions. Senior leadership asks how the project’s value should be justified before approval. Which approach is BEST?",
+      "options": [
+        "Estimate measurable operational benefits",
+        "Emphasize industry AI adoption",
+        "Highlight technical novelty gains",
+        "Promise broad future use cases"
+      ],
+      "correctIndex": 0,
+      "rationale": "Business justification should explain why the AI project is worth pursuing in concrete terms tied to organizational value. For a logistics use case, measurable benefits such as reduced delivery times, lower fuel costs, and improved customer satisfaction provide a sound basis.",
+      "topic": "59 - AI Use Case Definition and Business Context",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-014",
+      "question": "A product team says its responsible design review is complete because the reviewers recorded several ethical risks in meeting minutes. No owners or deadlines were assigned. What is the GREATEST governance weakness?",
+      "options": [
+        "Missing external stakeholder notice",
+        "Missing post-launch marketing plan",
+        "Missing technical performance baselines",
+        "Missing documented risk ownership"
+      ],
+      "correctIndex": 3,
+      "rationale": "Responsible design reviews should not merely identify issues; they should assign follow-up actions and owners so risks are tracked and addressed. Without accountability, the review becomes a passive exercise rather than an effective control.",
+      "topic": "63 - Ethics by Design and Responsible Design Reviews",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-015",
+      "question": "A healthcare organization’s imaging AI is highly accurate overall, but clinicians discover it often misses rare conditions affecting a small patient subgroup. Which governance action should have been emphasized EARLIEST in the project?",
+      "options": [
+        "Reduce clinician review steps",
+        "Expand marketing to providers",
+        "Increase deployment speed targets",
+        "Identify foreseeable harms upfront"
+      ],
+      "correctIndex": 3,
+      "rationale": "The missed rare conditions represent a foreseeable harm affecting a specific group. Responsible AI governance requires identifying who may be negatively affected, documenting the risk, and planning mitigations before deployment.",
+      "topic": "59 - AI Use Case Definition and Business Context",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-016",
+      "question": "A diagnostic AI model trained on general medical conditions is updated to focus on detecting rare tropical diseases. After the update, it starts failing to recognize common illnesses like flu or hypertension. What problem best describes this situation?",
+      "options": [
+        "Underfitting",
+        "Overfitting",
+        "Model collapse",
+        "Catastrophic forgetting"
+      ],
+      "correctIndex": 3,
+      "rationale": "This is a clear case of catastrophic forgetting, where the model learns a new task but loses previously acquired knowledge. The fine-tuning process focused heavily on rare tropical diseases without preserving earlier medical knowledge, causing performance on common conditions to degrade. Continual learning or rehearsal methods could help prevent this loss.",
+      "topic": "General",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-017",
+      "question": "A customer service team wants to train a new chatbot using archived support transcripts from five years ago, even though products and policies have changed substantially since then. Which governance concern should be raised FIRST?",
+      "options": [
+        "The data may be excessive",
+        "The data may be unfit",
+        "The data may be siloed",
+        "The data may be encrypted"
+      ],
+      "correctIndex": 1,
+      "rationale": "The main issue is whether the data is suitable for the intended purpose. Older transcripts may no longer reflect current products, policies, or customer issues, making them a poor basis for training a current chatbot.",
+      "topic": "66 - AI Data Governance Foundations",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-018",
+      "question": "A Public Sector AI Policy team at a benefits agency is updating its acceptable use policy. The AI model recommends benefit denials, yet the policy has no human review requirement before notifications reach applicants. Which update BEST satisfies EU AI Act Article 14 and responsible AI accountability principles?",
+      "options": [
+        "Require caseworkers to document rationale when overriding AI denial recommendations",
+        "Limit AI tool access to senior caseworkers with specific certification credentials",
+        "Require the AI vendor to log denial recommendations for quarterly audit review",
+        "Add a mandatory human review gate before any AI-recommended denial reaches applicants"
+      ],
+      "correctIndex": 3,
+      "rationale": "Benefits eligibility decisions fall within EU AI Act Annex III. Article 14 requires that high-risk AI systems allow natural persons to effectively monitor and intervene. A mandatory review gate before denial notifications are issued is the direct policy mechanism that satisfies both Article 14 and the accountability principle.",
+      "topic": "D1",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-019",
+      "question": "A public-sector agency is preparing documentation for an AI service that will assist caseworkers. Regulators, internal audit, and frontline staff all need to understand the system’s purpose and limits. Which documentation approach is MOST effective?",
+      "options": [
+        "Store technical notes within code comments",
+        "Update documents only after incidents",
+        "Maintain clear lifecycle reference documentation",
+        "Limit access to senior data scientists"
+      ],
+      "correctIndex": 2,
+      "rationale": "Use case documentation should be clear, accessible, and usable by both technical and non-technical stakeholders. It should serve as a reference throughout the system lifecycle, supporting alignment, accountability, audits, and adaptation.",
+      "topic": "59 - AI Use Case Definition and Business Context",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-020",
+      "question": "A healthcare provider is considering fine-tuning a pre-trained model using diagnostic notes that contain sensitive patient information. The data science team wants to use cloud resources because local infrastructure is limited. Which risk should the governance team analyze MOST carefully before approving the plan?",
+      "options": [
+        "Data memorization exposure risk",
+        "Legacy printer support risk",
+        "Endpoint battery failure risk",
+        "Retail bandwidth saturation risk"
+      ],
+      "correctIndex": 0,
+      "rationale": "Fine-tuning with sensitive data raises a key concern that the model may memorize and later reveal personal information, creating privacy and compliance exposure. While cloud capacity may be attractive, the review should focus on data exposure and legal risk.",
+      "topic": "80 - Cloud, On-Premises, Edge, API, RAG, Fine-Tuning, and Ag",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-021",
+      "question": "A government department uses AI to prioritize citizen service requests. An internal review finds that the system is difficult to explain, and measurement tools are weak for assessing this emerging risk. Some executives want to continue unchanged because no legal complaint has been filed. Others want to stop all AI work indefinitely. Which is the BEST course of action?",
+      "options": [
+        "Adapt controls, continue learning, and reassess regularly",
+        "Transfer explainability ownership to the procurement team",
+        "Suspend all AI initiatives until perfect tools exist",
+        "Maintain operations unchanged until formal complaints arise"
+      ],
+      "correctIndex": 0,
+      "rationale": "The framework recognizes that organizations may face limited tools for emerging risks such as explainability. The right response is to adapt, learn, collaborate, and reassess continuously. The RMF is a living process.",
+      "topic": "53 - NIST AI Risk Management Framework Overview",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-022",
+      "question": "After a regulator finds that a company's fraud detection model was trained on unlawfully collected data, the company is ordered to remove not just the data, but all traces of its influence from their deployed model, without retraining from scratch. What is the enforcement mechanism being applied here?",
+      "options": [
+        "Catastrophic Forgetting",
+        "Model Inversion",
+        "Model Disgorgement",
+        "Data de-duplication"
+      ],
+      "correctIndex": 2,
+      "rationale": "Model disgorgement is a regulatory action requiring the removal of all learned influence from unlawfully obtained data. It ensures that the model can no longer benefit from illegal data use, even if retraining is impractical.",
+      "topic": "General",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-023",
+      "question": "A ride-hailing app operating in China collects detailed location data and facial recognition images from users without proper consent. It also transfers this sensitive data to servers abroad. The Chinese authorities conduct an investigation and impose a hefty fine for violating national data protection regulations. Which law governs this situation?",
+      "options": [
+        "PDPA",
+        "GDPR",
+        "PIPL",
+        "LGPD"
+      ],
+      "correctIndex": 2,
+      "rationale": "PIPL (China's Personal Information Protection Law) governs the handling of sensitive personal data in China. It mandates consent for biometric and location data and places restrictions on cross-border transfers. Other laws apply to the EU, Singapore/Thailand, or Brazil.",
+      "topic": "General",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-024",
+      "question": "A manufacturer is piloting AI-enabled robots in a warehouse. Tests show the system performs well in normal conditions, but error rates rise sharply during network disruptions and unusual lighting. Which governance conclusion is MOST appropriate?",
+      "options": [
+        "Accountability roles are unnecessary",
+        "Fairness risks are fully mitigated",
+        "Transparency controls are excessive",
+        "Robustness testing is insufficient"
+      ],
+      "correctIndex": 3,
+      "rationale": "The OECD principle of robustness, security, and safety requires AI to function reliably under varied and difficult conditions, not just ideal ones. The system degrades during disruptions and unusual lighting, so robustness testing and resilience planning are not yet adequate.",
+      "topic": "52 - OECD AI Principles and Trustworthy AI",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-025",
+      "question": "A lender uses a highly complex model that performs well, but regulators ask for reasons behind individual denials. The data science team argues that replacing the model would reduce predictive power. What is the BEST governance-oriented approach?",
+      "options": [
+        "Shift denials to customer service staff",
+        "Use tools to explain influential features",
+        "Remove all complex modeling methods",
+        "Decline to provide decision reasons"
+      ],
+      "correctIndex": 1,
+      "rationale": "When complex models are needed, governance does not require abandoning them automatically. Explanation tools that identify the factors most influencing a decision support transparency and compliance.",
+      "topic": "96 - Case Study Credit Scoring or Lending AI",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-026",
+      "question": "Which of the following is not typically included in the technical documentation required for a high-risk AI system under the EU AI Act?",
+      "options": [
+        "System architecture and components",
+        "Human oversight measures and their design",
+        "Description of potential harms or risks",
+        "Data Protection Impact Assessment (DPIA)"
+      ],
+      "correctIndex": 3,
+      "rationale": "A DPIA is a separate requirement under the GDPR and not part of the AI Act’s technical documentation outlined in Annex IV. The AI Act focuses on elements like system architecture, risk identification, and human oversight to ensure transparency, accountability, and compliance for high-risk AI. While a DPIA might still be required under separate laws when personal data is involved, it is not part of the AI Act’s required documentation.",
+      "topic": "General",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-027",
+      "question": "A financial services firm launches an AI budgeting assistant that accurately follows its specifications, but its interface nudges users toward increasingly aggressive debt refinancing without meaningful guardrails for vulnerable customers. After complaints of avoidable financial harm, the AI governance committee asks which liability characterization is MOST defensible based on these facts. Which answer is BEST?",
+      "options": [
+        "A warning label claim is weakest",
+        "A manufacturing defect claim is strongest",
+        "A design defect claim is strongest",
+        "A misuse defense is strongest"
+      ],
+      "correctIndex": 2,
+      "rationale": "The system operates as intended, yet the intended design itself creates unreasonable risk by steering users toward harmful outcomes without safeguards. That aligns most closely with a design defect.",
+      "topic": "51 - Product Liability and AI System Failure",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-028",
+      "question": "A retailer launches an AI customer analytics tool to predict shopping behavior. After strong early results, the business team begins using the tool to adjust individualized pricing and restrict access to certain promotions. What is the MOST appropriate governance response?",
+      "options": [
+        "Keep current class until complaints rise",
+        "Remove notices and simplify rollout",
+        "Reclassify based on expanded impact",
+        "Freeze reviews because model stabilized"
+      ],
+      "correctIndex": 2,
+      "rationale": "AI risk classification is not fixed. When a system’s role expands into decisions that affect access or pricing, its impact on individuals becomes more serious. Reassess the use, update the classification if warranted, and adjust controls and documentation.",
+      "topic": "38 - AI-Specific Regulation and Risk Classification",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-029",
+      "question": "Which of the following is NOT included in the GDPR’s special categories of personal data?",
+      "options": [
+        "Political opinion",
+        "Religious belief",
+        "Bank transaction history",
+        "Health and genetic data"
+      ],
+      "correctIndex": 2,
+      "rationale": "GDPR Article 9 defines special categories of personal data as those revealing racial or ethnic origin, political opinions, religious beliefs, trade union membership, genetic or biometric data, health data, or sex life and sexual orientation. Bank transaction history is personal data but not a special category under Article 9.",
+      "topic": "General",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-030",
+      "question": "A financial services firm wants a governance model that supports experimentation without allowing major risks to go unchecked. The chief innovation officer argues that every AI project should follow the same approval path to ensure consistency. Which approach is BEST?",
+      "options": [
+        "Delegate all decisions to engineering leads",
+        "Approve pilots first and govern later",
+        "Use risk-tiered oversight by project impact",
+        "Apply identical reviews across all projects"
+      ],
+      "correctIndex": 2,
+      "rationale": "A risk-based approach allows high-risk projects to receive stronger scrutiny, while lower-risk experiments proceed with lighter oversight. This preserves agility without ignoring material harms.",
+      "topic": "2 - How to Think Like an AI Governance Professional",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-031",
+      "question": "SmartSight GmbH, a German company, imports surveillance drones from a U.S.-based manufacturer, AeroVision Inc. These drones use AI-powered facial recognition and behavior analysis, making them high-risk AI systems under the EU AI Act. SmartSight GmbH must fulfill specific obligations before placing the systems on the EU market. Which of the following is NOT an obligation SmartSight GmbH must fulfill under the EU AI Act?",
+      "options": [
+        "Prepare the technical documentation for the AI system",
+        "Keep records and documentation related to the AI system",
+        "Verify the CE marking and the declaration of conformity",
+        "Cooperate with competent authorities if requested"
+      ],
+      "correctIndex": 0,
+      "rationale": "Preparing the technical documentation is the responsibility of the provider (AeroVision Inc., in this case). As the importer, SmartSight GmbH must verify that the technical documentation exists, check for CE marking and conformity declaration, and retain documentation, but is not required to author the technical file.",
+      "topic": "General",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-032",
+      "question": "A healthcare organization is building an AI triage tool that uses patient information. During planning, legal says privacy controls are an IT matter, while IT says patient consent is a legal issue. Which risk is MOST likely if no RACI is established?",
+      "options": [
+        "Delayed vendor onboarding only",
+        "Excess executive reporting only",
+        "Duplicate model validation steps",
+        "Unapproved sensitive data use"
+      ],
+      "correctIndex": 3,
+      "rationale": "When legal and IT each assume the other owns privacy responsibilities, sensitive data may be processed without proper consent or governance. Missing RACI assignments lead to ownership gaps with real legal consequences.",
+      "topic": "23 - AI Governance RACI and Stakeholder Accountability",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-033",
+      "question": "An AI governance officer is conducting a gap analysis for a financial services firm adopting the NIST AI RMF. In a Private-Sector Compliance Program Design context, which output MOST directly enables production of a governance roadmap?",
+      "options": [
+        "A list of deployed AI systems with residual risk scores and documented treatment decisions from the most recent assessment cycle",
+        "A crosswalk mapping existing policies to NIST AI RMF functions, categories, and subcategories showing current coverage",
+        "An AI RMF Profile selecting target outcome statements from the RMF Core aligned to the firm's risk posture",
+        "A prioritized list of missing controls, unclear accountabilities, and documentation gaps with owners and milestones"
+      ],
+      "correctIndex": 3,
+      "rationale": "The gap analysis produces a prioritized list of missing controls, accountability gaps, and documentation deficiencies; this list is the direct input from which a governance roadmap assigns owners, milestones, and resources to close identified gaps.",
+      "topic": "D1",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-034",
+      "question": "During an AI Privacy Impact Assessment, a DPO identifies that the organization's existing data retention policy specifies a five-year maximum for customer records. An AI training dataset contains those same records. Which policy update is MOST appropriate to address the AI-specific retention issue?",
+      "options": [
+        "Create a separate retention schedule for AI training datasets with documented justification and review triggers",
+        "Exempt AI training datasets from all retention requirements under a broad research exception covering model lifecycle stages",
+        "Apply the five-year ceiling uniformly to all AI training artifacts and derived model checkpoints without exception",
+        "Shorten AI training dataset retention to two years to be more conservative than the existing policy"
+      ],
+      "correctIndex": 0,
+      "rationale": "Existing retention policies for operational records fail to address AI training datasets, which embed personal data in model weights and have unique lifecycle needs. The correct approach is a separate, documented retention schedule that meets data minimization and purpose limitation principles while reflecting the actual lifecycle requirements of AI systems.",
+      "topic": "D1",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-035",
+      "question": "In a Multi-Framework Alignment program, an AI governance officer needs to update the organization's supply chain policy to address AI model integrity risk. Which control BEST satisfies both NIST AI RMF MAP function requirements and EU AI Act Article 9?",
+      "options": [
+        "Require pre-deployment model integrity testing including data poisoning detection before any vendor model enters production",
+        "Require all AI vendors to hold current ISO 42001 certification before contract execution as the primary integrity control",
+        "Require the vendor to provide contractual indemnification for losses caused by compromised or poisoned AI model outputs",
+        "Require quarterly penetration testing reports from the vendor covering all production AI inference infrastructure and endpoints"
+      ],
+      "correctIndex": 0,
+      "rationale": "NIST AI RMF MAP requires organizations to identify risks from third-party components before deployment. EU AI Act Article 9 mandates ongoing risk management including mitigation of foreseeable risks. Pre-deployment integrity testing that includes data poisoning detection satisfies both frameworks simultaneously.",
+      "topic": "D1",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-036",
+      "question": "What is the PRIMARY purpose of a verified rollback procedure as a prerequisite for AI deployment authorization?",
+      "options": [
+        "To document training data provenance before the model enters production and deployment authorization is granted",
+        "To enable rapid reversion to a prior validated AI version when the current deployment drifts or causes harm",
+        "To assign a named AI owner accountable for system decisions throughout its operational life",
+        "To record the AI system in the EU AI Act database before market placement and commercial deployment begins"
+      ],
+      "correctIndex": 1,
+      "rationale": "A verified rollback procedure is the pre-tested capability to revert a deployed AI system to a prior validated version when the current deployment fails, drifts, or causes harm. It is a mandatory deployment prerequisite: without a verified rollback path, an organization cannot rapidly deactivate or correct a harmful deployment.",
+      "topic": "D4",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-037",
+      "question": "An AI ethics committee at an AI Ethics Committee Operations organization is reviewing a post-deployment monitoring report for a facial recognition access control system. The report shows stable accuracy but notes that adversarial spoofing attempts have increased 300% over the prior quarter. Which monitoring dimension MOST directly addresses this finding?",
+      "options": [
+        "Bias monitoring tracking false acceptance rates across demographic groups using monthly sample audits",
+        "Security monitoring tracking adversarial attack patterns, spoofing attempt rates, and protective measure effectiveness",
+        "Performance drift monitoring comparing current recognition accuracy against the training distribution baseline",
+        "Data quality monitoring reviewing input image resolution and lighting conditions across access control locations"
+      ],
+      "correctIndex": 1,
+      "rationale": "A continuous monitoring program for AI systems must include a security monitoring dimension that tracks adversarial attack patterns, attempted exploits, and the effectiveness of protective measures. A 300% increase in spoofing attempts signals an active threat requiring immediate security response evaluation.",
+      "topic": "D3",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-038",
+      "question": "Which of the following is least effective in reducing bias specifically during the planning phase?",
+      "options": [
+        "Establishing a governance structure",
+        "Assessing the benefits of using AI versus not using AI",
+        "Collecting well-representative data",
+        "Involving diverse stakeholders"
+      ],
+      "correctIndex": 2,
+      "rationale": "Collecting representative data is essential for reducing bias but belongs to the design phase, not planning. Actions like setting governance, involving stakeholders, and questioning the AI need are all planning-phase interventions that shape the bias landscape early. Hence, this option is least relevant at this stage.",
+      "topic": "General",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-039",
+      "question": "A multinational organization operates AI systems in the EU and the US. The AI governance officer must update the organization's data governance policy to address cross-border data transfers used in AI model training. Which provision is MOST critical to add to the policy for EU-to-US data flows?",
+      "options": [
+        "A clause requiring model training to use only synthetic data generated within the EU under approved generation methodologies",
+        "A clause requiring valid transfer mechanisms such as adequacy decisions or SCCs for all EU-origin personal data used in AI training",
+        "A clause requiring data subjects to consent in writing to AI model training before any personal data is used in pipelines",
+        "A clause requiring all AI training data to be stored only within EU data centers under certified hosting providers"
+      ],
+      "correctIndex": 1,
+      "rationale": "GDPR Chapter V prohibits transfers of personal data to third countries without a valid mechanism like an adequacy decision or Standard Contractual Clauses. This applies when EU personal data is transferred to US-based AI training infrastructure.",
+      "topic": "D1",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-040",
+      "question": "A retailer is piloting an AI capability to classify product images for its online catalog. The data science team says the model is highly accurate in testing, but operations leaders say it still cannot be used in production. Which concern BEST explains why a strong model alone is insufficient?",
+      "options": [
+        "The model lacks training epochs",
+        "The model lacks labeled samples",
+        "The model lacks feature scaling",
+        "The model lacks deployment context"
+      ],
+      "correctIndex": 3,
+      "rationale": "This tests the distinction between an AI model and an AI system. A model becomes useful in practice only when embedded in an environment that connects it to data, workflows, rules, monitoring, and user interaction.",
+      "topic": "9 - AI Models, AI Systems, and AI Products",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-041",
+      "question": "A transportation company suffered a major outage in an AI-assisted dispatch platform after an untested edge case. Executives want the response to reduce repeat failures over time rather than only restore service quickly. Which action is MOST appropriate after recovery?",
+      "options": [
+        "Increase customer messaging until complaints decline",
+        "Conduct root-cause analysis and share lessons learned",
+        "Freeze all model changes pending budget approval",
+        "Replace dashboards with manual status emails"
+      ],
+      "correctIndex": 1,
+      "rationale": "Long-term improvement comes from learning systematically from failure. A post-mortem or root-cause analysis identifies what happened, why it happened, and how to prevent recurrence. Sharing lessons also strengthens organizational resilience.",
+      "topic": "17 - Safety, Reliability, and Robustness",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-042",
+      "question": "A multinational firm's AI acceptable use policy prohibits employees from entering client confidential information into external AI tools. A business unit in Germany begins using an external AI assistant for contract summarization and inputting client data. Which element of deploying the acceptable use policy MOST directly prevents this violation going forward?",
+      "options": [
+        "Role-based training modules explaining why client data entry into external AI tools is prohibited",
+        "Technical access controls blocking external AI service domains from the corporate network",
+        "A policy attestation form requiring the German business unit to acknowledge the acceptable use policy",
+        "An exception process allowing the business unit to request approved use of external AI tools for specific workflows"
+      ],
+      "correctIndex": 1,
+      "rationale": "When an AI acceptable use policy is violated, governance must include technical controls to prevent prohibited behavior, not just rely on policy awareness. Network-level access controls that block external AI service domains turn the policy prohibition into a technical constraint that employees cannot bypass from corporate infrastructure.",
+      "topic": "D4",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-043",
+      "question": "A multinational company has implemented bias testing, diverse training data, and decision transparency for an internal promotion model. An executive asks whether the company can now state that the fairness risk has been eliminated. What is the BEST response from the AI governance lead?",
+      "options": [
+        "Yes, controls remove all risk",
+        "No, residual risk still remains",
+        "Yes, if impact is documented",
+        "No, because monitoring is optional"
+      ],
+      "correctIndex": 1,
+      "rationale": "Even strong controls do not reduce AI risk to zero. Residual risk remains after treatment, and governance should acknowledge that reality while continuing monitoring and review.",
+      "topic": "29 - AI Risk Management Fundamentals",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-044",
+      "question": "A mature enterprise is redesigning its AI data lifecycle program after criticism that deletion requests are handled inconsistently. Which investment would provide the GREATEST overall improvement?",
+      "options": [
+        "Larger teams for retraining",
+        "More storage for archives",
+        "Broader marketing disclosures",
+        "Automated tracking with audits"
+      ],
+      "correctIndex": 3,
+      "rationale": "The broadest improvement comes from strengthening operational control across the lifecycle through automated tracking of data locations and dependencies, supported by auditability. This addresses inconsistency, hidden copies, downstream uses, and accountability.",
+      "topic": "71 - Data Retention, Deletion, and Model Dependencies",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-045",
+      "question": "An AI governance committee is reviewing a proposal to use several external datasets in a generative AI project. Documentation is inconsistent: one team has consent records, another has only emails, and a third cannot explain where its data originated. Which action should the committee prioritize?",
+      "options": [
+        "Publish transparency statement",
+        "Expand model testing first",
+        "Freeze undocumented data use",
+        "Rely on business sponsors"
+      ],
+      "correctIndex": 2,
+      "rationale": "A core principle of lawful data use is knowing the source of data, the permissions attached to it, and any restrictions on use. If a team cannot explain where data came from, the organization cannot be confident it has the right to use it. Stop use of undocumented datasets until rights are established and recorded.",
+      "topic": "67 - Data Collection and Lawful Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-046",
+      "question": "A regional hospital deploys an AI tool to prioritize radiology cases. The CIO reports that the platform is encrypted, highly available, and fully patched. Several physicians still object that the organization has not yet established adequate governance. Which concern BEST justifies their position?",
+      "options": [
+        "The model may miss rare cases",
+        "The network may need segmentation",
+        "The backups may be untested",
+        "The servers may lack redundancy"
+      ],
+      "correctIndex": 0,
+      "rationale": "AI governance goes beyond traditional IT controls such as uptime, patching, and encryption. A model that misses rare cases creates patient safety, fairness, and accountability concerns that standard IT governance does not fully address.",
+      "topic": "12 - Why AI Needs Governance",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-047",
+      "question": "A fraud detection team reports that suspicious transactions are bypassing its AI model after attackers made tiny changes to transaction details that appear normal to analysts. Which AI weakness does this MOST strongly indicate?",
+      "options": [
+        "Unapproved vendor reuse",
+        "Overbroad user consent",
+        "Adversarial input exposure",
+        "Excessive log retention"
+      ],
+      "correctIndex": 2,
+      "rationale": "Small, hard-to-notice changes causing misclassification of malicious activity are characteristic of adversarial examples, where crafted inputs fool the model while appearing normal to humans.",
+      "topic": "16 - Privacy, Security, and Data Protection in AI",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-048",
+      "question": "A consumer platform’s chatbot begins generating offensive responses. The engineering team proposes adding a quick output blocklist and moving on, while the governance team argues for a deeper review. Which approach is BEST?",
+      "options": [
+        "Disable chatbot permanently",
+        "Investigate training and filters",
+        "Add blocklist and close",
+        "Escalate only if repeated"
+      ],
+      "correctIndex": 1,
+      "rationale": "The best approach is to investigate the underlying cause rather than only masking the symptom. Lasting corrective action requires understanding and addressing the true cause.",
+      "topic": "90 - AI Issue Management and Corrective Actions",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-049",
+      "question": "A hospital is implementing an AI model to predict which patients are at elevated risk of readmission. The model will use identifiable patient records and produce recommendations for care teams. Which legal concern should the AI governance team prioritize FIRST when designing controls?",
+      "options": [
+        "Personal data handling obligations",
+        "Warranty terms for vendors",
+        "Copyright licensing for outputs",
+        "Product advertising review duties"
+      ],
+      "correctIndex": 0,
+      "rationale": "Because the system uses identifiable patient records, the first governance priority is privacy law and the handling of personal information. Other legal issues may arise later, but the immediate and most direct concern is lawful and secure use of patient data.",
+      "topic": "37 - How Laws Apply to AI Systems",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-050",
+      "question": "A global retailer receives a customer request to see all personal data held across marketing, support, loyalty, and fraud systems. Each team maintains separate tools and no one can quickly identify all records. Which improvement would MOST directly strengthen future response capability?",
+      "options": [
+        "Shorten campaign retention",
+        "Increase storage encryption",
+        "Map enterprise data flows",
+        "Rewrite website cookies"
+      ],
+      "correctIndex": 2,
+      "rationale": "When data is fragmented across many systems, the most direct way to improve access request handling is to map where data resides and how it moves. Data flow mapping supports discovery, coordination, and timely responses.",
+      "topic": "45 - Data Subject Rights and Automated Decision-Making",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-051",
+      "question": "A social media platform uses AI moderation. Leaders want to reduce all moderation mistakes, but engineers warn that adding every possible review step would make the service too slow for users. Which response BEST reflects sound AI governance?",
+      "options": [
+        "Delay deployment indefinitely",
+        "Accept all flagged content",
+        "Balance controls with usability",
+        "Remove all human moderation"
+      ],
+      "correctIndex": 2,
+      "rationale": "Effective AI risk management requires weighing benefits and costs. If excessive controls would make the system unusable, balance risk reduction with operational practicality, often through a mix of controls.",
+      "topic": "29 - AI Risk Management Fundamentals",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-052",
+      "question": "A global firm is integrating third-party datasets, open-source libraries, and vendor components into a new AI service. Senior management wants the MOST effective governance action to reduce the risk of hidden malicious code or poisoned data entering through trusted dependencies. What should be prioritized?",
+      "options": [
+        "Expanded prompt filtering rules",
+        "Mandatory user awareness sessions",
+        "Strict vetting with component inventory",
+        "Broader model retraining cycles"
+      ],
+      "correctIndex": 2,
+      "rationale": "Supply chain risk is best addressed through disciplined governance over third-party code and datasets, including vetting, maintaining an inventory, scanning for vulnerabilities, and monitoring for suspicious changes.",
+      "topic": "75 - AI Security Testing and Threat Modeling",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-053",
+      "question": "A bank discovers that its AI loan screening tool has rejected nearly all applications from one geographic region for two days. An executive wants the team to simply adjust the threshold and resume operations. What is the MOST appropriate next step for the issue owner?",
+      "options": [
+        "Start root cause analysis",
+        "Close issue after monitoring",
+        "Lower the rejection threshold",
+        "Replace the external vendor"
+      ],
+      "correctIndex": 0,
+      "rationale": "Adjusting a symptom without understanding the cause risks recurrence and may hide deeper failures. Root cause analysis looks beyond the symptom to determine whether the issue arose from algorithm changes, missing fields, data pipeline failures, or external provider changes.",
+      "topic": "90 - AI Issue Management and Corrective Actions",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-054",
+      "question": "A large retailer experiences a public incident after attackers manipulate its chatbot into producing offensive responses on social media screenshots. The security team wants to focus only on blocking the exploit path, while communications leaders warn of broader consequences. Which statement BEST reflects sound AI governance?",
+      "options": [
+        "Reputational effects are secondary concerns",
+        "Technical remediation alone is sufficient",
+        "Both technical and organizational measures matter",
+        "Public incidents rarely affect trust"
+      ],
+      "correctIndex": 2,
+      "rationale": "Chatbot incidents create both technical and reputational risks. Governance must include organizational response, testing, communication, and continuous improvement alongside technical controls.",
+      "topic": "95 - Case Study Customer Service Chatbot",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-055",
+      "question": "An AI ethics committee is designing a supply chain risk policy for AI components. The organization integrates open-source foundation models from community repositories. Which risk is PRIMARY to address in the policy's supply chain provisions?",
+      "options": [
+        "The risk that using open-source models will expose the organization to software licensing compliance violations",
+        "The risk that open-source model weights contain data poisoning from community-contributed modifications",
+        "The risk that open-source models will underperform proprietary alternatives on accuracy benchmarks",
+        "The risk that open-source models will be deprecated and become unsupported by their community"
+      ],
+      "correctIndex": 1,
+      "rationale": "The main supply chain risk for open-source foundation models is data poisoning from community-contributed modifications. Deploying open-source models means the organization assumes full responsibility for safety evaluation due to the absence of provider-side controls.",
+      "topic": "D1",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-056",
+      "question": "Under ISO 42001, which document records the organization's rationale for including or excluding each Annex A control from its AI management system?",
+      "options": [
+        "The Statement of Applicability, documenting Annex A control selections and exclusion rationale",
+        "The AIMS Scope Statement, which defines the management system boundary and exclusions",
+        "The Risk Register, cataloging AI risks with treatment decisions and residual levels",
+        "The AI Policy, which states the organization's strategic AIMS commitments and direction"
+      ],
+      "correctIndex": 0,
+      "rationale": "ISO 42001 requires organizations to select relevant Annex A controls and document their applicability decisions, including rationale for any controls excluded. The Statement of Applicability fulfills this requirement and is a primary audit artifact.",
+      "topic": "D2",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-057",
+      "question": "A consumer speech-recognition system designed for home assistants is adopted by a court clerk's office to transcribe testimony. Which factor BEST explains why this creates new governance risk even if the system performs as designed?",
+      "options": [
+        "The microphones require recalibration",
+        "The context changes legal expectations",
+        "The vendor loses intellectual property",
+        "The transcripts reduce storage needs"
+      ],
+      "correctIndex": 1,
+      "rationale": "A system can function exactly as designed and still create serious governance issues when used in a new setting. Moving a consumer tool into a courtroom changes the stakes, user expectations, and legal implications. Context, not just technical function, determines risk.",
+      "topic": "86 - Secondary Use, Unintended Use, and Downstream Harm",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-058",
+      "question": "A healthcare AI chatbot originally collected only symptom descriptions, but a product update now proposes collecting users’ genetic information and location data to improve recommendations. What should the AI governance team do FIRST to manage this change appropriately?",
+      "options": [
+        "Expand the model training set",
+        "Publish a broader privacy notice",
+        "Increase the system retention period",
+        "Update the data flow inventory"
+      ],
+      "correctIndex": 3,
+      "rationale": "When an AI system changes to collect new sensitive data, the first governance step is to identify and map where that data is collected, processed, and stored. Updated data flow mapping supports later decisions about controls, notices, retention, and escalation.",
+      "topic": "46 - Sensitive Data, Biometrics, and Special Categories",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-059",
+      "question": "A regulator is considering how to oversee AI used in hiring, medical devices, and customer chatbots. The policy team wants stronger controls where harms could be greatest while avoiding unnecessary burdens on low-impact tools. Which approach BEST matches that objective?",
+      "options": [
+        "Voluntary disclosures for all vendors",
+        "Uniform controls for all AI systems",
+        "Risk-based categorization with tiered obligations",
+        "State-by-state enforcement discretion"
+      ],
+      "correctIndex": 2,
+      "rationale": "A risk-based model aligns regulatory burden with potential harm. High-risk uses such as hiring and medical devices receive stricter transparency, oversight, and control requirements, while lower-risk tools face lighter obligations.",
+      "topic": "43 - Global AI Regulation Overview",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-060",
+      "question": "A rail operator uses an automated control system that handles routine speed and braking decisions. An operator continuously monitors the system and may intervene if it behaves unexpectedly, but does not approve each routine action. Which oversight model BEST describes this arrangement?",
+      "options": [
+        "Human-in-the-loop with case approvals",
+        "Human-beside-the-loop with advisory review",
+        "Human-on-the-loop with intervention authority",
+        "Human-out-of-the-loop with audit logging"
+      ],
+      "correctIndex": 2,
+      "rationale": "Human-on-the-loop applies when a person supervises system operation and can intervene when necessary, without participating in every individual decision.",
+      "topic": "62 - Human Oversight by Design",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-061",
+      "question": "A company acquires an external machine learning model for customer support automation. During due diligence, the AI governance lead learns the model was trained on poorly curated data, but the vendor insists performance metrics are acceptable. What is the BEST governance decision before deployment?",
+      "options": [
+        "Shift issue to communications",
+        "Require vendor vetting and monitoring",
+        "Accept metrics and proceed",
+        "Delay review until complaints"
+      ],
+      "correctIndex": 1,
+      "rationale": "This is a classic third-party risk: the organization may inherit hidden weaknesses from a vendor model. The best decision is to strengthen vendor vetting and establish ongoing monitoring before deployment.",
+      "topic": "30 - AI Risk Taxonomy",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-062",
+      "question": "During an AI governance review, internal auditors discover that a credit scoring model has not been updated to reflect newer privacy requirements. Management asks the auditors to redesign the process and approve the remediation plan before implementation. What should the auditors do NEXT?",
+      "options": [
+        "Approve model deployment changes",
+        "Assume ownership of remediation",
+        "Rewrite privacy procedures directly",
+        "Recommend fixes and follow up"
+      ],
+      "correctIndex": 3,
+      "rationale": "Internal audit provides independent assurance by identifying weaknesses, recommending improvements, and following up on remediation. Auditors should avoid taking ownership of operational fixes or approvals because that would impair independence.",
+      "topic": "5 - Key Roles in AI Governance",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-063",
+      "question": "An AI governance officer is conducting a secondary-use risk forecast as part of an ISO 42001 Clause 8 AI system impact assessment. Which forecast methodology is MOST aligned with the impact assessment requirement?",
+      "options": [
+        "Commission an independent external ethics audit to identify secondary misuse scenarios the internal team may have overlooked in the ISO Clause 8 impact assessment",
+        "Review historical misuse patterns from comparable deployed AI tools and map plausible secondary uses to affected stakeholder groups and potential consequences",
+        "Conduct a NIST AI RMF MAP categorization of all current authorized primary use cases to confirm completeness of the documented use-case inventory before assessing secondary uses",
+        "Survey business unit leaders on their planned uses of the AI system over the next fiscal year to surface anticipated secondary applications before they materialize"
+      ],
+      "correctIndex": 1,
+      "rationale": "ISO 42001 Clause 8 requires a structured AI system impact assessment evaluating potential consequences for all affected stakeholder groups. For secondary-use risk forecasting, the appropriate methodology is reviewing historical misuse patterns from comparable tools, identifying plausible secondary uses, and mapping them to affected groups with consequence estimates.",
+      "topic": "D4",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-064",
+      "question": "A software company offers API access to a proprietary AI model. Security analysts notice a competitor sending large volumes of systematic test queries designed to infer how the model behaves under many conditions. Which control would BEST address this risk?",
+      "options": [
+        "Differential privacy on outputs",
+        "Human review of responses",
+        "Plugin approval governance",
+        "Query limits and randomization"
+      ],
+      "correctIndex": 3,
+      "rationale": "The scenario points to model extraction through repeated interaction intended to reconstruct the model. Limiting and randomizing queries makes systematic reconstruction more difficult.",
+      "topic": "75 - AI Security Testing and Threat Modeling",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-065",
+      "question": "Under the EU AI Act, which role describes an entity that places an AI system on the market under its own name?",
+      "options": [
+        "Deployer who integrates AI into internal business workflows",
+        "Provider who develops or markets AI under its own branding",
+        "Distributor who makes systems available in the supply chain",
+        "Importer who brings systems from third-country providers into the EU"
+      ],
+      "correctIndex": 1,
+      "rationale": "The EU AI Act defines a provider as any entity that places an AI system on the market or into service under its own name. This distinguishes providers from deployers, importers, and distributors. Providers handle the highest compliance burden, including conformity assessments for high-risk AI.",
+      "topic": "D2",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-066",
+      "question": "A mature enterprise uses a GRC platform to automate control mapping, evidence tracking, and reporting for its AI governance program. The chief risk officer wants to rely on the platform to resolve conflicts between legal, security, and ethics requirements. What is the BEST response from the program lead?",
+      "options": [
+        "Let the platform resolve conflicts",
+        "Delegate conflicts to system owners",
+        "Freeze mapping until tools improve",
+        "Use automation, retain human judgment"
+      ],
+      "correctIndex": 3,
+      "rationale": "Technology can streamline governance tasks, but it cannot replace expert interpretation, cross-functional collaboration, and judgment. Conflicts between legal, security, and ethical requirements require human analysis and decision-making.",
+      "topic": "58 - Mapping Standards to One Governance Program",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-067",
+      "question": "An e-commerce company uses an AI model to rank customer support tickets. The model is accurate in testing, but complaints show that tickets from certain customer groups are consistently deprioritized. Which additional testing category would MOST directly address this issue?",
+      "options": [
+        "Integration testing first",
+        "Usability testing first",
+        "Fairness testing first",
+        "Load testing first"
+      ],
+      "correctIndex": 2,
+      "rationale": "When outcomes systematically disadvantage certain groups, the most direct response is bias or fairness testing. Testing strategies should map test types to the specific risk presented.",
+      "topic": "72 - AI Testing Strategy",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-068",
+      "question": "A retail company deploys an AI agent to monitor inventory, place replenishment orders, and update accounting records without waiting for human approval. Which characteristic MOST clearly makes this system agentic rather than merely assistive?",
+      "options": [
+        "It predicts future stock demand",
+        "It summarizes supplier performance trends",
+        "It executes cross-system business actions",
+        "It recommends reorder quantities daily"
+      ],
+      "correctIndex": 2,
+      "rationale": "The defining feature of agentic AI here is that it does not stop at analysis or recommendation; it takes action across business systems to complete work. Executing orders and updating accounting records are end-to-end operational actions.",
+      "topic": "99 - Case Study Agentic AI Workflow Automation",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-069",
+      "question": "Which incident management step assigns a category and severity tier to determine notification obligations?",
+      "options": [
+        "Containment, which restricts the scope of active harm to affected system components",
+        "Incident classification, which drives response and notification requirements",
+        "Evidence preservation, which secures artifacts for investigation",
+        "Regulatory notification, which informs supervisory authorities of harm"
+      ],
+      "correctIndex": 1,
+      "rationale": "Classification assigns category and severity tier first; those assignments determine which containment pathway activates and which regulatory timelines apply. Skipping or deferring classification leaves notification obligations undefined.",
+      "topic": "D3",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-070",
+      "question": "Which periodic assessment activity produces a prioritized register of attack vectors and recommended controls for an AI system?",
+      "options": [
+        "Compliance audit verifying adherence to documented governance requirements",
+        "Threat modeling enumerating attack surfaces and recommending mitigating controls",
+        "Bias audit evaluating disparate impact across protected demographic groups",
+        "Red-team exercise simulating adversarial scenarios to probe system failures"
+      ],
+      "correctIndex": 1,
+      "rationale": "Threat modeling is the structured methodology for enumerating an AI system's attack surface and producing a prioritized register of attack vectors with recommended controls. Red-teaming then tests those identified vectors, but the register itself is the output of threat modeling.",
+      "topic": "D3",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-071",
+      "question": "An insurer uses a third-party cloud AI service to automate claims triage. The vendor suffers an outage during a storm event, delaying thousands of claims. The AI governance committee wants the taxonomy to guide the FIRST mitigation improvement. Which action BEST aligns the identified risk?",
+      "options": [
+        "Increase media response training",
+        "Add stronger service guarantees",
+        "Perform trademark clearance reviews",
+        "Expand fairness test datasets"
+      ],
+      "correctIndex": 1,
+      "rationale": "The scenario is primarily about third-party and operational risk. The best first mitigation is to strengthen contractual protections and service commitments. The other options address ethics, reputational response, and legal review.",
+      "topic": "30 - AI Risk Taxonomy",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-072",
+      "question": "A clinic deploys an AI chatbot to answer patient questions. After rollout, the impact assessment record shows the chatbot handles routine inquiries well but sometimes misinterprets urgent symptoms. The clinic wants a mitigation that BEST aligns with responsible AI use. What should it do?",
+      "options": [
+        "Increase marketing to patients",
+        "Add human escalation paths",
+        "Limit records to IT staff",
+        "Remove all chatbot features"
+      ],
+      "correctIndex": 1,
+      "rationale": "When an AI system performs adequately in common cases but creates safety concerns in higher-risk situations, add targeted controls that reduce harm while preserving value. Routing unclear or urgent cases to human staff is a proportionate mitigation.",
+      "topic": "57 - ISO/IEC 42005 AI Impact Assessment",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-073",
+      "question": "A financial services firm is redesigning its chatbot governance program after several minor issues involving inaccurate answers, weak handoffs, and inconsistent customer messaging about AI use. Leadership asks for the MOST effective overall approach. Which option is BEST?",
+      "options": [
+        "Shift all risk to the vendor",
+        "Combine safeguards, disclosure, and monitoring",
+        "Limit governance to legal review",
+        "Focus on faster model deployment"
+      ],
+      "correctIndex": 1,
+      "rationale": "Responsible chatbot governance requires an integrated approach. The issues span accuracy, escalation, and transparency, so the best response combines design safeguards, clear disclosure, and continuous monitoring.",
+      "topic": "95 - Case Study Customer Service Chatbot",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-074",
+      "question": "A consumer health company wants to build trust in a symptom triage model after a widely publicized AI failure in the industry. Leadership asks what documentation practice would MOST strengthen informed decision-making by users and stakeholders. Which recommendation is BEST?",
+      "options": [
+        "Publish only benchmark scores",
+        "Share only training code",
+        "Document purpose, limits, risks",
+        "Delay release communications"
+      ],
+      "correctIndex": 2,
+      "rationale": "Trust is strengthened when users and stakeholders can understand what a model is for, how it performs, where it may fail, and what risks or limitations apply. Clear documentation supports informed use, accountability, and safer deployment.",
+      "topic": "77 - Model Cards, Data Sheets, and Technical Documentation",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-075",
+      "question": "A company completed a rapid integration of its AI, security, and privacy governance requirements. During an internal audit, reviewers discover that explicit consent obligations for certain data uses were omitted because the team assumed general security controls covered them. What is the MOST important lesson for the governance lead?",
+      "options": [
+        "Detailed mapping needs expert review",
+        "Security teams should own all compliance",
+        "Faster integration reduces audit exposure",
+        "General controls usually satisfy privacy law"
+      ],
+      "correctIndex": 0,
+      "rationale": "Rushed integration can miss unique obligations unless the mapping is detailed and reviewed by appropriate experts. General controls do not automatically satisfy distinct legal requirements.",
+      "topic": "58 - Mapping Standards to One Governance Program",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-076",
+      "question": "A technology company faces changing guidance on acceptable controls for an internal AI monitoring process. The requirements are not fully clear, and the team has adjusted procedures several times. Which action would MOST reduce enforcement risk in this situation?",
+      "options": [
+        "Document interpretations and regulator advice",
+        "Pause all monitoring changes",
+        "Wait for final rules",
+        "Archive prior versions silently"
+      ],
+      "correctIndex": 0,
+      "rationale": "When requirements are unclear or evolving, defensible documentation of the organization’s interpretation, actions, and any regulator guidance helps demonstrate reasonable, good-faith compliance efforts.",
+      "topic": "42 - Enforcement, Penalties, and Accountability",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-077",
+      "question": "A smart gardening robot causes damage. It uses embedded AI for navigation, a real-time weather data service for movement, a 3D printing design file for parts, and a user-installed open-source monitoring app. Under the revised EU Product Liability Directive, which of the following elements is NOT in scope for liability?",
+      "options": [
+        "The monitoring app installed by the user",
+        "The digital manufacturing file used to 3D-print a component of the robot",
+        "The real-time weather data service used for decision-making",
+        "The embedded AI software controlling the robot's navigation"
+      ],
+      "correctIndex": 0,
+      "rationale": "The directive applies to software, digital services, and files integral to a product's function. However, a user-installed, community-developed app provided outside of commercial activity is excluded and thus not within the directive’s liability scope.",
+      "topic": "General",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-078",
+      "question": "A regulator asks a company to show how its AI hiring tool avoids bias and how staff were prepared to use it responsibly. The program lead has model code, but little else. Which missing evidence would be MOST important to demonstrate governance across gates?",
+      "options": [
+        "Sales forecasts and board minutes",
+        "Design records and training logs",
+        "Vendor brochures and press releases",
+        "Source code and budget approvals"
+      ],
+      "correctIndex": 1,
+      "rationale": "Governance evidence should show that gates were followed and responsibilities were met. For a hiring tool, the most relevant proof includes design documentation addressing bias concerns and user training logs showing operational readiness.",
+      "topic": "4 - The AI Governance Lifecycle",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-079",
+      "question": "An internal audit of AI governance finds that product teams are highly creative and motivated, but they rarely share practices, use different standards, and cannot easily demonstrate compliance across the enterprise. Which recommendation is BEST?",
+      "options": [
+        "Replace autonomy with central ownership",
+        "Freeze all independent development",
+        "Limit projects to one platform",
+        "Add cross-team forums and training"
+      ],
+      "correctIndex": 3,
+      "rationale": "The findings point to federated governance risks: silos, inconsistent standards, and difficulty proving compliance. Cross-team forums and shared training improve alignment without destroying the benefits of local ownership.",
+      "topic": "22 - AI Governance Operating Model",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-080",
+      "question": "In which of the following activities are government regulators or policy advisors typically not involved?",
+      "options": [
+        "Approval, certification, or registration of high-risk AI systems",
+        "Creating testbeds for red teaming",
+        "Regulatory sandboxes and pilot oversight",
+        "Post-deployment supervision and enforcement"
+      ],
+      "correctIndex": 1,
+      "rationale": "Red teaming and adversarial testing are usually internal or third-party exercises driven by developers or auditors. While government regulators may encourage robustness, they don’t directly create or manage red team testbeds. In contrast, regulators are formally involved in oversight, approval, and enforcement tasks, especially under AI laws like the EU AI Act or sector-specific compliance regimes.",
+      "topic": "General",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-081",
+      "question": "An AI governance officer at a Private-Sector Compliance Program Design company is conducting a pre-deployment review. The stage gate requires evidence of deployment authorization before go-live. Which element MOST directly constitutes formal deployment authorization under AIGP governance standards?",
+      "options": [
+        "The data science team lead's email confirming model accuracy exceeds the required threshold",
+        "The AI owner's documented sign-off confirming acceptance criteria are met and the system may proceed",
+        "The security team's penetration test report confirming no critical vulnerabilities in the inference endpoint",
+        "The model card published to the production documentation portal indicating readiness for use"
+      ],
+      "correctIndex": 1,
+      "rationale": "Formal deployment authorization is the AI owner's documented sign-off at a stage gate confirming that all acceptance criteria are met, required controls are in place, and the system is cleared for production. Informal communications, technical reports, and ancillary artifacts like model cards serve as inputs or accompaniments to the authorization decision, not the authorization itself.",
+      "topic": "D3",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-082",
+      "question": "An AI risk officer at an insurance company finds the data governance policy has no provision for AI training data provenance. Which control is MOST important to add to the policy standard?",
+      "options": [
+        "A mandatory data provenance record documenting source, lawful basis, and authorized use for each training dataset",
+        "A requirement to document commercial data vendor contracts, license terms, and renewal dates for AI training datasets",
+        "A prohibition on synthetic data in training pipelines without model validation committee approval",
+        "A requirement that all AI training datasets undergo statistical quality scoring before pipeline ingestion"
+      ],
+      "correctIndex": 0,
+      "rationale": "Provenance documentation establishes whether training data was collected lawfully and used within its authorized scope. Insurance AI systems processing policyholder data face GDPR purpose limitation and lawful basis obligations that cannot be demonstrated without a provenance record per dataset.",
+      "topic": "D1",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-083",
+      "question": "A company’s AI governance lead is told that fairness concerns should be handled entirely by the machine learning team because “this is a technical bug problem.” Which response is BEST?",
+      "options": [
+        "Fairness belongs only to legal counsel",
+        "Fairness should wait for production metrics",
+        "Fairness requires rules, oversight, and explanation",
+        "Fairness depends only on coding quality"
+      ],
+      "correctIndex": 2,
+      "rationale": "Bias and fairness are governance issues as well as technical issues. Effective management requires processes, oversight, monitoring, and communication with affected people.",
+      "topic": "14 - Fairness and Bias in AI Governance",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-084",
+      "question": "A consumer lender wants to launch an AI underwriting system quickly because competitors are advertising AI-driven approvals. The proposed use case remains vague, and new features are being added weekly. What should the AI governance lead recommend?",
+      "options": [
+        "Shift review to post-launch",
+        "Add features for market parity",
+        "Revisit scope before further buildout",
+        "Match competitor rollout timing"
+      ],
+      "correctIndex": 2,
+      "rationale": "This situation combines two classic governance risks: pressure to build because AI is popular and scope creep that blurs the original purpose. Pause and revisit the use case definition to clarify objectives, users, harms, and boundaries before proceeding.",
+      "topic": "59 - AI Use Case Definition and Business Context",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-085",
+      "question": "A regulator asks an insurer to demonstrate that its underwriting model can be maintained, reproduced, and safely updated over time. The insurer can provide a concise summary of purpose and risks, plus a detailed dataset description. What additional documentation is MOST necessary?",
+      "options": [
+        "Procurement exception form",
+        "Technical maintenance record",
+        "Executive risk memo",
+        "Marketing use statement"
+      ],
+      "correctIndex": 1,
+      "rationale": "The regulator’s request focuses on reproducibility, maintenance, and safe updates. Technical documentation includes code versions, hyperparameters, procedures, infrastructure requirements, monitoring, retraining, and update workflows.",
+      "topic": "77 - Model Cards, Data Sheets, and Technical Documentation",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-086",
+      "question": "Which structural requirement distinguishes the AI Risk Officer role from first-line AI governance roles?",
+      "options": [
+        "The role must hold a recognized AI governance certification.",
+        "The role must own the risk register and manage all exception decisions",
+        "The role must report directly to the board rather than to management",
+        "The role must be independent from first-line AI build-and-operate teams"
+      ],
+      "correctIndex": 3,
+      "rationale": "The AI Risk Officer is the second-line oversight function; structural independence from first-line AI teams is the design requirement that makes the role's risk assessments credible and prevents capture by the teams being overseen.",
+      "topic": "D1",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-087",
+      "question": "A technology firm is revising its AI governance program after several projects treated testing as a final-stage checklist. The chief AI officer wants a change that will most improve long-term reliability and stakeholder confidence. Which action is BEST?",
+      "options": [
+        "Publish only summary metrics",
+        "Centralize only defect tracking",
+        "Limit testing to release gates",
+        "Make testing cultural practice"
+      ],
+      "correctIndex": 3,
+      "rationale": "Mature AI governance treats testing as part of organizational culture rather than an afterthought. Embedding testing throughout development and openly sharing results supports continuous improvement, stronger assurance, and stakeholder trust.",
+      "topic": "72 - AI Testing Strategy",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-088",
+      "question": "An organization has all major AI governance roles formally assigned, yet incidents still reveal confusion during model failures and data leak scenarios. Leaders want a practical way to strengthen coordination, expose gaps, and improve shared response capability across teams. Which step is BEST?",
+      "options": [
+        "Centralize all decisions in legal",
+        "Replace committees with email",
+        "Run cross-functional tabletop exercises",
+        "Expand executive approval thresholds"
+      ],
+      "correctIndex": 2,
+      "rationale": "When roles exist but coordination remains weak, practical rehearsals are highly effective. Tabletop exercises bring stakeholders together to walk through incidents, clarify escalation paths, reveal blind spots, and strengthen working relationships.",
+      "topic": "5 - Key Roles in AI Governance",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-089",
+      "question": "A company’s AI recruitment tool automatically rejects applicants below a model-generated threshold. During an internal review, the compliance lead learns there is no documented appeal path for rejected candidates. Which gap is MOST significant?",
+      "options": [
+        "Missing employee productivity dashboard",
+        "Missing multilingual user interface support",
+        "Missing challenge and review mechanism",
+        "Missing public marketing disclosure page"
+      ],
+      "correctIndex": 2,
+      "rationale": "In a high-risk employment context, organizations should provide a way for affected individuals to challenge decisions. An automated rejection process without review or appeal is a major governance and compliance gap.",
+      "topic": "38 - AI-Specific Regulation and Risk Classification",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-090",
+      "question": "A manufacturer deploys AI in a medical diagnostic device. After a missed condition leads to patient harm, executives ask who should be considered responsible. Which response BEST reflects sound AI governance judgment?",
+      "options": [
+        "Liability never applies to AI errors",
+        "The user alone is always liable",
+        "Responsibility is shared and records matter",
+        "The developer alone is always liable"
+      ],
+      "correctIndex": 2,
+      "rationale": "Liability for AI-caused harm is often complex and depends on jurisdiction, use case, and legal theory. Responsibility may be shared among producers, developers, deployers, and users, and organizations should maintain safety checks, guidance, and records.",
+      "topic": "37 - How Laws Apply to AI Systems",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-091",
+      "question": "A regional hospital is evaluating two external AI vendors for medical image triage. Vendor A shows strong demo accuracy but will not explain its training data or decision logic. Vendor B shows slightly lower demo accuracy but provides detailed documentation on methodology, data sources, and security controls. Which factor should MOST influence the hospital’s selection from an AI governance perspective?",
+      "options": [
+        "Preference for broader feature roadmap",
+        "Preference for transparent model oversight",
+        "Preference for faster deployment timeline",
+        "Preference for lower implementation cost"
+      ],
+      "correctIndex": 1,
+      "rationale": "Vendor selection is not only about headline performance. The hospital must be able to understand, assess, and stand behind the system it deploys. Transparency supports risk assessment, trust, accountability, and informed oversight.",
+      "topic": "81 - Vendor AI and Third-Party Model Selection",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-092",
+      "question": "A utility company deploys an AI system to optimize electricity distribution across several regions. After two weeks, operators report that the system improves efficiency but occasionally recommends actions that increase outage risk during peak demand. The vendor says the behavior is within expected tolerances and offers a future model update. Regulators have asked how the company is governing live use of the system. What is the BEST immediate action for the AI governance lead?",
+      "options": [
+        "Shift monitoring to the vendor since the issue appears model-specific",
+        "Accept the current risk because the efficiency gains remain significant overall",
+        "Keep the system active, but require operator override for high-risk recommendations",
+        "Pause all AI use until the vendor delivers a corrected model version"
+      ],
+      "correctIndex": 2,
+      "rationale": "The best immediate action keeps operations controlled while reducing harm exposure through human oversight on high-risk recommendations. This is more proportionate than a full shutdown and more accountable than deferring responsibility to the vendor or tolerating known risk.",
+      "topic": "103 - Domain IV Review — Governing AI Deployment and Use",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-093",
+      "question": "A DPO conducting a DPIA for a new AI profiling system finds the privacy policy has no lawful basis statement for AI-powered behavioral profiling of website visitors. Under GDPR, which update is MOST important before deployment?",
+      "options": [
+        "Add a retention schedule for behavioral profile data collected over a twelve-month period",
+        "Document a valid GDPR Article 6 lawful basis, with a legitimate interests balancing test if applicable",
+        "Add a right to data portability for behavioral profile data per GDPR Article 20 enabling subjects to request profiles",
+        "Conduct a separate DPIA citing Article 35 systematic profiling as the trigger condition"
+      ],
+      "correctIndex": 1,
+      "rationale": "GDPR Article 6 requires every processing activity to have a valid lawful basis before it begins. An AI profiling system cannot be deployed lawfully without this in the privacy policy. If relying on legitimate interests, a balancing test must also be documented. All other privacy controls depend on this foundational authorization step.",
+      "topic": "D1",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-094",
+      "question": "A large corporation deploys an AI-based resume screening system that disproportionately filters out Black candidates. Historical bias is embedded in the training data. Which law is LEAST likely to apply in this case?",
+      "options": [
+        "Section 5 of the FTC Act",
+        "Equal Credit Opportunity Act (ECOA)",
+        "Title VII of the Civil Rights Act",
+        "Fair Credit Reporting Act (FCRA)"
+      ],
+      "correctIndex": 1,
+      "rationale": "Title VII prohibits employment discrimination by race; FCRA may apply if external screening reports are used; the FTC Act applies to unfair/deceptive practices. ECOA is least applicable since it applies to credit, not employment.",
+      "topic": "General",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-095",
+      "question": "A media platform wants to launch an AI feature that generates and edits short videos for users in China. During review, legal counsel highlights obligations tied to deep synthesis technologies. Which product change is MOST directly responsive?",
+      "options": [
+        "Add clear labels to AI-generated media",
+        "Remove all human review checkpoints",
+        "Limit use to premium subscribers",
+        "Shift model training to foreign servers"
+      ],
+      "correctIndex": 0,
+      "rationale": "China’s deep synthesis rules emphasize clear labeling of AI-generated or altered media and mechanisms to prevent misuse. For a media platform, labeling is a direct and concrete response to that regulatory expectation.",
+      "topic": "43 - Global AI Regulation Overview",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-096",
+      "question": "A healthcare provider is reviewing an AI diagnostic support tool used by physicians. The vendor proposes full automation for routine cases to improve throughput. Which control would BEST align with responsible impact assessment for this use case?",
+      "options": [
+        "Publish annual model accuracy summaries",
+        "Restrict use to historical patient records",
+        "Let physicians sample outputs quarterly",
+        "Require doctors to retain final decision authority"
+      ],
+      "correctIndex": 3,
+      "rationale": "In high-risk contexts such as healthcare, human oversight is essential. AI should function as a guide rather than a replacement for accountable decision-makers. The strongest control is to ensure clinicians retain authority and can review or override AI recommendations.",
+      "topic": "31 - AI Impact Assessments",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-097",
+      "question": "A software company is preparing to launch an AI feature built partly on code and model components obtained from several vendors. During final review, legal counsel warns that unauthorized use of third-party materials could create significant exposure. Which risk area is MOST directly implicated?",
+      "options": [
+        "Consumer advertising deception",
+        "Intellectual property infringement",
+        "Cross-border privacy transfer",
+        "Workplace discrimination liability"
+      ],
+      "correctIndex": 1,
+      "rationale": "When a company uses software, code, or other protected materials without proper authorization, the primary issue is intellectual property infringement.",
+      "topic": "101 - Domain II Review — Laws, Standards, and Frameworks",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-098",
+      "question": "A retail store installs facial recognition cameras that try to guess whether customers are religious or support a particular political party. Based on this guess, the system shows different ads or offers different discounts. What risk category does this use case fall under under the EU AI Act?",
+      "options": [
+        "Outside the scope of the Act",
+        "High-risk",
+        "Prohibited",
+        "Limited risk"
+      ],
+      "correctIndex": 2,
+      "rationale": "This use case involves using biometric systems to infer sensitive attributes like religion or political opinion in real time for behavioral manipulation. This is explicitly banned under Article 5 of the EU AI Act.",
+      "topic": "General",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-099",
+      "question": "A clinic’s AI triage tool was introduced to reduce review time. After six months, physicians report that it recommends too many unnecessary follow-up tests, increasing costs and patient anxiety. What is the BEST next step?",
+      "options": [
+        "Suppress all low-confidence outputs",
+        "Replace physicians with automation",
+        "Compare outcomes to original use case",
+        "Expand use to more departments"
+      ],
+      "correctIndex": 2,
+      "rationale": "When post-deployment issues emerge, return to the original use case definition and assess whether the system is meeting its intended goals within acceptable risk boundaries.",
+      "topic": "59 - AI Use Case Definition and Business Context",
+      "difficulty": "medium",
+      "marks": 1
+    },
+    {
+      "id": "aigp-p2-100",
+      "question": "A university runs an online entrance exam platform and keeps students’ webcam footage and screen recordings for over five years, even though all results were finalized within three months. Which data protection principle is most relevant here?",
+      "options": [
+        "Storage limitation",
+        "Data minimization",
+        "Purpose limitation",
+        "Pseudonymization"
+      ],
+      "correctIndex": 0,
+      "rationale": "Storage limitation means personal data should be retained only for as long as necessary. Keeping surveillance footage for years after results are out is disproportionate and increases privacy risks.",
+      "topic": "General",
+      "difficulty": "medium",
+      "marks": 1
+    }
+  ]
+}
