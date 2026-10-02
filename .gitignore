@@ -5,4 +5,6 @@ smoke-hero*.cjs
 .claude/
 .playwright-cli/
 opencode-agentrouter-support/
+# Raw AIGP source bank (docx + media) — never commit; portal JSONs are the source of truth
+Exam Portal/AIGP Exam/
 
