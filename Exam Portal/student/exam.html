@@ -44,6 +44,18 @@
       <section class="section" aria-label="Exam session">
         <div id="fatal"></div>
         <div id="runner" hidden>
+          <div id="preExam" class="card" role="dialog" aria-labelledby="preExamTitle">
+            <h2 id="preExamTitle">Before you begin</h2>
+            <p class="help" id="preExamMeta"></p>
+            <ul>
+              <li>You can pause the test at any time and resume later.</li>
+              <li>You can retake the test as many times as you would like.</li>
+              <li>The progress bar shows progress and time remaining. If time runs out you can still finish.</li>
+              <li>Flag a question for review or skip it and return via the palette.</li>
+              <li>Click Begin test to reveal questions. The timer started when you clicked Start on the catalog.</li>
+            </ul>
+            <div class="btn-row"><button class="btn btn-primary" id="beginBtn">Begin test</button></div>
+          </div>
           <h1 id="examTitle" style="font-size:1.5rem;margin:6px 0 2px;letter-spacing:-.01em;">Exam</h1>
           <p class="help" id="examSub" style="margin:0 0 16px;"></p>
           <div class="timer-bar" role="timer" aria-label="Time remaining" aria-live="off">
@@ -211,6 +223,19 @@
         timerEl.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
         timerEl.classList.toggle('low', ms < 5 * 60 * 1000);
       }, 500);
+
+      // Pre-exam gate: overlay is dismissible only and does NOT pause the timer
+      // (deadline derives from attempt start and keeps running).
+      // NOTE: resume-after-reload shows the overlay again (accepted behavior).
+      document.getElementById('preExamMeta').textContent =
+        exam.title + ' — ' + questions.length + ' questions · ' + exam.durationMinutes + ' min · 70% to pass';
+      document.getElementById('questions').hidden = true;
+      document.querySelector('.palette').hidden = true;
+      document.getElementById('beginBtn').addEventListener('click', function () {
+        document.getElementById('preExam').hidden = true;
+        document.getElementById('questions').hidden = false;
+        document.querySelector('.palette').hidden = false;
+      }, { once: true });
 
       const qWrap = document.getElementById('questions');
       const pal = document.getElementById('paletteGrid');
