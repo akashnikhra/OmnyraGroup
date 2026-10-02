@@ -145,9 +145,18 @@
       document.getElementById('sessionLine').textContent =
         "Signed in as " + email + " · progress syncs across devices.";
       document.getElementById('signOutBtn').hidden = false;
-      document.getElementById('signOutBtn').addEventListener('click', async () => {
-        await R.signOut();
-        window.location.replace("login.html");
+      // Bulletproof sign-out: clear local session SYNCHRONOUSLY first so a
+      // stalled server call can never trap the user on this page; the server
+      // revocation still fires in the background.
+      document.getElementById('signOutBtn').addEventListener('click', () => {
+        try {
+          for (let i = localStorage.length - 1; i >= 0; i--) {
+            const k = localStorage.key(i);
+            if (k && (k.indexOf("sb-") === 0 || k === P.K.activeAttempt)) localStorage.removeItem(k);
+          }
+        } catch (e) {}
+        try { R.signOut(); } catch (e) {}
+        setTimeout(() => window.location.replace("login.html"), 400);
       });
       // Mirror remote identity into the local identity slot so shared helpers keep working.
       P.saveStudent({ name: name || email.split("@")[0], email, savedAt: P.nowIso() });
@@ -282,11 +291,14 @@
     }
 
     try {
+      const BUILD = (window.OmnyraPortal && window.OmnyraPortal.BUILD) || "?";
+      document.getElementById('catalogMeta').textContent = 'Contacting database…';
       let exams = await withTimeout(P.loadCatalog(), 20000, "CATALOG_TIMEOUT");
       // Invite-only: remote students see ONLY their assigned exams.
       // (Local-only mode still shows the full static catalog for practice.)
       if (remote) {
         try {
+          document.getElementById('catalogMeta').textContent = 'Catalog loaded — checking your access…';
           const allowed = new Set(await withTimeout(R.myExamIds(), 20000, "ACCESS_TIMEOUT"));
           try { await withTimeout(R.claimInvites(), 15000, "CLAIM_TIMEOUT"); } catch (e) { console.warn("[portal] claim skipped:", e); }
           exams = exams.filter(e => allowed.has(e.id));
@@ -299,7 +311,7 @@
           }
         } catch (e) {
           const timeout = /TIMEOUT/.test((e && e.message) || "");
-          document.getElementById('catalogMeta').textContent = timeout ? 'Verification timed out.' : 'Could not verify exam access.';
+          document.getElementById('catalogMeta').textContent = (timeout ? 'Access check timed out.' : 'Could not verify exam access.') + ' [build ' + BUILD + ']';
           document.getElementById('catalogGrid').innerHTML = '<div class="card"><p>' + P.esc(timeout
             ? 'The database took too long (cold start or network stall). Your login is fine — just retry.'
             : P.friendlyError(e)) + '</p><div class="btn-row"><button class="btn btn-primary" onclick="window.location.reload()">Retry</button></div></div>';
@@ -338,7 +350,8 @@
       await renderResume(exams);
     } catch (e) {
       const timeout = /TIMEOUT/.test((e && e.message) || "");
-      document.getElementById('catalogMeta').textContent = timeout ? 'Catalog timed out.' : 'Could not load catalog.';
+      const BUILD2 = (window.OmnyraPortal && window.OmnyraPortal.BUILD) || "?";
+      document.getElementById('catalogMeta').textContent = (timeout ? 'Catalog timed out.' : 'Could not load catalog.') + ' [build ' + BUILD2 + ']';
       document.getElementById('catalogGrid').innerHTML = '<div class="card"><p>' + (timeout
         ? 'The database took too long (cold start or network stall). Your login is fine — just retry.'
         : 'Could not load the exam catalog. Serve over HTTP (<code>python -m http.server</code>) or check the backend configuration.') + '</p><div class="btn-row"><button class="btn btn-primary" onclick="window.location.reload()">Retry</button></div></div>';

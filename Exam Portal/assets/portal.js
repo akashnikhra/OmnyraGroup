@@ -303,6 +303,7 @@
 
   window.OmnyraPortal = {
     K: K, store: store, API_BASE_URL: API_BASE_URL, MANIFEST_URL: MANIFEST_URL,
+    BUILD: "invite-v10",
     uuid: uuid, nowIso: nowIso, esc: esc,
     initTheme: initTheme, applyTheme: applyTheme, currentTheme: currentTheme,
     initNav: initNav,
