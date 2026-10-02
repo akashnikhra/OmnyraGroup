@@ -459,7 +459,11 @@
       const dup = rs.filter(r => r.status === 'already_registered').length;
       const skip = rs.filter(r => String(r.status).indexOf('skipped') === 0).length;
       const fail = rs.filter(r => r.status === 'failed');
-      let msg = "✓ " + sent + " invite email(s) sent" + (dup ? " · " + dup + " already had accounts (they can log in directly)" : "") + (skip ? " · " + skip + " skipped (revoked/paused code)" : "") + ".";
+      let msg = sent
+        ? "✓ " + sent + " invite email(s) sent."
+        : "✓ No new emails needed — account(s) already exist, new exams appear on their next login.";
+      if (dup) msg += " " + dup + " already had accounts (access was still granted — no email required).";
+      if (skip) msg += " " + skip + " skipped (revoked/paused code).";
       if (fail.length) msg += " ✗ " + fail.length + " failed: " + fail.slice(0, 3).map(f => f.email + " (" + (f.detail || f.status) + ")").join("; ");
       return msg;
     }
