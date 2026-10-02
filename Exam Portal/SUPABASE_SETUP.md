@@ -14,7 +14,9 @@ Supabase Dashboard → SQL Editor → paste **`supabase/schema.sql`** → Run.
 Then paste **`supabase/migration_exam_access.sql`** → Run (invite-only
 student access: `exam_codes` + `exam_invites`, anon-safe
 `check_invite`/`validate_invite` RPCs, `claim_invites()`, and the
-`NOT_INVITED` guard inside `start_attempt`). Safe to re-run.
+`NOT_INVITED` guard inside `start_attempt`).
+Then paste **`supabase/migration_exam_access_v3.sql`** → Run (adds
+`exam_invites.emailed_at` for invite-mail tracking). Safe to re-run.
 
 ## 3. Enable password auth + your Gmail sender
 1. Authentication → Providers → enable **Email** (keep magic-link for
@@ -41,6 +43,22 @@ student access: `exam_codes` + `exam_invites`, anon-safe
 Admin entry is gated twice: the `ADMIN_EMAILS` allowlist in
 `Exam Portal/assets/config.js` (add/remove addresses there — currently the two
 owner emails) plus `profiles.role = 'admin'` in the DB (server-enforced by RLS).
+
+## 5b. Deploy the invite-mail function (one-time)
+Admin → Access → **Email** buttons call the `send-invites` Edge Function,
+which sends each student a Supabase "Invite" email via your Gmail SMTP.
+Until deployed, those buttons report "function not deployed" (the manual
+setup-form flow still works).
+```powershell
+npm i -g supabase
+supabase login
+supabase link --project-ref xdlbimqzhmjkpheowyrh
+supabase functions deploy send-invites
+```
+No secrets to set — the runtime provides `SUPABASE_URL` / `ANON` /
+`SERVICE_ROLE` itself, and the service key never touches the repo.
+Then brand the mail: Authentication → Emails → Templates → **Invite user**
+(OMNyra header + "click to set your password, then log in").
 
 ## 5. Wire the static config
 Copy the **publishable anon key** + project URL (Project Settings → API) into

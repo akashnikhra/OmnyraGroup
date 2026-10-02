@@ -97,6 +97,23 @@
           </form>
         </div>
       </section>
+      <section class="section" aria-label="Invitation" id="inviteSection" hidden>
+        <div class="card">
+          <div class="section-head"><h2>You're invited</h2><p id="inviteInfo">Verifying your invite…</p></div>
+          <div id="invitePassWrap" hidden>
+            <label class="field">Set your password (min 8 chars)
+              <input type="password" id="invitePass" autocomplete="new-password" placeholder="••••••••" minlength="8">
+            </label>
+            <label class="field" style="margin-top:12px;">Confirm password
+              <input type="password" id="invitePass2" autocomplete="new-password" placeholder="••••••••" minlength="8">
+            </label>
+            <p class="error-text" id="inviteError" role="alert" aria-live="polite"></p>
+            <div class="btn-row">
+              <button class="btn btn-primary" id="inviteSetBtn">Set password &amp; enter</button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 
@@ -122,6 +139,18 @@
     const note = document.getElementById('modeNote');
 
     await R.ready;
+
+    // Invite-link mode (?invited=1&examCode=…) from the admin "Email" button.
+    // NOTE: the exam code rides as `examCode` (not `code`) so Supabase's own
+    // ?code= PKCE param can never clobber it, and handleCallback only strips
+    // Supabase's param.
+    const qp0 = new URLSearchParams(window.location.search);
+    const inviteMode = qp0.get('invited') === '1';
+    const inviteCode = (qp0.get('examCode') || '').trim().toUpperCase();
+    if (inviteCode) {
+      const sc = document.getElementById('setupCode');
+      if (sc && !sc.value) sc.value = inviteCode;
+    }
 
     // Surface expired/denied confirmation-link errors (?error=… or #error=…) then clean the URL.
     try {
@@ -153,13 +182,24 @@
       // Exchange ?code=… (email confirmation OR legacy magic-link) once per load.
       try { await R.handleCallback(); } catch (e) {}
       // Already signed in? Route by role (admins go to their console).
+      // Invite-link arrivals skip the catalog redirect: they must set a
+      // password first (inbox ownership was just proven by the link click).
       try {
         const s = await R.getSession();
         if (s) {
-          try { if (await R.isAdmin()) { window.location.replace("../admin/index.html"); throw new Error('routed'); } } catch (e) { if (e.message === 'routed') throw e; }
-          window.location.replace("index.html");
+          let admin = false;
+          try { admin = await R.isAdmin(); } catch (e) {}
+          if (admin) { window.location.replace("../admin/index.html"); }
+          else if (inviteMode) { await showInviteCard(s); throw new Error('invite'); }
+          else window.location.replace("index.html");
         }
-      } catch (e) { if (e.message === 'routed') throw e; }
+      } catch (e) { if (e.message === 'invite') throw e; }
+      if (inviteMode && !await R.getSession()) {
+        // Link opened but no session (expired/used link, or already confirmed
+        // on another device): say so plainly instead of a blank form.
+        showInviteExpired();
+        throw new Error('invite-expired');
+      }
       // Fresh confirmation? Tell them to log in now (inbox proven).
       try {
         const qp = new URLSearchParams(window.location.search);
@@ -184,6 +224,53 @@
     }
     document.getElementById('tabSetup').addEventListener('click', showSetup);
     document.getElementById('tabLogin').addEventListener('click', showLogin);
+
+    function hideLoginShowInvite() {
+      document.getElementById('loginCard').closest('section').hidden = true;
+      document.getElementById('inviteSection').hidden = false;
+    }
+    function showInviteExpired() {
+      hideLoginShowInvite();
+      document.getElementById('inviteInfo').textContent =
+        "This invite link is expired or already used. Ask your admin to resend it from Admin → Access → Email, then open the fresh link.";
+    }
+    async function showInviteCard(session) {
+      hideLoginShowInvite();
+      const info = document.getElementById('inviteInfo');
+      const email = (session.user && session.user.email) || "";
+      let examName = inviteCode || "your exam";
+      try {
+        const mine = await R.myInvites();
+        const hit = mine.find(r => (r.exam_code || "").toUpperCase() === inviteCode) || mine[0];
+        if (hit) {
+          const exams = await P.loadCatalog().catch(() => []);
+          const ex = exams.find(x => x.id === hit.exam_id);
+          examName = (ex ? ex.title : hit.exam_id) + (inviteCode ? " (code " + inviteCode + ")" : "");
+        }
+      } catch (e) {}
+      info.textContent = "Signed in as " + email + " for " + examName + ". Set a password to finish — then only your assigned exams appear.";
+      document.getElementById('invitePassWrap').hidden = false;
+      document.getElementById('inviteSetBtn').addEventListener('click', async () => {
+        const err = document.getElementById('inviteError');
+        err.textContent = "";
+        const p1 = document.getElementById('invitePass').value;
+        const p2 = document.getElementById('invitePass2').value;
+        if (p1.length < 8) { err.textContent = "Password must be at least 8 characters."; return; }
+        if (p1 !== p2) { err.textContent = "Passwords do not match."; return; }
+        const btn = document.getElementById('inviteSetBtn');
+        btn.disabled = true;
+        try {
+          const { error } = await R.sb.auth.updateUser({ password: p1 });
+          if (error) throw error;
+          try { await R.claimInvites(); } catch (e) {}
+          P.saveStudent({ name: email.split("@")[0], email, savedAt: P.nowIso() });
+          window.location.replace("index.html");
+        } catch (ex) {
+          err.textContent = P.friendlyError(ex);
+          btn.disabled = false;
+        }
+      }, { once: true });
+    }
 
     document.getElementById('setupForm').addEventListener('submit', async (e) => {
       e.preventDefault();

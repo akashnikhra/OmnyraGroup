@@ -142,9 +142,14 @@
         </div>
         <div class="card" style="padding:0;overflow:auto;margin-top:14px;">
           <table class="val-table" style="margin:0;" aria-label="Invites">
-            <thead><tr><th>Email</th><th>Code</th><th>Exam</th><th>Status</th><th>Added</th><th>Actions</th></tr></thead>
-            <tbody id="inviteRows"><tr><td colspan="6">Loading…</td></tr></tbody>
+            <thead><tr><th>Email</th><th>Code</th><th>Exam</th><th>Status</th><th>Emailed</th><th>Added</th><th>Actions</th></tr></thead>
+            <tbody id="inviteRows"><tr><td colspan="7">Loading…</td></tr></tbody>
           </table>
+        </div>
+        <div class="btn-row" style="margin-top:12px;">
+          <button class="btn btn-primary" id="emailAllBtn">Email invite link to all listed</button>
+        </div>
+        <p class="help" id="emailStatus" role="status" aria-live="polite"></p>
         </div>
         <p class="help" style="margin-top:12px;">Students confirm via the email from <strong>omnyra.training@gmail.com</strong> (Supabase custom SMTP). If a student never got it: check spam, confirm the email spelling here, then ask them to re-submit the setup form (it resends). <strong>Revoke</strong> blocks exam start instantly (server-enforced).</p>
       </section>
@@ -393,7 +398,7 @@
         renderInvites();
       } catch (e) {
         document.getElementById('inviteMeta').textContent = 'Could not load invites.';
-        document.getElementById('inviteRows').innerHTML = '<tr><td colspan="6">' + P.esc(P.friendlyError(e)) + '</td></tr>';
+        document.getElementById('inviteRows').innerHTML = '<tr><td colspan="7">' + P.esc(P.friendlyError(e)) + '</td></tr>';
       }
     }
     function renderInvites() {
@@ -407,6 +412,8 @@
       document.getElementById('inviteRows').innerHTML = rows.map(r => {
         const pill = r.status === 'revoked' ? '<span class="badge soon">revoked</span>'
           : (r.status === 'registered' ? '<span class="badge open">registered</span>' : '<span class="badge soon">invited</span>');
+        const emailed = r.emailed_at ? new Date(r.emailed_at).toLocaleDateString() : '—';
+        const mailBtn = r.status === 'revoked' ? '' : '<button class="btn btn-outline" data-email="' + r.id + '">Email</button> ';
         const action = r.status === 'revoked'
           ? '<button class="btn btn-outline" data-reinstate="' + r.id + '">Reinstate</button>'
           : '<button class="btn btn-ghost" data-revoke="' + r.id + '">Revoke</button>';
@@ -414,13 +421,26 @@
           '<td><strong>' + P.esc(r.exam_code) + '</strong></td>' +
           '<td>' + P.esc(examTitle(r.exam_id)) + '<br><span class="help">' + P.esc(r.exam_id) + '</span></td>' +
           '<td>' + pill + '</td>' +
+          '<td class="help">' + emailed + '</td>' +
           '<td class="help">' + (r.created_at ? new Date(r.created_at).toLocaleDateString() : '—') + '</td>' +
-          '<td>' + action + '</td></tr>';
-      }).join('') || '<tr><td colspan="6">No invites yet — add the first one above.</td></tr>';
+          '<td>' + mailBtn + action + '</td></tr>';
+      }).join('') || '<tr><td colspan="7">No invites yet — add the first one above.</td></tr>';
     }
     ['filterCode','filterExam'].forEach(id => document.getElementById(id).addEventListener('change', renderInvites));
     document.getElementById('inviteSearch').addEventListener('input', renderInvites);
     document.getElementById('inviteRows').addEventListener('click', async (e) => {
+      const mail = e.target.closest('[data-email]');
+      if (mail && !mail.disabled) {
+        const id = mail.getAttribute('data-email');
+        mail.disabled = true;
+        setEmailStatus("Sending invite email…");
+        try {
+          const res = await R.sendInviteEmails([id]);
+          setEmailStatus(summarizeInviteResults(res.results));
+          await refreshInvites();
+        } catch (ex) { setEmailStatus("✗ " + P.friendlyError(ex)); mail.disabled = false; }
+        return;
+      }
       const rev = e.target.closest('[data-revoke]'), rei = e.target.closest('[data-reinstate]');
       const el = rev || rei;
       if (!el || el.disabled) return;
@@ -430,6 +450,42 @@
       el.disabled = true;
       try { await R.setInviteStatus(id, to); await refreshInvites(); }
       catch (ex) { el.disabled = false; P.toast(P.friendlyError(ex)); }
+    });
+
+    function setEmailStatus(msg) { const el = document.getElementById('emailStatus'); if (el) el.textContent = msg || ""; }
+    function summarizeInviteResults(results) {
+      const rs = results || [];
+      const sent = rs.filter(r => r.status === 'sent').length;
+      const dup = rs.filter(r => r.status === 'already_registered').length;
+      const skip = rs.filter(r => String(r.status).indexOf('skipped') === 0).length;
+      const fail = rs.filter(r => r.status === 'failed');
+      let msg = "✓ " + sent + " invite email(s) sent" + (dup ? " · " + dup + " already had accounts (they can log in directly)" : "") + (skip ? " · " + skip + " skipped (revoked/paused code)" : "") + ".";
+      if (fail.length) msg += " ✗ " + fail.length + " failed: " + fail.slice(0, 3).map(f => f.email + " (" + (f.detail || f.status) + ")").join("; ");
+      return msg;
+    }
+
+    function listedInviteIds() {
+      const fc = document.getElementById('filterCode').value;
+      const fe = document.getElementById('filterExam').value;
+      const q = document.getElementById('inviteSearch').value.trim().toLowerCase();
+      return invites.filter(r =>
+        (!fc || r.exam_code === fc) && (!fe || r.exam_id === fe) &&
+        (!q || (r.email || '').toLowerCase().includes(q)) &&
+        r.status !== 'revoked').map(r => r.id);
+    }
+    document.getElementById('emailAllBtn').addEventListener('click', async () => {
+      const ids = listedInviteIds();
+      const btn = document.getElementById('emailAllBtn');
+      if (!ids.length) { setEmailStatus("Nothing to email — no active invites in the current filter."); return; }
+      if (!window.confirm("Send invite emails to " + ids.length + " student(s)? Each gets a set-password link from omnyra.training@gmail.com.")) return;
+      btn.disabled = true;
+      setEmailStatus("Sending " + ids.length + " invite email(s)…");
+      try {
+        const res = await R.sendInviteEmails(ids);
+        setEmailStatus(summarizeInviteResults(res.results));
+        await refreshInvites();
+      } catch (e) { setEmailStatus("✗ " + P.friendlyError(e)); }
+      finally { btn.disabled = false; }
     });
 
     await boot();

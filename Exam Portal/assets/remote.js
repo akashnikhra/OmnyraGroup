@@ -323,7 +323,7 @@ async function listInvitesAdmin({ code, examId, search, limit } = {}) {
   const sb = needSb();
   if (!(await isAdmin())) throw notAdminError();
   let q = sb.from("exam_invites")
-    .select("id,email,exam_code,exam_id,status,created_at,updated_at")
+    .select("id,email,exam_code,exam_id,status,emailed_at,created_at,updated_at")
     .order("created_at", { ascending: false })
     .limit(limit || 1000);
   if (code) q = q.eq("exam_code", normalizeCode(code));
@@ -385,6 +385,40 @@ async function setInviteStatus(id, status) {
     .eq("id", id);
   if (error) throw error;
   return st;
+}
+
+/* ---------------- admin: invite emails (Edge Function) ----------------
+ * The static site cannot send mail itself. Admin triggers the
+ * `send-invites` Edge Function (service_role inside Supabase only — never
+ * in the repo), which sends each student a Supabase "Invite" email via the
+ * Gmail custom SMTP. The invite link lands on
+ * student/login.html?invited=1&examCode=<CODE> where the student proves
+ * inbox ownership and sets a password. Deploy once via:
+ *   supabase functions deploy send-invites
+ * (If the function is not deployed yet, this throws FUNCTION_MISSING.)
+ */
+async function sendInviteEmails(inviteIds, redirectBase) {
+  const sb = needSb();
+  if (!(await isAdmin())) throw notAdminError();
+  const ids = (inviteIds || []).filter(Boolean);
+  if (!ids.length) { const e = new Error("NO_INVITES"); e.code = "NO_INVITES"; throw e; }
+  const base = redirectBase ||
+    (window.location.origin + window.location.pathname.replace(/\/admin\/access\.html$/, "/student/login.html"));
+  let res;
+  try {
+    res = await sb.functions.invoke("send-invites", { body: { inviteIds: ids, redirectBase: base } });
+  } catch (e) {
+    const err = new Error("FUNCTION_MISSING");
+    err.code = "FUNCTION_MISSING";
+    throw err;
+  }
+  if (res.error) {
+    const err = new Error((res.data && res.data.error) || "EMAIL_SEND_FAILED");
+    err.code = err.message;
+    err.detail = res.data && res.data.detail;
+    throw err;
+  }
+  return res.data; // {results: [{id, email, status, detail?}]}
 }
 
 /* ---------------- catalog + questions (answer-stripped remotely) ---------------- */
@@ -566,7 +600,7 @@ window.OmnyraRemote = {
   checkInvite, validateInvite, signUpWithPassword, signInWithPassword, claimInvites,
   myExamIds, myInvites,
   listExamCodes, createExamCode, setExamCodeActive,
-  listInvitesAdmin, addInvites, setInviteStatus, normalizeCode,
+  listInvitesAdmin, addInvites, setInviteStatus, normalizeCode, sendInviteEmails,
   listExams, listExamsAdmin, getQuestions,
   startAttempt, getAttemptById, getActiveAttempt, saveAnswers, loadAnswers, submitAttempt, getReview, getProgress,
   publishExam, setExamStatus, listStudentProgress

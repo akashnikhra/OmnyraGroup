@@ -292,6 +292,9 @@
       WEAK_PASSWORD: "Password must be at least 8 characters.",
       EXAM_REQUIRED: "Pick the exam this code unlocks — exam assignment is mandatory.",
       INVITE_ROWS_INVALID: "Some invite rows are invalid — fix the highlighted rows and retry.",
+      NO_INVITES: "Select at least one invite first.",
+      FUNCTION_MISSING: "Invite-mail function not deployed yet — run: supabase functions deploy send-invites.",
+      EMAIL_SEND_FAILED: "Invite email failed to send. Check SMTP + Auth logs, then retry.",
       LOCAL_ONLY: "Backend unavailable — running locally. Progress stays on this device."
     };
     if (msg.indexOf("PROBE_TIMEOUT") !== -1) return map.LOCAL_ONLY;
