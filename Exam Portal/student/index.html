@@ -122,6 +122,19 @@
     let session = null, profile = null;
     let pendingExam = null;
 
+    // Hang guard: a stalled backend call must surface as an error with a
+    // retry — never an eternal "Loading…". (Free-tier DBs also cold-start;
+    // first load after idleness can take 10–30s.)
+    function withTimeout(p, ms, label) {
+      return Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error(label || "TIMEOUT")), ms))]);
+    }
+    window.addEventListener('error', (ev) => {
+      const m = document.getElementById('catalogMeta');
+      if (m && /Loading/.test(m.textContent)) {
+        m.textContent = 'Something broke on this page: ' + (ev.message || 'unknown error') + ' — open DevTools (F12) console for details.';
+      }
+    });
+
     if (remote) {
       const g = await R.requireStudent("login.html");
       if (!g) throw new Error("redirect"); // redirected to login
@@ -138,7 +151,9 @@
       });
       // Mirror remote identity into the local identity slot so shared helpers keep working.
       P.saveStudent({ name: name || email.split("@")[0], email, savedAt: P.nowIso() });
-      if (await R.isAdmin()) {
+      let admin = false;
+      try { admin = await R.isAdmin(); } catch (e) { console.warn("[portal] admin check failed, treating as student:", e); }
+      if (admin) {
         document.getElementById('sessionLine').textContent = "This account is an admin — admins can't take exams.";
         document.getElementById('catalogMeta').textContent = 'Not available for admin accounts.';
         document.getElementById('catalogGrid').innerHTML = '<div class="card" role="alert"><p><strong>Admin accounts can\'t take exams.</strong> Use the <a href="../admin/index.html">Admin Console</a> to manage the question bank. Sign out below to switch to a student account.</p></div>';
@@ -267,13 +282,13 @@
     }
 
     try {
-      let exams = await P.loadCatalog();
+      let exams = await withTimeout(P.loadCatalog(), 20000, "CATALOG_TIMEOUT");
       // Invite-only: remote students see ONLY their assigned exams.
       // (Local-only mode still shows the full static catalog for practice.)
       if (remote) {
         try {
-          const allowed = new Set(await R.myExamIds());
-          try { await R.claimInvites(); } catch (e) {}
+          const allowed = new Set(await withTimeout(R.myExamIds(), 20000, "ACCESS_TIMEOUT"));
+          try { await withTimeout(R.claimInvites(), 15000, "CLAIM_TIMEOUT"); } catch (e) { console.warn("[portal] claim skipped:", e); }
           exams = exams.filter(e => allowed.has(e.id));
           if (!exams.length) {
             window.__exams = [];
@@ -283,8 +298,11 @@
             return;
           }
         } catch (e) {
-          document.getElementById('catalogMeta').textContent = 'Could not verify exam access.';
-          document.getElementById('catalogGrid').innerHTML = '<div class="card"><p>' + P.esc(P.friendlyError(e)) + '</p></div>';
+          const timeout = /TIMEOUT/.test((e && e.message) || "");
+          document.getElementById('catalogMeta').textContent = timeout ? 'Verification timed out.' : 'Could not verify exam access.';
+          document.getElementById('catalogGrid').innerHTML = '<div class="card"><p>' + P.esc(timeout
+            ? 'The database took too long (cold start or network stall). Your login is fine — just retry.'
+            : P.friendlyError(e)) + '</p><div class="btn-row"><button class="btn btn-primary" onclick="window.location.reload()">Retry</button></div></div>';
           return;
         }
       }
@@ -319,8 +337,11 @@
       renderProgress(exams, remoteRows);
       await renderResume(exams);
     } catch (e) {
-      document.getElementById('catalogMeta').textContent = 'Could not load catalog.';
-      document.getElementById('catalogGrid').innerHTML = '<div class="card"><p>Could not load the exam catalog. Serve over HTTP (<code>python -m http.server</code>) or check the backend configuration.</p></div>';
+      const timeout = /TIMEOUT/.test((e && e.message) || "");
+      document.getElementById('catalogMeta').textContent = timeout ? 'Catalog timed out.' : 'Could not load catalog.';
+      document.getElementById('catalogGrid').innerHTML = '<div class="card"><p>' + (timeout
+        ? 'The database took too long (cold start or network stall). Your login is fine — just retry.'
+        : 'Could not load the exam catalog. Serve over HTTP (<code>python -m http.server</code>) or check the backend configuration.') + '</p><div class="btn-row"><button class="btn btn-primary" onclick="window.location.reload()">Retry</button></div></div>';
     }
 
     document.getElementById('startConfirm').addEventListener('click', async () => {
