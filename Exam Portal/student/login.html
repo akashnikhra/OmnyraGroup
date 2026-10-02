@@ -94,6 +94,10 @@
             <div class="btn-row">
               <button class="btn btn-primary" type="submit" id="loginBtn">Log in</button>
             </div>
+            <div class="btn-row">
+              <button class="btn btn-ghost" type="button" id="forgotBtn">Forgot password?</button>
+            </div>
+            <p class="help" id="forgotSent" role="status" aria-live="polite"></p>
           </form>
         </div>
       </section>
@@ -146,6 +150,7 @@
     // Supabase's param.
     const qp0 = new URLSearchParams(window.location.search);
     const inviteMode = qp0.get('invited') === '1';
+    const recoveryMode = qp0.get('recovery') === '1';
     const inviteCode = (qp0.get('examCode') || '').trim().toUpperCase();
     if (inviteCode) {
       const sc = document.getElementById('setupCode');
@@ -190,7 +195,7 @@
           let admin = false;
           try { admin = await R.isAdmin(); } catch (e) {}
           if (admin) { window.location.replace("../admin/index.html"); }
-          else if (inviteMode) { await showInviteCard(s); throw new Error('invite'); }
+          else if (inviteMode || recoveryMode) { await showInviteCard(s); throw new Error('invite'); }
           else window.location.replace("index.html");
         }
       } catch (e) { if (e.message === 'invite') throw e; }
@@ -250,7 +255,7 @@
       } catch (e) {}
       info.textContent = "Signed in as " + email + " for " + examName + ". Set a password to finish — then only your assigned exams appear.";
       document.getElementById('invitePassWrap').hidden = false;
-      document.getElementById('inviteSetBtn').addEventListener('click', async () => {
+      document.getElementById('inviteSetBtn').onclick = async () => {
         const err = document.getElementById('inviteError');
         err.textContent = "";
         const p1 = document.getElementById('invitePass').value;
@@ -269,7 +274,35 @@
           err.textContent = P.friendlyError(ex);
           btn.disabled = false;
         }
-      }, { once: true });
+      };
+    }
+
+    // Password recovery: confirmed accounts with no password (e.g. an invite
+    // click that confirmed the email but failed to land) set one via email.
+    document.getElementById('forgotBtn').addEventListener('click', async () => {
+      const err = document.getElementById('loginError');
+      const sent = document.getElementById('forgotSent');
+      err.textContent = ""; sent.textContent = "";
+      const email = document.getElementById('loginEmail').value.trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { err.textContent = "Enter your account email first, then Forgot password."; return; }
+      try {
+        const base = window.location.href.split('?')[0];
+        const { error } = await R.sb.auth.resetPasswordForEmail(email, {
+          redirectTo: base + "?recovery=1"
+        });
+        if (error) throw error;
+        sent.textContent = "Reset link sent from omnyra.training@gmail.com — click it, set a password, and log in.";
+      } catch (ex) { err.textContent = P.friendlyError(ex); }
+    });
+
+    // Recovery links land back here with a session: intercept before the
+    // normal catalog redirect and show the set-password card instead.
+    if (R.sb) {
+      R.sb.auth.onAuthStateChange(async (event, session) => {
+        if (event === 'PASSWORD_RECOVERY' && session) {
+          try { await showInviteCard(session); } catch (e) {}
+        }
+      });
     }
 
     document.getElementById('setupForm').addEventListener('submit', async (e) => {
@@ -293,7 +326,7 @@
       } catch (ex) {
         const msg = (ex && ex.message) || "";
         if (/User already registered/i.test(msg) || /already exists/i.test(msg)) {
-          err.textContent = "This email already has a password — use the Log in tab.";
+          err.textContent = "This email already has an account — use the Log in tab, or Forgot password if you never set one.";
           showLogin();
         } else err.textContent = P.friendlyError(ex);
       } finally { btn.disabled = false; }
