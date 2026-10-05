@@ -206,11 +206,23 @@ async function signUpWithPassword(email, code, password, redirectTo) {
   if (!validEmail(email)) { const e = new Error("BAD_EMAIL"); e.code = "BAD_EMAIL"; throw e; }
   if (String(password || "").length < 8) { const e = new Error("WEAK_PASSWORD"); e.code = "WEAK_PASSWORD"; throw e; }
   // Pair must exist before we create any account (also enforced server-side).
-  await validateInvite(email, code);
+  // validateInvite returns the bound exam_id — reuse it to attach exam
+  // context to the confirmation email (Confirm-signup template reads .Data,
+  // so the mail can name the exam and repeat the code).
+  const examId = await validateInvite(email, code);
+  const examCode = normalizeCode(code);
+  let examTitle = "";
+  try {
+    const { data: examRow } = await sb.from("exams").select("title").eq("id", examId).maybeSingle();
+    if (examRow && examRow.title) examTitle = examRow.title;
+  } catch (e) { /* title is decorative; never block signup on it */ }
   const { data, error } = await sb.auth.signUp({
     email: String(email).trim(),
     password,
-    options: { emailRedirectTo: redirectTo || window.location.href }
+    options: {
+      emailRedirectTo: redirectTo || window.location.href,
+      data: { exam_code: examCode, exam_title: examTitle, exam_id: examId }
+    }
   });
   if (error) throw error;
   return data; // user must now click the confirmation email (inbox proof)
@@ -224,6 +236,22 @@ async function signInWithPassword(email, password) {
   });
   if (error) throw error;
   return data.session || null;
+}
+
+/* Self-serve recovery for the "Email not confirmed" dead end: re-sends the
+ * signup-confirmation mail without re-submitting the setup form. Throws
+ * BAD_EMAIL for junk input; a confirmed address yields an
+ * already-confirmed-style error the caller should translate. */
+async function resendConfirmation(email, redirectTo) {
+  const sb = needSb();
+  if (!validEmail(email)) { const e = new Error("BAD_EMAIL"); e.code = "BAD_EMAIL"; throw e; }
+  const { error } = await sb.auth.resend({
+    type: "signup",
+    email: String(email).trim(),
+    options: { emailRedirectTo: redirectTo || window.location.href }
+  });
+  if (error) throw error;
+  return true;
 }
 
 async function claimInvites() {
@@ -605,7 +633,7 @@ window.OmnyraRemote = {
   get sb() { return api.sb; },
   sendLink, handleCallback, getSession, signOut, getProfile, isAdmin,
   isAdminEmail, adminAllowlist, requireStudent, requireAdmin,
-  checkInvite, validateInvite, signUpWithPassword, signInWithPassword, claimInvites,
+  checkInvite, validateInvite, signUpWithPassword, signInWithPassword, resendConfirmation, claimInvites,
   myExamIds, myInvites,
   listExamCodes, createExamCode, setExamCodeActive,
   listInvitesAdmin, addInvites, setInviteStatus, normalizeCode, sendInviteEmails,

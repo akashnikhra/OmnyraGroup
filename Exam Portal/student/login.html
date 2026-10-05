@@ -97,7 +97,11 @@
             <div class="btn-row">
               <button class="btn btn-ghost" type="button" id="forgotBtn">Forgot password?</button>
             </div>
+            <div class="btn-row" id="resendRow" hidden>
+              <button class="btn btn-outline" type="button" id="resendBtn">Resend confirmation email</button>
+            </div>
             <p class="help" id="forgotSent" role="status" aria-live="polite"></p>
+            <p class="help" id="resendSent" role="status" aria-live="polite"></p>
           </form>
         </div>
       </section>
@@ -178,7 +182,7 @@
       ["setupEmail","setupCode","setupPass","setupPass2","loginEmail","loginPass"].forEach(id => {
         const el = document.getElementById(id); if (el) el.disabled = true;
       });
-      ["setupBtn","loginBtn"].forEach(id => { const el = document.getElementById(id); if (el) el.disabled = true; });
+      ["setupBtn","loginBtn","forgotBtn","resendBtn"].forEach(id => { const el = document.getElementById(id); if (el) el.disabled = true; });
       document.getElementById('setupSent').textContent = "Tip: continue to the exam catalog without signing in — use the name/email identity there (local practice mode).";
       const a = document.createElement("a");
       a.className = "btn btn-outline"; a.href = "index.html"; a.textContent = "Continue to exams";
@@ -213,7 +217,12 @@
       note.textContent = "Backend connected — invited students only. Your admin must add your email with an exam code first.";
     }
 
+    function hideResend() {
+      document.getElementById('resendRow').hidden = true;
+      document.getElementById('resendSent').textContent = "";
+    }
     function showSetup() {
+      hideResend();
       document.getElementById('setupForm').hidden = false;
       document.getElementById('loginForm').hidden = true;
       document.getElementById('tabTitle').textContent = "Set your password (first time)";
@@ -221,6 +230,7 @@
       document.getElementById('tabLogin').setAttribute('aria-selected', 'false');
     }
     function showLogin() {
+      hideResend();
       document.getElementById('setupForm').hidden = true;
       document.getElementById('loginForm').hidden = false;
       document.getElementById('tabTitle').textContent = "Log in";
@@ -277,6 +287,38 @@
       };
     }
 
+    // Self-serve confirmation resend (the "Email not confirmed" dead end).
+    // 60s cooldown mirrors the admin magic-link throttle.
+    let resendCooldown = null;
+    document.getElementById('resendBtn').addEventListener('click', async () => {
+      const btn = document.getElementById('resendBtn');
+      const sent = document.getElementById('resendSent');
+      const err = document.getElementById('loginError');
+      err.textContent = ""; sent.textContent = "";
+      const email = document.getElementById('loginEmail').value.trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { err.textContent = "Enter your account email first, then Resend confirmation email."; return; }
+      btn.disabled = true;
+      try {
+        const base = window.location.href.split('?')[0];
+        await R.resendConfirmation(email, base + "?confirmed=1");
+        sent.textContent = "Confirmation email resent from omnyra.training@gmail.com — click the link, then log in.";
+        let s = 60;
+        btn.textContent = "Resend available in " + s + "s";
+        clearInterval(resendCooldown);
+        resendCooldown = setInterval(() => {
+          s -= 1;
+          if (s <= 0) { clearInterval(resendCooldown); btn.disabled = false; btn.textContent = "Resend confirmation email"; }
+          else btn.textContent = "Resend available in " + s + "s";
+        }, 1000);
+      } catch (ex) {
+        const msg = (ex && ex.message) || "";
+        if (/already confirmed|already registered/i.test(msg)) {
+          err.textContent = "";
+          sent.textContent = "This email is already confirmed — just enter your password and log in.";
+        } else err.textContent = P.friendlyError(ex);
+        btn.disabled = false;
+      }
+    });
     // Password recovery: confirmed accounts with no password (e.g. an invite
     // click that confirmed the email but failed to land) set one via email.
     document.getElementById('forgotBtn').addEventListener('click', async () => {
@@ -326,8 +368,9 @@
       } catch (ex) {
         const msg = (ex && ex.message) || "";
         if (/User already registered/i.test(msg) || /already exists/i.test(msg)) {
-          err.textContent = "This email already has an account — use the Log in tab, or Forgot password if you never set one.";
+          err.textContent = "This email already has an account — use the Log in tab, or Forgot password if you never set one. Never confirmed it? Log in once to reveal Resend confirmation email.";
           showLogin();
+          document.getElementById('resendRow').hidden = false;
         } else err.textContent = P.friendlyError(ex);
       } finally { btn.disabled = false; }
     });
@@ -336,6 +379,7 @@
       e.preventDefault();
       const err = document.getElementById('loginError');
       err.textContent = "";
+      hideResend();
       const email = document.getElementById('loginEmail').value.trim();
       const pass = document.getElementById('loginPass').value;
       const btn = document.getElementById('loginBtn');
@@ -346,7 +390,10 @@
         await R.signInWithPassword(email, pass);
       } catch (ex) {
         const msg = (ex && ex.message) || "";
-        if (/Email not confirmed/i.test(msg)) err.textContent = "Email not confirmed yet — click the link in your inbox first, then log in.";
+        if (/Email not confirmed/i.test(msg)) {
+          err.textContent = "Email not confirmed yet — click the link in your inbox first, then log in. Lost it?";
+          document.getElementById('resendRow').hidden = false;
+        }
         else if (/Invalid login credentials/i.test(msg)) err.textContent = "Wrong email or password.";
         else err.textContent = P.friendlyError(ex);
         btn.disabled = false;

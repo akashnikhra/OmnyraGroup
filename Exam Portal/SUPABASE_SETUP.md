@@ -38,8 +38,13 @@ Then paste **`supabase/migration_exam_access_v3.sql`** → Run (adds
    `https://www.omnyragroup.online/Exam Portal/admin/**`,
    `https://omnyragroup.online/**`.
    (Optional local dev: add `http://localhost:8123/Exam Portal/**`.)
-4. Brand the "Confirm signup" template (OMNyra header + "click to verify,
-   then log in with your password").
+4. Brand BOTH student mail templates (paste the repo files verbatim, then Save):
+   - **Confirm signup** ← `supabase/templates/confirm-signup.html`, subject
+     `Confirm your email for {{ .Data.exam_title }}` (students who register via
+     the First-time form; exam context comes from signup `user_metadata`).
+   - **Invite user** ← `supabase/templates/invite.html` (admin Email button;
+     see §5b). Verify each persists with a page reload — unsaved template edits
+     are the #1 cause of "email still shows old text" reports.
 
 ## 4. Make yourself admin
 1. Sign in once via `Exam Portal/admin/login.html` (creates your profile row).

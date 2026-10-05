@@ -1,0 +1,23 @@
+<!-- OMNyra Exam Portal — Supabase "Confirm signup" email template.
+  Paste into: Supabase Dashboard → Authentication → Emails → Templates → Confirm signup
+  Subject (paste into Subject field):
+    Confirm your email for {{ .Data.exam_title }}
+
+  Pairs with the Invite template (supabase/templates/invite.html): students who
+  register via the First-time form (email + exam code + password) get THIS mail.
+  signUpWithPassword (assets/remote.js) attaches { exam_code, exam_title,
+  exam_id } as user_metadata, rendered here via {{ .Data.* }} with fallbacks
+  so the mail still reads fine if metadata is ever missing.
+-->
+<h2>Confirm your email{{ if .Data.exam_title }} for {{ .Data.exam_title }}{{ end }}</h2>
+
+<p>You registered{{ if .Data.exam_title }} for <strong>{{ .Data.exam_title }}</strong>{{ end }}{{ if .Data.exam_code }} (exam code <strong>{{ .Data.exam_code }}</strong> — keep it, you'll need it if you ever get a new exam){{ end }} on the OMNyra Exam Portal.</p>
+
+<p><a href="{{ .ConfirmationURL }}">Confirm my email address</a></p>
+
+<p>Click the link above to prove you own this inbox, then return to the Student login page and log in with your email and password — only your assigned exam will be visible. If you didn't register, ignore this email.</p>
+
+<p><strong>Link expired or didn't arrive?</strong> Links expire for security. Open the Student login page, enter your email and password on the Log in tab, and use <strong>Resend confirmation email</strong> — or write to <a href="mailto:omnyra.training@gmail.com">omnyra.training@gmail.com</a>.</p>
+
+<p>OMNyra Group — Empowering Careers. Securing the Future.<br>
+<a href="mailto:omnyra.training@gmail.com">omnyra.training@gmail.com</a> · omnyragroup.online</p>
