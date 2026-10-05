@@ -347,11 +347,48 @@
         pb.type = 'button'; pb.className = 'pal-btn'; pb.textContent = String(i + 1);
         pb.setAttribute('data-pal', q._key);
         pb.setAttribute('aria-label', 'Go to question ' + (i + 1));
-        pb.addEventListener('click', () => {
-          document.getElementById('q-' + CSS.escape(q._key)).scrollIntoView({ behavior: 'smooth', block: 'start' });
-          syncPalette(i);
-        });
+        pb.addEventListener('click', () => { showQuestion(i); });
         pal.appendChild(pb);
+      });
+
+      // One-question-at-a-time pager: all cards render (paint/answers logic
+      // unchanged) but only the current card is visible. Palette jumps pages.
+      let current = 0;
+      const nav = document.createElement('div');
+      nav.className = 'btn-row';
+      nav.id = 'qNav';
+      nav.style.cssText = 'margin-top:16px;justify-content:space-between;align-items:center;';
+      nav.innerHTML = '<button class="btn btn-outline" id="prevQ" type="button">← Back</button>' +
+        '<span class="help" id="qPos" aria-live="polite"></span>' +
+        '<button class="btn btn-primary" id="nextQ" type="button">Next →</button>';
+      qWrap.insertAdjacentElement('afterend', nav);
+
+      function showQuestion(i) {
+        if (i < 0) i = 0;
+        if (i > questions.length - 1) i = questions.length - 1;
+        current = i;
+        qWrap.querySelectorAll('.q-card').forEach((card, j) => { card.hidden = (j !== i); });
+        document.getElementById('prevQ').disabled = (i === 0);
+        document.getElementById('nextQ').textContent = (i === questions.length - 1) ? 'Finish →' : 'Next →';
+        document.getElementById('qPos').textContent = 'Question ' + (i + 1) + ' of ' + questions.length;
+        syncPalette(i);
+        const card = qWrap.querySelectorAll('.q-card')[i];
+        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      function goNext() {
+        if (current >= questions.length - 1) { askSubmit(); return; }
+        showQuestion(current + 1);
+      }
+      function goPrev() { showQuestion(current - 1); }
+      document.getElementById('prevQ').addEventListener('click', goPrev);
+      document.getElementById('nextQ').addEventListener('click', goNext);
+      document.addEventListener('keydown', (e) => {
+        if (submitted || (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft')) return;
+        if (document.querySelector('.modal-backdrop.open')) return;
+        const t = e.target;
+        if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT')) return;
+        if (e.key === 'ArrowRight') { e.preventDefault(); goNext(); }
+        else { e.preventDefault(); goPrev(); }
       });
 
       function paint() {
@@ -454,7 +491,11 @@
       document.getElementById('submitBtn2').addEventListener('click', askSubmit);
       document.getElementById('cancelSubmit').addEventListener('click', () => P.closeModal('submitModal'));
       document.getElementById('confirmSubmit').addEventListener('click', () => doSubmit(false));
-      paint(); syncPalette(0);
+      paint();
+      // Open where the student left off: first unanswered, else Q1.
+      let startAt = questions.findIndex(q => answers[q._key] === undefined);
+      if (startAt < 0) startAt = 0;
+      showQuestion(startAt);
     }
   </script>
 </body>
