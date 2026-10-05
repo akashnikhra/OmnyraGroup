@@ -7,4 +7,6 @@ smoke-hero*.cjs
 opencode-agentrouter-support/
 # Raw AIGP source bank (docx + media) — never commit; portal JSONs are the source of truth
 Exam Portal/AIGP Exam/
+# Supabase CLI local state — never commit
+Exam Portal/supabase/.temp/
 

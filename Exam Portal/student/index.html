@@ -285,7 +285,7 @@
       }
       pendingExam = ex;
       document.getElementById('startText').textContent =
-        ex.title + ' · ' + ex.durationMinutes + ' minutes · pass mark ' + ex.passPercent + '%. The timer starts immediately and your answers auto-save every 15 seconds.' +
+        ex.title + ' · ' + ex.durationMinutes + ' minutes · pass mark ' + ex.passPercent + '%. You\'ll see the instructions next — the timer starts only when you click Begin test there (reading the instructions is untimed). Your answers auto-save every 15 seconds.' +
         (remote ? ' Timing and grading are enforced server-side.' : '');
       P.openModal('startModal');
     }
@@ -362,27 +362,12 @@
 
     document.getElementById('startConfirm').addEventListener('click', async () => {
       if (!pendingExam) return;
-      if (remote) {
-        try {
-          const row = await R.startAttempt(pendingExam.id);
-          P.store.set(P.K.activeAttempt, row.id);
-          P.closeModal('startModal');
-          window.location.href = 'exam.html?attempt=' + encodeURIComponent(row.id) + '&remote=1';
-        } catch (e) { P.toast(P.friendlyError(e)); }
-        return;
-      }
-      const s = P.getStudent();
-      const attempt = {
-        attemptId: P.uuid(), examId: pendingExam.id, examTitle: pendingExam.title,
-        studentId: P.studentKey(s), student: { name: s.name || s.displayName, email: s.email },
-        startedAt: P.nowIso(), durationMinutes: pendingExam.durationMinutes,
-        seed: (Math.random() * 0x7fffffff) | 0,
-        answers: {}, flags: {}, submittedAt: null, lastSavedAt: P.nowIso()
-      };
-      P.store.saveAttempt(attempt);
-      P.store.set(P.K.activeAttempt, attempt.attemptId);
+      // No attempt is created here — the timed attempt starts only when the
+      // student clicks Begin test on the (untimed) instruction screen, so
+      // reading time is never charged. exam.html handles resume-or-create.
       P.closeModal('startModal');
-      window.location.href = 'exam.html?attempt=' + encodeURIComponent(attempt.attemptId);
+      const target = 'exam.html?exam=' + encodeURIComponent(pendingExam.id) + (remote ? '&remote=1' : '');
+      window.location.href = target;
     });
     document.getElementById('startCancel').addEventListener('click', () => P.closeModal('startModal'));
     document.getElementById('startModal').addEventListener('click', (e) => {

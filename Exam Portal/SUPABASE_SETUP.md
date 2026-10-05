@@ -63,7 +63,11 @@ supabase functions deploy send-invites
 No secrets to set — the runtime provides `SUPABASE_URL` / `ANON` /
 `SERVICE_ROLE` itself, and the service key never touches the repo.
 Then brand the mail: Authentication → Emails → Templates → **Invite user**
-(OMNyra header + "click to set your password, then log in").
+(paste `supabase/templates/invite.html`; subject
+`You're invited: {{ .Data.exam_title }} — set your password`).
+The template renders the student's assigned exam dynamically
+(`{{ .Data.exam_title }}` + `{{ .Data.exam_code }}` come from the
+send-invites function per invite) — do NOT hardcode "GRC mock exam".
 
 ## 5. Wire the static config
 Copy the **publishable anon key** + project URL (Project Settings → API) into

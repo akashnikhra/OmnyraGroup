@@ -40,12 +40,14 @@ instructions (Images 1–5 provided by user). Exam-only + instructions scope.
   answer table, `rationale` from `Explanation:`.
 - Manifest: 4 new published entries + bumped `updatedAt`. Spare pool not listed.
 
-## §2 Pre-exam instruction screen (APPROVED, amended 2026-10-03: timer runs from catalog Start)
-Dismissible instruction panel on `exam.html` + `student/exam.html` that hides questions
-until Begin is clicked but does NOT pause the timer (deadline stays
-`attempt.startedAt + durationMinutes`; changing that would require backend/RPC changes,
-out of scope for Option A). Copy discloses this: “The timer started when you clicked
-Start on the catalog.” Text:
+## §2 Pre-exam instruction screen (APPROVED, amended 2026-10-05: timer starts at Begin test)
+Untimed instruction screen on `student/exam.html` (`exam.html?exam=<id>`, no attempt
+created, no ticking timer). The timed attempt — and its server deadline
+`attempt.startedAt + durationMinutes` — is created only when Begin test is clicked
+(`start_attempt` moved from catalog Start to Begin; resume-or-create handled on the
+pre-start screen, no backend/RPC changes). Copy: "The timer starts when you click
+Begin test — reading this screen is untimed." `?attempt=` sessions boot straight
+into questions. Text:
 “AIGP Practice Mock N — 100 questions | 2 hours 45 minutes | 70% required to pass
 (≈ proxy for scaled 300). You can pause and resume later. You can retake as many times
 as you like. Progress bar shows progress + time remaining; you may still finish after

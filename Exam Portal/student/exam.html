@@ -52,7 +52,7 @@
               <li>You can retake the test as many times as you would like.</li>
               <li>The progress bar shows progress and time remaining. If time runs out you can still finish.</li>
               <li>Flag a question for review or skip it and return via the palette.</li>
-              <li>Click Begin test to reveal questions. The timer started when you clicked Start on the catalog.</li>
+              <li>Click Begin test to reveal questions. The timer starts when you click Begin test — reading this screen is untimed.</li>
             </ul>
             <div class="btn-row"><button class="btn btn-primary" id="beginBtn">Begin test</button></div>
           </div>
@@ -132,6 +132,7 @@
     const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
     const params = new URLSearchParams(window.location.search);
     const attemptId = params.get('attempt');
+    const examParam = params.get('exam');
     const fatal = document.getElementById('fatal');
     let submitted = false;
 
@@ -139,7 +140,7 @@
       fatal.innerHTML = '<div class="card" role="alert"><h2 style="margin-top:0;">Session unavailable</h2><p class="help">' +
         P.esc(msg) + '</p><div class="btn-row"><a class="btn btn-primary" href="index.html">Back to catalog</a></div></div>';
     }
-    if (!attemptId) { showFatal('Missing ?attempt= id. Start an exam from the catalog so an attempt token is issued.'); throw new Error('no attempt'); }
+    if (!attemptId && !examParam) { showFatal('Missing exam reference. Pick an exam from the catalog to begin.'); throw new Error('no exam'); }
 
     await R.ready;
     const remote = R.mode() === "remote" && params.get('remote') === '1';
@@ -151,6 +152,7 @@
 
     let questions = [], exam = null, attempt = null, answers = {}, flags = {}, deadline = 0, source = "static";
 
+    if (attemptId) {
     if (remote) {
       try {
         attempt = await R.getAttemptById(attemptId);
@@ -208,6 +210,100 @@
       deadline = new Date(attempt.startedAt).getTime() + exam.durationMinutes * 60 * 1000;
       bootRunner(false);
     }
+    } else {
+      // Pre-start screen (exam.html?exam=): instructions only, timer NOT started.
+      // The attempt (and its server deadline) is created by Begin test below.
+      await bootPreStart(examParam, remote);
+    }
+
+    // Pre-start flow: instruction screen with NO running timer. The timed
+    // attempt is created only when the student clicks Begin test, so reading
+    // time is never charged. An existing in-progress session offers Resume.
+    async function bootPreStart(examId, isRemote) {
+      const runner = document.getElementById('runner');
+      const beginBtn = document.getElementById('beginBtn');
+      runner.hidden = false;
+      document.getElementById('questions').hidden = true;
+      document.querySelector('.palette').hidden = true;
+      // Static duration display until the attempt exists (no ticking timer).
+      const paintPreStart = (ex, resume) => {
+        document.getElementById('examTitle').textContent = ex.title;
+        document.getElementById('examSub').textContent =
+          ex.durationMinutes + ' min · pass mark ' + ex.passPercent + '%' +
+          (resume ? ' · in-progress session found (started ' + new Date(resume.startedAt).toLocaleString() + ')' : ' · timer starts when you begin');
+        document.getElementById('preExamMeta').textContent =
+          ex.title + ' — ' + ex.durationMinutes + ' min · ' + ex.passPercent + '% to pass';
+        document.getElementById('timer').textContent = ex.durationMinutes + ':00';
+        document.getElementById('countMeta').textContent = resume ? 'resumable' : 'not started';
+        beginBtn.textContent = resume ? 'Resume test' : 'Begin test';
+      };
+      if (isRemote) {
+        const exams = await P.loadCatalog().catch(() => []);
+        const ex = exams.find(x => x.id === examId);
+        if (!ex) { showFatal('Exam "' + examId + '" is no longer published.'); throw new Error('no exam'); }
+        try {
+          const allowed = await R.myExamIds();
+          if (allowed.length && allowed.indexOf(ex.id) === -1) { showFatal('Your account has no access to "' + ex.id + '". Contact your admin to add your email with an exam code.'); throw new Error('not-invited'); }
+        } catch (e) { if (e && e.message === 'not-invited') throw e; /* access check best-effort; server enforces on begin */ }
+        let active = null;
+        try { active = await R.getActiveAttempt(ex.id); } catch (e) {}
+        const resume = active ? { resumeId: active.id, startedAt: active.started_at } : null;
+        paintPreStart(ex, resume);
+        // Best-effort question count (never blocks Begin; server is the source of truth).
+        P.loadQuestions(ex).then(q => {
+          if (q.questions.length) document.getElementById('preExamMeta').textContent =
+            ex.title + ' — ' + q.questions.length + ' questions · ' + ex.durationMinutes + ' min · ' + ex.passPercent + '% to pass';
+        }).catch(() => {});
+        beginBtn.onclick = async () => {
+          if (resume) {
+            window.location.href = 'exam.html?attempt=' + encodeURIComponent(resume.resumeId) + '&remote=1';
+            return;
+          }
+          beginBtn.disabled = true;
+          beginBtn.textContent = 'Starting…';
+          try {
+            const row = await R.startAttempt(ex.id);
+            try { P.store.set(P.K.activeAttempt, row.id); } catch (e) {}
+            window.location.href = 'exam.html?attempt=' + encodeURIComponent(row.id) + '&remote=1';
+          } catch (e) {
+            beginBtn.disabled = false;
+            beginBtn.textContent = 'Begin test';
+            P.toast(P.friendlyError(e));
+          }
+        };
+      } else {
+        const exams = await P.loadCatalog().catch(() => []);
+        const ex = exams.find(x => x.id === examId);
+        if (!ex) { showFatal('Exam "' + examId + '" is no longer in the catalog.'); throw new Error('no exam'); }
+        if (!ex.open) { showFatal('Exam "' + examId + '" is not currently open.'); throw new Error('closed'); }
+        const activeId = P.store.get(P.K.activeAttempt, null);
+        const a = activeId ? P.store.getAttempt(activeId) : null;
+        const resume = (a && !a.submittedAt && a.examId === examId) ? { resumeId: a.attemptId, startedAt: a.startedAt } : null;
+        paintPreStart(ex, resume);
+        P.loadQuestions(ex).then(q => {
+          if (q.questions.length) document.getElementById('preExamMeta').textContent =
+            ex.title + ' — ' + q.questions.length + ' questions · ' + ex.durationMinutes + ' min · ' + ex.passPercent + '% to pass';
+        }).catch(() => {});
+        beginBtn.onclick = () => {
+          if (resume) {
+            window.location.href = 'exam.html?attempt=' + encodeURIComponent(resume.resumeId);
+            return;
+          }
+          const s = P.getStudent();
+          if (!s) { P.toast('Save your student identity first.'); window.location.href = 'index.html'; return; }
+          const next = {
+            attemptId: P.uuid(), examId: ex.id, examTitle: ex.title,
+            studentId: P.studentKey(s), student: { name: s.name || s.displayName, email: s.email },
+            startedAt: P.nowIso(), durationMinutes: ex.durationMinutes,
+            seed: (Math.random() * 0x7fffffff) | 0,
+            answers: {}, flags: {}, submittedAt: null, lastSavedAt: P.nowIso()
+          };
+          P.store.saveAttempt(next);
+          P.store.set(P.K.activeAttempt, next.attemptId);
+          window.location.href = 'exam.html?attempt=' + encodeURIComponent(next.attemptId);
+        };
+      }
+    }
 
     function bootRunner(isRemote) {
       document.getElementById('runner').hidden = false;
@@ -224,18 +320,12 @@
         timerEl.classList.toggle('low', ms < 5 * 60 * 1000);
       }, 500);
 
-      // Pre-exam gate: overlay is dismissible only and does NOT pause the timer
-      // (deadline derives from attempt start and keeps running).
-      // NOTE: resume-after-reload shows the overlay again (accepted behavior).
-      document.getElementById('preExamMeta').textContent =
-        exam.title + ' — ' + questions.length + ' questions · ' + exam.durationMinutes + ' min · 70% to pass';
-      document.getElementById('questions').hidden = true;
-      document.querySelector('.palette').hidden = true;
-      document.getElementById('beginBtn').addEventListener('click', function () {
-        document.getElementById('preExam').hidden = true;
-        document.getElementById('questions').hidden = false;
-        document.querySelector('.palette').hidden = false;
-      }, { once: true });
+      // No instruction gate here: this attempt is already timed (created by Begin
+      // test or Retry), so questions show immediately. Instructions live on the
+      // untimed pre-start screen (exam.html?exam=).
+      document.getElementById('preExam').hidden = true;
+      document.getElementById('questions').hidden = false;
+      document.querySelector('.palette').hidden = false;
 
       const qWrap = document.getElementById('questions');
       const pal = document.getElementById('paletteGrid');

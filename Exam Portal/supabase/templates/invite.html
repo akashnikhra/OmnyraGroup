@@ -1,0 +1,22 @@
+<!-- OMNyra Exam Portal — Supabase "Invite user" email template.
+  Paste into: Supabase Dashboard → Authentication → Emails → Templates → Invite user
+  Subject (paste into Subject field):
+    You're invited: {{ .Data.exam_title }} — set your password
+
+  Why dynamic: send-invites Edge Function already passes per-invite
+  user_metadata { exam_code, exam_title } (see supabase/functions/send-invites/index.ts).
+  The old template hardcoded "GRC mock exam" for every exam. This template
+  renders the actual assigned exam via {{ .Data.* }} with safe fallbacks.
+-->
+<h2>You're invited to your OMNyra {{ if .Data.exam_title }}{{ .Data.exam_title }}{{ else }}mock exam{{ end }}</h2>
+
+<p>Your admin has given you access to a timed {{ if .Data.exam_title }}{{ .Data.exam_title }}{{ else }}mock exam{{ end }}{{ if .Data.exam_code }} (code {{ .Data.exam_code }}){{ end }} on the OMNyra Exam Portal.</p>
+
+<p><a href="{{ .ConfirmationURL }}">Accept invitation &amp; set your password</a></p>
+
+<p>Click the link above, set a password (min 8 characters), and you'll land in the Student Console with only your assigned exam visible. If you didn't expect this email, ignore it.</p>
+
+<p><strong>Link expired or already used?</strong> Invite links expire after 24 hours for security. Reply to this email or write to <a href="mailto:omnyra.training@gmail.com">omnyra.training@gmail.com</a> and ask your admin to resend the invite — then open the fresh link. Keep your exam code{{ if .Data.exam_code }} (<strong>{{ .Data.exam_code }}</strong>){{ end }}: you'll re-enter it with your registered email on the Student login page.</p>
+
+<p>OMNyra Group — Empowering Careers. Securing the Future.<br>
+<a href="mailto:omnyra.training@gmail.com">omnyra.training@gmail.com</a> · omnyragroup.online</p>
