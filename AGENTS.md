@@ -37,6 +37,11 @@ system (logo, stationery, social, certificates) and tooling to render/export tho
 - `robots.txt` / `sitemap.xml` — SEO; sitemap points to `https://omnyragroup.online/`.
 - `CNAME` — `www.omnyragroup.online` (GitHub Pages custom domain). Canonical URL is `https://omnyragroup.online/`.
 - `Final Logo.jpeg` — High-res logo export.
+- `programs/` — Programs hub plus one page per track (`grc`, `tprm`, `iso-27001`, `risk-management`, `data-privacy`, `ai-governance`), each with curriculum, FAQ, enrol card and Course/FAQPage/Breadcrumb schema.
+- `privacy/`, `terms/`, `cookies/` — Legal pages.
+- `assets/site.css`, `assets/site.js` — Shared styles and behaviour for the generated pages (theme key `omnyra-theme`, same as the homepage).
+- `tools/build_site_pages.py` — Generates `programs/`, `privacy/`, `terms/` and `cookies/`. Program descriptions, frameworks, skills, jobs and deliverables are read from the program tabs in `index.html`; curriculum, FAQs and legal text live in the script. Edit there, run `python tools/build_site_pages.py`, commit the output. Never hand-edit the generated HTML.
+- `Website/index.html` — Redirect stub to `/` (the old duplicate homepage). `Website/img/` still hosts the logos.
 - `Website/` — Interactive landing pages (dark + light themes):
   - `index.html` — Dark theme (Three.js hexagonal lattice bg, GSAP scroll animations, 8 nav sections, responsive hamburger mobile nav).
   - `light.html` — Light theme (same structure, light color scheme).

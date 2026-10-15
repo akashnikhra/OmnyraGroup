@@ -15,4 +15,13 @@
 - LinkedIn: https://www.linkedin.com/company/omnyratraining
 
 ## Tagline
-Structure in Motion
+Empowering Careers. Securing the Future.
+
+## Program pages
+- [Programs overview](https://omnyragroup.online/programs/): Compare all six tracks.
+- [GRC](https://omnyragroup.online/programs/grc/): Policies, control mapping, risk registers, audit readiness.
+- [TPRM](https://omnyragroup.online/programs/tprm/): Vendor tiering, SIG questionnaires, SOC report review.
+- [ISO 27001](https://omnyragroup.online/programs/iso-27001/): ISMS scoping, Annex A controls, Statement of Applicability.
+- [Risk Management](https://omnyragroup.online/programs/risk-management/): FAIR, NIST RMF, COSO ERM, risk appetite.
+- [Data Privacy](https://omnyragroup.online/programs/data-privacy/): GDPR, CCPA/CPRA, DPIAs, DSARs.
+- [AI Governance](https://omnyragroup.online/programs/ai-governance/): ISO/IEC 42001, EU AI Act, NIST AI RMF.
