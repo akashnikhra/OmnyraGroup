@@ -2223,6 +2223,47 @@
       color: var(--hex-blue);
     }
 
+    /* Program page links, footer link grid, floating WhatsApp */
+    .program-page-link {
+      display: inline-flex; align-items: center; gap: 6px; margin-top: 12px;
+      font-size: 0.9rem; font-weight: 600; color: var(--hex-blue);
+    }
+    .program-page-link:hover { color: var(--white); }
+    .programs-hub-link { text-align: center; margin-top: 28px; }
+    .programs-hub-link a { font-weight: 600; }
+    .footer-links {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px;
+      max-width: 1100px; margin: 0 auto; padding: 40px var(--space-2xl) 24px;
+      background: var(--carbon-foundation);
+    }
+    .footer-links h2 {
+      font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--white); margin-bottom: 14px;
+    }
+    .footer-links ul { list-style: none; display: grid; gap: 9px; margin: 0; padding: 0; }
+    .footer-links a { font-size: 14px; color: var(--chrome-lattice); }
+    .footer-links a:hover { color: var(--white); }
+    .footer-links-wrap { background: var(--carbon-foundation); }
+    .wa-float {
+      position: fixed; right: 20px; bottom: 20px; z-index: 900;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 18px 12px 14px; border-radius: 999px;
+      background: #25D366; color: #0D1117; font-weight: 700; font-size: 14px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease;
+    }
+    .wa-float:hover { color: #0D1117; transform: translateY(-2px); }
+    .wa-float svg { width: 22px; height: 22px; }
+    html[data-theme="light"] .footer-links, html[data-theme="light"] .footer-links-wrap { background: #F1F5F9; }
+    html[data-theme="light"] .footer-links h2 { color: #0F172A; }
+    html[data-theme="light"] .footer-links a { color: #475569; }
+    html[data-theme="light"] .footer-links a:hover { color: #0284C7; }
+    html[data-theme="light"] .program-page-link { color: #0077B6; }
+    @media (max-width: 768px) {
+      .footer-links { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding: 32px 20px 16px; }
+      .wa-float span { display: none; }
+      .wa-float { padding: 14px; }
+    }
+
     /* ========================================
        16. ANIMATIONS & KEYFRAMES
        ======================================== */
@@ -2744,19 +2785,19 @@
             <img src="Website/img/Monochrome_white-transparent.png" alt="OMNyra Group" class="reveal" loading="lazy" width="1792" height="705">
             <div class="stats-grid">
               <div class="stat-item reveal">
-                <div class="stat-number" data-count="6">0</div>
+                <div class="stat-number" data-count="6">6+</div>
                 <div class="stat-label">Specialized Tracks</div>
               </div>
               <div class="stat-item reveal">
-                <div class="stat-number" data-count="35">0</div>
+                <div class="stat-number" data-count="35">35+</div>
                 <div class="stat-label">Hours Live Training</div>
               </div>
               <div class="stat-item reveal">
-                <div class="stat-number" data-count="3">0</div>
+                <div class="stat-number" data-count="3">3+</div>
                 <div class="stat-label">Global Markets</div>
               </div>
               <div class="stat-item reveal">
-                <div class="stat-number" data-count="96" data-suffix="%">0</div>
+                <div class="stat-number" data-count="96" data-suffix="%">96%</div>
                 <div class="stat-label">Placement Success*</div>
               </div>
             </div>
@@ -2894,6 +2935,7 @@
                 <div class="deliverable-content">
                   <div class="deliverable-title">Practical Session Deliverable</div>
                   <p class="deliverable-desc">Draft a formal Information Security Policy suite, design a custom control-mapping spreadsheet framework, and build a master GRC Risk Register template from scratch.</p>
+                  <a class="program-page-link" href="/programs/grc/">View full curriculum, FAQs and career paths <span aria-hidden="true">&rarr;</span></a>
                 </div>
               </div>
             </div>
@@ -2984,6 +3026,7 @@
                 <div class="deliverable-content">
                   <div class="deliverable-title">Practical Session Deliverable</div>
                   <p class="deliverable-desc">Build an enterprise Vendor Risk Tiering Matrix, execute a complete SIG Lite vendor review on a real SaaS vendor, and author a Third-Party Risk Assessment Report for executive sign-off.</p>
+                  <a class="program-page-link" href="/programs/tprm/">View full curriculum, FAQs and career paths <span aria-hidden="true">&rarr;</span></a>
                 </div>
               </div>
             </div>
@@ -3074,6 +3117,7 @@
                 <div class="deliverable-content">
                   <div class="deliverable-title">Practical Session Deliverable</div>
                   <p class="deliverable-desc">Draft a complete Statement of Applicability (SoA) mapped to ISO 27001:2022, construct an ISMS Risk Treatment Plan, and conduct a simulated Stage 1 gap audit with findings log.</p>
+                  <a class="program-page-link" href="/programs/iso-27001/">View full curriculum, FAQs and career paths <span aria-hidden="true">&rarr;</span></a>
                 </div>
               </div>
             </div>
@@ -3164,6 +3208,7 @@
                 <div class="deliverable-content">
                   <div class="deliverable-title">Practical Session Deliverable</div>
                   <p class="deliverable-desc">Build a Monte Carlo cyber risk simulation in Excel, author an Enterprise Risk Appetite Statement, and produce a C-Level Risk Briefing Deck with prioritized mitigation cost-benefit analysis.</p>
+                  <a class="program-page-link" href="/programs/risk-management/">View full curriculum, FAQs and career paths <span aria-hidden="true">&rarr;</span></a>
                 </div>
               </div>
             </div>
@@ -3254,6 +3299,7 @@
                 <div class="deliverable-content">
                   <div class="deliverable-title">Practical Session Deliverable</div>
                   <p class="deliverable-desc">Conduct and document an end-to-end DPIA for a cloud application, build an automated DSAR response playbook, and construct a complete Article 30 Records of Processing Activities (RoPA) register.</p>
+                  <a class="program-page-link" href="/programs/data-privacy/">View full curriculum, FAQs and career paths <span aria-hidden="true">&rarr;</span></a>
                 </div>
               </div>
             </div>
@@ -3344,12 +3390,14 @@
                 <div class="deliverable-content">
                   <div class="deliverable-title">Practical Session Deliverable</div>
                   <p class="deliverable-desc">Construct an Enterprise AI Risk Register with impact scoring, conduct a comprehensive Algorithmic Impact Assessment for a GenAI deployment, and formulate an ISO 42001-aligned AI Acceptable Use Policy.</p>
+                  <a class="program-page-link" href="/programs/ai-governance/">View full curriculum, FAQs and career paths <span aria-hidden="true">&rarr;</span></a>
                 </div>
               </div>
             </div>
 
           </div>
         </div>
+        <p class="programs-hub-link reveal"><a href="/programs/">Compare all six tracks side by side &rarr;</a></p>
       </div>
     </section>
 
@@ -3888,6 +3936,14 @@
         <span>Global Opportunities</span>
       </div>
     </div>
+    <div class="footer-links-wrap">
+      <div class="footer-links">
+        <div><h2>Programs</h2><ul><li><a href="/programs/grc/">GRC</a></li><li><a href="/programs/tprm/">TPRM</a></li><li><a href="/programs/iso-27001/">ISO 27001</a></li><li><a href="/programs/risk-management/">Risk Management</a></li><li><a href="/programs/data-privacy/">Data Privacy</a></li><li><a href="/programs/ai-governance/">AI Governance</a></li><li><a href="/programs/">Compare all tracks</a></li></ul></div>
+        <div><h2>Company</h2><ul><li><a href="#about">About</a></li><li><a href="#plans">Plans</a></li><li><a href="#corporate">Corporate training</a></li><li><a href="#testimonials">Reviews</a></li><li><a href="/Exam%20Portal/">Student exam portal</a></li></ul></div>
+        <div><h2>Legal</h2><ul><li><a href="/privacy/">Privacy policy</a></li><li><a href="/terms/">Terms of service</a></li><li><a href="/cookies/">Cookie policy</a></li></ul></div>
+        <div><h2>Contact</h2><ul><li><a href="mailto:omnyra.training@gmail.com">omnyra.training@gmail.com</a></li><li><a href="https://wa.me/919063370816?text=Hi%20OMNyra%2C%20I%27d%20like%20to%20know%20more%20about%20your%20GRC%20programs." target="_blank" rel="noopener noreferrer">WhatsApp +91 90633 70816</a></li><li><a href="https://www.linkedin.com/company/omnyratraining" target="_blank" rel="noopener noreferrer">LinkedIn</a></li></ul></div>
+      </div>
+    </div>
     <div class="footer-social">
       <a href="https://www.linkedin.com/company/omnyratraining" target="_blank" rel="noopener noreferrer" aria-label="OMNyra Group on LinkedIn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -3900,6 +3956,7 @@
       <span>Empowering Careers. Securing the Future.</span>
     </div>
   </footer>
+  <a class="wa-float" href="https://wa.me/919063370816?text=Hi%20OMNyra%2C%20I%27d%20like%20to%20know%20more%20about%20your%20GRC%20programs." target="_blank" rel="noopener noreferrer" aria-label="Chat with OMNyra on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg><span>Chat with us</span></a>
 
   <!-- ============================
        SCRIPTS
