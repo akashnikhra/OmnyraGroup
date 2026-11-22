@@ -111,7 +111,7 @@
             <p class="help" id="publishStatus" role="status" aria-live="polite"></p>
             <ol class="help" style="padding-left:18px;">
               <li><strong>Publish</strong> writes the <code>exams</code> row + all <code>questions</code> rows (upsert on <code>exam_id,slug</code>) — students see it instantly, no deploy.</li>
-              <li><strong>Download</strong> the Git-backup JSON and commit it as <code>Exam Portal/questions/&lt;exam-id&gt;.v&lt;YYYY-MM-DD&gt;.json</code> so Git stays the restorable source.</li>
+              <li><strong>Download</strong> the backup JSON and keep it in a private folder (for example <code>Exam Portal/AIGP Exam/</code>, which is never committed). It contains the answers, so never commit it to the public repo.</li>
               <li>Validate any Git file any time: <code>node "Exam Portal/tools/validate-questions.mjs" "Exam Portal/questions/&lt;file&gt;.json"</code>.</li>
             </ol>
           </div>
@@ -353,7 +353,7 @@
       try {
         const res = await R.publishExam(out, adminProfile && adminProfile.id);
         status.innerHTML = '✓ Published <strong>' + P.esc(out.examId) + '</strong> v' + P.esc(out.version) +
-          ' — ' + res.count + ' questions live instantly. Now download the Git-backup JSON and commit it.';
+          ' — ' + res.count + ' questions live instantly. Download the backup JSON and keep it private (it contains answers).';
         P.toast('Published to live database.');
       } catch (e) {
         status.textContent = '✗ Publish failed: ' + P.friendlyError(e);
