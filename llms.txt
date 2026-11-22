@@ -25,3 +25,10 @@ Empowering Careers. Securing the Future.
 - [Risk Management](https://omnyragroup.online/programs/risk-management/): FAIR, NIST RMF, COSO ERM, risk appetite.
 - [Data Privacy](https://omnyragroup.online/programs/data-privacy/): GDPR, CCPA/CPRA, DPIAs, DSARs.
 - [AI Governance](https://omnyragroup.online/programs/ai-governance/): ISO/IEC 42001, EU AI Act, NIST AI RMF.
+
+## Resources
+- [Guides hub](https://omnyragroup.online/resources/): Cybersecurity careers, incidents and controls.
+- [How to start a cybersecurity career without coding](https://omnyragroup.online/resources/cybersecurity-career-without-coding/)
+- [CERT-In's AI agent advisory (CIAD-2026-0049), explained](https://omnyragroup.online/resources/cert-in-ai-agent-advisory-explained/)
+- [4 cyber incidents in one week and what they teach GRC teams](https://omnyragroup.online/resources/cyber-attacks-india-october-2026-lessons/)
+- [How to spot online scams in India: 3 traps](https://omnyragroup.online/resources/how-to-spot-online-scams-india/)

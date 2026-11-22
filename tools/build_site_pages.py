@@ -12,6 +12,8 @@ import os
 import re
 from urllib.parse import quote
 
+from site_articles import ARTICLES, INSTAGRAM
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://omnyragroup.online"
 EMAIL = "omnyra.training@gmail.com"
@@ -39,7 +41,7 @@ PROGRAMS = [
     {
         "key": "grc", "slug": "grc", "short": "GRC",
         "title": "Governance, Risk & Compliance (GRC)",
-        "seo_title": "GRC Training Course | Governance, Risk & Compliance | OMNyra Group",
+        "seo_title": "GRC Training Course Online | India, US & UK | OMNyra Group",
         "card": "Policies, control frameworks, risk registers and audit readiness: the core skill set every GRC analyst is hired for.",
         "level": "Beginner friendly",
         "prereq": "No. The GRC track starts from first principles and is designed for people coming from non-technical backgrounds as well as IT. Comfort with reading documents and working in spreadsheets is enough.",
@@ -58,7 +60,7 @@ PROGRAMS = [
     {
         "key": "tprm", "slug": "tprm", "short": "TPRM",
         "title": "Third-Party Risk Management (TPRM)",
-        "seo_title": "Third-Party Risk Management (TPRM) Training | OMNyra Group",
+        "seo_title": "TPRM Training Online | Third-Party Risk | India, US & UK | OMNyra",
         "card": "Vendor tiering, SIG questionnaires, SOC report reviews and continuous monitoring across the full vendor lifecycle.",
         "level": "Beginner to intermediate",
         "prereq": "No. A basic understanding of how businesses buy software and services helps, and the first module covers the vocabulary you need.",
@@ -77,7 +79,7 @@ PROGRAMS = [
     {
         "key": "iso", "slug": "iso-27001", "short": "ISO 27001",
         "title": "ISO/IEC 27001:2022 Readiness",
-        "seo_title": "ISO 27001:2022 Training | ISMS Implementation & Audit Readiness | OMNyra Group",
+        "seo_title": "ISO 27001 Training Online | India, US & UK | OMNyra Group",
         "card": "ISMS scoping, the 93 Annex A controls, the Statement of Applicability and internal audit readiness.",
         "level": "Beginner to intermediate",
         "prereq": "No. We explain the standard clause by clause. People with some IT or compliance exposure move faster, but it is not required.",
@@ -95,7 +97,7 @@ PROGRAMS = [
     {
         "key": "risk", "slug": "risk-management", "short": "Risk Management",
         "title": "Enterprise & Cyber Risk Management",
-        "seo_title": "Cyber Risk Management Training | FAIR, NIST RMF, COSO ERM | OMNyra Group",
+        "seo_title": "Cyber Risk Management Training | FAIR, NIST | India, US & UK | OMNyra",
         "card": "Quantify cyber risk in financial terms with FAIR, set risk appetite and brief executives on what to fund.",
         "level": "Intermediate",
         "prereq": "No formal prerequisite. You will use Excel for the quantitative modules, so being comfortable with formulas helps. We cover the statistics you need.",
@@ -113,7 +115,7 @@ PROGRAMS = [
     {
         "key": "privacy", "slug": "data-privacy", "short": "Data Privacy",
         "title": "Global Data Privacy & Protection",
-        "seo_title": "Data Privacy Training | GDPR, CCPA/CPRA, DPIA | OMNyra Group",
+        "seo_title": "Data Privacy Training | GDPR, DPDP, CCPA | India, US & UK | OMNyra",
         "card": "GDPR and CCPA/CPRA in practice: DPIAs, records of processing, data subject requests and cross-border transfers.",
         "level": "Beginner friendly",
         "prereq": "No. The track suits people from legal, compliance, HR and IT backgrounds alike. We start with privacy principles before moving into the operational work.",
@@ -131,7 +133,7 @@ PROGRAMS = [
     {
         "key": "ai", "slug": "ai-governance", "short": "AI Governance",
         "title": "AI Governance & Risk Management",
-        "seo_title": "AI Governance Training | ISO 42001, EU AI Act, NIST AI RMF | OMNyra Group",
+        "seo_title": "AI Governance Training | ISO 42001, EU AI Act | India, US & UK | OMNyra",
         "card": "ISO/IEC 42001, the EU AI Act and NIST AI RMF, plus hands-on auditing of generative AI applications.",
         "level": "Intermediate",
         "prereq": "No coding is required. A basic understanding of GRC concepts helps, so some learners pair this track with the GRC track or take it after Lattice.",
@@ -184,6 +186,7 @@ ICON_LEVEL = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V14M10 2
 NAV_ITEMS = [
     ("/programs/", "Programs"),
     ("/#plans", "Plans"),
+    ("/resources/", "Resources"),
     ("/#corporate", "For teams"),
     ("/#testimonials", "Reviews"),
     ("/#contact", "Contact"),
@@ -267,6 +270,7 @@ def footer():
       <div><h2>Company</h2><ul>
         <li><a href="/#about">About</a></li>
         <li><a href="/#plans">Plans</a></li>
+        <li><a href="/resources/">Resources</a></li>
         <li><a href="/#corporate">Corporate training</a></li>
         <li><a href="/#testimonials">Reviews</a></li>
         <li><a href="/Exam%20Portal/">Student exam portal</a></li>
@@ -488,7 +492,7 @@ def program_page(p):
            pills=pills, deliverable=e(p["deliverable"]), careers=careers, fit=fit, faq=faq_html,
            related=related_html)
 
-    desc = "%s Live, practitioner-led training with 1-on-1 career coaching." % p["card"]
+    desc = "%s Live online for learners in India, the US and the UK, with 1-on-1 career coaching." % p["card"]
     return head(p["seo_title"], desc, path, [course, faq_schema, breadcrumb(crumbs)]) + body + footer()
 
 
@@ -542,7 +546,7 @@ def hub_page():
   </section>
 </main>
 """.format(nav=nav("/programs/"), crumbs=crumbs_html(crumbs), cards=cards, rows=rows)
-    return head("GRC Training Programs | TPRM, ISO 27001, Privacy, AI Governance | OMNyra Group",
+    return head("GRC Training Programs Online | India, US & UK | OMNyra Group",
                 "Compare OMNyra Group's six live GRC training tracks: GRC, TPRM, ISO 27001, risk management, "
                 "data privacy and AI governance.", path, [item_list, breadcrumb(crumbs)]) + body + footer()
 
@@ -654,6 +658,107 @@ def legal_page(slug):
     return head("%s | OMNyra Group" % title, desc, path, [breadcrumb(crumbs)]) + body + footer()
 
 
+# ---------------------------------------------------------------- resources
+
+def nice_date(iso):
+    import datetime
+    d = datetime.date.fromisoformat(iso)
+    return "%d %s %d" % (d.day, d.strftime("%B"), d.year)
+
+
+def resources_hub():
+    path = "/resources/"
+    crumbs = [("Home", "/"), ("Resources", path)]
+    cards = "".join(
+        '<a class="card-link reveal" href="/resources/%s/"><span class="meta">%s</span><h3>%s</h3><p>%s</p>'
+        '<span class="go">Read the guide</span></a>' % (a["slug"], e(nice_date(a["published"])), e(a["title"]), e(a["card"]))
+        for a in ARTICLES)
+    item_list = {"@context": "https://schema.org", "@type": "ItemList", "name": "OMNyra Group Resources",
+                 "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": SITE + "/resources/%s/" % a["slug"],
+                                      "name": a["title"]} for i, a in enumerate(ARTICLES)]}
+    body = """{nav}
+<main id="main">
+  {crumbs}
+  <section class="hub-hero container">
+    <h1 class="reveal">Cybersecurity and GRC guides</h1>
+    <p class="reveal">Plain-English guides on cybersecurity careers, recent incidents and the controls that stop them. Written by the OMNyra team, with sources for every claim.</p>
+  </section>
+  <section class="container"><div class="hub-grid">{cards}</div></section>
+  <section class="cta-band">
+    <div class="container">
+      <div class="cta-panel reveal">
+        <h2>Prefer short videos?</h2>
+        <p>Cyber Bhaiya and Privacy Didi explain careers, scams and security news in under a minute on Instagram.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="{ig}" target="_blank" rel="noopener noreferrer">Follow @cyberbhaiyadidi</a>
+          <a class="btn btn-ghost" href="/programs/">Explore programs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+""".format(nav=nav("/resources/"), crumbs=crumbs_html(crumbs), cards=cards, ig=INSTAGRAM)
+    return head("Cybersecurity & GRC Guides | India, US & UK | OMNyra Group",
+                "Free guides on cybersecurity careers without coding, CERT-In advisories, recent cyber incidents in India "
+                "and how to spot online scams.", path, [item_list, breadcrumb(crumbs)]) + body + footer()
+
+
+def article_page(a):
+    path = "/resources/%s/" % a["slug"]
+    crumbs = [("Home", "/"), ("Resources", "/resources/"), (a["title"], path)]
+    track_slug, track_name = a["track"]
+    sources = "".join('<li><a href="%s" target="_blank" rel="noopener noreferrer">%s</a></li>' % (e(u), e(t))
+                      for t, u in a["sources"])
+    others = [o for o in ARTICLES if o is not a][:3]
+    related = "".join(
+        '<a class="card-link reveal" href="/resources/%s/"><h3>%s</h3><p>%s</p><span class="go">Read</span></a>' % (
+            o["slug"], e(o["title"]), e(o["card"])) for o in others)
+    article = {
+        "@context": "https://schema.org", "@type": "Article", "headline": a["title"],
+        "description": a["description"], "url": SITE + path, "mainEntityOfPage": SITE + path,
+        "datePublished": a["published"], "dateModified": a["published"], "inLanguage": "en",
+        "image": SITE + "/og-image.png", "author": ORG, "publisher": ORG,
+        "citation": [u for _, u in a["sources"]],
+    }
+    body = """{nav}
+<main id="main">
+  {crumbs}
+  <article class="container prose">
+    <h1>{title}</h1>
+    <p class="updated">By the OMNyra Group team. Published <time datetime="{iso}">{date}</time></p>
+    {content}
+    <aside class="article-ig">
+      <p><strong>Watch the short version.</strong> Cyber Bhaiya and Privacy Didi cover topics like this on Instagram.</p>
+      <a class="btn btn-ghost" href="{ig}" target="_blank" rel="noopener noreferrer">See @cyberbhaiyadidi</a>
+    </aside>
+    <h2>Sources</h2>
+    <ul class="sources">{sources}</ul>
+  </article>
+  <section class="band" aria-labelledby="more-h">
+    <div class="container">
+      <h2 id="more-h" class="reveal">More guides</h2>
+      <div class="related">{related}</div>
+    </div>
+  </section>
+  <section class="cta-band">
+    <div class="container">
+      <div class="cta-panel reveal">
+        <h2>Turn this into a career</h2>
+        <p>Our {track} track teaches this work through live case studies, with 1-on-1 career coaching.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="/programs/{track_slug}/">View the {track} track</a>
+          <a class="btn btn-ghost" href="/#contact">Book a free call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+""".format(nav=nav("/resources/"), crumbs=crumbs_html(crumbs), title=e(a["title"]), iso=a["published"],
+           date=nice_date(a["published"]), content=a["body"], ig=INSTAGRAM, sources=sources, related=related,
+           track=e(track_name), track_slug=track_slug)
+    return head(a["seo_title"], a["description"], path, [article, breadcrumb(crumbs)]) + body + footer()
+
+
 def write(rel, content):
     full = os.path.join(ROOT, rel)
     os.makedirs(os.path.dirname(full), exist_ok=True)
@@ -669,6 +774,9 @@ def main():
     write("programs/index.html", hub_page())
     for slug in LEGAL:
         write("%s/index.html" % slug, legal_page(slug))
+    write("resources/index.html", resources_hub())
+    for a in ARTICLES:
+        write("resources/%s/index.html" % a["slug"], article_page(a))
 
 
 if __name__ == "__main__":

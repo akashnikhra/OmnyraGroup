@@ -39,6 +39,9 @@ system (logo, stationery, social, certificates) and tooling to render/export tho
 - `Final Logo.jpeg` — High-res logo export.
 - `programs/` — Programs hub plus one page per track (`grc`, `tprm`, `iso-27001`, `risk-management`, `data-privacy`, `ai-governance`), each with curriculum, FAQ, enrol card and Course/FAQPage/Breadcrumb schema.
 - `privacy/`, `terms/`, `cookies/` — Legal pages.
+- `resources/` — Guides hub plus articles (Article + Breadcrumb schema). Article content lives in `tools/site_articles.py`, adapted from the @cyberbhaiyadidi campaign kits; facts must stay within what those kits sourced.
+- `docs/seo/omnyragroup.online-audit/` — SEO/GEO audit report and the Search Console setup guide.
+- Canonical host is `https://omnyragroup.online` (CNAME); `www` redirects to it. Keep every canonical, sitemap and schema URL on that host.
 - `assets/site.css`, `assets/site.js` — Shared styles and behaviour for the generated pages (theme key `omnyra-theme`, same as the homepage).
 - `tools/build_site_pages.py` — Generates `programs/`, `privacy/`, `terms/` and `cookies/`. Program descriptions, frameworks, skills, jobs and deliverables are read from the program tabs in `index.html`; curriculum, FAQs and legal text live in the script. Edit there, run `python tools/build_site_pages.py`, commit the output. Never hand-edit the generated HTML.
 - `Website/index.html` — Redirect stub to `/` (the old duplicate homepage). `Website/img/` still hosts the logos.
