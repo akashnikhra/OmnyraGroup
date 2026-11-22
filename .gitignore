@@ -10,3 +10,7 @@ Exam Portal/AIGP Exam/
 # Supabase CLI local state — never commit
 Exam Portal/supabase/.temp/
 
+
+# Question banks contain answers (correctIndex + rationale). Never publish them:
+# the site is public. Keep them locally; the live portal serves questions from Supabase.
+Exam Portal/questions/aigp-*.json
